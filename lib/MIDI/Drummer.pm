@@ -10,6 +10,28 @@ our $VERSION = '0.08_01';
 use Moo;
 use MIDI::Simple;
 
+sub BUILDARGS
+{
+   my ( $class, %args ) = @_;
+
+    $args{channel} ||= 9;
+    $args{volume}  ||= 100;
+    $args{bpm}     ||= 120;
+    $args{score}   ||= MIDI::Simple->new_score;
+
+    $args{score}->noop( 'c' . $args{channel}, 'V' . $args{volume} );
+    $args{score}->set_tempo( int( 60_000_000 / $args{bpm} ) );
+
+    $args{reverb} ||= 0;
+    $args{score}->control_change( $args{channel}, 91, $args{reverb} );
+    $args{chorus} ||= 0;
+    $args{score}->control_change( $args{channel}, 93, $args{chorus} );
+    $args{pan}    ||= 0;
+    $args{score}->control_change( $args{channel}, 10, $args{pan} );
+
+   return \%args;
+}
+
 has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has channel => ( is => 'ro' );
 has volume => ( is => 'ro' );
@@ -40,28 +62,6 @@ has divisions => (
         return $divs;
     },
 );
-
-sub BUILDARGS
-{
-   my ( $class, %args ) = @_;
-
-    $args{channel} ||= 9;
-    $args{volume}  ||= 100;
-    $args{bpm}     ||= 120;
-    $args{score}   ||= MIDI::Simple->new_score;
-
-    $args{score}->noop( 'c' . $args{channel}, 'V' . $args{volume} );
-    $args{score}->set_tempo( int( 60_000_000 / $args{bpm} ) );
-
-    $args{reverb} ||= 0;
-    $args{score}->control_change( $args{channel}, 91, $args{reverb} );
-    $args{chorus} ||= 0;
-    $args{score}->control_change( $args{channel}, 93, $args{chorus} );
-    $args{pan}    ||= 0;
-    $args{score}->control_change( $args{channel}, 10, $args{pan} );
-
-   return \%args;
-}
 
 # kit
 has kick          => ( is => 'ro', default => sub { 'n35' } );
