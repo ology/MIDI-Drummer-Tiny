@@ -63,12 +63,32 @@ sub BUILDARGS
    return \%args;
 }
 
-has open_hh => ( is => 'ro', default => sub { 'n46' } );
-has closed_hh => ( is => 'ro', default => sub { 'n42' } );
-has kick => ( is => 'ro', default => sub { 'n35' } );
-has snare => ( is => 'ro', default => sub { 'n38' } );
+# kit
+has kick          => ( is => 'ro', default => sub { 'n35' } );
+has snare         => ( is => 'ro', default => sub { 'n38' } );
+has open_hh       => ( is => 'ro', default => sub { 'n46' } );
+has closed_hh     => ( is => 'ro', default => sub { 'n42' } );
+has pedal_hh      => ( is => 'ro', default => sub { 'n44' } );
+has crash1        => ( is => 'ro', default => sub { 'n49' } );
+has crash2        => ( is => 'ro', default => sub { 'n57' } );
+has splash        => ( is => 'ro', default => sub { 'n55' } );
+has china         => ( is => 'ro', default => sub { 'n52' } );
+has ride1         => ( is => 'ro', default => sub { 'n51' } );
+has ride2         => ( is => 'ro', default => sub { 'n59' } );
+has ride_bell     => ( is => 'ro', default => sub { 'n53' } );
+has hi_tom        => ( is => 'ro', default => sub { 'n50' } );
+has hi_mid_tom    => ( is => 'ro', default => sub { 'n48' } );
+has low_mid_tom   => ( is => 'ro', default => sub { 'n47' } );
+has low_tom       => ( is => 'ro', default => sub { 'n45' } );
+has hi_floor_tom  => ( is => 'ro', default => sub { 'n43' } );
+has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
+# duration
+has whole => ( is => 'ro', default => sub { 'wn' } );
+has half => ( is => 'ro', default => sub { 'hn' } );
 has quarter => ( is => 'ro', default => sub { 'qn' } );
+has eighth => ( is => 'ro', default => sub { 'en' } );
+has sixteenth => ( is => 'ro', default => sub { 'sn' } );
 
 sub note { return shift->score->n(@_) }
 sub rest { return shift->score->r(@_) }
