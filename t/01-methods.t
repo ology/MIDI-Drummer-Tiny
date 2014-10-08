@@ -6,7 +6,7 @@ use Test::More;
 
 use_ok 'MIDI::Drummer::Tiny';
 
-my $md = MIDI::Drummer->new(
+my $md = MIDI::Drummer::Tiny->new(
 );
 isa_ok $md, 'MIDI::Drummer::Tiny';
 

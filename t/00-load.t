@@ -8,6 +8,6 @@ BEGIN {
     use_ok 'MIDI::Drummer::Tiny';
 }
 
-diag("Testing MIDI::Drummer::Tiny $MIDI::Drummer::VERSION, Perl $], $^X");
+diag("Testing MIDI::Drummer::Tiny $MIDI::Drummer::Tiny::VERSION, Perl $], $^X");
 
 done_testing();
