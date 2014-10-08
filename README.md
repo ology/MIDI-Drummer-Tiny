@@ -1,4 +1,4 @@
-MIDI-Drummer
-============
+MIDI-Drummer-Tiny
+=================
 
 Glorified metronone

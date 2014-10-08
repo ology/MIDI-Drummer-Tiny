@@ -1,5 +1,5 @@
 Revision history for MIDI-Drummer
 
-
-    -
+{{$NEXT}}
+    - Ported essential functionality from M::S::D
     - Minted by Dist::Zilla

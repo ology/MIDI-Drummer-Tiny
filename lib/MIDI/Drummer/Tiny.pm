@@ -1,4 +1,4 @@
-package MIDI::Drummer;
+package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
