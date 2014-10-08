@@ -5,7 +5,7 @@ package MIDI::Drummer::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.08_01';
+our $VERSION = '0.01';
 
 use Moo;
 use MIDI::Simple;
