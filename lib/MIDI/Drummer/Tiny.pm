@@ -121,7 +121,13 @@ sub metronome {
     my $self = shift;
     my $bars = shift || $self->bars;
     for my $n ( 1 .. $self->beats * $bars ) {
-        $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+        if ( $self->beats % 2 )
+        {
+            $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+        }
+        else {
+            $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+        }
     }
 }
 
