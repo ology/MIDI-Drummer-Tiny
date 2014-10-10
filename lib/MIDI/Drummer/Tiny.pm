@@ -17,6 +17,7 @@ use MIDI::Simple;
     file => 'drums.mid',
     volume => 120,
     bpm => 120,
+    signature => '4/4',
     bars => 32,
  );
  $d->count_in();
@@ -111,7 +112,7 @@ sub rest { return shift->score->r(@_) }
 sub count_in {
     my $self = shift;
     my $bars = shift || $self->bars;
-    for my $i ( 1 .. $self->beats * $bars ) {
+    for my $i ( 1 .. $self->beats ) {
         $self->note( $self->quarter, $self->closed_hh );
     }
 }
