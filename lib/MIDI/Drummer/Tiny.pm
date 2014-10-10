@@ -10,6 +10,21 @@ our $VERSION = '0.01';
 use Moo;
 use MIDI::Simple;
 
+=head1 SYNOPSIS
+
+ use MIDI::Drummer::Tiny;
+ my $d = MIDI::Drummer::Tiny->new(
+    file => 'drums.mid',
+    volume => 120,
+    bpm => 120,
+    bars => 32,
+ );
+ $d->count_in();
+ $d->metronome();
+ $d->write();
+
+=cut
+
 sub BUILDARGS
 {
    my ( $class, %args ) = @_;
