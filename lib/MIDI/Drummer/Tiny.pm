@@ -126,13 +126,23 @@ sub note { return shift->score->n(@_) }
 
 =head2 rest()
 
-$d->rest( $d->quarter );
+ $d->rest( $d->quarter );
 
 Send a rest to the score.
 
 =cut
 
 sub rest { return shift->score->r(@_) }
+
+=head2 count_in()
+
+ $d->count_in;
+ $d->count_in($bars);
+
+Play the closed hihat for the number of beats times the given bars.
+If no bars are given, the default of 1 is used.
+
+=cut
 
 sub count_in {
     my $self = shift;
@@ -145,7 +155,7 @@ sub count_in {
 
 =head2 metronome()
 
-Output a steady beat.
+Add a steady beat to the score.
 
 =cut
 
