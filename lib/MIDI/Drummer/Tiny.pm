@@ -136,8 +136,8 @@ sub rest { return shift->score->r(@_) }
 
 sub count_in {
     my $self = shift;
-    my $bars = shift || $self->bars;
-    for my $i ( 1 .. $self->beats ) {
+    my $bars = shift || 1;
+    for my $i ( 1 .. $self->beats * $bars) {
         $self->note( $self->quarter, $self->closed_hh );
     }
 }
