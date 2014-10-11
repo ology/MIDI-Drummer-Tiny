@@ -15,7 +15,6 @@ use MIDI::Simple;
  use MIDI::Drummer::Tiny;
  my $d = MIDI::Drummer::Tiny->new(
     file => 'drums.mid',
-    volume => 120,
     bpm => 120,
     signature => '4/4',
     bars => 32,
