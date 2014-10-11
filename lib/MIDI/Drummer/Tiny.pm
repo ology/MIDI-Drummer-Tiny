@@ -24,6 +24,11 @@ use MIDI::Simple;
  $d->metronome();
  $d->write();
 
+=head1 DESCRIPTION
+
+This module provides a MIDI drummer with the bare essentials to add notes to a
+MIDI score.
+
 =cut
 
 sub BUILDARGS
@@ -106,7 +111,27 @@ has quarter => ( is => 'ro', default => sub { 'qn' } );
 has eighth => ( is => 'ro', default => sub { 'en' } );
 has sixteenth => ( is => 'ro', default => sub { 'sn' } );
 
+=head1 METHODS
+
+=head2 note()
+
+ $d->note( $d->quarter, $d->closed_hh, $d->kick );
+ $d->note( 'qn', 'n42', 'n35' ); # Same thing
+
+Send a note to the score.
+
+=cut
+
 sub note { return shift->score->n(@_) }
+
+=head2 rest()
+
+$d->rest( $d->quarter );
+
+Send a rest to the score.
+
+=cut
+
 sub rest { return shift->score->r(@_) }
 
 sub count_in {
@@ -116,6 +141,13 @@ sub count_in {
         $self->note( $self->quarter, $self->closed_hh );
     }
 }
+
+
+=head2 metronome()
+
+Output a steady beat.
+
+=cut
 
 sub metronome {
     my $self = shift;
@@ -130,6 +162,12 @@ sub metronome {
         }
     }
 }
+
+=head2 write()
+
+Output the score to a F<*.mid> file.
+
+=cut
 
 sub write {
     my $self = shift;
