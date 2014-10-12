@@ -2,7 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Improved documentation
-    - Improved sime signature handling.
+    - Fixed time signature handling.
 
 0.01  2014-10-08
     - Ported essential functionality from M::S::D
