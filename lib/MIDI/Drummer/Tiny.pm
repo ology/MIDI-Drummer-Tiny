@@ -42,19 +42,19 @@ sub BUILDARGS
     $args{score}->noop( 'c' . $args{channel}, 'V' . $args{volume} );
     $args{score}->set_tempo( int( 60_000_000 / $args{bpm} ) );
 
-    $args{reverb} ||= 0;
-    $args{score}->control_change( $args{channel}, 91, $args{reverb} );
-    $args{chorus} ||= 0;
-    $args{score}->control_change( $args{channel}, 93, $args{chorus} );
-    $args{pan}    ||= 0;
-    $args{score}->control_change( $args{channel}, 10, $args{pan} );
-
     $args{score}->time_signature(
         $self->beats,
         sqrt( $self->divisions ),
         ( $self->divisions == 8 ? 24 : 18 ),
         8
     );
+
+    $args{reverb} ||= 0;
+    $args{score}->control_change( $args{channel}, 91, $args{reverb} );
+    $args{chorus} ||= 0;
+    $args{score}->control_change( $args{channel}, 93, $args{chorus} );
+    $args{pan}    ||= 0;
+    $args{score}->control_change( $args{channel}, 10, $args{pan} );
 
    return \%args;
 }
