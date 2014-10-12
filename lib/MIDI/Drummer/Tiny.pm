@@ -5,7 +5,7 @@ package MIDI::Drummer::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.0101';
+our $VERSION = '0.02';
 
 use Moo;
 use MIDI::Simple;
@@ -34,20 +34,23 @@ sub BUILDARGS
 {
    my ( $class, %args ) = @_;
 
-    $args{channel} ||= 9;
-    $args{volume}  ||= 100;
-    $args{bpm}     ||= 120;
-    $args{score}   ||= MIDI::Simple->new_score;
+    $args{channel}   ||= 9;
+    $args{volume}    ||= 100;
+    $args{bpm}       ||= 120;
+    $args{signature} ||= '4/4';
+    $args{score}     ||= MIDI::Simple->new_score;
+
+    ($args{beats}, $args{divisions}) = split /\//, $args{signature};
+
+    $args{score}->time_signature(
+        $args{beats},
+        sqrt( $args{divisions} ),
+        ( $args{divisions} == 8 ? 24 : 18 ),
+        8
+    );
 
     $args{score}->noop( 'c' . $args{channel}, 'V' . $args{volume} );
     $args{score}->set_tempo( int( 60_000_000 / $args{bpm} ) );
-
-    $args{score}->time_signature(
-        $self->beats,
-        sqrt( $self->divisions ),
-        ( $self->divisions == 8 ? 24 : 18 ),
-        8
-    );
 
     $args{reverb} ||= 0;
     $args{score}->control_change( $args{channel}, 91, $args{reverb} );
@@ -59,7 +62,6 @@ sub BUILDARGS
    return \%args;
 }
 
-has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has channel => ( is => 'ro' );
 has volume => ( is => 'ro' );
 has bpm => ( is => 'ro' );
@@ -67,28 +69,12 @@ has reverb => ( is => 'ro' );
 has chorus => ( is => 'ro' );
 has pan => ( is => 'ro' );
 has score => ( is => 'ro' );
+has beats => ( is => 'ro' );
+has divisions => ( is => 'ro' );
+has signature => ( is => 'ro' );
+
+has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars => ( is => 'ro', default => sub { 4 } );
-has signature => ( is => 'ro', default => sub { '4/4' } );
-
-has beats => (
-    is => 'ro',
-    lazy => 1,
-    default => sub {
-        my $self = shift;
-        my ($beats) = split /\//, $self->signature;
-        return $beats;
-    },
-);
-
-has divisions => (
-    is => 'ro',
-    lazy => 1,
-    default => sub {
-        my $self = shift;
-        my ($beats, $divs) = split /\//, $self->signature;
-        return $divs;
-    },
-);
 
 # kit
 has kick          => ( is => 'ro', default => sub { 'n35' } );
