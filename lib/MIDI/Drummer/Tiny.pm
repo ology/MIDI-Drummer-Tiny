@@ -49,6 +49,13 @@ sub BUILDARGS
     $args{pan}    ||= 0;
     $args{score}->control_change( $args{channel}, 10, $args{pan} );
 
+    $args{score}->time_signature(
+        $self->beats,
+        sqrt( $self->divisions ),
+        ( $self->divisions == 8 ? 24 : 18 ),
+        8
+    );
+
    return \%args;
 }
 
@@ -162,7 +169,7 @@ sub metronome {
     my $self = shift;
     my $bars = shift || $self->bars;
     for my $n ( 1 .. $self->beats * $bars ) {
-        if ( $self->beats % 2 )
+        if ( $self->beats % 2 == 0 )
         {
             $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
         }
