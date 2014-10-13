@@ -62,19 +62,87 @@ sub BUILDARGS
    return \%args;
 }
 
+=head1 ATTRIBUTES
+
+=head2 channel
+
+=head2 volume
+
+=head2 bpm
+
+=head2 reverb
+
+=head2 chorus
+
+=head2 pan
+
+=head2 bars
+
+=head2 beats
+
+=head2 divisions
+
+=head2 signature
+
+=head2 score
+
+=head2 file
+
+=cut
+
 has channel => ( is => 'ro' );
 has volume => ( is => 'ro' );
 has bpm => ( is => 'ro' );
 has reverb => ( is => 'ro' );
 has chorus => ( is => 'ro' );
 has pan => ( is => 'ro' );
-has score => ( is => 'ro' );
 has beats => ( is => 'ro' );
 has divisions => ( is => 'ro' );
 has signature => ( is => 'ro' );
+has score => ( is => 'ro' );
 
 has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars => ( is => 'ro', default => sub { 4 } );
+
+=head1 KIT
+
+=head2 kick
+
+=head2 snare
+
+=head2 open_hh
+
+=head2 closed_hh
+
+=head2 pedal_hh
+
+=head2 crash1
+
+=head2 crash2
+
+=head2 splash
+
+=head2 china
+
+=head2 ride1
+
+=head2 ride2
+
+=head2 ride_bell
+
+=head2 hi_tom
+
+=head2 hi_mid_tom
+
+=head2 low_mid_tom
+
+=head2 low_tom
+
+=head2 hi_floor_tom
+
+=head2 low_floor_tom
+
+=cut
 
 # kit
 has kick          => ( is => 'ro', default => sub { 'n35' } );
@@ -95,6 +163,20 @@ has low_mid_tom   => ( is => 'ro', default => sub { 'n47' } );
 has low_tom       => ( is => 'ro', default => sub { 'n45' } );
 has hi_floor_tom  => ( is => 'ro', default => sub { 'n43' } );
 has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
+
+=head1 DURATIONS
+
+=head2 whole
+
+=head2 half
+
+=head2 quarter
+
+=head2 eighth
+
+=head2 sixteenth
+
+=cut
 
 # duration
 has whole => ( is => 'ro', default => sub { 'wn' } );
