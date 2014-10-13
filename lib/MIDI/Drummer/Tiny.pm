@@ -64,29 +64,29 @@ sub BUILDARGS
 
 =head1 ATTRIBUTES
 
-=head2 channel
+=head2 channel: 9
 
-=head2 volume
+=head2 volume: 100
 
-=head2 bpm
+=head2 bpm: 120
 
-=head2 reverb
+=head2 reverb: 0
 
-=head2 chorus
+=head2 chorus: 0
 
-=head2 pan
+=head2 pan: 0
 
-=head2 bars
+=head2 bars: 4
 
-=head2 beats
+=head2 beats: 4
 
-=head2 divisions
+=head2 divisions: 4
 
-=head2 signature
+=head2 signature: 4/4
+
+=head2 file: MIDI-Drummer.mid
 
 =head2 score
-
-=head2 file
 
 =cut
 
