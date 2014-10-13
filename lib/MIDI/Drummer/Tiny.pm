@@ -253,7 +253,7 @@ sub metronome {
 
 =head2 write()
 
-Output the score to a F<*.mid> file.
+Output the score to the F<*.mid> file given in the constuctor.
 
 =cut
 
