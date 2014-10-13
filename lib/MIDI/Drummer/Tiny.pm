@@ -66,6 +66,10 @@ sub BUILDARGS
 
 =head1 ATTRIBUTES
 
+=head2 file: MIDI-Drummer.mid
+
+=head2 score MIDI::Simple->new_score
+
 =head2 channel: 9
 
 =head2 volume: 100
@@ -86,9 +90,7 @@ sub BUILDARGS
 
 =head2 signature: 4/4
 
-=head2 file: MIDI-Drummer.mid
-
-=head2 score MIDI::Simple->new_score
+"beats/divisions"
 
 =cut
 
