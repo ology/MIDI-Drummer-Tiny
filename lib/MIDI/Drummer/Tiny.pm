@@ -20,7 +20,9 @@ use MIDI::Simple;
     bars => 32,
  );
  $d->count_in();
- $d->metronome();
+ $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
+    for 1 .. $d->beats * $d->bars;  # Alternate even beats
+ $d->metronome();  # <- Similar but honoring time signature
  $d->write();
 
 =head1 DESCRIPTION
@@ -237,12 +239,12 @@ sub metronome {
     my $self = shift;
     my $bars = shift || $self->bars;
     for my $n ( 1 .. $self->beats * $bars ) {
-        if ( $self->beats % 2 == 0 )
+        if ( $self->beats % 3 == 0 )
         {
-            $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+            $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
         }
         else {
-            $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+            $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
         }
     }
 }
