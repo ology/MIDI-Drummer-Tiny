@@ -88,7 +88,7 @@ sub BUILDARGS
 
 =head2 file: MIDI-Drummer.mid
 
-=head2 score
+=head2 score MIDI::Simple->new_score
 
 =cut
 
