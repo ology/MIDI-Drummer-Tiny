@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Made metronome() honor the time signature.
+
+0.02  2014-10-12
     - Improved documentation
     - Fixed time signature handling.
 
