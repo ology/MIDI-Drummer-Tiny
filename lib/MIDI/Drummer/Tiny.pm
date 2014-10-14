@@ -5,7 +5,7 @@ package MIDI::Drummer::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.0201';
+our $VERSION = '0.03';
 
 use Moo;
 use MIDI::Simple;
@@ -16,8 +16,9 @@ use MIDI::Simple;
  my $d = MIDI::Drummer::Tiny->new(
     file => 'drums.mid',
     bpm => 120,
-    signature => '4/4',
+    signature => '3/4',
     bars => 32,
+    patch => 26, # TR808
  );
  $d->count_in();
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
