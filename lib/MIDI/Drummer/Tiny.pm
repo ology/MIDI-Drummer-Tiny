@@ -185,11 +185,11 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
 =head2 half
 
-=head2 quarter
+=head2 quarter, triplet_quarter
 
-=head2 eighth
+=head2 eighth, triplet_eighth
 
-=head2 sixteenth
+=head2 sixteenth, triplet_sixteenth
 
 =cut
 
