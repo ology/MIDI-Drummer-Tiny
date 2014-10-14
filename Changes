@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Added missing POD for triplet durations
+
+0.04  2014-10-14
     - Added rudimentary swing time (a la triplets)
 
 0.03  2014-10-14
