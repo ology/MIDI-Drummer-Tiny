@@ -19,10 +19,11 @@ use MIDI::Simple;
     signature => '3/4',
     bars => 32,
     patch => 26, # TR808
+    swing => 1,
  );
  $d->count_in();
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
-    for 1 .. $d->beats * $d->bars;  # Alternate even beats
+    for 1 .. $d->beats * $d->bars;  # Alternate beats
  $d->metronome();  # <- Similar but honoring time signature
  $d->write();
 
@@ -80,6 +81,8 @@ sub BUILDARGS
 
 =head2 patch: 0
 
+=head2 swing: 0
+
 =head2 bpm: 120
 
 =head2 reverb: 0
@@ -114,6 +117,7 @@ has score => ( is => 'ro' );
 
 has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars => ( is => 'ro', default => sub { 4 } );
+has swing => ( is => 'ro', default => sub { 0 } );
 
 =head1 KIT
 
@@ -193,8 +197,11 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 has whole => ( is => 'ro', default => sub { 'wn' } );
 has half => ( is => 'ro', default => sub { 'hn' } );
 has quarter => ( is => 'ro', default => sub { 'qn' } );
+has triplet_quarter => ( is => 'ro', default => sub { 'tqn' } );
 has eighth => ( is => 'ro', default => sub { 'en' } );
+has triplet_eighth => ( is => 'ro', default => sub { 'ten' } );
 has sixteenth => ( is => 'ro', default => sub { 'sn' } );
+has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
 
 =head1 METHODS
 
@@ -233,7 +240,13 @@ sub count_in {
     my $self = shift;
     my $bars = shift || 1;
     for my $i ( 1 .. $self->beats * $bars) {
-        $self->note( $self->quarter, $self->closed_hh );
+        if ( $self->swing )
+        {
+            $self->note( $self->triplet_quarter, $self->closed_hh );
+        }
+        else {
+            $self->note( $self->quarter, $self->closed_hh );
+        }
     }
 }
 
@@ -250,10 +263,22 @@ sub metronome {
     for my $n ( 1 .. $self->beats * $bars ) {
         if ( $self->beats % 3 == 0 )
         {
-            $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+            if ( $self->swing )
+            {
+                $self->note( $self->triplet_quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+            }
+            else {
+                $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+            }
         }
         else {
-            $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+            if ( $self->swing )
+            {
+                $self->note( $self->triplet_quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+            }
+            else {
+                $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+            }
         }
     }
 }
