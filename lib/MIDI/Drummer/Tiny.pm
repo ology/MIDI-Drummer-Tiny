@@ -70,33 +70,37 @@ sub BUILDARGS
 
 =head1 ATTRIBUTES
 
-=head2 file: MIDI-Drummer.mid
+=over 4
 
-=head2 score MIDI::Simple->new_score
+=item file: MIDI-Drummer.mid
 
-=head2 channel: 9
+=item score MIDI::Simple->new_score
 
-=head2 volume: 100
+=item channel: 9
 
-=head2 patch: 0
+=item volume: 100
 
-=head2 bpm: 120
+=item patch: 0
 
-=head2 reverb: 0
+=item bpm: 120
 
-=head2 chorus: 0
+=item reverb: 0
 
-=head2 pan: 0
+=item chorus: 0
 
-=head2 bars: 4
+=item pan: 0
 
-=head2 beats: 4
+=item bars: 4
 
-=head2 divisions: 4
+=item beats: 4
 
-=head2 signature: 4/4
+=item divisions: 4
+
+=item signature: 4/4
 
 "beats/divisions"
+
+=back
 
 =cut
 
@@ -117,41 +121,45 @@ has bars => ( is => 'ro', default => sub { 4 } );
 
 =head1 KIT
 
-=head2 kick
+=over 4
 
-=head2 snare
+=item kick
 
-=head2 open_hh
+=item snare
 
-=head2 closed_hh
+=item open_hh
 
-=head2 pedal_hh
+=item closed_hh
 
-=head2 crash1
+=item pedal_hh
 
-=head2 crash2
+=item crash1
 
-=head2 splash
+=item crash2
 
-=head2 china
+=item splash
 
-=head2 ride1
+=item china
 
-=head2 ride2
+=item ride1
 
-=head2 ride_bell
+=item ride2
 
-=head2 hi_tom
+=item ride_bell
 
-=head2 hi_mid_tom
+=item hi_tom
 
-=head2 low_mid_tom
+=item hi_mid_tom
 
-=head2 low_tom
+=item low_mid_tom
 
-=head2 hi_floor_tom
+=item low_tom
 
-=head2 low_floor_tom
+=item hi_floor_tom
+
+=item low_floor_tom
+
+=back
 
 =cut
 
@@ -177,15 +185,19 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
 =head1 DURATIONS
 
-=head2 whole
+=over 4
 
-=head2 half
+=item whole
 
-=head2 quarter, triplet_quarter
+=item half
 
-=head2 eighth, triplet_eighth
+=item quarter, triplet_quarter
 
-=head2 sixteenth, triplet_sixteenth
+=item eighth, triplet_eighth
+
+=item sixteenth, triplet_sixteenth
+
+=back
 
 =cut
 
