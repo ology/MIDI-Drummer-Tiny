@@ -14,11 +14,11 @@ use MIDI::Simple;
 
  use MIDI::Drummer::Tiny;
  my $d = MIDI::Drummer::Tiny->new(
-    file => 'drums.mid',
-    bpm => 120,
+    file      => 'drums.mid',
+    bpm       => 120,
     signature => '3/4',
-    bars => 32,
-    patch => 26, # TR808
+    bars      => 32,
+    patch     => 26, # TR808
  );
  $d->count_in();
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
@@ -28,8 +28,8 @@ use MIDI::Simple;
 
 =head1 DESCRIPTION
 
-This module provides a MIDI drummer with the bare essentials to add notes to a
-MIDI score.
+This module provides a MIDI drummer with the essentials to add notes to produce
+a MIDI score.
 
 =cut
 
@@ -104,17 +104,17 @@ sub BUILDARGS
 
 =cut
 
-has channel => ( is => 'ro' );
-has patch => ( is => 'ro' );
-has volume => ( is => 'ro' );
-has bpm => ( is => 'ro' );
-has reverb => ( is => 'ro' );
-has chorus => ( is => 'ro' );
-has pan => ( is => 'ro' );
-has beats => ( is => 'ro' );
+has channel   => ( is => 'ro' );
+has patch     => ( is => 'ro' );
+has volume    => ( is => 'ro' );
+has bpm       => ( is => 'ro' );
+has reverb    => ( is => 'ro' );
+has chorus    => ( is => 'ro' );
+has pan       => ( is => 'ro' );
+has beats     => ( is => 'ro' );
 has divisions => ( is => 'ro' );
 has signature => ( is => 'ro' );
-has score => ( is => 'ro' );
+has score     => ( is => 'ro' );
 
 has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars => ( is => 'ro', default => sub { 4 } );
@@ -202,13 +202,13 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 =cut
 
 # duration
-has whole => ( is => 'ro', default => sub { 'wn' } );
-has half => ( is => 'ro', default => sub { 'hn' } );
-has quarter => ( is => 'ro', default => sub { 'qn' } );
-has triplet_quarter => ( is => 'ro', default => sub { 'tqn' } );
-has eighth => ( is => 'ro', default => sub { 'en' } );
-has triplet_eighth => ( is => 'ro', default => sub { 'ten' } );
-has sixteenth => ( is => 'ro', default => sub { 'sn' } );
+has whole             => ( is => 'ro', default => sub { 'wn' } );
+has half              => ( is => 'ro', default => sub { 'hn' } );
+has quarter           => ( is => 'ro', default => sub { 'qn' } );
+has triplet_quarter   => ( is => 'ro', default => sub { 'tqn' } );
+has eighth            => ( is => 'ro', default => sub { 'en' } );
+has triplet_eighth    => ( is => 'ro', default => sub { 'ten' } );
+has sixteenth         => ( is => 'ro', default => sub { 'sn' } );
 has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
 
 =head1 METHODS
@@ -218,7 +218,9 @@ has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
  $d->note( $d->quarter, $d->closed_hh, $d->kick );
  $d->note( 'qn', 'n42', 'n35' ); # Same thing
 
-Send a note to the score.
+Add a note to the score.
+
+This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/noop">.
 
 =cut
 
@@ -228,7 +230,9 @@ sub note { return shift->score->n(@_) }
 
  $d->rest( $d->quarter );
 
-Send a rest to the score.
+Add a rest to the score.
+
+This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/noop">.
 
 =cut
 
