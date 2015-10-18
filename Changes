@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.05  2014-10-14
     - Rollback naive "swing"
 
 0.0401 2014-10-14
