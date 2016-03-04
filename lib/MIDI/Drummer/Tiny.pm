@@ -101,20 +101,20 @@ sub BUILDARGS
 
 =cut
 
-has channel   => ( is => 'ro', isa 'Int' );
-has patch     => ( is => 'ro', isa 'Int' );
-has volume    => ( is => 'ro', isa 'Int' );
-has bpm       => ( is => 'ro', isa 'Int' );
-has reverb    => ( is => 'ro', isa 'Int' );
-has chorus    => ( is => 'ro', isa 'Int' );
-has pan       => ( is => 'ro', isa 'Int' );
-has beats     => ( is => 'ro', isa 'Int' );
-has divisions => ( is => 'ro', isa 'Int' );
-has signature => ( is => 'ro', isa 'Str' );
-has score     => ( is => 'ro', isa 'MIDI::Simple' );
+has channel   => ( is => 'ro', isa => 'Int' );
+has patch     => ( is => 'ro', isa => 'Int' );
+has volume    => ( is => 'ro', isa => 'Int' );
+has bpm       => ( is => 'ro', isa => 'Int' );
+has reverb    => ( is => 'ro', isa => 'Int' );
+has chorus    => ( is => 'ro', isa => 'Int' );
+has pan       => ( is => 'ro', isa => 'Int' );
+has beats     => ( is => 'ro', isa => 'Int' );
+has divisions => ( is => 'ro', isa => 'Int' );
+has signature => ( is => 'ro', isa => 'Str' );
+has score     => ( is => 'ro', isa => 'MIDI::Simple' );
 
-has file => ( is => 'ro', isa 'Str', default => sub { 'MIDI-Drummer.mid' } );
-has bars => ( is => 'ro', isa 'Int', default => sub { 4 } );
+has file => ( is => 'ro', isa => 'Str', default => sub { 'MIDI-Drummer.mid' } );
+has bars => ( is => 'ro', isa => 'Int', default => sub { 4 } );
 
 =head1 KIT
 
@@ -161,24 +161,24 @@ has bars => ( is => 'ro', isa 'Int', default => sub { 4 } );
 =cut
 
 # kit
-has kick          => ( is => 'ro', isa 'Str', default => sub { 'n35' } );
-has snare         => ( is => 'ro', isa 'Str', default => sub { 'n38' } );
-has open_hh       => ( is => 'ro', isa 'Str', default => sub { 'n46' } );
-has closed_hh     => ( is => 'ro', isa 'Str', default => sub { 'n42' } );
-has pedal_hh      => ( is => 'ro', isa 'Str', default => sub { 'n44' } );
-has crash1        => ( is => 'ro', isa 'Str', default => sub { 'n49' } );
-has crash2        => ( is => 'ro', isa 'Str', default => sub { 'n57' } );
-has splash        => ( is => 'ro', isa 'Str', default => sub { 'n55' } );
-has china         => ( is => 'ro', isa 'Str', default => sub { 'n52' } );
-has ride1         => ( is => 'ro', isa 'Str', default => sub { 'n51' } );
-has ride2         => ( is => 'ro', isa 'Str', default => sub { 'n59' } );
-has ride_bell     => ( is => 'ro', isa 'Str', default => sub { 'n53' } );
-has hi_tom        => ( is => 'ro', isa 'Str', default => sub { 'n50' } );
-has hi_mid_tom    => ( is => 'ro', isa 'Str', default => sub { 'n48' } );
-has low_mid_tom   => ( is => 'ro', isa 'Str', default => sub { 'n47' } );
-has low_tom       => ( is => 'ro', isa 'Str', default => sub { 'n45' } );
-has hi_floor_tom  => ( is => 'ro', isa 'Str', default => sub { 'n43' } );
-has low_floor_tom => ( is => 'ro', isa 'Str', default => sub { 'n41' } );
+has kick          => ( is => 'ro', isa => 'Str', default => sub { 'n35' } );
+has snare         => ( is => 'ro', isa => 'Str', default => sub { 'n38' } );
+has open_hh       => ( is => 'ro', isa => 'Str', default => sub { 'n46' } );
+has closed_hh     => ( is => 'ro', isa => 'Str', default => sub { 'n42' } );
+has pedal_hh      => ( is => 'ro', isa => 'Str', default => sub { 'n44' } );
+has crash1        => ( is => 'ro', isa => 'Str', default => sub { 'n49' } );
+has crash2        => ( is => 'ro', isa => 'Str', default => sub { 'n57' } );
+has splash        => ( is => 'ro', isa => 'Str', default => sub { 'n55' } );
+has china         => ( is => 'ro', isa => 'Str', default => sub { 'n52' } );
+has ride1         => ( is => 'ro', isa => 'Str', default => sub { 'n51' } );
+has ride2         => ( is => 'ro', isa => 'Str', default => sub { 'n59' } );
+has ride_bell     => ( is => 'ro', isa => 'Str', default => sub { 'n53' } );
+has hi_tom        => ( is => 'ro', isa => 'Str', default => sub { 'n50' } );
+has hi_mid_tom    => ( is => 'ro', isa => 'Str', default => sub { 'n48' } );
+has low_mid_tom   => ( is => 'ro', isa => 'Str', default => sub { 'n47' } );
+has low_tom       => ( is => 'ro', isa => 'Str', default => sub { 'n45' } );
+has hi_floor_tom  => ( is => 'ro', isa => 'Str', default => sub { 'n43' } );
+has low_floor_tom => ( is => 'ro', isa => 'Str', default => sub { 'n41' } );
 
 =head1 DURATIONS
 
@@ -199,14 +199,14 @@ has low_floor_tom => ( is => 'ro', isa 'Str', default => sub { 'n41' } );
 =cut
 
 # duration
-has whole             => ( is => 'ro', isa 'Str', default => sub { 'wn' } );
-has half              => ( is => 'ro', isa 'Str', default => sub { 'hn' } );
-has quarter           => ( is => 'ro', isa 'Str', default => sub { 'qn' } );
-has triplet_quarter   => ( is => 'ro', isa 'Str', default => sub { 'tqn' } );
-has eighth            => ( is => 'ro', isa 'Str', default => sub { 'en' } );
-has triplet_eighth    => ( is => 'ro', isa 'Str', default => sub { 'ten' } );
-has sixteenth         => ( is => 'ro', isa 'Str', default => sub { 'sn' } );
-has triplet_sixteenth => ( is => 'ro', isa 'Str', default => sub { 'tsn' } );
+has whole             => ( is => 'ro', isa => 'Str', default => sub { 'wn' } );
+has half              => ( is => 'ro', isa => 'Str', default => sub { 'hn' } );
+has quarter           => ( is => 'ro', isa => 'Str', default => sub { 'qn' } );
+has triplet_quarter   => ( is => 'ro', isa => 'Str', default => sub { 'tqn' } );
+has eighth            => ( is => 'ro', isa => 'Str', default => sub { 'en' } );
+has triplet_eighth    => ( is => 'ro', isa => 'Str', default => sub { 'ten' } );
+has sixteenth         => ( is => 'ro', isa => 'Str', default => sub { 'sn' } );
+has triplet_sixteenth => ( is => 'ro', isa => 'Str', default => sub { 'tsn' } );
 
 =head1 METHODS
 
