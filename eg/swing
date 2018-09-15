@@ -5,11 +5,11 @@ use warnings;
 use MIDI::Drummer::Tiny;
 
 my $d = MIDI::Drummer::Tiny->new(
-    file => 'swing.mid',
-    bpm => 90,
+    file      => 'eg/swing.mid',
+    bpm       => 90,
     signature => '4/4',
-    bars => 16,
-    patch => 41, # brushes
+    bars      => 8,
+    patch     => 41, # brushes
 );
 
 $d->count_in;
