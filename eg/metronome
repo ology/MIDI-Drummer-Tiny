@@ -20,4 +20,4 @@ for ( 1 .. $d->bars ) {
     $d->note( $d->eighth, $d->closed_hh );
 }
 
-$d->write("$0.mid");
+$d->write();
