@@ -277,6 +277,9 @@ sub count_in {
 
 =head2 metronome()
 
+  $d->metronome;
+  $d->metronome($bars);
+
 Add a steady beat to the score.
 
 =cut
