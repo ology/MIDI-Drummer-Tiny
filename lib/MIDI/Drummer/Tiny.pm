@@ -109,6 +109,8 @@ has divisions => ( is => 'rw' );
 
 =head1 KIT
 
+These patches may be overridden as with any other attribute.
+
 =over 4
 
 =item kick
