@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Use the BUILD() method and defaults instead of BUILDARGS().
+    - Add tests.
 
 0.05  2014-10-14
     - Rollback naive "swing"
