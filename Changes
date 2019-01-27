@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix time_signature according to the MIDI spec.
+
+0.0601 2019-01-27 01:37:17
     - Improve documentation.
     - Fix the default bars in the count_in() method.
 
