@@ -1,6 +1,10 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
+    - Fix the default bars in the count_in() method.
+
+0.0600 2019-01-27 01:14:54
     - Use the BUILD() method and defaults instead of BUILDARGS().
     - Add tests.
     - Improve documentation.
