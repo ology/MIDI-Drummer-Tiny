@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Remove the unused "patch" attribute.
+
+0.0700 2019-01-27 02:22:57
     - Fix time_signature according to the MIDI spec.
 
 0.0601 2019-01-27 01:37:17
