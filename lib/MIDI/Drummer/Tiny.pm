@@ -91,11 +91,15 @@ sub BUILDARGS
 
 =item beats: 4
 
+Computed given the B<signature>.
+
 =item divisions: 4
+
+Computed given the B<signature>.
 
 =item signature: 4/4
 
-"beats/divisions"
+B<beats>/B<divisions>
 
 =back
 
