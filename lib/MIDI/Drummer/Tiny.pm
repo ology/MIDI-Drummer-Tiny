@@ -262,7 +262,7 @@ sub rest { return shift->score->r(@_) }
  $d->count_in($bars);
 
 Play the closed hihat for the number of beats times the given bars.
-If no bars are given, the default of 1 is used.
+If no bars are given, the default is used.
 
 =cut
 
