@@ -17,7 +17,7 @@ use MIDI::Simple;
     bars      => 32,
     patch     => 26, # TR808
  );
- $d->count_in();
+ $d->count_in(1);
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate beats
  $d->metronome();  # <- Similar but honoring time signature
