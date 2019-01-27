@@ -11,7 +11,7 @@ my $d = MIDI::Drummer::Tiny->new(
     bars      => 8,
 );
 
-$d->count_in;
+$d->count_in(1);
 
 for ( 1 .. $d->bars ) {
     $d->note( $d->eighth, $d->closed_hh, $d->kick );
