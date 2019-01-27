@@ -71,7 +71,7 @@ sub BUILDARGS
 
 =item file: MIDI-Drummer.mid
 
-=item score MIDI::Simple->new_score
+=item score: MIDI::Simple->new_score
 
 =item channel: 9
 
