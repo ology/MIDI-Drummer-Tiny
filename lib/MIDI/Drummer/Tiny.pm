@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.0700';
+our $VERSION = '0.0800';
 
 use Moo;
 use MIDI::Simple;
