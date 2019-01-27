@@ -38,7 +38,7 @@ sub BUILD {
     $self->divisions($divisions);
     $self->score->time_signature(
         $self->beats,
-        sqrt( $self->divisions ),
+        ( $self->divisions == 8 ? 3 : 2),
         ( $self->divisions == 8 ? 24 : 18 ),
         8
     );
