@@ -55,41 +55,59 @@ sub BUILD {
 
 =head1 ATTRIBUTES
 
-=over 4
+=head2 file
 
-=item file: MIDI-Drummer.mid
+Default: MIDI-Drummer.mid
 
-=item score: MIDI::Simple->new_score
+=head2 score
 
-=item channel: 9
+Default: MIDI::Simple->new_score
 
-=item volume: 100
+=head2 channel
 
-=item patch: 0
+Default: 9
 
-=item bpm: 120
+=head2 volume
 
-=item reverb: 0
+Default: 100
 
-=item chorus: 0
+=head2 patch
 
-=item pan: 0
+Default: 0
 
-=item bars: 4
+=head2 bpm
 
-=item beats: 4
+Default: 120
+
+=head2 reverb
+
+Default: 0
+
+=head2 chorus
+
+Default: 0
+
+=head2 pan
+
+Default: 0
+
+=head2 bars
+
+Default: 4
+
+=head2 beats
 
 Computed given the B<signature>.
 
-=item divisions: 4
+=head2 divisions
 
 Computed given the B<signature>.
 
-=item signature: 4/4
+=head2 signature
+
+Default: 4/4
 
 B<beats>/B<divisions>
-
-=back
 
 =cut
 
@@ -202,6 +220,16 @@ has sixteenth         => ( is => 'ro', default => sub { 'sn' } );
 has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
 
 =head1 METHODS
+
+=head2 new()
+
+  $d = MIDI::Drummer::Tiny->new(%arguments);
+
+Return a new C<MIDI::Drummer::Tiny> object.
+
+=head2 BUILD()
+
+Initialize the score.
 
 =head2 note()
 
