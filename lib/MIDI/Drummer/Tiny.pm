@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.05';
+our $VERSION = '0.0600';
 
 use Moo;
 use MIDI::Simple;
@@ -30,39 +30,27 @@ a MIDI score.
 
 =cut
 
-sub BUILDARGS
-{
-   my ( $class, %args ) = @_;
+sub BUILD {
+   my ( $self, $args ) = @_;
 
-    $args{channel}   ||= 9;
-    $args{volume}    ||= 100;
-    $args{bpm}       ||= 120;
-    $args{signature} ||= '4/4';
-    $args{score}     ||= MIDI::Simple->new_score;
-
-    ($args{beats}, $args{divisions}) = split /\//, $args{signature};
-
-    $args{score}->time_signature(
-        $args{beats},
-        sqrt( $args{divisions} ),
-        ( $args{divisions} == 8 ? 24 : 18 ),
+    my ($beats, $divisions) = split /\//, $self->signature;
+    $self->beats($beats);
+    $self->divisions($divisions);
+    $self->score->time_signature(
+        $self->beats,
+        sqrt( $self->divisions ),
+        ( $self->divisions == 8 ? 24 : 18 ),
         8
     );
 
-    $args{score}->noop( 'c' . $args{channel}, 'V' . $args{volume} );
-    $args{score}->set_tempo( int( 60_000_000 / $args{bpm} ) );
+    $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
+    $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
-    $args{patch} ||= 0;
-    $args{score}->patch_change( $args{channel}, $args{patch} );
+    $self->score->patch_change( $self->channel, $self->patch );
 
-    $args{reverb} ||= 0;
-    $args{score}->control_change( $args{channel}, 91, $args{reverb} );
-    $args{chorus} ||= 0;
-    $args{score}->control_change( $args{channel}, 93, $args{chorus} );
-    $args{pan}    ||= 0;
-    $args{score}->control_change( $args{channel}, 10, $args{pan} );
-
-   return \%args;
+    $self->score->control_change( $self->channel, 91, $self->reverb ) if $self->reverb;
+    $self->score->control_change( $self->channel, 93, $self->chorus ) if $self->chorus;
+    $self->score->control_change( $self->channel, 10, $self->pan ) if $self->pan;
 }
 
 =head1 ATTRIBUTES
@@ -105,20 +93,19 @@ B<beats>/B<divisions>
 
 =cut
 
-has channel   => ( is => 'ro' );
-has patch     => ( is => 'ro' );
-has volume    => ( is => 'ro' );
-has bpm       => ( is => 'ro' );
-has reverb    => ( is => 'ro' );
-has chorus    => ( is => 'ro' );
-has pan       => ( is => 'ro' );
-has beats     => ( is => 'ro' );
-has divisions => ( is => 'ro' );
-has signature => ( is => 'ro' );
-has score     => ( is => 'ro' );
-
-has file => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
-has bars => ( is => 'ro', default => sub { 4 } );
+has channel   => ( is => 'ro', default => sub { 9 } );
+has patch     => ( is => 'ro', default => sub { 0 } );
+has volume    => ( is => 'ro', default => sub { 100 } );
+has bpm       => ( is => 'ro', default => sub { 120 } );
+has reverb    => ( is => 'ro', default => sub { 0 } );
+has chorus    => ( is => 'ro', default => sub { 0 } );
+has pan       => ( is => 'ro', default => sub { 0 } );
+has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
+has bars      => ( is => 'ro', default => sub { 4 } );
+has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
+has signature => ( is => 'ro', default => sub { '4/4' });
+has beats     => ( is => 'rw' );
+has divisions => ( is => 'rw' );
 
 =head1 KIT
 
