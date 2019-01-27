@@ -15,7 +15,6 @@ use MIDI::Simple;
     bpm       => 100,
     signature => '3/4',
     bars      => 32,
-    patch     => 26, # TR808
  );
  $d->count_in(1);
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
@@ -46,8 +45,6 @@ sub BUILD {
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
-    $self->score->patch_change( $self->channel, $self->patch );
-
     $self->score->control_change( $self->channel, 91, $self->reverb ) if $self->reverb;
     $self->score->control_change( $self->channel, 93, $self->chorus ) if $self->chorus;
     $self->score->control_change( $self->channel, 10, $self->pan ) if $self->pan;
@@ -70,10 +67,6 @@ Default: 9
 =head2 volume
 
 Default: 100
-
-=head2 patch
-
-Default: 0
 
 =head2 bpm
 
@@ -112,7 +105,6 @@ B<beats>/B<divisions>
 =cut
 
 has channel   => ( is => 'ro', default => sub { 9 } );
-has patch     => ( is => 'ro', default => sub { 0 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
 has reverb    => ( is => 'ro', default => sub { 0 } );
