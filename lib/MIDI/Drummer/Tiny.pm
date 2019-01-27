@@ -307,3 +307,11 @@ sub write {
 }
 
 1;
+__END__
+=head1 SEE ALSO
+
+L<Moo>
+
+L<MIDI::Simple>
+
+=cut
