@@ -262,13 +262,13 @@ sub rest { return shift->score->r(@_) }
  $d->count_in($bars);
 
 Play the closed hihat for the number of beats times the given bars.
-If no bars are given, the default is used.
+If no bars are given, the default times the number of beats is used.
 
 =cut
 
 sub count_in {
     my $self = shift;
-    my $bars = shift || 1;
+    my $bars = shift || $self->bars;
     for my $i ( 1 .. $self->beats * $bars) {
         $self->note( $self->quarter, $self->closed_hh );
     }
