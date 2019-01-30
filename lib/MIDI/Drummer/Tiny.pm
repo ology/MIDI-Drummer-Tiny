@@ -271,7 +271,6 @@ sub count_in {
     }
 }
 
-
 =head2 metronome()
 
   $d->metronome;
