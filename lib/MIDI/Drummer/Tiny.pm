@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.0800';
+our $VERSION = '0.0801';
 
 use Moo;
 use MIDI::Simple;
@@ -10,16 +10,21 @@ use MIDI::Simple;
 =head1 SYNOPSIS
 
  use MIDI::Drummer::Tiny;
+
  my $d = MIDI::Drummer::Tiny->new(
     file      => 'drums.mid',
     bpm       => 100,
     signature => '3/4',
     bars      => 32,
  );
- $d->count_in(1);
+
+ $d->count_in(1);  # HH for 1 bar
+
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
-    for 1 .. $d->beats * $d->bars;  # Alternate beats
- $d->metronome();  # <- Similar but honoring time signature
+    for 1 .. $d->beats * $d->bars;  # Alternate kick and snare
+
+ $d->metronome();  # Similar but honoring time signature
+
  $d->write();
 
 =head1 DESCRIPTION
