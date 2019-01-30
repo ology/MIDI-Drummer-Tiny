@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.0800 2019-01-27 02:36:16
     - Remove the unused "patch" attribute.
 
 0.0700 2019-01-27 02:22:57
