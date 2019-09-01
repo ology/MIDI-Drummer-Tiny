@@ -283,13 +283,26 @@ Add a steady beat to the score.
 sub metronome {
     my $self = shift;
     my $bars = shift || $self->bars;
+
+    my $i = 0;
+
     for my $n ( 1 .. $self->beats * $bars ) {
-        if ( $self->beats % 3 == 0 )
+        if ( $n % 2 == 0 )
         {
-            $self->note( $self->quarter, $self->open_hh, $n % 3 ? $self->kick : $self->snare );
+            $self->note( $self->quarter, $self->open_hh, $self->snare );
         }
         else {
-            $self->note( $self->quarter, $self->open_hh, $n % 2 ? $self->kick : $self->snare );
+            if ( $i % 2 == 0 )
+            {
+                $self->note( $self->quarter, $self->open_hh, $self->kick );
+            }
+            else
+            {
+                $self->note( $self->eighth, $self->open_hh, $self->kick );
+                $self->note( $self->eighth, $self->kick );
+            }
+
+            $i++;
         }
     }
 }
