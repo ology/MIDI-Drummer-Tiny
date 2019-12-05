@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 
-use lib '/Users/gene/sandbox/MIDI-Drummer-Tiny/lib';
 use MIDI::Drummer::Tiny;
 
 my $max = shift || 8;
