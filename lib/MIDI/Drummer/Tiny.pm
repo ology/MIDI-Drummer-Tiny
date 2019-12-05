@@ -20,7 +20,7 @@ use MIDI::Simple;
     snare     => 'n40', # "
  );
 
- $d->count_in(1);  # HH for 1 bar
+ $d->count_in(1);  # Closed hi-hat for 1 bar
 
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate kick and snare
