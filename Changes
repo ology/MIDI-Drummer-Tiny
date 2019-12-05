@@ -1,6 +1,10 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
+
+~
+
 
 0.0801 2019-01-29 18:11:06
     - Fix weird syntax in the test that was making cpantesters unhappy.
