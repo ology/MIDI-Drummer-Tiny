@@ -16,6 +16,8 @@ use MIDI::Simple;
     bpm       => 100,
     signature => '3/4',
     bars      => 32,
+    kick      => 'n36', # Override default patch
+    snare     => 'n40', # "
  );
 
  $d->count_in(1);  # HH for 1 bar
@@ -23,7 +25,7 @@ use MIDI::Simple;
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate kick and snare
 
- $d->metronome();  # Similar but honoring time signature
+ $d->metronome();
 
  $d->write();
 
@@ -123,8 +125,6 @@ has beats     => ( is => 'rw' );
 has divisions => ( is => 'rw' );
 
 =head1 KIT
-
-These patches may be overridden as with any other attribute.
 
 =over 4
 
@@ -319,11 +319,15 @@ sub write {
 }
 
 1;
+
 __END__
+
 =head1 SEE ALSO
 
 L<Moo>
 
 L<MIDI::Simple>
+
+L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 =cut
