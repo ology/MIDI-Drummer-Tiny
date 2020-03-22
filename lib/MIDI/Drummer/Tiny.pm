@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.0802';
+our $VERSION = '0.0803';
 
 use Moo;
 use MIDI::Simple;
@@ -224,9 +224,7 @@ has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
 
 Return a new C<MIDI::Drummer::Tiny> object.
 
-=head2 BUILD()
-
-Initialize the score.
+=for Pod::Coverage BUILD
 
 =head2 note()
 
