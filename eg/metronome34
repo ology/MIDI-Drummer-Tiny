@@ -8,7 +8,7 @@ my $d = MIDI::Drummer::Tiny->new(
     file      => $0 . '.mid',
     signature => '3/4',
     bpm       => 100,
-    bars      => 4,
+    bars      => 16,
 );
 
 $d->count_in(1);
