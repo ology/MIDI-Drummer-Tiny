@@ -22,7 +22,7 @@ use MIDI::Simple;
 
  $d->count_in(1);  # Closed hi-hat for 1 bar
 
- $d->metronome34;
+ $d->metronome34;  # 3/4 time for the number of bars
 
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate kick and snare in 4/4 time
