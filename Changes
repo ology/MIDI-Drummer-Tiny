@@ -1,7 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
-    - Improved eg/ programs.
+    - Improved and added to the eg/ programs.
 
 0.0803 2020-03-21 19:05:07
     - Do not document the ->BUILD method.
