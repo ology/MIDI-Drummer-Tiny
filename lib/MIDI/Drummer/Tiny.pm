@@ -107,7 +107,7 @@ Computed given the B<signature>.
 
 =head2 signature
 
-Default: 4/4
+Default: C<4/4>
 
 B<beats> / B<divisions>
 
