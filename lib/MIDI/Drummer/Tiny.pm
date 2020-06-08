@@ -67,7 +67,7 @@ Default: C<MIDI-Drummer.mid>
 
 =head2 score
 
-Default: MIDI::Simple->new_score
+Default: C<MIDI::Simple-E<gt>new_score>
 
 =head2 channel
 
