@@ -22,7 +22,6 @@ $d->write();
 
 sub cymbals {
     for my $beat ( 1 .. $max ) {
-        # Crash every 3rd time around
         if ( $beat % 3 == 0 ) {
             $d->note( $d->eighth, $d->crash2 );
         }
