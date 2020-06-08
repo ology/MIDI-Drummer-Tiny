@@ -25,9 +25,9 @@ use MIDI::Simple;
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate kick and snare
 
- $d->metronome();
+ $d->metronome;
 
- $d->write();
+ $d->write;
 
 =head1 DESCRIPTION
 
@@ -218,7 +218,7 @@ has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
 
 =head1 METHODS
 
-=head2 new()
+=head2 new
 
   $d = MIDI::Drummer::Tiny->new(%arguments);
 
@@ -226,7 +226,7 @@ Return a new C<MIDI::Drummer::Tiny> object.
 
 =for Pod::Coverage BUILD
 
-=head2 note()
+=head2 note
 
  $d->note( $d->quarter, $d->closed_hh, $d->kick );
  $d->note( 'qn', 'n42', 'n35' ); # Same thing
@@ -239,7 +239,7 @@ This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/
 
 sub note { return shift->score->n(@_) }
 
-=head2 rest()
+=head2 rest
 
  $d->rest( $d->quarter );
 
@@ -251,7 +251,7 @@ This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/
 
 sub rest { return shift->score->r(@_) }
 
-=head2 count_in()
+=head2 count_in
 
  $d->count_in;
  $d->count_in($bars);
@@ -269,7 +269,7 @@ sub count_in {
     }
 }
 
-=head2 metronome()
+=head2 metronome
 
   $d->metronome;
   $d->metronome($bars);
@@ -305,7 +305,7 @@ sub metronome {
     }
 }
 
-=head2 write()
+=head2 write
 
 Output the score to the F<*.mid> file given in the constuctor.
 
