@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Clean up code slightly.
+
+0.0900 2020-06-08 16:37:01
     - Improve and add to the eg/ programs.
     - Add the ->metronome44 alias to the ->metronome method.
     - Add the ->metronome34 method.
