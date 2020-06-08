@@ -24,6 +24,8 @@ use MIDI::Simple;
 
  $d->metronome34;  # 3/4 time for the number of bars
 
+ $d->rest( $d->whole );
+
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;  # Alternate kick and snare in 4/4 time
 
