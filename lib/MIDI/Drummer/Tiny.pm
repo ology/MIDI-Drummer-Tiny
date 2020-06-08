@@ -322,9 +322,7 @@ sub metronome34 {
     my $self = shift;
     my $bars = shift || $self->bars;
 
-    my $i = 0;
-
-    for my $n ( 1 .. $bars ) {
+    for ( 1 .. $bars ) {
         $self->note( $self->quarter, $self->ride1, $self->kick );
         $self->note( $self->quarter, $self->ride1 );
         $self->note( $self->quarter, $self->ride1, $self->snare );
