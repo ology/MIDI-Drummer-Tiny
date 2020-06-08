@@ -269,14 +269,16 @@ sub count_in {
     }
 }
 
-=head2 metronome
+=head2 metronome, metronome44
 
   $d->metronome;
   $d->metronome($bars);
 
-Add a steady beat to the score.
+Add a steady 4/4 beat to the score.
 
 =cut
+
+sub metronome44 { shift->metronome(@_) }
 
 sub metronome {
     my $self = shift;
@@ -305,9 +307,32 @@ sub metronome {
     }
 }
 
+=head2 metronome34
+
+  $d->metronome34;
+  $d->metronome34($bars);
+
+Add a steady 3/4 beat to the score.
+
+=cut
+
+sub metronome34 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+
+    my $i = 0;
+
+    for my $n ( 1 .. $bars ) {
+        $self->note( $self->quarter, $self->ride1, $self->kick );
+        $self->note( $self->quarter, $self->ride1 );
+        $self->note( $self->quarter, $self->ride1, $self->snare );
+    }
+}
+
 =head2 write
 
-Output the score to the F<*.mid> file given in the constuctor.
+Output the score to the default F<*.mid> file or one given to the
+constuctor.
 
 =cut
 
