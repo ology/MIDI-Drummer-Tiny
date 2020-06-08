@@ -63,7 +63,7 @@ sub BUILD {
 
 =head2 file
 
-Default: MIDI-Drummer.mid
+Default: C<MIDI-Drummer.mid>
 
 =head2 score
 
@@ -71,31 +71,31 @@ Default: MIDI::Simple->new_score
 
 =head2 channel
 
-Default: 9
+Default: C<9>
 
 =head2 volume
 
-Default: 100
+Default: C<100>
 
 =head2 bpm
 
-Default: 120
+Default: C<120>
 
 =head2 reverb
 
-Default: 0
+Default: C<0>
 
 =head2 chorus
 
-Default: 0
+Default: C<0>
 
 =head2 pan
 
-Default: 0
+Default: C<0>
 
 =head2 bars
 
-Default: 4
+Default: C<4>
 
 =head2 beats
 
@@ -109,7 +109,7 @@ Computed given the B<signature>.
 
 Default: 4/4
 
-B<beats>/B<divisions>
+B<beats> / B<divisions>
 
 =cut
 
