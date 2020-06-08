@@ -18,10 +18,11 @@ for ( 1 .. $d->bars ) {
     $d->note( $d->triplet_eighth,   $d->ride1 );
     $d->rest( $d->triplet_eighth );
     $d->note( $d->triplet_eighth,   $d->ride1, $d->kick );
-    $d->note( $d->quarter,          $d->ride1, $d->kick );
+    $d->note( $d->quarter,          $d->ride1, $d->snare );
     $d->note( $d->triplet_eighth,   $d->ride1, $d->kick );
     $d->rest( $d->triplet_eighth );
     $d->note( $d->triplet_eighth,   $d->ride1 );
 }
+$d->note( $d->quarter, $d->ride1, $d->kick );
 
 $d->write;
