@@ -277,7 +277,7 @@ sub count_in {
   $d->metronome44($bars);
   $d->metronome44($bars, $flag);
   $d->metronome44(16, 1);
-  $d->metronome44(0, 1);
+  $d->metronome44(0, 1); # Use the ->bars attribute
 
 Add a steady 4/4 beat to the score.
 
