@@ -12,6 +12,6 @@ my $d = MIDI::Drummer::Tiny->new(
 
 $d->count_in(1);
 
-$d->metronome;
+$d->metronome44;
 
 $d->write;
