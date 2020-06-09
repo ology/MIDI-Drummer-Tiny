@@ -275,8 +275,14 @@ sub count_in {
 
   $d->metronome44;
   $d->metronome44($bars);
+  $d->metronome44($bars, $flag);
+  $d->metronome44(16, 1);
+  $d->metronome44(0, 1);
 
 Add a steady 4/4 beat to the score.
+
+If a B<flag> is provided the beat is modified to include alternating
+eighth-note kicks.
 
 =cut
 
@@ -285,6 +291,7 @@ sub metronome44 { shift->metronome(@_) }
 sub metronome {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $flag = shift || 0;
 
     my $i = 0;
 
@@ -294,14 +301,21 @@ sub metronome {
             $self->note( $self->quarter, $self->open_hh, $self->snare );
         }
         else {
-            if ( $i % 2 == 0 )
+            if ( $flag == 0 )
             {
                 $self->note( $self->quarter, $self->open_hh, $self->kick );
             }
             else
             {
-                $self->note( $self->eighth, $self->open_hh, $self->kick );
-                $self->note( $self->eighth, $self->kick );
+                if ( $i % 2 == 0 )
+                {
+                    $self->note( $self->quarter, $self->open_hh, $self->kick );
+                }
+                else
+                {
+                    $self->note( $self->eighth, $self->open_hh, $self->kick );
+                    $self->note( $self->eighth, $self->kick );
+                }
             }
 
             $i++;
