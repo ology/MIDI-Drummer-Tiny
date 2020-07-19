@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.0902 2020-06-09 10:19:42
     - Improve documentation.
     - Add an eighth-note flag to ->metronome44.
 
