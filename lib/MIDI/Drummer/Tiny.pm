@@ -343,6 +343,57 @@ sub metronome34 {
     }
 }
 
+=head2 metronome54
+
+  $d->metronome54;
+  $d->metronome54($bars);
+
+Add a 5/4 beat to the score.
+
+=cut
+
+sub metronome54 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    for my $n (1 .. $bars) {
+        $self->note($self->quarter, $self->closed_hh, $self->kick);
+        $self->note($self->quarter, $self->closed_hh);
+        $self->note($self->quarter, $self->closed_hh, $self->snare);
+        $self->note($self->quarter, $self->closed_hh);
+        if ($n % 2) {
+            $self->note($self->quarter, $self->closed_hh);
+        }
+        else {
+            $self->note($self->eighth, $self->closed_hh);
+            $self->note($self->eighth, $self->closed_hh, $self->kick);
+        }
+    }
+}
+
+=head2 metronome58
+
+  $d->metronome58;
+  $d->metronome58($bars);
+
+Add a 5/8 beat to the score.
+
+=cut
+
+sub metronome58 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    for my $n (1 .. $bars) {
+        $self->note($self->eighth, $self->closed_hh, $self->kick);
+        $self->note($self->sixteenth, $self->closed_hh);
+        $self->note($self->sixteenth, $self->kick);
+        $self->note($self->eighth, $self->closed_hh, $self->snare);
+        $self->note($self->sixteenth, $self->closed_hh);
+        $self->note($self->sixteenth, $self->snare);
+        $self->note($self->sixteenth, $self->closed_hh);
+        $self->note($self->sixteenth, $self->kick);
+    }
+}
+
 =head2 write
 
 Output the score to the default F<*.mid> file or one given to the
