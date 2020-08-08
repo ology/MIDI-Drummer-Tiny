@@ -298,22 +298,22 @@ sub metronome {
     for my $n ( 1 .. $self->beats * $bars ) {
         if ( $n % 2 == 0 )
         {
-            $self->note( $self->quarter, $self->open_hh, $self->snare );
+            $self->note( $self->quarter, $self->closed_hh, $self->snare );
         }
         else {
             if ( $flag == 0 )
             {
-                $self->note( $self->quarter, $self->open_hh, $self->kick );
+                $self->note( $self->quarter, $self->closed_hh, $self->kick );
             }
             else
             {
                 if ( $i % 2 == 0 )
                 {
-                    $self->note( $self->quarter, $self->open_hh, $self->kick );
+                    $self->note( $self->quarter, $self->closed_hh, $self->kick );
                 }
                 else
                 {
-                    $self->note( $self->eighth, $self->open_hh, $self->kick );
+                    $self->note( $self->eighth, $self->closed_hh, $self->kick );
                     $self->note( $self->eighth, $self->kick );
                 }
             }
