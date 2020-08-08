@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Use the closed hi-hat for the 4/4 metronome.
+
+0.0903 2020-08-08 08:26:24
     - Add 5/4 and 5/8 metronomes and an example program.
     - Add a halftime "Purdie" shuffle example program.
 
