@@ -198,11 +198,11 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
 =item half
 
-=item quarter, triplet_quarter
+=item quarter, triplet_quarter, dotted_quarter
 
-=item eighth, triplet_eighth
+=item eighth, triplet_eighth, dotted_eighth
 
-=item sixteenth, triplet_sixteenth
+=item sixteenth, triplet_sixteenth, dotted_sixteenth
 
 =back
 
@@ -213,10 +213,13 @@ has whole             => ( is => 'ro', default => sub { 'wn' } );
 has half              => ( is => 'ro', default => sub { 'hn' } );
 has quarter           => ( is => 'ro', default => sub { 'qn' } );
 has triplet_quarter   => ( is => 'ro', default => sub { 'tqn' } );
+has dotted_quarter    => ( is => 'ro', default => sub { 'dqn' } );
 has eighth            => ( is => 'ro', default => sub { 'en' } );
 has triplet_eighth    => ( is => 'ro', default => sub { 'ten' } );
+has dotted_eighth     => ( is => 'ro', default => sub { 'den' } );
 has sixteenth         => ( is => 'ro', default => sub { 'sn' } );
 has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
+has dotted_sixteenth  => ( is => 'ro', default => sub { 'dsn' } );
 
 =head1 METHODS
 
