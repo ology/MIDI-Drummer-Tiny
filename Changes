@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add dotted duration aliases.
+    - Add the ->set_time_sig method.
 
 0.0904 2020-08-08 08:42:46
     - Use the closed hi-hat for the 4/4 metronome.

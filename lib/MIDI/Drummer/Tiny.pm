@@ -122,7 +122,7 @@ has pan       => ( is => 'ro', default => sub { 0 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
-has signature => ( is => 'ro', default => sub { '4/4' });
+has signature => ( is => 'rw', default => sub { '4/4' });
 has beats     => ( is => 'rw' );
 has divisions => ( is => 'rw' );
 
@@ -392,6 +392,30 @@ sub metronome58 {
         $self->note($self->sixteenth, $self->closed_hh);
         $self->note($self->sixteenth, $self->kick);
     }
+}
+
+=head2 set_time_sig
+
+  $d->set_time_sig('5/4');
+
+Set the B<signature>, B<beats>, B<divisions>, and the B<score>
+C<time_signature> values based on the given string.
+
+=cut
+
+sub set_time_sig {
+    my $self = shift;
+    my $signature = shift || $self->signature;
+    $self->signature($signature);
+    my ($beats, $divisions) = split /\//, $signature;
+    $self->beats($beats);
+    $self->divisions($divisions);
+    $self->score->time_signature(
+        $self->beats,
+        ( $self->divisions == 8 ? 3 : 2),
+        ( $self->divisions == 8 ? 24 : 18 ),
+        8
+    );
 }
 
 =head2 write
