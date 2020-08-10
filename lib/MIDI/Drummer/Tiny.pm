@@ -271,7 +271,7 @@ If no bars are given, the default times the number of beats is used.
 sub count_in {
     my $self = shift;
     my $bars = shift || $self->bars;
-    for my $i ( 1 .. $self->beats * $bars) {
+    for my $i ( 1 .. $self->beats * $bars ) {
         $self->note( $self->quarter, $self->closed_hh );
     }
 }
