@@ -15,7 +15,7 @@ use MIDI::Simple;
     file      => 'drums.mid',
     bpm       => 100,
     signature => '5/4',
-    bars      => 32,
+    bars      => 8,
     kick      => 'n36', # Override default patch
     snare     => 'n40', # "
  );
@@ -27,6 +27,8 @@ use MIDI::Simple;
  $d->rest($d->whole);
 
  $d->set_time_sig('4/4');
+
+ $d->metronome44;  # 4/4 time for the number of bars
 
  # Alternate kick and snare
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
