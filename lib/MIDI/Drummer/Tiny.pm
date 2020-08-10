@@ -26,7 +26,9 @@ use MIDI::Simple;
 
  $d->rest($d->whole);
 
- # Alternate kick and snare in 4/4 time
+ $d->set_time_sig('4/4');
+
+ # Alternate kick and snare
  $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
     for 1 .. $d->beats * $d->bars;
 
