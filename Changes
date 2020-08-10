@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add eg/waltz. Why not?
+
+0.1000 2020-08-10 12:34:49
     - Add dotted duration aliases.
     - Add the ->set_time_sig method.
 
