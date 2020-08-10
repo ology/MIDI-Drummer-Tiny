@@ -24,9 +24,9 @@ use MIDI::Simple;
 
  $d->metronome54;  # 5/4 time for the number of bars
 
- $d->rest($d->whole);
-
  $d->set_time_sig('4/4');
+
+ $d->rest($d->whole);
 
  $d->metronome44;  # 4/4 time for the number of bars
 
