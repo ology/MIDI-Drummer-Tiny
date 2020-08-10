@@ -22,11 +22,12 @@ $d->note($d->quarter, $d->closed_hh);
 is $score[3]->[0], 'note', 'note added';
 
 $d->set_time_sig('5/8');
-@score = $d->score->Score;
-is $score[4]->[0], 'time_signature', 'time signature changed';
-is $score[4]->[2], $d->beats, '5 beats';
 
 is $d->beats, 5, 'beats computed';
 is $d->divisions, 8, 'divisions computed';
+
+@score = $d->score->Score;
+is $score[4]->[0], 'time_signature', 'time signature changed';
+is $score[4]->[2], $d->beats, '5 beats';
 
 done_testing();
