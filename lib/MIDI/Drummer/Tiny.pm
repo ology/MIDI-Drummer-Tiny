@@ -194,9 +194,7 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
 =over 4
 
-=item whole
-
-=item half
+=item whole, half
 
 =item quarter, triplet_quarter, dotted_quarter
 
