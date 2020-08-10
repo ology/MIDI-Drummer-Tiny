@@ -21,6 +21,7 @@ $d->note($d->quarter, $d->closed_hh);
 @score = $d->score->Score;
 is $score[3]->[0], 'note', 'note added';
 
+diag 'Set time signature';
 $d->set_time_sig('5/8');
 
 is $d->beats, 5, 'beats computed';
