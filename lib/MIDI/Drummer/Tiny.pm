@@ -206,7 +206,6 @@ has low_floor_tom => ( is => 'ro', default => sub { 'n41' } );
 
 =cut
 
-# duration
 has whole             => ( is => 'ro', default => sub { 'wn' } );
 has half              => ( is => 'ro', default => sub { 'hn' } );
 has quarter           => ( is => 'ro', default => sub { 'qn' } );
