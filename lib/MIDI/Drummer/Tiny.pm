@@ -14,7 +14,7 @@ use MIDI::Simple;
  my $d = MIDI::Drummer::Tiny->new(
     file      => 'drums.mid',
     bpm       => 100,
-    signature => '3/4',
+    signature => '5/4',
     bars      => 32,
     kick      => 'n36', # Override default patch
     snare     => 'n40', # "
@@ -22,7 +22,7 @@ use MIDI::Simple;
 
  $d->count_in(1);  # Closed hi-hat for 1 bar
 
- $d->metronome34;  # 3/4 time for the number of bars
+ $d->metronome54;  # 5/4 time for the number of bars
 
  $d->rest($d->whole);
 
