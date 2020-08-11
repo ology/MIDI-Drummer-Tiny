@@ -370,7 +370,7 @@ sub metronome54 {
         }
         else {
             $self->note($self->eighth, $self->closed_hh);
-            $self->note($self->eighth, $self->closed_hh, $self->kick);
+            $self->note($self->eighth, $self->kick);
         }
     }
 }
