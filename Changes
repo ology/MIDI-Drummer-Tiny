@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add the ->accent_note method.
+    - Add an example program illustrating the James Brown, "Cold Sweat" groove.
 
 0.1001 2020-08-11 07:02:59
     - Add eg/waltz. Why not?
