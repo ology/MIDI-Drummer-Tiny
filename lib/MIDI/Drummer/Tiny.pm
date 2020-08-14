@@ -425,13 +425,13 @@ sub set_time_sig {
 
 =head2 accent_note
 
-  $d->accent_note([$accent, $return], $d->sixteenth, $d->snare);
+  $d->accent_note([$accent, $resume], $d->sixteenth, $d->snare);
 
 Play an accented note.
 
 For instance, this can be a "ghosted note", where the B<accent> is a
 smaller number (< 50), or an "accented note" that is greater than the
-current (B<return>) volume.
+current (B<resume>) volume.
 
 =cut
 
