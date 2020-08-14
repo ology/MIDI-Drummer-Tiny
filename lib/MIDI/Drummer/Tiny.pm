@@ -423,6 +423,29 @@ sub set_time_sig {
     );
 }
 
+=head2 accent_note
+
+  $d->accent_note([$accent, $return], $d->sixteenth, $d->snare);
+
+Play an accented note.
+
+For instance, this can be a "ghosted note", where the accent is a
+smaller number (< 50), or an "accented note", if the normal volume is
+less than the max of 127.
+
+=cut
+
+sub accent_note {
+    my $self = shift;
+    my $volume = [30, 100];
+    if (ref($_[0]) eq 'ARRAY') {
+        $volume = shift;
+    }
+    $self->score->Volume($volume->[0]);
+    $self->note(@_);
+    $self->score->Volume($volume->[1]);
+}
+
 =head2 write
 
 Output the score to the default F<*.mid> file or one given to the
