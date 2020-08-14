@@ -437,10 +437,7 @@ current (B<return>) volume.
 
 sub accent_note {
     my $self = shift;
-    my $volume = [30, 100];
-    if (ref($_[0]) eq 'ARRAY') {
-        $volume = shift;
-    }
+    my $volume = shift;
     $self->score->Volume($volume->[0]);
     $self->note(@_);
     $self->score->Volume($volume->[1]);
