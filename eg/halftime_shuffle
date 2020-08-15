@@ -8,6 +8,7 @@ my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 70,
     volume => 127,
+    bars   => 8,
 );
 
 my ($min, $max) = (30, 127);
