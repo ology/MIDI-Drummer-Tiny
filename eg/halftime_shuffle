@@ -10,24 +10,24 @@ my $d = MIDI::Drummer::Tiny->new(
     volume => 127,
 );
 
+my ($min, $max) = (30, 127);
+
 for my $n (1 .. $d->bars) {
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
-    $d->rest($d->triplet_eighth);
+    $d->accent_note([$min, $max], $d->triplet_eighth);
     $d->note($d->triplet_eighth, $d->closed_hh);
 
     $d->note($d->triplet_eighth, $d->closed_hh);
-    $d->rest($d->triplet_eighth);
+    $d->accent_note([$min, $max], $d->triplet_eighth);
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
 
     $d->note($d->triplet_eighth, $d->closed_hh, $d->snare);
-    $d->rest($d->triplet_eighth);
+    $d->accent_note([$min, $max], $d->triplet_eighth);
     $d->note($d->triplet_eighth, $d->closed_hh);
 
     $d->note($d->triplet_eighth, $d->closed_hh);
-    $d->rest($d->triplet_eighth);
+    $d->accent_note([$min, $max], $d->triplet_eighth);
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
 }
-
-$d->note($d->quarter, $d->ride1, $d->kick);
 
 $d->write;
