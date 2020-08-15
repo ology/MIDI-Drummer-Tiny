@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve the halftime shuffle example program.
+
+0.1100 2020-08-14 17:19:40
     - Add the ->accent_note method.
     - Add an example program illustrating the James Brown, "Cold Sweat" groove.
 
