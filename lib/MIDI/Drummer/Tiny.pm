@@ -399,6 +399,54 @@ sub metronome58 {
     }
 }
 
+=head2 metronome74
+
+  $d->metronome74;
+  $d->metronome74($bars);
+
+Add a 7/4 beat to the score.
+
+=cut
+
+sub metronome74 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    for my $n (1 .. $bars) {
+        $self->note($self->quarter, $self->closed_hh, $self->kick);
+        $self->note($self->quarter, $self->closed_hh);
+        $self->note($self->quarter, $self->closed_hh, $self->snare);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->kick);
+        $self->note($self->quarter, $self->closed_hh, $self->kick);
+        $self->note($self->quarter, $self->closed_hh, $self->snare);
+        $self->note($self->quarter, $self->closed_hh);
+    }
+}
+
+=head2 metronome78
+
+  $d->metronome78;
+  $d->metronome78($bars);
+
+Add a 7/8 beat to the score.
+
+=cut
+
+sub metronome78 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    for my $n (1 .. $bars) {
+        $self->note($self->eighth, $self->closed_hh, $self->kick);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->sixteenth, $self->closed_hh, $self->kick);
+        $self->note($self->sixteenth, $self->kick);
+        $self->note($self->eighth, $self->closed_hh, $self->snare);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh);
+    }
+}
+
 =head2 set_time_sig
 
   $d->set_time_sig('5/4');
