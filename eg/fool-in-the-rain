@@ -5,10 +5,11 @@ use warnings;
 use MIDI::Drummer::Tiny;
 
 my $d = MIDI::Drummer::Tiny->new(
-    file   => "$0.mid",
-    bpm    => 130,
-    volume => 98,
-    bars   => 16,
+    file      => "$0.mid",
+    bpm       => 130,
+    volume    => 98,
+    bars      => 16,
+    signature => '12/8',
 );
 
 my ($min, $normal, $max) = (30, 98, 127);
