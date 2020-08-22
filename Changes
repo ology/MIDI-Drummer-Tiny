@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve eg/reggae.
+
+0.1201 2020-08-22 15:26:43
     - Fix the eg/waltz beat figure.
     - Add a fill to the beginning of eg/reggae.
     - Simplify the ->accented_note method.
