@@ -14,9 +14,9 @@ $d->count_in(1);
 
 my $j = 0;
 
-$d->note( $d->triplet_sixteenth, $d->high_timbale );
-$d->note( $d->triplet_sixteenth, $d->high_timbale );
-$d->accent_note( 127, $d->triplet_sixteenth, $d->high_timbale );
+$d->note( $d->triplet_sixteenth, $d->low_timbale );
+$d->note( $d->triplet_sixteenth, $d->low_timbale );
+$d->accent_note( 127, $d->triplet_sixteenth, $d->low_timbale );
 $d->rest($d->triplet_eighth);
 
 for my $n ( 1 .. $d->bars * 4 ) {
