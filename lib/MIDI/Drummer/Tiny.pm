@@ -529,6 +529,8 @@ __END__
 
 The F<eg/*> programs in this distribution
 
+F<eg/drum-fills-advanced> in the L<Music::Duration::Partition> distribution
+
 L<Moo>
 
 L<MIDI::Simple>
