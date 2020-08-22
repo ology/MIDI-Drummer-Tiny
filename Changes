@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the eg/fool-in-the-rain example program.
+
+0.1101 2020-08-17 09:34:01
     - Improve the halftime shuffle example program.
     - Add 7/4 and 7/8 metronomes.
 
