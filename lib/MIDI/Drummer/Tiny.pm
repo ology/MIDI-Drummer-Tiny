@@ -237,7 +237,7 @@ Return a new C<MIDI::Drummer::Tiny> object.
 
 Add a note to the score.
 
-This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/noop">.
+This method takes the same arguments as L<MIDI::Simple/"Parameters for n/r/noop">.
 
 =cut
 
@@ -270,7 +270,7 @@ sub accent_note {
 
 Add a rest to the score.
 
-This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/noop">.
+This method takes the same arguments as L<MIDI::Simple/"Parameters for n/r/noop">.
 
 =cut
 
