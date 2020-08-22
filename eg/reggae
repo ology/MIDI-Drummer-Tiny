@@ -2,7 +2,9 @@
 use strict;
 use warnings;
 
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-Duration);
 use MIDI::Drummer::Tiny;
+use Music::Duration;
 
 my $d = MIDI::Drummer::Tiny->new(
     file => $0 . '.mid',
@@ -14,7 +16,7 @@ $d->count_in(1);
 
 my $j = 0;
 
-$d->note( $d->triplet_sixteenth, $d->low_timbale );
+$d->accent_note( 64, 'tyn', $d->low_timbale );
 $d->note( $d->triplet_sixteenth, $d->low_timbale );
 $d->accent_note( 127, $d->triplet_sixteenth, $d->low_timbale );
 $d->rest($d->triplet_eighth);
