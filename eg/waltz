@@ -15,6 +15,7 @@ my $d = MIDI::Drummer::Tiny->new(
 
 $d->count_in(1);
 
+# Viennese
 for my $n (1 .. $d->bars) {
     $d->note($d->quarter, $d->ride1, $d->kick);
     $d->note($d->quarter, $d->ride1, $d->snare);
