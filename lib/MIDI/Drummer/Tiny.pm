@@ -4,8 +4,10 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.1200';
 
-use Moo;
 use MIDI::Simple;
+use Moo;
+use strictures 2;
+use namespace::clean;
 
 =head1 SYNOPSIS
 
