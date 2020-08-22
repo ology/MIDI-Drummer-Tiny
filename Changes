@@ -3,7 +3,7 @@ Revision history for MIDI-Drummer
 {{$NEXT}}
     - Add the eg/fool-in-the-rain example program.
     - Consolidate the metronomes into a single program.
-    - Fix pan value default.
+    - Remove the unneeded effects: reverb, chorus and pan.
 
 0.1101 2020-08-17 09:34:01
     - Improve the halftime shuffle example program.
