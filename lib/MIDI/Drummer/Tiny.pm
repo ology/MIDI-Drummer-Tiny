@@ -243,6 +243,27 @@ This method takes the same arguments as with L<MIDI::Simple/"Parameters for n/r/
 
 sub note { return shift->score->n(@_) }
 
+=head2 accent_note
+
+  $d->accent_note($accent_value, $d->sixteenth, $d->snare);
+
+Play an accented note.
+
+For instance, this can be a "ghosted note", where the B<accent> is a
+smaller number (< 50).  Or a note that is greater than the normal
+score volume.
+
+=cut
+
+sub accent_note {
+    my $self = shift;
+    my $accent = shift;
+    my $resume = $self->score->Volume;
+    $self->score->Volume($accent);
+    $self->note(@_);
+    $self->score->Volume($resume);
+}
+
 =head2 rest
 
  $d->rest( $d->quarter );
@@ -273,7 +294,7 @@ sub count_in {
     }
 }
 
-=head2 metronome, metronome44
+=head2 metronome44
 
   $d->metronome44;
   $d->metronome44($bars);
@@ -288,9 +309,7 @@ eighth-note kicks.
 
 =cut
 
-sub metronome44 { shift->metronome(@_) }
-
-sub metronome {
+sub metronome44 {
     my $self = shift;
     my $bars = shift || $self->bars;
     my $flag = shift || 0;
@@ -488,27 +507,6 @@ sub set_time_sig {
         ( $self->divisions == 8 ? 24 : 18 ),
         8
     );
-}
-
-=head2 accent_note
-
-  $d->accent_note($accent_value, $d->sixteenth, $d->snare);
-
-Play an accented note.
-
-For instance, this can be a "ghosted note", where the B<accent> is a
-smaller number (< 50).  Or a note that is greater than the normal
-score volume.
-
-=cut
-
-sub accent_note {
-    my $self = shift;
-    my $accent = shift;
-    my $resume = $self->score->Volume;
-    $self->score->Volume($accent);
-    $self->note(@_);
-    $self->score->Volume($resume);
 }
 
 =head2 write
