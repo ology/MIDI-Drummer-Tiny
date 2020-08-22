@@ -294,6 +294,26 @@ sub count_in {
     }
 }
 
+=head2 metronome34
+
+  $d->metronome34;
+  $d->metronome34($bars);
+
+Add a steady 3/4 beat to the score.
+
+=cut
+
+sub metronome34 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+
+    for ( 1 .. $bars ) {
+        $self->note( $self->quarter, $self->ride1, $self->kick );
+        $self->note( $self->quarter, $self->ride1 );
+        $self->note( $self->quarter, $self->ride1, $self->snare );
+    }
+}
+
 =head2 metronome44
 
   $d->metronome44;
@@ -341,26 +361,6 @@ sub metronome44 {
 
             $i++;
         }
-    }
-}
-
-=head2 metronome34
-
-  $d->metronome34;
-  $d->metronome34($bars);
-
-Add a steady 3/4 beat to the score.
-
-=cut
-
-sub metronome34 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-
-    for ( 1 .. $bars ) {
-        $self->note( $self->quarter, $self->ride1, $self->kick );
-        $self->note( $self->quarter, $self->ride1 );
-        $self->note( $self->quarter, $self->ride1, $self->snare );
     }
 }
 
