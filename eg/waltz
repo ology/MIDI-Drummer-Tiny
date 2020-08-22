@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+# https://www.virtualdrumming.com/drums/drums-basic-beats/drums-waltz-beats.html
+
 use MIDI::Drummer::Tiny;
 
 my $d = MIDI::Drummer::Tiny->new(
