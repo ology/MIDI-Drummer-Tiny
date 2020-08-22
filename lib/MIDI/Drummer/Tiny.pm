@@ -86,6 +86,12 @@ Default: C<120>
 
 Default: C<4>
 
+=head2 signature
+
+Default: C<4/4>
+
+B<beats> / B<divisions>
+
 =head2 beats
 
 Computed given the B<signature>.
@@ -93,12 +99,6 @@ Computed given the B<signature>.
 =head2 divisions
 
 Computed given the B<signature>.
-
-=head2 signature
-
-Default: C<4/4>
-
-B<beats> / B<divisions>
 
 =cut
 
