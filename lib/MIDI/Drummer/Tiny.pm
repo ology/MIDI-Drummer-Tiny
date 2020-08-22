@@ -380,6 +380,28 @@ sub metronome58 {
     }
 }
 
+=head2 metronome68
+
+  $d->metronome68;
+  $d->metronome68($bars);
+
+Add a 6/8 beat to the score.
+
+=cut
+
+sub metronome68 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    for my $n (1 .. $bars) {
+        $self->note($self->eighth, $self->closed_hh, $self->kick);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh, $self->snare);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh);
+    }
+}
+
 =head2 metronome74
 
   $d->metronome74;
