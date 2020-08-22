@@ -58,10 +58,6 @@ sub BUILD {
 
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
-
-    $self->score->control_change( $self->channel, 91, $self->reverb ) if $self->reverb;
-    $self->score->control_change( $self->channel, 93, $self->chorus ) if $self->chorus;
-    $self->score->control_change( $self->channel, 10, $self->pan ) if $self->pan;
 }
 
 =head1 ATTRIBUTES
@@ -86,18 +82,6 @@ Default: C<100>
 
 Default: C<120>
 
-=head2 reverb
-
-Default: C<0>
-
-=head2 chorus
-
-Default: C<0>
-
-=head2 pan
-
-Default: C<64>
-
 =head2 bars
 
 Default: C<4>
@@ -121,9 +105,6 @@ B<beats> / B<divisions>
 has channel   => ( is => 'ro', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
-has reverb    => ( is => 'ro', default => sub { 0 } );
-has chorus    => ( is => 'ro', default => sub { 0 } );
-has pan       => ( is => 'ro', default => sub { 64 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
