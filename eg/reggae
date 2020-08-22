@@ -16,6 +16,8 @@ $d->count_in(1);
 
 my $j = 0;
 
+$d->rest( $d->triplet_sixteenth );
+$d->rest('tyn');
 $d->accent_note( 64, 'tyn', $d->low_timbale );
 $d->note( $d->triplet_sixteenth, $d->low_timbale );
 $d->accent_note( 127, $d->triplet_sixteenth, $d->low_timbale );
