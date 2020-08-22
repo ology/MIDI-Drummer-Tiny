@@ -509,7 +509,7 @@ __END__
 
 =head1 SEE ALSO
 
-The F<t/*> and F<eg/*> programs in this distribution
+The F<eg/*> programs in this distribution
 
 L<Moo>
 
