@@ -4,6 +4,7 @@ Revision history for MIDI-Drummer
     - Add the eg/fool-in-the-rain example program.
     - Consolidate the metronomes into a single program.
     - Remove the unneeded effects: reverb, chorus and pan.
+    - Add a 6/8 metronome beat.
 
 0.1101 2020-08-17 09:34:01
     - Improve the halftime shuffle example program.
