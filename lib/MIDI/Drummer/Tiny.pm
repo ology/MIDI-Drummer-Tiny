@@ -478,8 +478,8 @@ sub set_time_sig {
 Play an accented note.
 
 For instance, this can be a "ghosted note", where the B<accent> is a
-smaller number (< 50), or an "accented note" that is greater than the
-current (B<resume>) volume.
+smaller number (< 50).  Or a note that is greater than the current
+(B<resume>) volume.
 
 =cut
 
