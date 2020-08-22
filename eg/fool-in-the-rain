@@ -12,7 +12,7 @@ my $d = MIDI::Drummer::Tiny->new(
     signature => '12/8',
 );
 
-my ($min, $normal, $max) = (30, 98, 127);
+my ($min, $max) = (30, 127);
 
 for my $n (1 .. $d->bars) {
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
@@ -20,15 +20,15 @@ for my $n (1 .. $d->bars) {
     $d->note($d->triplet_eighth, $d->open_hh, $d->kick);
 
     $d->note($d->triplet_eighth, $d->closed_hh);
-    $d->accent_note([$min, $normal], $d->triplet_eighth, $d->snare);
+    $d->accent_note($min, $d->triplet_eighth, $d->snare);
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
 
-    $d->accent_note([$max, $normal], $d->triplet_eighth, $d->snare);
+    $d->accent_note($max, $d->triplet_eighth, $d->snare);
     $d->rest($d->triplet_eighth);
     $d->note($d->triplet_eighth, $d->closed_hh);
 
     $d->note($d->triplet_eighth, $d->closed_hh);
-    $d->accent_note([$min, $normal], $d->triplet_eighth, $d->snare);
+    $d->accent_note($min, $d->triplet_eighth, $d->snare);
     $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
 }
 

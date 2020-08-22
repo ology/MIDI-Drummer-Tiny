@@ -492,22 +492,23 @@ sub set_time_sig {
 
 =head2 accent_note
 
-  $d->accent_note([$accent, $resume], $d->sixteenth, $d->snare);
+  $d->accent_note($accent_value, $d->sixteenth, $d->snare);
 
 Play an accented note.
 
 For instance, this can be a "ghosted note", where the B<accent> is a
-smaller number (< 50).  Or a note that is greater than the current
-(B<resume>) volume.
+smaller number (< 50).  Or a note that is greater than the normal
+score volume.
 
 =cut
 
 sub accent_note {
     my $self = shift;
-    my $volume = shift;
-    $self->score->Volume($volume->[0]);
+    my $accent = shift;
+    my $resume = $self->score->Volume;
+    $self->score->Volume($accent);
     $self->note(@_);
-    $self->score->Volume($volume->[1]);
+    $self->score->Volume($resume);
 }
 
 =head2 write

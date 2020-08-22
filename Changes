@@ -3,6 +3,7 @@ Revision history for MIDI-Drummer
 {{$NEXT}}
     - Fix the eg/waltz beat figure.
     - Add a fill to the beginning of eg/reggae.
+    - Simplify the ->accented_note method.
 
 0.1200 2020-08-22 10:21:34
     - Add the eg/fool-in-the-rain example program.
