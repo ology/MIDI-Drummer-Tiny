@@ -116,47 +116,22 @@ has divisions => ( is => 'rw' );
 
 =over 4
 
-=item kick
+=item open_hh, closed_hh, pedal_hh
+
+=item crash1, crash2, splash, china
+
+=item ride1, ride2, ride_bell
 
 =item snare
 
-=item open_hh
+=item hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
 
-=item closed_hh
-
-=item pedal_hh
-
-=item crash1
-
-=item crash2
-
-=item splash
-
-=item china
-
-=item ride1
-
-=item ride2
-
-=item ride_bell
-
-=item hi_tom
-
-=item hi_mid_tom
-
-=item low_mid_tom
-
-=item low_tom
-
-=item hi_floor_tom
-
-=item low_floor_tom
+=item kick
 
 =back
 
 =cut
 
-# kit
 has kick          => ( is => 'ro', default => sub { 'n35' } );
 has snare         => ( is => 'ro', default => sub { 'n38' } );
 has open_hh       => ( is => 'ro', default => sub { 'n46' } );
