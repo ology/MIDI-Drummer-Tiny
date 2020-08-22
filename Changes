@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.1200 2020-08-22 10:21:34
     - Add the eg/fool-in-the-rain example program.
     - Consolidate the metronomes into a single program.
     - Remove the unneeded effects: reverb, chorus and pan.
