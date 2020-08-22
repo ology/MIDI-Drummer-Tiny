@@ -96,7 +96,7 @@ Default: C<0>
 
 =head2 pan
 
-Default: C<0>
+Default: C<64>
 
 =head2 bars
 
@@ -123,7 +123,7 @@ has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
 has reverb    => ( is => 'ro', default => sub { 0 } );
 has chorus    => ( is => 'ro', default => sub { 0 } );
-has pan       => ( is => 'ro', default => sub { 0 } );
+has pan       => ( is => 'ro', default => sub { 64 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
