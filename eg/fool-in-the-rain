@@ -8,7 +8,7 @@ my $d = MIDI::Drummer::Tiny->new(
     file      => "$0.mid",
     bpm       => 130,
     volume    => 98,
-    bars      => 16,
+    bars      => 8,
     signature => '12/8',
 );
 
