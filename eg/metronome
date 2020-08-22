@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use MIDI::Drummer::Tiny;
+
+my $beats     = shift || 4;
+my $divisions = shift || 4;
+
+my $d = MIDI::Drummer::Tiny->new(
+    file      => $0 . '.mid',
+    signature => $beats . '/' . $divisions,
+    bpm       => 100,
+    bars      => 16,
+);
+
+$d->count_in(1);
+
+$d->metronome34 if $beats == 3 && $divisions == 4;
+$d->metronome44 if $beats == 4 && $divisions == 4;
+$d->metronome54 if $beats == 5 && $divisions == 4;
+$d->metronome74 if $beats == 7 && $divisions == 4;
+$d->metronome58 if $beats == 5 && $divisions == 8;
+$d->metronome78 if $beats == 7 && $divisions == 8;
+
+$d->write;
