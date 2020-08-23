@@ -41,8 +41,8 @@ use namespace::clean;
 
 =head1 DESCRIPTION
 
-This module provides a MIDI drummer with the essentials to add notes to produce
-a MIDI score.
+This module provides handy defaults and tools to produce a MIDI score
+with drum parts.
 
 =for Pod::Coverage BUILD
 
