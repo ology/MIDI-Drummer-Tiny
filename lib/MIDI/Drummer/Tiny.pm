@@ -34,7 +34,7 @@ use namespace::clean;
  $d->metronome44;  # 4/4 time for the number of bars
 
  # Alternate kick and snare
- $d->note( $d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare )
+ $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
  $d->write;
