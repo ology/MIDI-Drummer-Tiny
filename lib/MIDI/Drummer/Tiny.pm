@@ -31,6 +31,7 @@ use namespace::clean;
 
  $d->rest($d->whole);
 
+ $d->flam($d->quarter, $d->snare);
  $d->roll($d->eighth, $d->thirtysecond);
 
  $d->metronome44;  # 4/4 time for the number of bars
@@ -508,6 +509,25 @@ sub metronome78 {
         $self->note($self->eighth, $self->closed_hh);
         $self->note($self->eighth, $self->closed_hh);
     }
+}
+
+=head2 flam
+
+  $d->flam( $spec, $patch );
+
+Add a flam to the score, where a ghosted gracenote is played before
+the primary note.
+
+=cut
+
+sub flam {
+    my ($self, $spec, $patch) = @_;
+    my $x = $MIDI::Simple::Length{$spec};
+    my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
+    my $z = sprintf '%0.f', ($x - $y) * 96;
+    my $accent = sprintf '%0.f', $self->score->Volume / 2;
+    $self->accent_note($accent, $self->sixtyfourth, $patch);
+    $self->note('d' . $z, $patch);
 }
 
 =head2 roll
