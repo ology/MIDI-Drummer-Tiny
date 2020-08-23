@@ -44,6 +44,8 @@ use namespace::clean;
 This module provides a MIDI drummer with the essentials to add notes to produce
 a MIDI score.
 
+=for Pod::Coverage BUILD
+
 =cut
 
 sub BUILD {
@@ -258,8 +260,6 @@ has double_dotted_onetwentyeighth => (is => 'ro', default => sub { 'ddon' });
   $d = MIDI::Drummer::Tiny->new(%arguments);
 
 Return a new C<MIDI::Drummer::Tiny> object.
-
-=for Pod::Coverage BUILD
 
 =head2 note
 
