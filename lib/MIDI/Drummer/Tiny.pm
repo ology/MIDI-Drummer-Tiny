@@ -53,11 +53,11 @@ with drum parts.
 sub BUILD {
     my ( $self, $args ) = @_;
 
-    $self->set_time_sig;
-
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
+
+    $self->set_time_sig;
 }
 
 =head1 ATTRIBUTES
