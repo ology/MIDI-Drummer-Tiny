@@ -31,6 +31,8 @@ use namespace::clean;
 
  $d->rest($d->whole);
 
+ $d->roll($d->eighth, $d->thirtysecond);
+
  $d->metronome44;  # 4/4 time for the number of bars
 
  # Alternate kick and snare
@@ -515,10 +517,13 @@ sub metronome78 {
 Add a drum roll to the score, where the B<patch> is played for
 duration B<length> in B<spec> increments.
 
+If not provided the B<snare> is used for the B<patch>.
+
 =cut
 
 sub roll {
     my ($self, $length, $spec, $patch) = @_;
+    $patch ||= $self->snare;
     my $x = $MIDI::Simple::Length{$length};
     my $y = $MIDI::Simple::Length{$spec};
     my $z = sprintf '%0.f', $x / $y;
