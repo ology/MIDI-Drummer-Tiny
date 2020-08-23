@@ -2,7 +2,9 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Improve eg/reggae.
-    - Illustrate a crescendo with the little eg/crescendo program.
+    - Illustrate a crescendo and roll with the eg/crescendo program.
+    - Add the ->roll method.
+    - Add 32nd, 64th and 128th Music::Duration specs.
 
 0.1201 2020-08-22 15:26:43
     - Fix the eg/waltz beat figure.
