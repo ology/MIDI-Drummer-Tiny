@@ -5,6 +5,7 @@ package MIDI::Drummer::Tiny;
 our $VERSION = '0.1201';
 
 use MIDI::Simple;
+use Music::Duration;
 use Moo;
 use strictures 2;
 use namespace::clean;
@@ -59,6 +60,7 @@ sub BUILD {
     );
 
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
+
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 }
 
@@ -196,29 +198,58 @@ has open_triangle  => ( is => 'ro', default => sub { 'n81' } );
 
 =over 4
 
-=item whole, half
+=item whole, triplet_whole, dotted_whole, double_dotted_whole
 
-=item quarter, triplet_quarter, dotted_quarter
+=item half, triplet_half, dotted_half, double_dotted_half
 
-=item eighth, triplet_eighth, dotted_eighth
+=item quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
 
-=item sixteenth, triplet_sixteenth, dotted_sixteenth
+=item eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
+
+=item sixteenth, triplet_sixteenth, dotted_sixteenth, double_dotted_sixteenth
+
+=item thirtysecond, triplet_thirtysecond, dotted_thirtysecond, double_dotted_thirtysecond
+
+=item sixtyfourth, triplet_sixtyfourth, dotted_sixtyfourth, double_dotted_sixtyfourth
+
+=item onetwentyeighth, triplet_onetwentyeighth, dotted_onetwentyeighth, double_dotted_onetwentyeighth
 
 =back
 
 =cut
 
-has whole             => ( is => 'ro', default => sub { 'wn' } );
-has half              => ( is => 'ro', default => sub { 'hn' } );
-has quarter           => ( is => 'ro', default => sub { 'qn' } );
-has triplet_quarter   => ( is => 'ro', default => sub { 'tqn' } );
-has dotted_quarter    => ( is => 'ro', default => sub { 'dqn' } );
-has eighth            => ( is => 'ro', default => sub { 'en' } );
-has triplet_eighth    => ( is => 'ro', default => sub { 'ten' } );
-has dotted_eighth     => ( is => 'ro', default => sub { 'den' } );
-has sixteenth         => ( is => 'ro', default => sub { 'sn' } );
-has triplet_sixteenth => ( is => 'ro', default => sub { 'tsn' } );
-has dotted_sixteenth  => ( is => 'ro', default => sub { 'dsn' } );
+has whole                         => (is => 'ro', default => sub { 'wn' });
+has triplet_whole                 => (is => 'ro', default => sub { 'twn' });
+has dotted_whole                  => (is => 'ro', default => sub { 'dwn' });
+has double_dotted_whole           => (is => 'ro', default => sub { 'ddwn' });
+has half                          => (is => 'ro', default => sub { 'hn' });
+has triplet_half                  => (is => 'ro', default => sub { 'thn' });
+has dotted_half                   => (is => 'ro', default => sub { 'dhn' });
+has double_dotted_half            => (is => 'ro', default => sub { 'ddhn' });
+has quarter                       => (is => 'ro', default => sub { 'qn' });
+has triplet_quarter               => (is => 'ro', default => sub { 'tqn' });
+has dotted_quarter                => (is => 'ro', default => sub { 'dqn' });
+has double_dotted_quarter         => (is => 'ro', default => sub { 'ddqn' });
+has eighth                        => (is => 'ro', default => sub { 'en' });
+has triplet_eighth                => (is => 'ro', default => sub { 'ten' });
+has dotted_eighth                 => (is => 'ro', default => sub { 'den' });
+has double_dotted_eighth          => (is => 'ro', default => sub { 'dden' });
+has sixteenth                     => (is => 'ro', default => sub { 'sn' });
+has triplet_sixteenth             => (is => 'ro', default => sub { 'tsn' });
+has dotted_sixteenth              => (is => 'ro', default => sub { 'dsn' });
+has double_dotted_sixteenth       => (is => 'ro', default => sub { 'ddsn' });
+has thirtysecond                  => (is => 'ro', default => sub { 'yn' });
+has triplet_thirtysecond          => (is => 'ro', default => sub { 'dyn' });
+has dotted_thirtysecond           => (is => 'ro', default => sub { 'dyn' });
+has double_dotted_thirtysecond    => (is => 'ro', default => sub { 'ddyn' });
+has sixtyfourth                   => (is => 'ro', default => sub { 'xn' });
+has triplet_sixtyfourth           => (is => 'ro', default => sub { 'dxn' });
+has dotted_sixtyfourth            => (is => 'ro', default => sub { 'dxn' });
+has double_dotted_sixtyfourth     => (is => 'ro', default => sub { 'ddxn' });
+has onetwentyeighth               => (is => 'ro', default => sub { 'on' });
+has triplet_onetwentyeighth       => (is => 'ro', default => sub { 'don' });
+has dotted_onetwentyeighth        => (is => 'ro', default => sub { 'don' });
+has double_dotted_onetwentyeighth => (is => 'ro', default => sub { 'ddon' });
 
 =head1 METHODS
 
@@ -483,6 +514,23 @@ sub metronome78 {
         $self->note($self->eighth, $self->closed_hh);
         $self->note($self->eighth, $self->closed_hh);
     }
+}
+
+=head2 roll
+
+  $d->roll( $length, $spec, $patch );
+
+Add a drum roll to the score, where the B<patch> is played for
+duration B<length> in B<spec> increments.
+
+=cut
+
+sub roll {
+    my ($self, $length, $spec, $patch) = @_;
+    my $x = $MIDI::Simple::Length{$length};
+    my $y = $MIDI::Simple::Length{$spec};
+    my $z = sprintf '%0.f', $x / $y;
+    $self->note($spec, $patch) for 1 .. $z;
 }
 
 =head2 set_time_sig
