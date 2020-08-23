@@ -576,6 +576,8 @@ L<Moo>
 
 L<MIDI::Simple>
 
+L<Music::Duration>
+
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 =cut
