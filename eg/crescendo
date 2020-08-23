@@ -11,6 +11,8 @@ my $d = MIDI::Drummer::Tiny->new(
     bars   => 4,
 );
 
+$d->count_in(1);
+
 my ($min, $max) = (47, 127);
 
 for my $n (1 .. $d->bars) {
