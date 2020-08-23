@@ -49,17 +49,9 @@ a MIDI score.
 =cut
 
 sub BUILD {
-   my ( $self, $args ) = @_;
+    my ( $self, $args ) = @_;
 
-    my ($beats, $divisions) = split /\//, $self->signature;
-    $self->beats($beats);
-    $self->divisions($divisions);
-    $self->score->time_signature(
-        $self->beats,
-        ( $self->divisions == 8 ? 3 : 2),
-        ( $self->divisions == 8 ? 24 : 18 ),
-        8
-    );
+    $self->set_time_sig;
 
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
@@ -544,9 +536,10 @@ C<time_signature> values based on the given string.
 
 sub set_time_sig {
     my $self = shift;
-    my $signature = shift || $self->signature;
-    $self->signature($signature);
-    my ($beats, $divisions) = split /\//, $signature;
+    if (@_) {
+        $self->signature(shift);
+    }
+    my ($beats, $divisions) = split /\//, $self->signature;
     $self->beats($beats);
     $self->divisions($divisions);
     $self->score->time_signature(
