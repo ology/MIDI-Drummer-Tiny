@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix eg/reggae.
+
+0.1300 2020-08-23 09:58:26
     - Improve documentation.
     - Improve ->roll and ->set_time_sig code.
     - Add 32nd, 64th and 128th Music::Duration specs.
