@@ -10,6 +10,8 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
+use constant TICKS => 96; # Per quarter note
+
 =head1 SYNOPSIS
 
  use MIDI::Drummer::Tiny;
@@ -524,7 +526,7 @@ sub flam {
     my ($self, $spec, $patch) = @_;
     my $x = $MIDI::Simple::Length{$spec};
     my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
-    my $z = sprintf '%0.f', ($x - $y) * 96;
+    my $z = sprintf '%0.f', ($x - $y) * TICKS;
     my $accent = sprintf '%0.f', $self->score->Volume / 2;
     $self->accent_note($accent, $self->sixtyfourth, $patch);
     $self->note('d' . $z, $patch);
