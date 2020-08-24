@@ -33,10 +33,10 @@ use constant TICKS => 96; # Per quarter note
 
  $d->rest($d->whole);
 
+ $d->metronome44;  # 4/4 time for the number of bars
+
  $d->flam($d->quarter, $d->snare);
  $d->roll($d->eighth, $d->thirtysecond);
-
- $d->metronome44;  # 4/4 time for the number of bars
 
  # Alternate kick and snare
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
