@@ -105,9 +105,9 @@ Computed given the B<signature>.
 
 =cut
 
-has channel   => ( is => 'rw', default => sub { 9 } );
-has volume    => ( is => 'rw', default => sub { 100 } );
-has bpm       => ( is => 'rw', default => sub { 120 } );
+has channel   => ( is => 'ro', default => sub { 9 } );
+has volume    => ( is => 'ro', default => sub { 100 } );
+has bpm       => ( is => 'ro', default => sub { 120 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
