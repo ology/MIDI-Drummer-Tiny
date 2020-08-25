@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Make the channel, volume & bpm attributes mutable.
 
 0.1400 2020-08-23 12:21:18
     - Fix eg/reggae.
