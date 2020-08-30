@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.1500';
+our $VERSION = '0.1501';
 
 use MIDI::Simple;
 use Music::Duration;
@@ -554,11 +554,11 @@ sub roll {
 
 =head2 crescendo_roll
 
-  $d->crescendo_roll( [$i, $j], $length, $spec, $patch );
+  $d->crescendo_roll( [$start, $span], $length, $spec, $patch );
 
 Add a drum roll to the score, where the B<patch> is played for
-duration B<length> in B<spec> increments at increasing or decreasing
-volumes from B<i> to B<j>.
+duration B<length> in B<spec> notes, at increasing or decreasing
+volumes from B<start> in B<span> increments.
 
 If not provided the B<snare> is used for the B<patch>.
 
