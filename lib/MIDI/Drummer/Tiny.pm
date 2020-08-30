@@ -552,6 +552,32 @@ sub roll {
     $self->note($spec, $patch) for 1 .. $z;
 }
 
+=head2 crescendo_roll
+
+  $d->crescendo_roll( [$i, $j], $length, $spec, $patch );
+
+Add a drum roll to the score, where the B<patch> is played for
+duration B<length> in B<spec> increments at increasing or decreasing
+volumes from B<i> to B<j>.
+
+If not provided the B<snare> is used for the B<patch>.
+
+=cut
+
+sub crescendo_roll {
+    my ($self, $span, $length, $spec, $patch) = @_;
+    $patch ||= $self->snare;
+    my ($i, $j) = @$span;
+    my $x = $MIDI::Simple::Length{$length};
+    my $y = $MIDI::Simple::Length{$spec};
+    my $z = sprintf '%0.f', $x / $y;
+    for my $n (1 .. $z) {
+        warn(__PACKAGE__,' ',__LINE__," MARK: ",$i,"\n");
+        $self->accent_note($i, $spec, $patch);
+        $i += $j;
+    }
+}
+
 =head2 set_time_sig
 
   $d->set_time_sig('5/4');
