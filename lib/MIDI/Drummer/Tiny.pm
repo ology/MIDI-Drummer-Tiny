@@ -554,11 +554,11 @@ sub roll {
 
 =head2 crescendo_roll
 
-  $d->crescendo_roll( [$i, $j], $length, $spec, $patch );
+  $d->crescendo_roll( [$start, $end], $length, $spec, $patch );
 
 Add a drum roll to the score, where the B<patch> is played for
 duration B<length> in B<spec> notes, at increasing or decreasing
-volumes from B<i> to B<j>.
+volumes from B<start> to B<end>.
 
 If not provided the B<snare> is used for the B<patch>.
 
