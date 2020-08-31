@@ -13,8 +13,7 @@ my $d = MIDI::Drummer::Tiny->new(
 
 $d->count_in(1);
 
-my ($min, $max) = (47, 127);
-my ($start, $span) = (57, 10);
+my ($min, $max) = (50, 120);
 
 for my $n (1 .. $d->bars) {
     $d->note($d->quarter, $d->closed_hh, $d->kick);
@@ -27,7 +26,7 @@ for my $n (1 .. $d->bars) {
         $d->accent_note($i, $d->eighth, $d->snare, $d->hi_floor_tom);
     }
 
-    $d->crescendo_roll([$start, $span], $d->quarter, $d->thirtysecond);
+    $d->crescendo_roll([$min, $max], $d->eighth, $d->thirtysecond);
 }
 
 $d->write;
