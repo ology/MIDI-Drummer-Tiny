@@ -26,7 +26,7 @@ for my $n (1 .. $d->bars) {
         $d->accent_note($i, $d->eighth, $d->snare, $d->hi_floor_tom);
     }
 
-    $d->crescendo_roll([$min, $max], $d->eighth, $d->thirtysecond);
+    $d->crescendo_roll([$min, $max, 1], $d->eighth, $d->thirtysecond);
 }
 
 $d->write;

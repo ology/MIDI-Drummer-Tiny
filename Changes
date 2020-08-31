@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add a Bézier curve option to the ->crescendo_roll.
+
+0.1502 2020-08-31 07:59:16
     - Fix the ->crescendo_roll logic replacing start-span with min-max (or max-min).
 
 0.1501 2020-08-30 13:26:09

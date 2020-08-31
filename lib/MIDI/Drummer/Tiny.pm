@@ -2,8 +2,9 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.1502';
+our $VERSION = '0.1600';
 
+use Math::Bezier;
 use MIDI::Simple;
 use Music::Duration;
 use Moo;
@@ -36,7 +37,7 @@ use constant TICKS => 96; # Per quarter note
  $d->metronome44;  # 4/4 time for the number of bars
 
  $d->flam($d->quarter, $d->snare);
- $d->roll($d->eighth, $d->thirtysecond);
+ $d->crescendo_roll([50, 127], $d->eighth, $d->thirtysecond);
 
  # Alternate kick and snare
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
@@ -554,11 +555,14 @@ sub roll {
 
 =head2 crescendo_roll
 
-  $d->crescendo_roll( [$start, $end], $length, $spec, $patch );
+  $d->crescendo_roll( [$start, $end, $bezier], $length, $spec, $patch );
 
 Add a drum roll to the score, where the B<patch> is played for
 duration B<length> in B<spec> notes, at increasing or decreasing
 volumes from B<start> to B<end>.
+
+If true, the B<bezier> flag will render the crescendo with a curve,
+rather than as a straight line.
 
 If not provided the B<snare> is used for the B<patch>.
 
@@ -567,24 +571,39 @@ If not provided the B<snare> is used for the B<patch>.
 sub crescendo_roll {
     my ($self, $span, $length, $spec, $patch) = @_;
     $patch ||= $self->snare;
-    my ($i, $j) = @$span;
+    my ($i, $j, $bezier) = @$span;
     my $x = $MIDI::Simple::Length{$length};
     my $y = $MIDI::Simple::Length{$spec};
     my $z = sprintf '%0.f', $x / $y;
-    my $v = sprintf '%0.f', ($j - $i) / ($z - 1);
-#    warn(__PACKAGE__,' ',__LINE__," VALUE: ",$v,"\n");
-    for my $n (1 .. $z) {
-        if ($n == $z) {
-            if ($i < $j) {
-                $i += $j - $i;
-            }
-            elsif ($i > $j) {
-                $i -= $i - $j;
-            }
+    if ($bezier) {
+        my $bezier = Math::Bezier->new(
+            1, $i,
+            $z, $i,
+            $z, $j,
+        );
+        for (my $n = 0; $n <= 1; $n += (1 / ($z - 1))) {
+            my (undef, $v) = $bezier->point($n);
+            $v = sprintf '%0.f', $v;
+#            warn(__PACKAGE__,' ',__LINE__," $n INC: $v\n");
+            $self->accent_note($v, $spec, $patch);
         }
-#        warn(__PACKAGE__,' ',__LINE__," $n INC: ",$i,"\n");
-        $self->accent_note($i, $spec, $patch);
-        $i += $v;
+    }
+    else {
+        my $v = sprintf '%0.f', ($j - $i) / ($z - 1);
+#        warn(__PACKAGE__,' ',__LINE__," VALUE: $v\n");
+        for my $n (1 .. $z) {
+            if ($n == $z) {
+                if ($i < $j) {
+                    $i += $j - $i;
+                }
+                elsif ($i > $j) {
+                    $i -= $i - $j;
+                }
+            }
+#            warn(__PACKAGE__,' ',__LINE__," $n INC: $i\n");
+            $self->accent_note($i, $spec, $patch);
+            $i += $v;
+        }
     }
 }
 
