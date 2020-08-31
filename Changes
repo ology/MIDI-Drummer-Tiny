@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix the ->crescendo_roll logic replacing start-span with min-max (or max-min).
 
 0.1501 2020-08-30 13:26:09
     - Fix ->crescendo_roll documentation.
