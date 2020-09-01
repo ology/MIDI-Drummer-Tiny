@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.1600';
+our $VERSION = '0.1601';
 
 use Math::Bezier;
 use MIDI::Simple;
@@ -128,11 +128,17 @@ has divisions => ( is => 'rw' );
 
 =item ride1, ride2, ride_bell
 
-=item side_stick, snare (alternate = n40), clap
+=item snare, acoustic_snare, electric_snare, side_stick, clap
+
+Where the B<snare> is by default the same as the B<acoustic_snare> but
+can be overridden with the B<electric_snare> (C<'n40'>).
 
 =item hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
 
-=item kick (alternate = n36)
+=item kick, acoustic_bass, electric_bass
+
+Where the B<kick> is by default the same as the B<acoustic_bass> but
+can be overridden with the B<electric_bass> (C<'n36'>).
 
 =item tambourine, cowbell, vibraslap
 
@@ -149,8 +155,12 @@ has divisions => ( is => 'rw' );
 has click          => ( is => 'ro', default => sub { 'n33' } );
 has bell           => ( is => 'ro', default => sub { 'n34' } );
 has kick           => ( is => 'ro', default => sub { 'n35' } ); # Alt: 36
+has acoustic_bass  => ( is => 'ro', default => sub { 'n35' } );
+has electric_bass  => ( is => 'ro', default => sub { 'n36' } );
 has side_stick     => ( is => 'ro', default => sub { 'n37' } );
 has snare          => ( is => 'ro', default => sub { 'n38' } ); # Alt: 40
+has acoustic_snare => ( is => 'ro', default => sub { 'n38' } );
+has electric_snare => ( is => 'ro', default => sub { 'n40' } );
 has clap           => ( is => 'ro', default => sub { 'n39' } );
 has open_hh        => ( is => 'ro', default => sub { 'n46' } );
 has closed_hh      => ( is => 'ro', default => sub { 'n42' } );

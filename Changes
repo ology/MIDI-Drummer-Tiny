@@ -2,6 +2,8 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Fix Bézier variable names.
+    - Add accessors for the acoustic and electric snare and bass.
+    - Improve documentation slightly.
 
 0.1600 2020-08-31 15:06:44
     - Add a Bézier curve option to the ->crescendo_roll.
