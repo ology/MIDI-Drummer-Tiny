@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix Bézier variable names.
+
+0.1600 2020-08-31 15:06:44
     - Add a Bézier curve option to the ->crescendo_roll.
 
 0.1502 2020-08-31 07:59:16

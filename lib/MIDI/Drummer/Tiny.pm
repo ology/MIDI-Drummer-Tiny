@@ -571,11 +571,11 @@ If not provided the B<snare> is used for the B<patch>.
 sub crescendo_roll {
     my ($self, $span, $length, $spec, $patch) = @_;
     $patch ||= $self->snare;
-    my ($i, $j, $bezier) = @$span;
+    my ($i, $j, $k) = @$span;
     my $x = $MIDI::Simple::Length{$length};
     my $y = $MIDI::Simple::Length{$spec};
     my $z = sprintf '%0.f', $x / $y;
-    if ($bezier) {
+    if ($k) {
         my $bezier = Math::Bezier->new(
             1, $i,
             $z, $i,
