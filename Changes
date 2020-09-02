@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation slightly again.
+
+0.1601 2020-09-01 09:28:48
     - Fix Bézier variable names.
     - Add accessors for the acoustic and electric snare and bass.
     - Improve documentation slightly.
