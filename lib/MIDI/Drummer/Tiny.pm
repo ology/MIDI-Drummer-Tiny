@@ -20,6 +20,7 @@ use constant TICKS => 96; # Per quarter note
  my $d = MIDI::Drummer::Tiny->new(
     file      => 'drums.mid',
     bpm       => 100,
+    volume    => 100,
     signature => '5/4',
     bars      => 8,
     kick      => 'n36', # Override default patch
