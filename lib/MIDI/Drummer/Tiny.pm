@@ -571,10 +571,18 @@ Add a drum roll to the score, where the B<patch> is played for
 duration B<length> in B<spec> notes, at increasing or decreasing
 volumes from B<start> to B<end>.
 
+If not provided the B<snare> is used for the B<patch>.
+
 If true, the B<bezier> flag will render the crescendo with a curve,
 rather than as a straight line.
 
-If not provided the B<snare> is used for the B<patch>.
+     |            *
+     |           *
+ vol |         *
+     |      *
+     |*
+     ---------------
+           time
 
 =cut
 
