@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Fix hi-hat patches in the eg/ programs.
+    - Simplify the 5/8 metronome beat.
 
 0.1602 2020-09-02 10:11:27
     - Improve documentation slightly again.
