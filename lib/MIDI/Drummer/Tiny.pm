@@ -251,15 +251,15 @@ has triplet_sixteenth             => (is => 'ro', default => sub { 'tsn' });
 has dotted_sixteenth              => (is => 'ro', default => sub { 'dsn' });
 has double_dotted_sixteenth       => (is => 'ro', default => sub { 'ddsn' });
 has thirtysecond                  => (is => 'ro', default => sub { 'yn' });
-has triplet_thirtysecond          => (is => 'ro', default => sub { 'dyn' });
+has triplet_thirtysecond          => (is => 'ro', default => sub { 'tyn' });
 has dotted_thirtysecond           => (is => 'ro', default => sub { 'dyn' });
 has double_dotted_thirtysecond    => (is => 'ro', default => sub { 'ddyn' });
 has sixtyfourth                   => (is => 'ro', default => sub { 'xn' });
-has triplet_sixtyfourth           => (is => 'ro', default => sub { 'dxn' });
+has triplet_sixtyfourth           => (is => 'ro', default => sub { 'txn' });
 has dotted_sixtyfourth            => (is => 'ro', default => sub { 'dxn' });
 has double_dotted_sixtyfourth     => (is => 'ro', default => sub { 'ddxn' });
 has onetwentyeighth               => (is => 'ro', default => sub { 'on' });
-has triplet_onetwentyeighth       => (is => 'ro', default => sub { 'don' });
+has triplet_onetwentyeighth       => (is => 'ro', default => sub { 'ton' });
 has dotted_onetwentyeighth        => (is => 'ro', default => sub { 'don' });
 has double_dotted_onetwentyeighth => (is => 'ro', default => sub { 'ddon' });
 
