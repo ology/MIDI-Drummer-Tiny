@@ -446,13 +446,10 @@ sub metronome58 {
     my $bars = shift || $self->bars;
     for my $n (1 .. $bars) {
         $self->note($self->eighth, $self->closed_hh, $self->kick);
-        $self->note($self->sixteenth, $self->closed_hh);
-        $self->note($self->sixteenth, $self->kick);
+        $self->note($self->eighth, $self->closed_hh);
         $self->note($self->eighth, $self->closed_hh, $self->snare);
-        $self->note($self->sixteenth, $self->closed_hh);
-        $self->note($self->sixteenth, $self->snare);
-        $self->note($self->sixteenth, $self->closed_hh);
-        $self->note($self->sixteenth, $self->kick);
+        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $self->closed_hh);
     }
 }
 
