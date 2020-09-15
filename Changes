@@ -1,7 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
-    - Fix hi-hat patches in the eg/ programs cold-sweat, disco, and fool-in-the-rain.
+    - Fix hi-hat patches in the eg/ programs.
 
 0.1602 2020-09-02 10:11:27
     - Improve documentation slightly again.
