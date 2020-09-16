@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.1604 2020-09-15 09:47:54
     - Fix the defaults for triplet 32nd, 64th, 128th durations.
