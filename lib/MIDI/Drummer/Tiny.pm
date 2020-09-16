@@ -515,8 +515,7 @@ sub metronome78 {
         $self->note($self->eighth, $self->closed_hh, $self->kick);
         $self->note($self->eighth, $self->closed_hh);
         $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->sixteenth, $self->closed_hh, $self->kick);
-        $self->note($self->sixteenth, $self->kick);
+        $self->note($self->eighth, $self->closed_hh, $self->kick);
         $self->note($self->eighth, $self->closed_hh, $self->snare);
         $self->note($self->eighth, $self->closed_hh);
         $self->note($self->eighth, $self->closed_hh);
