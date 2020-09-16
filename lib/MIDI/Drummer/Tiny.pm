@@ -527,7 +527,7 @@ sub metronome78 {
 
   $d->flam( $spec, $patch );
 
-Add a flam to the score, where a ghosted gracenote is played before
+Add a "flam" to the score, where a ghosted gracenote is played before
 the primary note.
 
 =cut
