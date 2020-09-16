@@ -534,6 +534,7 @@ the primary note.
 
 sub flam {
     my ($self, $spec, $patch) = @_;
+    $patch ||= $self->snare;
     my $x = $MIDI::Simple::Length{$spec};
     my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
     my $z = sprintf '%0.f', ($x - $y) * TICKS;
