@@ -528,8 +528,8 @@ sub metronome78 {
   $d->flam($spec);
   $d->flam( $spec, $patch );
 
-Add a "flam" to the score, where a ghosted gracenote is played before
-the primary note.
+Add a "flam" to the score, where a ghosted 64th gracenote is played
+before the primary note.
 
 If not provided the B<snare> is used for the B<patch>.
 
