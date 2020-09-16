@@ -667,9 +667,9 @@ __END__
 
 =head1 SEE ALSO
 
-The F<eg/*> programs in this distribution and
-F<eg/drum-fills-advanced> in the L<Music::Duration::Partition>
-distribution
+The metronome method sources in this module, the F<eg/*> programs in
+this distribution, and also F<eg/drum-fills-advanced> in the
+L<Music::Duration::Partition> distribution
 
 L<Moo>
 
