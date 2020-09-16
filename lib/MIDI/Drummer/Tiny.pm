@@ -525,10 +525,13 @@ sub metronome78 {
 
 =head2 flam
 
+  $d->flam($spec);
   $d->flam( $spec, $patch );
 
 Add a "flam" to the score, where a ghosted gracenote is played before
 the primary note.
+
+If not provided the B<snare> is used for the B<patch>.
 
 =cut
 
@@ -545,6 +548,7 @@ sub flam {
 
 =head2 roll
 
+  $d->roll( $length, $spec );
   $d->roll( $length, $spec, $patch );
 
 Add a drum roll to the score, where the B<patch> is played for
@@ -565,6 +569,7 @@ sub roll {
 
 =head2 crescendo_roll
 
+  $d->crescendo_roll( [$start, $end, $bezier], $length, $spec );
   $d->crescendo_roll( [$start, $end, $bezier], $length, $spec, $patch );
 
 Add a drum roll to the score, where the B<patch> is played for
