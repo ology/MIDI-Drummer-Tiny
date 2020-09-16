@@ -651,7 +651,8 @@ sub set_time_sig {
 
 =head2 write
 
-Output the score as a MIDI file to the module's B<file> setting.
+Output the score as a MIDI file with the module L</file> setting as
+the file name.
 
 =cut
 
