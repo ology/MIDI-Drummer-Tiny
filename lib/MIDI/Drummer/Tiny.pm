@@ -671,9 +671,11 @@ The metronome method sources in this module, the F<eg/*> programs in
 this distribution, and also F<eg/drum-fills-advanced> in the
 L<Music::Duration::Partition> distribution
 
-L<Moo>
+L<Math::Bezier>
 
 L<MIDI::Simple>
+
+L<Moo>
 
 L<Music::Duration>
 
