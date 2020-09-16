@@ -651,8 +651,7 @@ sub set_time_sig {
 
 =head2 write
 
-Output the score to the default F<*.mid> file or one given to the
-constuctor.
+Output the score to the B<file> default or one given to the constuctor.
 
 =cut
 
