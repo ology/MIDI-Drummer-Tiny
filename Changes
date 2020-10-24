@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Re-add the ability to change kits if using GM Level 2.
 
 0.1605 2020-09-15 17:33:07
     - Improve documentation.

@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.1605';
+our $VERSION = '0.1700';
 
 use Math::Bezier;
 use MIDI::Simple;
@@ -23,8 +23,9 @@ use constant TICKS => 96; # Per quarter note
     volume    => 100,
     signature => '5/4',
     bars      => 8,
-    kick      => 'n36', # Override default patch
-    snare     => 'n40', # "
+    kit       => 25, # TR-808 if using GM Level 2
+    #kick  => 'n36', # Override default patch
+    #snare => 'n40', # "
  );
 
  $d->count_in(1);  # Closed hi-hat for 1 bar
@@ -61,6 +62,11 @@ sub BUILD {
 
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
+    if ($self->kit) {
+      $self->score->control_change($self->channel, 0, 120);
+      $self->score->patch_change($self->channel, $self->kit)
+    }
+
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
     $self->set_time_sig;
@@ -75,6 +81,21 @@ Default: C<MIDI-Drummer.mid>
 =head2 score
 
 Default: C<MIDI::Simple-E<gt>new_score>
+
+=head3 kit
+
+Default: C<1> (standard)
+
+If you are going to play the MIDI file with a "General MIDI Level 2" soundfont, you can change kits.
+
+   8: Room
+  16: Power
+  24: Electronic
+  25: TR-808
+  26: ?
+  32: Jazz
+  40: Brush
+  48: Orchestra
 
 =head2 channel
 
@@ -108,6 +129,7 @@ Computed given the B<signature>.
 
 =cut
 
+has kit       => ( is => 'ro', default => sub { 0 } );
 has channel   => ( is => 'ro', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
