@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix a tiny POD syntax issue!
+
+0.1800 2020-11-10 16:23:22
     - Improve documentation.
     - Add a reverb attribute and control-change assignment.
 
