@@ -23,6 +23,7 @@ use constant TICKS => 96; # Per quarter note
     volume    => 100,
     signature => '5/4',
     bars      => 8,
+    reverb    => 0,
     kit       => 25, # TR-808 if using GM Level 2
     #kick  => 'n36', # Override default patch
     #snare => 'n40', # "
@@ -69,6 +70,8 @@ sub BUILD {
 
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
+    $self->score->control_change($self->channel, 91, $self->reverb);
+
     $self->set_time_sig;
 }
 
@@ -97,6 +100,10 @@ soundfont, you can change kits.
   32: Jazz
   40: Brush
   48: Orchestra
+
+=head2 reverb
+
+Default: C<63>
 
 =head2 channel
 
@@ -131,6 +138,7 @@ Computed given the B<signature>.
 =cut
 
 has kit       => ( is => 'ro', default => sub { 0 } );
+has reverb    => ( is => 'ro', default => sub { 63 } );
 has channel   => ( is => 'ro', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
