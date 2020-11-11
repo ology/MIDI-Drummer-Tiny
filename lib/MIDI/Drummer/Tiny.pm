@@ -84,9 +84,10 @@ Default: C<MIDI::Simple-E<gt>new_score>
 
 =head3 kit
 
-Default: C<1> (standard)
+Default: C<1> (Standard)
 
-If you are going to play the MIDI file with a "General MIDI Level 2" soundfont, you can change kits.
+If you are going to play the MIDI file with a "General MIDI Level 2"
+soundfont, you can change kits.
 
    8: Room
   16: Power
@@ -707,5 +708,7 @@ L<Moo>
 L<Music::Duration>
 
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
+
+L<https://en.wikipedia.org/wiki/General_MIDI_Level_2#Drum_sounds>
 
 =cut
