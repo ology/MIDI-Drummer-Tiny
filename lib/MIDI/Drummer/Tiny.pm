@@ -41,7 +41,8 @@ use constant TICKS => 96; # Per quarter note
 
  $d->flam($d->quarter, $d->snare);
  $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
- $d->note($d->eighth, $d->crash1);
+ $d->note($d->sixteenth, $d->crash1);
+ $d->accent_note(127, $d->sixteenth, $d->crash2);
 
  # Alternate kick and snare
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
