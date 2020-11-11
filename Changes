@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Improve documentation.
+    - Add a reverb attribute and control-change assignment.
 
 0.1700 2020-10-24 09:56:50
     - Re-add the ability to change kits if using GM Level 2.
