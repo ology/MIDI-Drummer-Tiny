@@ -86,7 +86,7 @@ Default: C<MIDI-Drummer.mid>
 
 Default: C<MIDI::Simple-E<gt>new_score>
 
-=head3 kit
+=head2 kit
 
 Default: C<1> (Standard)
 
