@@ -13,13 +13,13 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 
 $d->score->synch(
-    \&cymbols,
+    \&cymbals,
     \&drums,
 );
 
 $d->write;
 
-sub cymbols {
+sub cymbals {
     for my $n (1 .. $d->bars) {
         $d->note($d->eighth, $d->ride1);
         $d->note($d->eighth, $d->ride1);
