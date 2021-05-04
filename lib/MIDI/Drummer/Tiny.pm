@@ -686,6 +686,22 @@ sub set_time_sig {
     );
 }
 
+=head2 sync
+
+  $d->sync(@code_refs);
+
+This is a simple pass-through to the B<score> C<synch> method.
+
+This method allows simultaneous playing of multiple "tracks" defined
+by code references.
+
+=cut
+
+sub sync {
+    my $self = shift;
+    $self->score->synch(@_);
+}
+
 =head2 write
 
 Output the score as a MIDI file with the module L</file> setting as
