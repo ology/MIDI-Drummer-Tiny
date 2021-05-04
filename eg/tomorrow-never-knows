@@ -12,7 +12,7 @@ my $d = MIDI::Drummer::Tiny->new(
     bars      => 16, # Actually it's like 87
 );
 
-$d->score->synch(
+$d->sync(
     \&cymbals,
     \&drums,
 );
