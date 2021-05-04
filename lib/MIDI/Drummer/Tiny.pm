@@ -692,8 +692,8 @@ sub set_time_sig {
 
 This is a simple pass-through to the B<score> C<synch> method.
 
-This method allows simultaneous playing of multiple "tracks" defined
-by code references.
+This allows simultaneous playing of multiple "tracks" defined by code
+references.
 
 =cut
 
