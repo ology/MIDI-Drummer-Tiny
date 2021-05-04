@@ -704,7 +704,7 @@ sub sync {
 
 =head2 write
 
-Output the score as a MIDI file with the module L</file> setting as
+Output the score as a MIDI file with the module L</file> attribute as
 the file name.
 
 =cut
