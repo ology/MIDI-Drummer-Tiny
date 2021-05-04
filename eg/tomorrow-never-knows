@@ -21,14 +21,8 @@ $d->write;
 
 sub cymbals {
     for my $n (1 .. $d->bars) {
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
-        $d->note($d->eighth, $d->ride1);
+        $d->note($d->eighth, $d->ride1)
+            for 1 .. 8;
     }
 }
 
