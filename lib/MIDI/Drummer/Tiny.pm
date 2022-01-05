@@ -392,8 +392,6 @@ sub metronome34 {
   $d->metronome44;
   $d->metronome44($bars);
   $d->metronome44($bars, $flag);
-  $d->metronome44(16, 1);
-  $d->metronome44(0, 1); # Use the ->bars attribute
 
 Add a steady 4/4 beat to the score.
 
@@ -405,7 +403,7 @@ eighth-note kicks.
 sub metronome44 {
     my $self = shift;
     my $bars = shift || $self->bars;
-    my $flag = shift || 0;
+    my $flag = shift // 0;
 
     my $i = 0;
 
@@ -432,6 +430,69 @@ sub metronome44 {
                 }
             }
 
+            $i++;
+        }
+    }
+}
+
+=head2 metronome44swing
+
+  $d->metronome44swing;
+  $d->metronome44swing($bars);
+  $d->metronome44swing($bars, $flag);
+
+Add a steady 4/4 swing beat to the score.
+
+If a B<flag> is provided the beat is modified to include alternating
+eighth-note kicks.
+
+=cut
+
+sub metronome44swing {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    my $flag = shift // 0;
+
+    my $i = 0;
+
+    for my $n ( 1 .. $self->beats * $bars ) {
+        $self->note( $self->quarter,          $self->ride1, $self->kick );
+        $self->note( $self->triplet_eighth,   $self->ride1 );
+        $self->rest( $self->triplet_eighth );
+        $self->note( $self->triplet_eighth,   $self->ride1, $self->kick );
+        $self->note( $self->quarter,          $self->ride1, $self->snare );
+        $self->note( $self->triplet_eighth,   $self->ride1, $self->kick );
+        $self->rest( $self->triplet_eighth );
+        $self->note( $self->triplet_eighth,   $self->ride1 );
+        if ( $n % 3 == 0 ) {
+            if ( $i % 2 == 0 ) {
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->note( $self->triplet_eighth, $self->hi_tom );
+                $self->note( $self->triplet_eighth, $self->hi_tom );
+                $self->note( $self->triplet_eighth, $self->hi_tom );
+                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
+                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
+                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
+                $self->note( $self->triplet_eighth, $self->low_tom );
+                $self->note( $self->triplet_eighth, $self->low_tom );
+                $self->note( $self->triplet_eighth, $self->low_tom );
+            }
+            else {
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->note( $self->triplet_eighth, $self->hi_tom );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->rest( $self->triplet_eighth );
+                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->rest( $self->triplet_eighth );
+                $self->note( $self->triplet_eighth, $self->low_tom );
+                $self->note( $self->triplet_eighth, $self->snare );
+                $self->rest( $self->triplet_eighth );
+                $self->note( $self->triplet_eighth, $self->hi_floor_tom );
+            }
             $i++;
         }
     }
