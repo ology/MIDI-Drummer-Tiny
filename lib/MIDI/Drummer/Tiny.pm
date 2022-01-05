@@ -448,9 +448,7 @@ sub metronome44swing {
     my $self = shift;
     my $bars = shift || $self->bars;
 
-    my $i = 0;
-
-    for my $n ( 1 .. $self->beats * $bars ) {
+    for my $n ( 1 .. $bars ) {
         $self->note( $self->quarter,          $self->ride1, $self->kick );
         $self->note( $self->triplet_eighth,   $self->ride1 );
         $self->rest( $self->triplet_eighth );
@@ -459,37 +457,6 @@ sub metronome44swing {
         $self->note( $self->triplet_eighth,   $self->ride1, $self->kick );
         $self->rest( $self->triplet_eighth );
         $self->note( $self->triplet_eighth,   $self->ride1 );
-        if ( $n % 3 == 0 ) {
-            if ( $i % 2 == 0 ) {
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->note( $self->triplet_eighth, $self->hi_tom );
-                $self->note( $self->triplet_eighth, $self->hi_tom );
-                $self->note( $self->triplet_eighth, $self->hi_tom );
-                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
-                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
-                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
-                $self->note( $self->triplet_eighth, $self->low_tom );
-                $self->note( $self->triplet_eighth, $self->low_tom );
-                $self->note( $self->triplet_eighth, $self->low_tom );
-            }
-            else {
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->note( $self->triplet_eighth, $self->hi_tom );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->rest( $self->triplet_eighth );
-                $self->note( $self->triplet_eighth, $self->hi_mid_tom );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->rest( $self->triplet_eighth );
-                $self->note( $self->triplet_eighth, $self->low_tom );
-                $self->note( $self->triplet_eighth, $self->snare );
-                $self->rest( $self->triplet_eighth );
-                $self->note( $self->triplet_eighth, $self->hi_floor_tom );
-            }
-            $i++;
-        }
     }
 }
 
