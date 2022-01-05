@@ -12,7 +12,7 @@ my $d = MIDI::Drummer::Tiny->new(
 
 $d->count_in(1);
 
-$d->metronome44swing();
+$d->metronome44swing;
 
 $d->note( $d->quarter, $d->ride1, $d->kick );
 
