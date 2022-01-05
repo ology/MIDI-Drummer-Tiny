@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.1805 2021-05-03 22:04:18
     - Fix-up the eg/tomorrow-never-knows program.
