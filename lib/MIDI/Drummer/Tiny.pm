@@ -439,19 +439,14 @@ sub metronome44 {
 
   $d->metronome44swing;
   $d->metronome44swing($bars);
-  $d->metronome44swing($bars, $flag);
 
 Add a steady 4/4 swing beat to the score.
-
-If a B<flag> is provided the beat is modified to include alternating
-eighth-note kicks.
 
 =cut
 
 sub metronome44swing {
     my $self = shift;
     my $bars = shift || $self->bars;
-    my $flag = shift // 0;
 
     my $i = 0;
 
