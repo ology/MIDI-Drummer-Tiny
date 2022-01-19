@@ -367,6 +367,26 @@ sub count_in {
     }
 }
 
+=head2 metronome38
+
+  $d->metronome38;
+  $d->metronome38($bars);
+
+Add a steady 3/8 beat to the score.
+
+=cut
+
+sub metronome38 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+
+    for ( 1 .. $bars ) {
+        $self->note( $self->eighth, $self->kick );
+        $self->note( $self->eighth);
+        $self->note( $self->eighth, $self->snare );
+    }
+}
+
 =head2 metronome34
 
   $d->metronome34;
