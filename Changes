@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the ->metronome38 method.
 
 0.1900 2022-01-04 19:00:57
     - Improve documentation.
