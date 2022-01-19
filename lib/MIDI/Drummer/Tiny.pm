@@ -381,9 +381,9 @@ sub metronome38 {
     my $bars = shift || $self->bars;
 
     for ( 1 .. $bars ) {
-        $self->note( $self->eighth, $self->kick );
-        $self->note( $self->eighth);
-        $self->note( $self->eighth, $self->snare );
+        $self->note( $self->eighth, $self->closed_hh, $self->kick );
+        $self->note( $self->eighth, $self->closed_hh);
+        $self->note( $self->eighth, $self->closed_hh, $self->snare );
     }
 }
 
