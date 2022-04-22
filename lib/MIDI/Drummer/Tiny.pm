@@ -4,9 +4,6 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.2002';
 
-use Algorithm::Combinatorics qw(variations_with_repetition);
-use Math::Bezier;
-use MIDI::Util qw(dura_size);
 use Music::Duration;
 
 use Moo;
@@ -865,6 +862,10 @@ __END__
 The metronome method sources in this module, the F<eg/*> programs in
 this distribution, and also F<eg/drum-fills-advanced> in the
 L<Music::Duration::Partition> distribution
+
+L<Algorithm::Combinatorics>
+
+L<MIDI::Util>
 
 L<Math::Bezier>
 
