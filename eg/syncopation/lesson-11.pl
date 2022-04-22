@@ -83,7 +83,6 @@ sub combinatorial {
         : sort map { join '', @$_ } variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
 
     for my $pattern (@items) {
-warn __PACKAGE__,' L',__LINE__,' ',,"$pattern\n";
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $opts->{vary}{$bit}->();
