@@ -5,7 +5,6 @@ use warnings;
 # Adapted from the book "Progressive Steps to Syncopation for the Modern Drummer"
 # https://www.amazon.com/dp/0882847953
 
-use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Drummer::Tiny;
 
 my $bpm = shift || 100;

@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 
-use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Drummer::Tiny;
 
 my $bpm = shift || 100;
