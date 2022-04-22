@@ -2,6 +2,9 @@
 use strict;
 use warnings;
 
+# Adapted from the book "Progressive Steps to Syncopation for the Modern Drummer"
+# https://www.amazon.com/dp/0882847953
+
 use List::Util qw(max);
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny);
 use MIDI::Drummer::Tiny;
