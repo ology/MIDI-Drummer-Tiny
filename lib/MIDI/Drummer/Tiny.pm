@@ -859,9 +859,9 @@ __END__
 
 =head1 SEE ALSO
 
-The metronome method sources in this module, the F<eg/*> programs in
-this distribution, and also F<eg/drum-fills-advanced> in the
-L<Music::Duration::Partition> distribution
+The F<eg/*> programs in this distribution. Also
+F<eg/drum-fills-advanced> in the L<Music::Duration::Partition>
+distribution.
 
 L<Algorithm::Combinatorics>
 
