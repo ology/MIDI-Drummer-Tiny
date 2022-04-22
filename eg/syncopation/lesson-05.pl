@@ -35,7 +35,7 @@ sub snare {
                 $d->note( $d->sixteenth, $d->snare );
             },
             1 => sub { $d->note( $d->quarter, $d->snare ) },
-        }
+        },
     });
 }
 

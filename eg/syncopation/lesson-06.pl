@@ -36,7 +36,7 @@ sub snare {
                 $d->note( $d->triplet_eighth, $d->snare );
             },
             1 => sub { $d->note( $d->quarter, $d->snare ) },
-        }
+        },
     });
 }
 
