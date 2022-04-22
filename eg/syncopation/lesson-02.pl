@@ -52,6 +52,7 @@ sub steady {
 sub combinatorial {
     my ( $instrument, $opts ) = @_;
 
+    $opts->{negate}   ||= 0;
     $opts->{beats}    ||= 4;
     $opts->{repeat}   ||= 4;
     $opts->{duration} ||= $d->quarter;
@@ -66,6 +67,8 @@ sub combinatorial {
             variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
 
     for my $pattern (@items) {
+        $pattern =~ tr/01/10/ if $opts->{negate};
+
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $opts->{vary}{$bit}->();
