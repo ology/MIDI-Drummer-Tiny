@@ -79,7 +79,8 @@ sub combinatorial {
 
     my @items = $opts->{patterns}
         ? $opts->{patterns}->@*
-        : sort map { join '', @$_ } variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
+        : sort map { join '', @$_ }
+            variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
 
     for my $pattern (@items) {
         for ( 1 .. $opts->{repeat} ) {
