@@ -4,8 +4,9 @@ use warnings;
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
 use List::Util qw(max);
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util);
 use MIDI::Drummer::Tiny;
+use MIDI::Util qw(dura_size);
 
 my $bpm = shift || 100;
 
@@ -16,6 +17,8 @@ my $d = MIDI::Drummer::Tiny->new(
     snare  => 'n40',
     reverb => 15,
 );
+
+my $counter = 0;
 
 $d->sync(
     \&snare,
@@ -57,22 +60,9 @@ sub hhat {
 sub steady {
     my ( $instrument, $opts ) = @_;
 
-    $opts->{repeat}   ||= 4;
     $opts->{duration} ||= $d->quarter;
-    $opts->{digits}   ||= [ 0 .. 15 ];
 
-    my $limit;
-    if ( $opts->{patterns} ) {
-        my $width = length $opts->{patterns}->[0];
-        $limit = $width * $opts->{patterns}->@*;
-    }
-    else {
-        my $max = max $opts->{digits}->@*;
-        my $width = length sprintf '%.b', $max;
-        $limit = ++$max * $width * $opts->{repeat};
-    }
-
-    for my $n ( 1 .. $limit ) {
+    for my $n ( 1 .. $counter ) {
         $d->note( $opts->{duration}, $instrument );
     }
 }
@@ -96,6 +86,7 @@ sub combinatorial {
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $opts->{vary}{$bit}->();
+                $counter += dura_size( $opts->{duration} );
             }
         }
     }
