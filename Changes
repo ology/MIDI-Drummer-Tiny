@@ -1,8 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
-    - Clean up syncopation lesson code.
     - Add missing imports!
+    - Clean up syncopation lesson code again.
 
 0.2004 2022-04-22 08:24:34
     - Improve documentation again.
