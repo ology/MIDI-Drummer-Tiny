@@ -3,7 +3,6 @@ use strict;
 use warnings;
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
-use List::Util qw(max);
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util);
 use MIDI::Drummer::Tiny;
 use MIDI::Util qw(dura_size);
