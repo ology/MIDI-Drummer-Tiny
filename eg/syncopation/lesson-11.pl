@@ -52,6 +52,7 @@ sub snare {
             $d->note( $d->eighth, $d->snare );
         },
     });
+    # TODO Make this have sixteenth-note granularity
 }
 
 sub kick {
