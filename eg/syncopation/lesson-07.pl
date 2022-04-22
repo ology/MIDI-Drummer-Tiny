@@ -28,7 +28,7 @@ $d->sync(
 $d->write;
 
 sub snare {
-    combinatorial( $d->snare, {
+    $d->combinatorial( $d->snare, {
         vary => {
             0 => sub {
                 $d->note( $d->triplet_eighth, $d->snare );
@@ -44,48 +44,9 @@ sub snare {
 }
 
 sub kick {
-    steady( $d->kick );
+    $d->steady( $d->kick );
 }
 
 sub hhat {
-    steady( $d->closed_hh );
-}
-
-sub steady {
-    my ( $instrument, $opts ) = @_;
-
-    $opts->{duration} ||= $d->quarter;
-
-    for my $n ( 1 .. $counter ) {
-        $d->note( $opts->{duration}, $instrument );
-    }
-}
-
-sub combinatorial {
-    my ( $instrument, $opts ) = @_;
-
-    $opts->{negate}   ||= 0;
-    $opts->{beats}    ||= 4;
-    $opts->{repeat}   ||= 4;
-    $opts->{duration} ||= $d->quarter;
-    $opts->{vary}     ||= {
-        0 => sub { $d->rest( $opts->{duration} ) },
-        1 => sub { $d->note( $opts->{duration}, $instrument ) },
-    };
-
-    my @items = $opts->{patterns}
-        ? $opts->{patterns}->@*
-        : sort map { join '', @$_ }
-            variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
-
-    for my $pattern (@items) {
-        $pattern =~ tr/01/10/ if $opts->{negate};
-
-        for ( 1 .. $opts->{repeat} ) {
-            for my $bit ( split //, $pattern ) {
-                $opts->{vary}{$bit}->();
-                $counter += dura_size( $opts->{duration} );
-            }
-        }
-    }
+    $d->steady( $d->closed_hh );
 }

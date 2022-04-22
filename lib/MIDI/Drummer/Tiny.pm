@@ -4,9 +4,12 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.1902';
 
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
+use Algorithm::Combinatorics qw(variations_with_repetition);
 use Math::Bezier;
-use MIDI::Simple ();
+use MIDI::Util qw(dura_size);
 use Music::Duration;
+
 use Moo;
 use strictures 2;
 use namespace::clean;
@@ -766,6 +769,94 @@ sub write {
     $self->score->write_score( $self->file );
 }
 
+=head2 steady
+
+  $d->steady;
+  $d->steady( $d->kick );
+  $d->steady( $d->kick, { duration => $d->eighth } );
+
+Play a steady beat with the given B<instrument> and optional
+B<duration> option, for the number of beats accumulated in the
+object's B<counter> attribute.
+
+Defaults:
+
+  instrument: closed_hh
+  Option:
+    duration: quarter
+
+=cut
+
+sub steady {
+    my ( $self, $instrument, $opts ) = @_;
+
+    $instrument ||= $self->closed_hh;
+
+    $opts->{duration} ||= $self->quarter;
+
+    for my $n ( 1 .. $self->counter ) {
+        $self->note( $opts->{duration}, $instrument );
+    }
+}
+
+=head2 combinatorial
+
+  $d->combinatorial;
+  $d->combinatorial( $d->kick );
+  $d->combinatorial( $d->kick, \%options );
+
+Play a beat pattern with the given B<instrument>, given by
+L<Algorithm::Combinatorics/variations_with_repetition>.
+
+This method accumulates beats in the object's B<counter> attribute.
+
+Defaults:
+
+  instrument: snare
+  Options:
+    duration: quarter
+    negate: 0
+    beats: beats
+    repeat: 4
+    duration: quarter
+    vary:
+        0 => sub { $self->rest( $options->{duration} ) },
+        1 => sub { $self->note( $options->{duration}, $instrument ) },
+    patterns: undef
+
+=cut
+
+sub combinatorial {
+    my ( $self, $instrument, $opts ) = @_;
+
+    $instrument ||= $self->snare;
+
+    $opts->{negate}   ||= 0;
+    $opts->{beats}    ||= $self->beats;
+    $opts->{repeat}   ||= 4;
+    $opts->{duration} ||= $self->quarter;
+    $opts->{vary}     ||= {
+        0 => sub { $self->rest( $opts->{duration} ) },
+        1 => sub { $self->note( $opts->{duration}, $instrument ) },
+    };
+
+    my @items = $opts->{patterns}
+        ? $opts->{patterns}->@*
+        : sort map { join '', @$_ }
+            variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
+
+    for my $pattern (@items) {
+        $pattern =~ tr/01/10/ if $opts->{negate};
+
+        for ( 1 .. $opts->{repeat} ) {
+            for my $bit ( split //, $pattern ) {
+                $opts->{vary}{$bit}->();
+                $self->counter( $self->counter + dura_size( $opts->{duration} ) );
+            }
+        }
+    }
+}
+
 1;
 
 __END__
@@ -787,5 +878,8 @@ L<Music::Duration>
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 L<https://en.wikipedia.org/wiki/General_MIDI_Level_2#Drum_sounds>
+
+L<https://www.amazon.com/dp/0882847953> -
+"Progressive Steps to Syncopation for the Modern Drummer"
 
 =cut
