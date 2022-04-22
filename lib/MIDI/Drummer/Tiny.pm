@@ -806,6 +806,9 @@ L<Algorithm::Combinatorics/variations_with_repetition>.
 
 This method accumulates beats in the object's B<counter> attribute.
 
+The B<vary> option is a hashref keyed by the numbers, 0-9, that should
+add up to the B<duration> option.
+
 Defaults:
 
   instrument: snare
