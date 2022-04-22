@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 
+use Algorithm::Combinatorics qw(variations_with_repetition);
 use List::Util qw(max);
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny);
 use MIDI::Drummer::Tiny;
@@ -17,47 +18,40 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 
 $d->sync(
-    \&hhat,
     \&snare,
     \&kick,
+    \&hhat,
 );
 
 $d->write;
 
-sub hhat {
-    steady( $d->closed_hh );
-    steady( $d->closed_hh );
-}
-
 sub snare {
-    bitwise( $d->snare, {
-        ifthen => sub {
-            $d->note( $d->eighth, $d->snare );
-            $d->note( $d->sixteenth, $d->snare );
-            $d->note( $d->sixteenth, $d->snare );
-        },
-        ifelse => sub {
-            $d->note( $d->eighth, $d->snare );
-            $d->note( $d->eighth, $d->snare );
-        },
-    });
-    bitwise( $d->snare, {
-        ifthen => sub {
-            $d->note( $d->sixteenth, $d->snare );
-            $d->note( $d->sixteenth, $d->snare );
-            $d->note( $d->eighth, $d->snare );
-        },
-        ifelse => sub {
-            $d->note( $d->eighth, $d->snare );
-            $d->note( $d->eighth, $d->snare );
+    combinatorial( $d->snare, {
+        vary => {
+            0 => sub {
+                $d->note( $d->eighth, $d->snare );
+                $d->note( $d->eighth, $d->snare );
+            },
+            1 => sub {
+                $d->note( $d->eighth, $d->snare );
+                $d->note( $d->sixteenth, $d->snare );
+                $d->note( $d->sixteenth, $d->snare );
+            },
+#            2 => sub {
+#                $d->note( $d->sixteenth, $d->snare );
+#                $d->note( $d->sixteenth, $d->snare );
+#                $d->note( $d->eighth, $d->snare );
+#            },
         },
     });
-    # TODO Make this have eighth-note granularity?
 }
 
 sub kick {
     steady( $d->kick );
-    steady( $d->kick );
+}
+
+sub hhat {
+    steady( $d->closed_hh );
 }
 
 sub steady {
@@ -83,18 +77,15 @@ sub steady {
     }
 }
 
-sub bitwise {
+sub combinatorial {
     my ( $instrument, $opts ) = @_;
 
-    $opts->{negate}   ||= 0;
+    $opts->{beats}    ||= 4;
     $opts->{repeat}   ||= 4;
     $opts->{duration} ||= $d->quarter;
-    $opts->{digits}   ||= [ 0 .. 15 ];
-    $opts->{ifthen}   ||= sub {
-        $d->note( $opts->{duration}, $instrument );
-    };
-    $opts->{ifelse}   ||= sub {
-        $d->rest( $opts->{duration} );
+    $opts->{vary}     ||= {
+        0 => sub { $d->rest( $opts->{duration} ) },
+        1 => sub { $d->note( $opts->{duration}, $instrument ) },
     };
 
     my ( $width, @items );
@@ -103,22 +94,14 @@ sub bitwise {
         @items = $opts->{patterns}->@*;
     }
     else {
-        $width = length sprintf '%.b', max $opts->{digits}->@*;
-        @items = $opts->{digits}->@*;
+        $width = $opts->{beats};
+        @items = sort map { join '', @$_ } variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
     }
 
-    for my $i (@items) {
-        my $pattern = $opts->{patterns} ? $i : sprintf '%.*b', $width, $i;
-        $pattern =~ tr/01/10/ if $opts->{negate};
-
+    for my $pattern (@items) {
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
-                if ($bit) {
-                    $opts->{ifthen}->();
-                }
-                else {
-                    $opts->{ifelse}->();
-                }
+                $opts->{vary}{$bit}->();
             }
         }
     }
