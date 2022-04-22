@@ -88,15 +88,9 @@ sub combinatorial {
         1 => sub { $d->note( $opts->{duration}, $instrument ) },
     };
 
-    my ( $width, @items );
-    if ( $opts->{patterns} ) {
-        $width = length $opts->{patterns}->[0];
-        @items = $opts->{patterns}->@*;
-    }
-    else {
-        $width = $opts->{beats};
-        @items = sort map { join '', @$_ } variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
-    }
+    my @items = $opts->{patterns}
+        ? $opts->{patterns}->@*
+        : sort map { join '', @$_ } variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
 
     for my $pattern (@items) {
         for ( 1 .. $opts->{repeat} ) {
