@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Improve documentation again.
+    - Optimize code slightly.
 
 0.2003 2022-04-22 08:04:33
     - Fix SEE ALSO links.
