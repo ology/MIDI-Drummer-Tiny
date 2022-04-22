@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.2003';
+our $VERSION = '0.2004';
 
 use Music::Duration;
 
