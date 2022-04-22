@@ -44,6 +44,12 @@ sub snare {
                 $d->note( $d->sixteenth, $d->snare );
                 $d->note( $d->eighth, $d->snare );
             },
+            3 => sub {
+                $d->note( $d->sixteenth, $d->snare );
+                $d->note( $d->sixteenth, $d->snare );
+                $d->note( $d->sixteenth, $d->snare );
+                $d->note( $d->sixteenth, $d->snare );
+            },
         },
     });
 }
