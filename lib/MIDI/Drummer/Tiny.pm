@@ -840,6 +840,8 @@ sub combinatorial {
         1 => sub { $self->note( $opts->{duration}, $instrument ) },
     };
 
+    my $size = dura_size( $opts->{duration} );
+
     my @items = $opts->{patterns}
         ? $opts->{patterns}->@*
         : sort map { join '', @$_ }
@@ -851,7 +853,7 @@ sub combinatorial {
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $opts->{vary}{$bit}->();
-                $self->counter( $self->counter + dura_size( $opts->{duration} ) );
+                $self->counter( $self->counter + $size );
             }
         }
     }
