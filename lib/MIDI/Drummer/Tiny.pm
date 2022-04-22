@@ -136,6 +136,14 @@ Computed given the B<signature>.
 
 Computed given the B<signature>.
 
+=head2 counter
+
+  $d->counter( $d->counter + $duration );
+  $count = $d->counter;
+
+Beat counter of durations, where a quarter-note is equal to 1. An
+eighth-note is 0.5, etc.
+
 =cut
 
 has kit       => ( is => 'ro', default => sub { 0 } );
@@ -149,6 +157,7 @@ has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
 has signature => ( is => 'rw', default => sub { '4/4' });
 has beats     => ( is => 'rw' );
 has divisions => ( is => 'rw' );
+has counter   => ( is => 'rw', default => sub { 0 });
 
 =head1 KIT
 

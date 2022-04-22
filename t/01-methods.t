@@ -29,4 +29,7 @@ is $d->divisions, 8, 'divisions computed';
 is $score[5]->[0], 'time_signature', 'time signature changed';
 is $score[5]->[2], $d->beats, '5 beats';
 
+is $d->counter, 0, 'initial counter';
+is $d->counter( $d->counter + 1 ), 1, 'incremented counter';
+
 done_testing();
