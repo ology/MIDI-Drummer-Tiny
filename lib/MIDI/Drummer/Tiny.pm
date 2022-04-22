@@ -873,11 +873,9 @@ distribution.
 
 L<Algorithm::Combinatorics>
 
-L<MIDI::Util>
-
 L<Math::Bezier>
 
-L<MIDI::Simple>
+L<MIDI::Util>
 
 L<Moo>
 
