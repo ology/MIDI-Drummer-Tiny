@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix a small but dumb typo.
+
+0.2000 2022-04-22 00:51:08
     - Add a beat counter.
     - Add the ->steady & ->combinatorial methods.
     - Add eg/syncopation lessons from the SEE ALSO linked book.
