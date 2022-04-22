@@ -4,6 +4,7 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.2004';
 
+use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Util qw(dura_size);
 use Music::Duration;
 
