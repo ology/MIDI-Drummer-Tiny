@@ -7,7 +7,6 @@ use warnings;
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Drummer::Tiny;
-use MIDI::Util qw(dura_size);
 
 my $bpm = shift || 100;
 
