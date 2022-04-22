@@ -3,7 +3,6 @@ use strict;
 use warnings;
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util);
 use MIDI::Drummer::Tiny;
 use MIDI::Util qw(dura_size);
 
@@ -16,8 +15,6 @@ my $d = MIDI::Drummer::Tiny->new(
     snare  => 'n40',
     reverb => 15,
 );
-
-my $counter = 0;
 
 $d->sync(
     \&snare,

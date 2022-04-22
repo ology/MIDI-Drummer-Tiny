@@ -4,7 +4,6 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.2001';
 
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
 use Algorithm::Combinatorics qw(variations_with_repetition);
 use Math::Bezier;
 use MIDI::Util qw(dura_size);
