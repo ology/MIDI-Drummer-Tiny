@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.2000';
+our $VERSION = '0.2001';
 
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
 use Algorithm::Combinatorics qw(variations_with_repetition);
