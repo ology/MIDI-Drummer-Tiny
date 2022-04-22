@@ -806,8 +806,9 @@ L<Algorithm::Combinatorics/variations_with_repetition>.
 
 This method accumulates beats in the object's B<counter> attribute.
 
-The B<vary> option is a hashref keyed by single character tokens, like
-the digits, 0-9.  These should add up to the B<duration> option.
+The B<vary> option is a hashref of coderefs, keyed by single character
+tokens, like the digits, 0-9.  These should add up to the B<duration>
+option.
 
 Defaults:
 
