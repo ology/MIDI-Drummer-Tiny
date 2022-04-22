@@ -772,8 +772,8 @@ sub write {
   $d->steady( $d->kick, { duration => $d->eighth } );
 
 Play a steady beat with the given B<instrument> and optional
-B<duration> option, for the number of beats accumulated in the
-object's B<counter> attribute.
+B<duration>, for the number of beats accumulated in the object's
+B<counter> attribute.
 
 Defaults:
 
