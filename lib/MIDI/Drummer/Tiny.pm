@@ -329,7 +329,7 @@ Return a new C<MIDI::Drummer::Tiny> object.
  $d->note( $d->quarter, $d->closed_hh, $d->kick );
  $d->note( 'qn', 'n42', 'n35' ); # Same thing
 
-Add a note to the score.
+Add notes to the score.
 
 This method takes the same arguments as L<MIDI::Simple/"Parameters for n/r/noop">.
 
