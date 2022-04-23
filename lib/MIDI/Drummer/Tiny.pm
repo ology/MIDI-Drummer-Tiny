@@ -49,7 +49,10 @@ use constant TICKS => 96; # Per quarter note
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
- $d->combinatorial( $d->snare, { patterns => [qw(0101 1001)] } );
+ $d->combinatorial( $d->snare, {
+    repeat   => 2,
+    patterns => [qw(0101 1001)],
+ });
 
  # Play parts simultaneously
  $d->sync( \&snare, \&kick, \&hhat );
