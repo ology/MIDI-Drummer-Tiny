@@ -15,9 +15,9 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 
 $d->sync(
-    \&hhat,
     \&snare,
     \&kick,
+    \&hhat,
 );
 
 $d->write;
