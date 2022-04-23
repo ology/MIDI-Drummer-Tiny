@@ -806,7 +806,8 @@ sub steady {
 Play a beat pattern with the given B<instrument>, given by
 L<Algorithm::Combinatorics/variations_with_repetition>.
 
-This method accumulates beats in the object's B<counter> attribute.
+This method accumulates beats in the object's B<counter> attribute if
+the B<count> option is set..
 
 The B<vary> option is a hashref of coderefs, keyed by single character
 tokens, like the digits, 0-9.  The coderef durations should add up to
@@ -817,6 +818,7 @@ Defaults:
   instrument: snare
   Options:
     duration: quarter
+    count: 0
     negate: 0
     beats: beats
     repeat: 4
@@ -834,6 +836,7 @@ sub combinatorial {
     $instrument ||= $self->snare;
 
     $opts->{negate}   ||= 0;
+    $opts->{count}    ||= 0;
     $opts->{beats}    ||= $self->beats;
     $opts->{repeat}   ||= 4;
     $opts->{duration} ||= $self->quarter;
@@ -855,7 +858,7 @@ sub combinatorial {
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $opts->{vary}{$bit}->();
-                $self->counter( $self->counter + $size );
+                $self->counter( $self->counter + $size ) if $opts->{count};
             }
         }
     }
