@@ -5,7 +5,8 @@ package MIDI::Drummer::Tiny;
 our $VERSION = '0.2008';
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
-use MIDI::Util qw(dura_size);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
+use MIDI::Util qw(dura_size set_time_signature);
 use Music::Duration;
 
 use Moo;
@@ -745,12 +746,7 @@ sub set_time_sig {
     my ($beats, $divisions) = split /\//, $self->signature;
     $self->beats($beats);
     $self->divisions($divisions);
-    $self->score->time_signature(
-        $self->beats,
-        ( $self->divisions == 8 ? 3 : 2),
-        ( $self->divisions == 8 ? 24 : 18 ),
-        8
-    );
+    set_time_signature($self->score, $self->signature);
 }
 
 =head2 sync
