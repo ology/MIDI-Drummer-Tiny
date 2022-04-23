@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Use the M::U::set_time_signature() function instead of reinventing it.
 
 0.2008 2022-04-23 11:38:53
     - Improve documentation.
