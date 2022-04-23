@@ -23,13 +23,11 @@ $d->sync(
 $d->write;
 
 sub snare {
-    $d->combinatorial( $d->snare );
+    $d->combinatorial( $d->snare, { count => 1 } );
 }
 
 sub kick {
-    $d->combinatorial( $d->kick, {
-        negate => 1,
-    });
+    $d->combinatorial( $d->kick, { negate => 1 } );
 }
 
 sub hhat {
