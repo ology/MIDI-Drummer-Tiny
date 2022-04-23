@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.2006';
+our $VERSION = '0.2007';
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Util qw(dura_size);
