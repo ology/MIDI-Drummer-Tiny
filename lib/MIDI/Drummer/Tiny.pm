@@ -853,6 +853,8 @@ sub combinatorial {
             variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
 
     for my $pattern (@items) {
+        next if $pattern =~ /^0+$/;
+
         $pattern =~ tr/01/10/ if $opts->{negate};
 
         for ( 1 .. $opts->{repeat} ) {
