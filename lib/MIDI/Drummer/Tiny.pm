@@ -807,7 +807,7 @@ Play a beat pattern with the given B<instrument>, given by
 L<Algorithm::Combinatorics/variations_with_repetition>.
 
 This method accumulates beats in the object's B<counter> attribute if
-the B<count> option is set..
+the B<count> option is set.
 
 The B<vary> option is a hashref of coderefs, keyed by single character
 tokens, like the digits, 0-9.  The coderef durations should add up to
