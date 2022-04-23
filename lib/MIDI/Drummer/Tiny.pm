@@ -38,7 +38,7 @@ use constant TICKS => 96; # Per quarter note
 
  $d->rest($d->whole);
 
- $d->metronome44;  # 4/4 time for the number of bars
+ $d->metronome44(3);  # 4/4 time for 3 bars
 
  $d->flam($d->quarter, $d->snare);
  $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
