@@ -23,7 +23,7 @@ $d->sync(
 $d->write;
 
 sub snare {
-    $d->combinatorial( $d->snare );
+    $d->combinatorial( $d->snare, { count => 1 } );
 }
 
 sub kick {

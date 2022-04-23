@@ -24,7 +24,8 @@ $d->write;
 
 sub snare {
     $d->combinatorial( $d->snare, {
-        vary => {
+        count => 1,
+        vary  => {
             0 => sub {
                 $d->note( $d->sixteenth, $d->snare );
                 $d->note( $d->sixteenth, $d->snare );
