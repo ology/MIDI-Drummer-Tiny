@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add a count option to combinatorial().
+    - Skip the "zeroth" pattern.
 
 0.2005 2022-04-22 12:10:28
     - Add missing imports!
