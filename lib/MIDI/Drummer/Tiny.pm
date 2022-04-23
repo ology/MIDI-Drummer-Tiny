@@ -56,6 +56,9 @@ use constant TICKS => 96; # Per quarter note
 This module provides handy defaults and tools to produce a MIDI score
 with drum parts.
 
+Below, the term "spec" refers to a note length duration, like an
+eighth or quarter note, for instance.
+
 =for Pod::Coverage BUILD
 
 =cut
