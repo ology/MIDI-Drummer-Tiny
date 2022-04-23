@@ -34,9 +34,9 @@ use constant TICKS => 96; # Per quarter note
 
  $d->metronome54;  # 5/4 time for the number of bars
 
- $d->set_time_sig('4/4');
-
  $d->rest($d->whole);
+
+ $d->set_time_sig('4/4');
 
  $d->metronome44(3);  # 4/4 time for 3 bars
 
