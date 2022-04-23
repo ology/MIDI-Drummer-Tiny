@@ -49,6 +49,9 @@ use constant TICKS => 96; # Per quarter note
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
+ $d->combinatorial( $d->snare, { count => 1 } );
+ $d->combinatorial( $d->snare, { patterns => [qw(0101 1001)] } );
+
  $d->write;
 
 =head1 DESCRIPTION
