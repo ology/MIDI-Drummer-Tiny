@@ -5,7 +5,6 @@ package MIDI::Drummer::Tiny;
 our $VERSION = '0.2009';
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
 use MIDI::Util qw(dura_size set_time_signature);
 use Music::Duration;
 
