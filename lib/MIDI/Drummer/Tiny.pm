@@ -88,7 +88,8 @@ sub BUILD {
 
     $self->score->control_change($self->channel, 91, $self->reverb);
 
-    $self->set_time_sig;
+    # Add a TS to the score but don't reset the beats if given
+    $self->set_time_sig( $self->signature, !$args->{beats} );
 }
 
 =head1 ATTRIBUTES
@@ -145,11 +146,15 @@ B<beats> / B<divisions>
 
 =head2 beats
 
-Computed given the B<signature>.
+Computed from the B<signature>, if not given in the constructor.
+
+Default: C<4>
 
 =head2 divisions
 
-Computed given the B<signature>.
+Computed from the B<signature>.
+
+Default: C<4>
 
 =head2 counter
 
@@ -170,9 +175,9 @@ has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
 has signature => ( is => 'rw', default => sub { '4/4' });
-has beats     => ( is => 'rw' );
-has divisions => ( is => 'rw' );
-has counter   => ( is => 'rw', default => sub { 0 });
+has beats     => ( is => 'rw', default => sub { 4 }  );
+has divisions => ( is => 'rw', default => sub { 4 } );
+has counter   => ( is => 'rw', default => sub { 0 } );
 
 =head1 KIT
 
@@ -325,7 +330,8 @@ has double_dotted_onetwentyeighth => (is => 'ro', default => sub { 'ddzn' });
 
   $d = MIDI::Drummer::Tiny->new(%arguments);
 
-Return a new C<MIDI::Drummer::Tiny> object.
+Return a new C<MIDI::Drummer::Tiny> object and add a time signature
+event to the score.
 
 =head2 note
 
@@ -730,21 +736,28 @@ sub crescendo_roll {
 
 =head2 set_time_sig
 
+  $d->set_time_sig;
   $d->set_time_sig('5/4');
+  $d->set_time_sig( '5/4', 0 );
 
-Set the B<signature>, B<beats>, B<divisions>, and the B<score>
-C<time_signature> values based on the given string.
+Add a time signature event to the score, and reset the B<beats> and
+B<divisions> object attributes.
+
+If a ratio argument is given, set the B<signature> object attribute to
+it.  If the 2nd argument flag is C<0>, the B<beats> and B<divisions>
+are B<not> reset.
 
 =cut
 
 sub set_time_sig {
-    my $self = shift;
-    if (@_) {
-        $self->signature(shift);
+    my ($self, $signature, $set) = @_;
+    $self->signature($signature) if $signature;
+    $set //= 1;
+    if ($set) {
+        my ($beats, $divisions) = split /\//, $self->signature;
+        $self->beats($beats);
+        $self->divisions($divisions);
     }
-    my ($beats, $divisions) = split /\//, $self->signature;
-    $self->beats($beats);
-    $self->divisions($divisions);
     set_time_signature($self->score, $self->signature);
 }
 
