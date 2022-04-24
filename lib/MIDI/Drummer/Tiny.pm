@@ -870,9 +870,9 @@ sub combinatorial {
     my $size = dura_size( $opts->{duration} );
 
     my @items = $opts->{patterns}
-        ? $opts->{patterns}->@*
+        ? @{ $opts->{patterns} }
         : sort map { join '', @$_ }
-            variations_with_repetition( [ keys $opts->{vary}->%* ], $opts->{beats} );
+            variations_with_repetition( [ keys %{ $opts->{vary} } ], $opts->{beats} );
 
     for my $pattern (@items) {
         next if $pattern =~ /^0+$/;
