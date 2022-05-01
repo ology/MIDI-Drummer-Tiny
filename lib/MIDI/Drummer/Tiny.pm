@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.2011';
+our $VERSION = '0.2012';
 
 use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Util qw(dura_size set_time_signature);
@@ -26,8 +26,8 @@ use constant TICKS => 96; # Per quarter note
     bars      => 8,
     reverb    => 0,
     kit       => 25, # TR-808 if using GM Level 2
-    #kick  => 'n36', # Override default patch
-    #snare => 'n40', # "
+    #kick  => 36, # Override default patch
+    #snare => 40, # "
  );
 
  $d->count_in(1);  # Closed hi-hat for 1 bar
@@ -215,57 +215,57 @@ can be overridden with the B<electric_bass> (C<'n36'>).
 
 =cut
 
-has click          => ( is => 'ro', default => sub { 'n33' } );
-has bell           => ( is => 'ro', default => sub { 'n34' } );
-has kick           => ( is => 'ro', default => sub { 'n35' } ); # Alt: 36
-has acoustic_bass  => ( is => 'ro', default => sub { 'n35' } );
-has electric_bass  => ( is => 'ro', default => sub { 'n36' } );
-has side_stick     => ( is => 'ro', default => sub { 'n37' } );
-has snare          => ( is => 'ro', default => sub { 'n38' } ); # Alt: 40
-has acoustic_snare => ( is => 'ro', default => sub { 'n38' } );
-has electric_snare => ( is => 'ro', default => sub { 'n40' } );
-has clap           => ( is => 'ro', default => sub { 'n39' } );
-has open_hh        => ( is => 'ro', default => sub { 'n46' } );
-has closed_hh      => ( is => 'ro', default => sub { 'n42' } );
-has pedal_hh       => ( is => 'ro', default => sub { 'n44' } );
-has crash1         => ( is => 'ro', default => sub { 'n49' } );
-has crash2         => ( is => 'ro', default => sub { 'n57' } );
-has splash         => ( is => 'ro', default => sub { 'n55' } );
-has china          => ( is => 'ro', default => sub { 'n52' } );
-has ride1          => ( is => 'ro', default => sub { 'n51' } );
-has ride2          => ( is => 'ro', default => sub { 'n59' } );
-has ride_bell      => ( is => 'ro', default => sub { 'n53' } );
-has hi_tom         => ( is => 'ro', default => sub { 'n50' } );
-has hi_mid_tom     => ( is => 'ro', default => sub { 'n48' } );
-has low_mid_tom    => ( is => 'ro', default => sub { 'n47' } );
-has low_tom        => ( is => 'ro', default => sub { 'n45' } );
-has hi_floor_tom   => ( is => 'ro', default => sub { 'n43' } );
-has low_floor_tom  => ( is => 'ro', default => sub { 'n41' } );
-has tambourine     => ( is => 'ro', default => sub { 'n54' } );
-has cowbell        => ( is => 'ro', default => sub { 'n56' } );
-has vibraslap      => ( is => 'ro', default => sub { 'n58' } );
-has hi_bongo       => ( is => 'ro', default => sub { 'n60' } );
-has low_bongo      => ( is => 'ro', default => sub { 'n61' } );
-has mute_hi_conga  => ( is => 'ro', default => sub { 'n62' } );
-has open_hi_conga  => ( is => 'ro', default => sub { 'n63' } );
-has low_conga      => ( is => 'ro', default => sub { 'n64' } );
-has high_timbale   => ( is => 'ro', default => sub { 'n65' } );
-has low_timbale    => ( is => 'ro', default => sub { 'n66' } );
-has high_agogo     => ( is => 'ro', default => sub { 'n67' } );
-has low_agogo      => ( is => 'ro', default => sub { 'n68' } );
-has cabasa         => ( is => 'ro', default => sub { 'n69' } );
-has maracas        => ( is => 'ro', default => sub { 'n70' } );
-has short_whistle  => ( is => 'ro', default => sub { 'n71' } );
-has long_whistle   => ( is => 'ro', default => sub { 'n72' } );
-has short_guiro    => ( is => 'ro', default => sub { 'n73' } );
-has long_guiro     => ( is => 'ro', default => sub { 'n74' } );
-has claves         => ( is => 'ro', default => sub { 'n75' } );
-has hi_wood_block  => ( is => 'ro', default => sub { 'n76' } );
-has low_wood_block => ( is => 'ro', default => sub { 'n77' } );
-has mute_cuica     => ( is => 'ro', default => sub { 'n78' } );
-has open_cuica     => ( is => 'ro', default => sub { 'n79' } );
-has mute_triangle  => ( is => 'ro', default => sub { 'n80' } );
-has open_triangle  => ( is => 'ro', default => sub { 'n81' } );
+has click          => ( is => 'ro', default => sub { 33 } );
+has bell           => ( is => 'ro', default => sub { 34 } );
+has kick           => ( is => 'ro', default => sub { 35 } ); # Alt: 36
+has acoustic_bass  => ( is => 'ro', default => sub { 35 } );
+has electric_bass  => ( is => 'ro', default => sub { 36 } );
+has side_stick     => ( is => 'ro', default => sub { 37 } );
+has snare          => ( is => 'ro', default => sub { 38 } ); # Alt: 40
+has acoustic_snare => ( is => 'ro', default => sub { 38 } );
+has electric_snare => ( is => 'ro', default => sub { 40 } );
+has clap           => ( is => 'ro', default => sub { 39 } );
+has open_hh        => ( is => 'ro', default => sub { 46 } );
+has closed_hh      => ( is => 'ro', default => sub { 42 } );
+has pedal_hh       => ( is => 'ro', default => sub { 44 } );
+has crash1         => ( is => 'ro', default => sub { 49 } );
+has crash2         => ( is => 'ro', default => sub { 57 } );
+has splash         => ( is => 'ro', default => sub { 55 } );
+has china          => ( is => 'ro', default => sub { 52 } );
+has ride1          => ( is => 'ro', default => sub { 51 } );
+has ride2          => ( is => 'ro', default => sub { 59 } );
+has ride_bell      => ( is => 'ro', default => sub { 53 } );
+has hi_tom         => ( is => 'ro', default => sub { 50 } );
+has hi_mid_tom     => ( is => 'ro', default => sub { 48 } );
+has low_mid_tom    => ( is => 'ro', default => sub { 47 } );
+has low_tom        => ( is => 'ro', default => sub { 45 } );
+has hi_floor_tom   => ( is => 'ro', default => sub { 43 } );
+has low_floor_tom  => ( is => 'ro', default => sub { 41 } );
+has tambourine     => ( is => 'ro', default => sub { 54 } );
+has cowbell        => ( is => 'ro', default => sub { 56 } );
+has vibraslap      => ( is => 'ro', default => sub { 58 } );
+has hi_bongo       => ( is => 'ro', default => sub { 60 } );
+has low_bongo      => ( is => 'ro', default => sub { 61 } );
+has mute_hi_conga  => ( is => 'ro', default => sub { 62 } );
+has open_hi_conga  => ( is => 'ro', default => sub { 63 } );
+has low_conga      => ( is => 'ro', default => sub { 64 } );
+has high_timbale   => ( is => 'ro', default => sub { 65 } );
+has low_timbale    => ( is => 'ro', default => sub { 66 } );
+has high_agogo     => ( is => 'ro', default => sub { 67 } );
+has low_agogo      => ( is => 'ro', default => sub { 68 } );
+has cabasa         => ( is => 'ro', default => sub { 69 } );
+has maracas        => ( is => 'ro', default => sub { 70 } );
+has short_whistle  => ( is => 'ro', default => sub { 71 } );
+has long_whistle   => ( is => 'ro', default => sub { 72 } );
+has short_guiro    => ( is => 'ro', default => sub { 73 } );
+has long_guiro     => ( is => 'ro', default => sub { 74 } );
+has claves         => ( is => 'ro', default => sub { 75 } );
+has hi_wood_block  => ( is => 'ro', default => sub { 76 } );
+has low_wood_block => ( is => 'ro', default => sub { 77 } );
+has mute_cuica     => ( is => 'ro', default => sub { 78 } );
+has open_cuica     => ( is => 'ro', default => sub { 79 } );
+has mute_triangle  => ( is => 'ro', default => sub { 80 } );
+has open_triangle  => ( is => 'ro', default => sub { 81 } );
 
 =head1 DURATIONS
 
@@ -336,7 +336,7 @@ event to the score.
 =head2 note
 
  $d->note( $d->quarter, $d->closed_hh, $d->kick );
- $d->note( 'qn', 'n42', 'n35' ); # Same thing
+ $d->note( 'qn', 42, 35 ); # Same thing
 
 Add notes to the score.
 

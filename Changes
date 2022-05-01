@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Make patches plain numbers and not 'n42' type strings.
 
 0.2011 2022-04-23 21:01:39
     - Remove post-derefs.
