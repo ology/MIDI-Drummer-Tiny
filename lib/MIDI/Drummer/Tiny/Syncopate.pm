@@ -42,7 +42,31 @@ F<eg/syncopation/*> lessons.
 
 =head1 ATTRIBUTES
 
-=head2 none yet...
+=head2 duration
+
+  $duration = $d->duration;
+
+Default: C<quarter>
+
+=cut
+
+has duration => (
+    is      => 'ro',
+    default => sub { 'qn' },
+);
+
+=head2 repeat
+
+  $repeat = $d->repeat;
+
+Default: C<4>
+
+=cut
+
+has repeat => (
+    is      => 'ro',
+    default => sub { 4 },
+);
 
 =head1 METHODS
 
@@ -65,8 +89,8 @@ B<counter> attribute.
 Defaults:
 
   instrument: closed_hh
-  Option:
-    duration: quarter
+  Options:
+    duration: given by constructor
 
 =cut
 
@@ -75,7 +99,7 @@ sub steady {
 
     $instrument ||= $self->closed_hh;
 
-    $opts->{duration} ||= $self->quarter;
+    $opts->{duration} ||= $self->duration;
 
     # XXX This is not right
     for my $n ( 1 .. $self->counter ) {
@@ -103,12 +127,11 @@ Defaults:
 
   instrument: snare
   Options:
-    duration: quarter
+    duration: given by constructor
     count: 0
     negate: 0
-    beats: beats
-    repeat: 4
-    duration: quarter
+    beats: given by constructor
+    repeat: given by constructor
     vary:
         0 => sub { $self->rest( $options->{duration} ) },
         1 => sub { $self->note( $options->{duration}, $instrument ) },
@@ -124,8 +147,8 @@ sub combinatorial {
     $opts->{negate}   ||= 0;
     $opts->{count}    ||= 0;
     $opts->{beats}    ||= $self->beats;
-    $opts->{repeat}   ||= 4;
-    $opts->{duration} ||= $self->quarter;
+    $opts->{repeat}   ||= $self->repeat;
+    $opts->{duration} ||= $self->duration;
     $opts->{vary}     ||= {
         0 => sub { $self->rest( $opts->{duration} ) },
         1 => sub { $self->note( $opts->{duration}, $instrument ) },
