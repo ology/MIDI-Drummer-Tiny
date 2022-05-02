@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Refactor *::Syncopate to use attributes.
 
 0.2100 2022-05-01 16:38:40
     - Move the syncopation logic to its own module.
