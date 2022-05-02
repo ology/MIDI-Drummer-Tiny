@@ -77,6 +77,7 @@ sub steady {
 
     $opts->{duration} ||= $self->quarter;
 
+    # XXX This is not right
     for my $n ( 1 .. $self->counter ) {
         $self->note( $opts->{duration}, $instrument );
     }
