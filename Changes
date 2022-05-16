@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.2101 2022-05-15 17:15:16
     - Refactor *::Syncopate to use attributes.
     - Remove syncopation SYNOPSIS leftover examples.
 
