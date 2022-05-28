@@ -2,6 +2,8 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Pass the object itself to the callback in combinatorial().
+    - Port the patterns() method from Syncopate::combinatorial().
+    - Reduce the reverb!!
 
 0.2101 2022-05-15 17:15:16
     - Refactor *::Syncopate to use attributes.
