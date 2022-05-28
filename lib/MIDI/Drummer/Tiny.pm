@@ -2,9 +2,9 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.2101';
+our $VERSION = '0.3000';
 
-use MIDI::Util qw(set_time_signature);
+use MIDI::Util qw(dura_size set_chan_patch set_time_signature);
 use Music::Duration;
 
 use Moo;
@@ -47,6 +47,13 @@ use constant TICKS => 96; # Per quarter note
  # Alternate kick and snare
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
+
+ # Same but with beat-strings:
+ $d->sync(
+    sub { $d->pattern( instrument => $d->open_hh, patterns => [ ('1111') x $d->bars ] ) },
+    sub { $d->pattern( instrument => $d->snare,   patterns => [ ('0101') x $d->bars ] ) },
+    sub { $d->pattern( instrument => $d->kick,    patterns => [ ('1010') x $d->bars ] ) },
+ );
 
  $d->write;
 
@@ -108,7 +115,7 @@ soundfont, you can change kits.
 
 =head2 reverb
 
-Default: C<63>
+Default: C<15>
 
 =head2 channel
 
@@ -155,7 +162,7 @@ eighth-note is 0.5, etc.
 =cut
 
 has kit       => ( is => 'ro', default => sub { 0 } );
-has reverb    => ( is => 'ro', default => sub { 63 } );
+has reverb    => ( is => 'ro', default => sub { 15 } );
 has channel   => ( is => 'ro', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'ro', default => sub { 120 } );
@@ -721,6 +728,79 @@ sub crescendo_roll {
         }
     }
 }
+
+=head2 pattern
+
+  $d->pattern( patterns => \@patterns );
+  $d->pattern( patterns => \@patterns, instrument => $d->kick );
+  $d->pattern( patterns => \@patterns, instrument => $d->kick, %options );
+
+Play a given set of beat B<patterns> with the given B<instrument>.
+
+The B<patterns> are an arrayref of "beat-strings".  By default these
+are made of contiguous ones and zeros, meaning "strike" or "rest".
+For example:
+
+  patterns => [qw( 0101 0101 0110 0110 )],
+
+This method accumulates the number of beats in the object's B<counter>
+attribute, if the B<count> option is set.
+
+The B<vary> option is a hashref of coderefs, keyed by single character
+tokens, like the digits 0-9.  Each coderef duration should add up to
+the given B<duration> option.  The single argument to the coderefs is
+the object itself and may be used as: C<my $self = shift;> in yours.
+
+Defaults:
+
+  instrument: snare
+  patterns: [] (i.e. empty!)
+  Options:
+    duration: 1 (quarter-note)
+    beats: given by constructor
+    repeat: 4
+    count: 0
+    negate: 0
+    vary:
+        0 => sub { $self->rest( $args{duration} ) },
+        1 => sub { $self->note( $args{duration}, $args{instrument} ) },
+
+=cut
+
+sub pattern {
+    my ( $self, %args ) = @_;
+
+    $args{instrument} ||= $self->snare;
+    $args{patterns}   ||= [];
+    $args{duration}   ||= $self->quarter;
+    $args{beats}      ||= $self->beats;
+    $args{negate}     ||= 0;
+    $args{count}      ||= 0;
+    $args{repeat}     ||= 1;
+    $args{vary}       ||= {
+        0 => sub { $self->rest( $args{duration} ) },
+        1 => sub { $self->note( $args{duration}, $args{instrument} ) },
+    };
+
+    return unless @{ $args{patterns} };
+
+    my $size = dura_size( $args{duration} );
+set_chan_patch( $self->score, $self->channel, $args{instrument} );
+
+    for my $pattern (@{ $args{patterns} }) {
+        next if $pattern =~ /^0+$/;
+
+        $pattern =~ tr/01/10/ if $args{negate};
+
+        for ( 1 .. $args{repeat} ) {
+            for my $bit ( split //, $pattern ) {
+                $args{vary}{$bit}->($self);
+                $self->counter( $self->counter + $size ) if $args{count};
+            }
+        }
+    }
+}
+
 
 =head2 set_time_sig
 

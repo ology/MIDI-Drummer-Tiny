@@ -43,4 +43,13 @@ is $d->divisions, 4, '4 divisions default';
 is $score[3]->[0], 'time_signature', 'time signature added';
 is $score[3]->[2], 5, '5 signature beats';
 
+$d->pattern( instrument => $d->open_hh, patterns => [qw(1111)] );
+my $expect = [
+    [ 'patch_change', 0, 9, 46 ],
+    [ 'note', 0, 96, 9, 46, 100 ], [ 'note', 96, 96, 9, 46, 100 ],
+    [ 'note', 192, 96, 9, 46, 100 ], [ 'note', 288, 96, 9, 46, 100 ],
+];
+@score = $d->score->Score;
+is_deeply [@score[4 .. 8]], $expect, 'pattern';
+
 done_testing();
