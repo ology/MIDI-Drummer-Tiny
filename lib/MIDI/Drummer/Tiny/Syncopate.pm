@@ -168,7 +168,7 @@ sub combinatorial {
 
         for ( 1 .. $opts->{repeat} ) {
             for my $bit ( split //, $pattern ) {
-                $opts->{vary}{$bit}->();
+                $opts->{vary}{$bit}->($self);
                 $self->counter( $self->counter + $size ) if $opts->{count};
             }
         }
