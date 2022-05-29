@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Include the missing Math::Bezier in the prerequisites.
+
+0.3000 2022-05-28 16:59:11
     - Pass the object itself to the callback in combinatorial().
     - Port the patterns() method from Syncopate::combinatorial().
     - Reduce the reverb!!
