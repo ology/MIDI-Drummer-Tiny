@@ -50,12 +50,6 @@ use constant TICKS => 96; # Per quarter note
     for 1 .. $d->beats * $d->bars;
 
  # Same but with beat-strings:
- $d->sync(
-   sub { $d->pattern( instrument => $d->open_hh, patterns => [ ('1111') x $d->bars ] ) },
-   sub { $d->pattern( instrument => $d->snare,   patterns => [ ('0101') x $d->bars ] ) },
-   sub { $d->pattern( instrument => $d->kick,    patterns => [ ('1010') x $d->bars ] ) },
- );
- # or
  $d->sync_patterns(
     $d->open_hh => [ ('1111') x $d->bars ],
     $d->snare   => [ ('0101') x $d->bars ],
