@@ -813,7 +813,7 @@ sub pattern {
 
   $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ..., %options );
   $d->sync_patterns(
-      duration    => 0.5,
+      duration    => $d->eighth,
       $d->open_hh => [ ('11111111') x $d->bars ],
       $d->snare   => [ ('00100010') x $d->bars ],
       $d->kick    => [ ('10001100') x $d->bars ],
