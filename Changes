@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Compute the size and duration in the pattern() method.
 
 0.3002 2022-05-28 22:02:12
     - Add the sync_patterns() method to execute the patterns() method for multiple voices.
