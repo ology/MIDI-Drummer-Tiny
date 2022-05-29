@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.3001';
+our $VERSION = '0.3002';
 
 use Math::Bezier ();
 use MIDI::Util qw(dura_size set_chan_patch set_time_signature);
