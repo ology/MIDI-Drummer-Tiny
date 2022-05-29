@@ -783,12 +783,12 @@ sub pattern {
     # set size and duration
     my $size;
     if ( $args{duration} ) {
-        $size = dura_size( $args{duration} );
+        $size = dura_size( $args{duration} ) || 1;
     }
     else {
         $size = 4 / length( $args{patterns}->[0] );
         my $dump = reverse_dump('length');
-        $args{duration} = $dump->{$size};
+        $args{duration} = $dump->{$size} || $self->quarter;
     }
 
     # set the default beat-string variations
