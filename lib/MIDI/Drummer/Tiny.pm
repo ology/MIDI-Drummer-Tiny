@@ -2,8 +2,9 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.3000';
+our $VERSION = '0.3001';
 
+use Math::Bezier ();
 use MIDI::Util qw(dura_size set_chan_patch set_time_signature);
 use Music::Duration;
 
@@ -785,7 +786,8 @@ sub pattern {
     return unless @{ $args{patterns} };
 
     my $size = dura_size( $args{duration} );
-set_chan_patch( $self->score, $self->channel, $args{instrument} );
+
+    set_chan_patch( $self->score, $self->channel, $args{instrument} );
 
     for my $pattern (@{ $args{patterns} }) {
         next if $pattern =~ /^0+$/;
