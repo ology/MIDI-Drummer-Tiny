@@ -5,7 +5,7 @@ package MIDI::Drummer::Tiny;
 our $VERSION = '0.3002';
 
 use Math::Bezier ();
-use MIDI::Util qw(dura_size set_chan_patch set_time_signature);
+use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
 use Music::Duration;
 
 use Moo;
@@ -773,19 +773,29 @@ sub pattern {
 
     $args{instrument} ||= $self->snare;
     $args{patterns}   ||= [];
-    $args{duration}   ||= $self->quarter;
     $args{beats}      ||= $self->beats;
     $args{negate}     ||= 0;
     $args{count}      ||= 0;
     $args{repeat}     ||= 1;
+
+    return unless @{ $args{patterns} };
+
+    # set size and duration
+    my $size;
+    if ( $args{duration} ) {
+        $size = dura_size( $args{duration} );
+    }
+    else {
+        $size = 4 / length( $args{patterns}->[0] );
+        my $dump = reverse_dump('length');
+        $args{duration} = $dump->{$size};
+    }
+
+    # set the default beat-string variations
     $args{vary}       ||= {
         0 => sub { $self->rest( $args{duration} ) },
         1 => sub { $self->note( $args{duration}, $args{instrument} ) },
     };
-
-    return unless @{ $args{patterns} };
-
-    my $size = dura_size( $args{duration} );
 
     set_chan_patch( $self->score, $self->channel, $args{instrument} );
 
