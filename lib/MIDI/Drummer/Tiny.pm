@@ -805,6 +805,7 @@ sub pattern {
 
 =head2 mix_pats
 
+  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->mix_pats(
       $d->open_hh => [ ('1111') x $d->bars ],
       $d->snare   => [ ('0101') x $d->bars ],
