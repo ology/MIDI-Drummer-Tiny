@@ -813,6 +813,8 @@ sub pattern {
       $d->kick    => [ ('10001100') x $d->bars ],
   );
 
+Execute the C<patterns> method for multiple voices.
+
 =cut
 
 sub sync_patterns {
