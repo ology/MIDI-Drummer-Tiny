@@ -757,11 +757,11 @@ Defaults:
   instrument: snare
   patterns: [] (i.e. empty!)
   Options:
-    duration: 1 (quarter-note)
+    duration: quarter-note
     beats: given by constructor
-    repeat: 4
-    count: 0
-    negate: 0
+    repeat: 1
+    count: 0 ( keep track of the beat count)
+    negate: 0 (flip the bit values)
     vary:
         0 => sub { $self->rest( $args{duration} ) },
         1 => sub { $self->note( $args{duration}, $args{instrument} ) },
