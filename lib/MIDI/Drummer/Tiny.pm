@@ -824,7 +824,7 @@ Option defaults:
 sub sync_patterns {
     my ($self, %patterns) = @_;
 
-    my $duration = delete $patterns{duration} || $d->quarter;
+    my $duration = delete $patterns{duration} || $self->quarter;
 
     my @subs;
     for my $instrument (keys %patterns) {
