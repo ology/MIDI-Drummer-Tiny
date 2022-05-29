@@ -56,7 +56,7 @@ use constant TICKS => 96; # Per quarter note
    sub { $d->pattern( instrument => $d->kick,    patterns => [ ('1010') x $d->bars ] ) },
  );
  # or
- $d->mix_pats(
+ $d->sync_patterns(
     $d->open_hh => [ ('1111') x $d->bars ],
     $d->snare   => [ ('0101') x $d->bars ],
     $d->kick    => [ ('1010') x $d->bars ],
@@ -809,10 +809,10 @@ sub pattern {
     }
 }
 
-=head2 mix_pats
+=head2 sync_patterns
 
-  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ..., %options );
-  $d->mix_pats(
+  $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ..., %options );
+  $d->sync_patterns(
       duration    => 0.5,
       $d->open_hh => [ ('11111111') x $d->bars ],
       $d->snare   => [ ('00100010') x $d->bars ],
@@ -821,7 +821,7 @@ sub pattern {
 
 =cut
 
-sub mix_pats {
+sub sync_patterns {
     my ($self, %patterns) = @_;
 
     my $duration = delete $patterns{duration} || 1;
