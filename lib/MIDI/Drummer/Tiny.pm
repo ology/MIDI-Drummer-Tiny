@@ -815,12 +815,12 @@ sub pattern {
 
 =head2 sync_patterns
 
-  $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ..., %options );
+  $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->sync_patterns(
-      duration    => $d->eighth,
       $d->open_hh => [ ('11111111') x $d->bars ],
-      $d->snare   => [ ('00100010') x $d->bars ],
-      $d->kick    => [ ('10001100') x $d->bars ],
+      $d->snare   => [ ('0101') x $d->bars ],
+      $d->kick    => [ ('1010') x $d->bars ],
+      ...
   );
 
 Execute the C<pattern> method for multiple voices.
@@ -834,15 +834,12 @@ Option defaults:
 sub sync_patterns {
     my ($self, %patterns) = @_;
 
-    my $duration = delete $patterns{duration} || $self->quarter;
-
     my @subs;
     for my $instrument (keys %patterns) {
         push @subs, sub {
             $self->pattern(
                 instrument => $instrument,
                 patterns   => $patterns{$instrument},
-                duration   => $duration,
             );
         },
     }
