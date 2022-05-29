@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add the sync_patterns() method.
+    - Improve documentation.
 
 0.3001 2022-05-28 17:07:43
     - Include the missing Math::Bezier in the prerequisites.
