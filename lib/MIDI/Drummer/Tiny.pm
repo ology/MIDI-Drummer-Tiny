@@ -815,7 +815,7 @@ sub pattern {
 
 Execute the C<patterns> method for multiple voices.
 
-Defaults:
+Option defaults:
 
   duration: quarter-note
 
