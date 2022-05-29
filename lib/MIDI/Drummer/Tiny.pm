@@ -813,7 +813,7 @@ sub pattern {
       $d->kick    => [ ('10001100') x $d->bars ],
   );
 
-Execute the C<patterns> method for multiple voices.
+Execute the C<pattern> method for multiple voices.
 
 Option defaults:
 
