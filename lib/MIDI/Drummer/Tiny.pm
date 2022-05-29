@@ -806,23 +806,22 @@ sub pattern {
 =head2 mix_pats
 
   $d->mix_pats(
-      [ $d->open_hh, ('1111') x $d->bars ],
-      [ $d->snare,   ('0101') x $d->bars ],
-      [ $d->kick,    ('1010') x $d->bars ],
+      $d->open_hh => [ ('1111') x $d->bars ],
+      $d->snare   => [ ('0101') x $d->bars ],
+      $d->kick    => [ ('1010') x $d->bars ],
   );
 
 =cut
 
 sub mix_pats {
-    my ($self, @patterns) = @_;
+    my ($self, %patterns) = @_;
 
     my @subs;
-    for my $pattern (@patterns) {
+    for my $instrument (keys %patterns) {
         push @subs, sub {
-            my $instrument = shift @$pattern;
             $self->pattern(
                 instrument => $instrument,
-                patterns   => $pattern,
+                patterns   => $patterns{$instrument},
             );
         },
     }
