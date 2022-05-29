@@ -815,12 +815,16 @@ sub pattern {
 
 Execute the C<patterns> method for multiple voices.
 
+Defaults:
+
+  duration: quarter-note
+
 =cut
 
 sub sync_patterns {
     my ($self, %patterns) = @_;
 
-    my $duration = delete $patterns{duration} || 1;
+    my $duration = delete $patterns{duration} || $d->quarter;
 
     my @subs;
     for my $instrument (keys %patterns) {
