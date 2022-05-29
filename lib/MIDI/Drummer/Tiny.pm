@@ -792,7 +792,7 @@ sub pattern {
     }
 
     # set the default beat-string variations
-    $args{vary}       ||= {
+    $args{vary} ||= {
         0 => sub { $self->rest( $args{duration} ) },
         1 => sub { $self->note( $args{duration}, $args{instrument} ) },
     };
