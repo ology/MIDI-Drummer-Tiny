@@ -1,7 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
-    - Add the sync_patterns() method.
+    - Add the sync_patterns() method to execute the patterns() method for multiple voices.
     - Improve documentation.
 
 0.3001 2022-05-28 17:07:43
