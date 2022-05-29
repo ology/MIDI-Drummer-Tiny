@@ -51,6 +51,6 @@ my $expect = [
     [ 'note', 384, 96, 9, 46, 100 ]
 ];
 @score = $d->score->Score;
-is_deeply [@score[4 .. 9]], $expect, 'pattern';
+is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 
 done_testing();
