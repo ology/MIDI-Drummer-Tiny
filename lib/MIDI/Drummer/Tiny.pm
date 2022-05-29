@@ -50,6 +50,12 @@ use constant TICKS => 96; # Per quarter note
     for 1 .. $d->beats * $d->bars;
 
  # Same but with beat-strings:
+ $d->sync(
+   sub { $d->pattern( instrument => $d->open_hh, patterns => [ ('1111') x $d->bars ] ) },
+   sub { $d->pattern( instrument => $d->snare,   patterns => [ ('0101') x $d->bars ] ) },
+   sub { $d->pattern( instrument => $d->kick,    patterns => [ ('1010') x $d->bars ] ) },
+ );
+ # or
  $d->mix_pats(
     $d->open_hh => [ ('1111') x $d->bars ],
     $d->snare   => [ ('0101') x $d->bars ],
@@ -805,11 +811,12 @@ sub pattern {
 
 =head2 mix_pats
 
-  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ... );
+  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ..., \%options );
   $d->mix_pats(
-      $d->open_hh => [ ('1111') x $d->bars ],
-      $d->snare   => [ ('0101') x $d->bars ],
-      $d->kick    => [ ('1010') x $d->bars ],
+      duration    => 0.5,
+      $d->open_hh => [ ('11111111') x $d->bars ],
+      $d->snare   => [ ('00100010') x $d->bars ],
+      $d->kick    => [ ('10001100') x $d->bars ],
   );
 
 =cut
@@ -817,12 +824,15 @@ sub pattern {
 sub mix_pats {
     my ($self, %patterns) = @_;
 
+    my $duration = delete $patterns{duration} || 1;
+
     my @subs;
     for my $instrument (keys %patterns) {
         push @subs, sub {
             $self->pattern(
                 instrument => $instrument,
                 patterns   => $patterns{$instrument},
+                duration   => $duration,
             );
         },
     }
