@@ -811,7 +811,7 @@ sub pattern {
 
 =head2 mix_pats
 
-  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ..., \%options );
+  $d->mix_pats( $instrument1 => $patterns1, $inst2 => $pats2, ..., %options );
   $d->mix_pats(
       duration    => 0.5,
       $d->open_hh => [ ('11111111') x $d->bars ],
