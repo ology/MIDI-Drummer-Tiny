@@ -4,9 +4,11 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.3003';
 
+use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
 use Music::Duration;
+use Music::RhythmSet::Util qw(upsize);
 
 use Moo;
 use strictures 2;
@@ -871,11 +873,18 @@ sub add_fill {
     my %lengths;
 
     for my $instrument (keys %patterns) {
-        $lengths{$instrument} = length $patterns{$instrument}->[0];
+        $lengths{$instrument} = sum0 map { length $_ } @{ $patterns{$instrument} };
     }
 
     my $lcm = _multilcm(values %lengths);
-warn __PACKAGE__,' L',__LINE__,' ',,"$lcm\n";
+warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
+
+    for my $instrument (keys %patterns) {
+        my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
+        my $fresh = upsize($pattern, $lcm);
+use Data::Dumper::Compact qw(ddc);
+warn __PACKAGE__,' L',__LINE__,' ',ddc($fresh, {max_width=>128});
+    }
 
     return 1;
 }
@@ -968,6 +977,8 @@ L<MIDI::Util>
 L<Moo>
 
 L<Music::Duration>
+
+L<Music::RhythmSet::Util>
 
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
