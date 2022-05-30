@@ -858,15 +858,15 @@ sub sync_patterns {
       sub {
           my $self = shift;
           return {
-            duration       => 16,
+            duration       => 16, # sixteenth note fill
             $self->open_hh => '00000000',
             $self->snare   => '11111111',
             $self->kick    => '00000000',
           };
       },
-      $d->open_hh => [ '11111111' ],
-      $d->snare   => [ '0101' ],
-      $d->kick    => [ '1010' ],
+      $d->open_hh => [ ('11111111') x $d->bars ],  # example phrase
+      $d->snare   => [ ('0101') x $d->bars ],      # "
+      $d->kick    => [ ('1010') x $d->bars ],      # "
   );
 
 Add a fill to the beat pattern.  That is, replace the end of the given
