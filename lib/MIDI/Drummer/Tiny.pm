@@ -891,6 +891,10 @@ use Data::Dumper::Compact qw(ddc);
 warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
 
     # TODO Replace end of fresh pattern with fill!
+    for my $instrument (keys %$fill_patterns) {
+        my $fresh = sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument};
+warn __PACKAGE__,' L',__LINE__,' ',,"F: $fresh\n";
+    }
 
     $self->sync_patterns(%fresh_patterns);
 }
