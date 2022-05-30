@@ -30,7 +30,7 @@ $d->add_fill(
     sub {
         my $self = shift;
         return {
-          duration         => 16, # sixteenth note fill
+          duration         => 16,   # sixteenth note fill
           $self->closed_hh => '00000000',
           $self->snare     => '11111111',
           $self->kick      => '00000000',
