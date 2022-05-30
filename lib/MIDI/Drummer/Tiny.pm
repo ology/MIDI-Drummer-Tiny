@@ -859,9 +859,9 @@ sub sync_patterns {
           my $self = shift;
           return {
             duration       => 16,
-            $self->open_hh => '000000',
-            $self->snare   => '111111',
-            $self->kick    => '000000',
+            $self->open_hh => '00000000',
+            $self->snare   => '11111111',
+            $self->kick    => '00000000',
           };
       },
       $d->open_hh => [ '11111111' ],
@@ -869,7 +869,8 @@ sub sync_patterns {
       $d->kick    => [ '1010' ],
   );
 
-Execute the C<pattern> method for multiple voices.
+Add a fill to the beat pattern.  That is, replace the end of the given
+beat-string phrase with the fill.
 
 =cut
 
