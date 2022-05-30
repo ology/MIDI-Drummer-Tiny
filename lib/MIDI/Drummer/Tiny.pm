@@ -857,10 +857,6 @@ sub sync_patterns {
 
 Execute the C<pattern> method for multiple voices.
 
-Option defaults:
-
-  duration: quarter-note
-
 =cut
 
 sub add_fill {
