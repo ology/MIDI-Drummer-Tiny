@@ -926,14 +926,16 @@ sub add_fill {
     }
     print 'Replacements: ', ddc(\%replacement) if $self->verbose;
 
+    my %replaced;
     for my $instrument (keys %fresh_patterns) {
         my $string = join '', @{ $fresh_patterns{$instrument} };
         my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
+        $replaced{$instrument} = [ $string ];
         print "$instrument: $string\n" if $self->verbose;
     }
 
-    $self->sync_patterns(%fresh_patterns);
+    $self->sync_patterns(%replaced);
 }
 
 =head2 set_time_sig
