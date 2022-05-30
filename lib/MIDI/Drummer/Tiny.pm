@@ -4,6 +4,7 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.3003';
 
+use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
@@ -92,6 +93,10 @@ sub BUILD {
 
 =head1 ATTRIBUTES
 
+=head2 verbose
+
+Default: C<0>
+
 =head2 file
 
 Default: C<MIDI-Drummer.mid>
@@ -164,6 +169,7 @@ eighth-note is 0.5, etc.
 
 =cut
 
+has verbose   => ( is => 'ro', default => sub { 0 } );
 has kit       => ( is => 'ro', default => sub { 0 } );
 has reverb    => ( is => 'ro', default => sub { 15 } );
 has channel   => ( is => 'ro', default => sub { 9 } );
@@ -871,8 +877,7 @@ sub add_fill {
         };
     };
     my $fill_patterns = $fill->($self);
-use Data::Dumper::Compact qw(ddc);
-warn __PACKAGE__,' L',__LINE__,' FILLS:',ddc($fill_patterns, {max_width=>128});
+    print 'Fills: ', ddc($fill_patterns) if $self->verbose;
     my $fill_duration = delete $fill_patterns->{duration} || 8;
     my $fill_length   = length((values %$fill_patterns)[0]);
 
@@ -882,10 +887,10 @@ warn __PACKAGE__,' L',__LINE__,' FILLS:',ddc($fill_patterns, {max_width=>128});
     }
 
     my $lcm = _multilcm($fill_duration, values %lengths);
-warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
+    print "LCM: $lcm\n" if $self->verbose;
 
     my $fill_chop = int $lcm / $fill_length + 1;
-warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
+    print "FC: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
@@ -896,7 +901,7 @@ warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
             ? [ join '', @{ upsize($pattern, $lcm) } ]
             : [ join '', @$pattern ];
     }
-warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
+    print 'Fresh patterns: ', ddc(\%fresh_patterns) if $self->verbose;
 
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
@@ -911,7 +916,7 @@ warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
         my $string = join '', @{ $fresh_patterns{$instrument} };
         my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
-warn __PACKAGE__,' L',__LINE__,' ',,"$instrument: $string\n";
+        print "$instrument: $string\n" if $self->verbose;
     }
 
     $self->sync_patterns(%fresh_patterns);
