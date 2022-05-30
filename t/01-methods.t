@@ -53,6 +53,9 @@ my $expect = [
 @score = $d->score->Score;
 is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 
+done_testing();
+
+__END__
 $d = new_ok 'MIDI::Drummer::Tiny' => [
     verbose => 1
 ];
