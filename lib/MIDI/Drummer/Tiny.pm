@@ -942,6 +942,8 @@ sub add_fill {
     }
 
     $self->sync_patterns(%replaced);
+
+    return \%replaced;
 }
 
 =head2 set_time_sig
