@@ -827,10 +827,6 @@ sub pattern {
 
 Execute the C<pattern> method for multiple voices.
 
-Option defaults:
-
-  duration: quarter-note
-
 =cut
 
 sub sync_patterns {
