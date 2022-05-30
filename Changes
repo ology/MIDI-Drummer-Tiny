@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add verbose mode finally.
+    - Add the add_fill() method!
 
 0.3003 2022-05-29 15:02:26
     - Compute the size and duration in the pattern() method.
