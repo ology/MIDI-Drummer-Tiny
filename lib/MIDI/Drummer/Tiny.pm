@@ -871,22 +871,21 @@ sub add_fill {
     my ($self, %patterns) = @_;
 
     my %lengths;
-
     for my $instrument (keys %patterns) {
         $lengths{$instrument} = sum0 map { length $_ } @{ $patterns{$instrument} };
     }
 
     my $lcm = _multilcm(values %lengths);
-warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
 
+    my %fresh_patterns;
     for my $instrument (keys %patterns) {
         my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
-        my $fresh = upsize($pattern, $lcm);
-use Data::Dumper::Compact qw(ddc);
-warn __PACKAGE__,' L',__LINE__,' ',ddc($fresh, {max_width=>128});
+        $fresh_patterns{$instrument} = [ join '', @{ upsize($pattern, $lcm) } ];
     }
 
-    return 1;
+    # TODO Replace end of fresh pattern with fill!
+
+    $d->sync_patterns(%fresh_patterns);
 }
 
 =head2 set_time_sig
