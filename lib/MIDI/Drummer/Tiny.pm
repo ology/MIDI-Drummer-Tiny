@@ -855,7 +855,15 @@ sub sync_patterns {
 
   $d->add_fill( $fill, $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->add_fill(
-      sub { ... },
+      sub {
+          my $self = shift;
+          return {
+            duration       => 16,
+            $self->open_hh => '000000',
+            $self->snare   => '111111',
+            $self->kick    => '000000',
+          };
+      },
       $d->open_hh => [ '11111111' ],
       $d->snare   => [ '0101' ],
       $d->kick    => [ '1010' ],
@@ -901,7 +909,7 @@ sub add_fill {
             ? [ join '', @{ upsize($pattern, $lcm) } ]
             : [ join '', @$pattern ];
     }
-    print 'Fresh patterns: ', ddc(\%fresh_patterns) if $self->verbose;
+    print 'Patterns: ', ddc(\%fresh_patterns) if $self->verbose;
 
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
