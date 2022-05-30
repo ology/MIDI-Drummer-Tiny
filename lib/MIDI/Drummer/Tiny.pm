@@ -871,6 +871,8 @@ sub add_fill {
         };
     };
     my $fill_patterns = $fill->($self);
+use Data::Dumper::Compact qw(ddc);
+warn __PACKAGE__,' L',__LINE__,' FILLS:',ddc($fill_patterns, {max_width=>128});
     my $fill_duration = delete $fill_patterns->{duration} || 8;
     my $fill_length   = length((values %$fill_patterns)[0]);
 
@@ -882,8 +884,8 @@ sub add_fill {
     my $lcm = _multilcm($fill_duration, values %lengths);
 warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
 
-    my $fill_chop = $lcm / $fill_length;
-#warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
+    my $fill_chop = int $lcm / $fill_length + 1;
+warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
@@ -897,13 +899,21 @@ warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
 use Data::Dumper::Compact qw(ddc);
 warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
 
-    # TODO Replace end of fresh pattern with fill!
+    my %replacement;
     for my $instrument (keys %$fill_patterns) {
         my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
         my $fresh = @$pattern < $lcm
             ? join '', @{ upsize($pattern, $lcm) }
             : join '', @$pattern;
-warn __PACKAGE__,' L',__LINE__,' ',,"F: $fresh\n";
+        $fresh = substr $fresh, -$fill_chop;
+        $replacement{$instrument} = $fresh;
+    }
+
+    for my $instrument (keys %fresh_patterns) {
+        my $string = join '', @{ $fresh_patterns{$instrument} };
+        my $pos = length $replacement{$instrument};
+        substr $string, -$pos, $pos, $replacement{$instrument};
+warn __PACKAGE__,' L',__LINE__,' ',,"S: $string\n";
     }
 
     $self->sync_patterns(%fresh_patterns);
