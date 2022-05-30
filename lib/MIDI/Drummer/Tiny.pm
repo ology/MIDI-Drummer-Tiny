@@ -918,21 +918,27 @@ sub add_fill {
 
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
+        # get a single "flattened" pattern as a zero-pre-padded arrayref
         my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
+        # the fresh pattern string is possibly upsized with the LCM
         my $fresh = @$pattern < $lcm
             ? join '', @{ upsize($pattern, $lcm) }
             : join '', @$pattern;
+        # the replacement string is the tail of the fresh pattern string
         $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
     print 'Replacements: ', ddc(\%replacement) if $self->verbose;
 
     my %replaced;
     for my $instrument (keys %fresh_patterns) {
+        # get the string to replace
         my $string = join '', @{ $fresh_patterns{$instrument} };
         my $pos = length $replacement{$instrument};
+        # replace the tail of the string
         substr $string, -$pos, $pos, $replacement{$instrument};
-        $replaced{$instrument} = [ $string ];
         print "$instrument: $string\n" if $self->verbose;
+        # prepare the replaced pattern for syncing
+        $replaced{$instrument} = [ $string ];
     }
 
     $self->sync_patterns(%replaced);
