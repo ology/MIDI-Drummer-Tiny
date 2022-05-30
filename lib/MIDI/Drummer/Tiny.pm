@@ -872,6 +872,7 @@ sub add_fill {
     };
     my $fill_patterns = $fill->($self);
     my $fill_duration = delete $fill_patterns->{duration} || 8;
+    my $fill_length   = length((values %$fill_patterns)[0]);
 
     my %lengths;
     for my $instrument (keys %patterns) {
@@ -879,20 +880,29 @@ sub add_fill {
     }
 
     my $lcm = _multilcm($fill_duration, values %lengths);
+warn __PACKAGE__,' L',__LINE__,' ',,"LCM: $lcm\n";
+
+    my $fill_chop = $lcm / $fill_length;
+#warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
         # get a single "flattened" pattern as an arrayref
         my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
         # the fresh pattern is upsized with the LCM
-        $fresh_patterns{$instrument} = [ join '', @{ upsize($pattern, $lcm) } ];
+        $fresh_patterns{$instrument} = @$pattern < $lcm
+            ? [ join '', @{ upsize($pattern, $lcm) } ]
+            : [ join '', @$pattern ];
     }
 use Data::Dumper::Compact qw(ddc);
 warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
 
     # TODO Replace end of fresh pattern with fill!
     for my $instrument (keys %$fill_patterns) {
-        my $fresh = sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument};
+        my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
+        my $fresh = @$pattern < $lcm
+            ? join '', @{ upsize($pattern, $lcm) }
+            : join '', @$pattern;
 warn __PACKAGE__,' L',__LINE__,' ',,"F: $fresh\n";
     }
 
