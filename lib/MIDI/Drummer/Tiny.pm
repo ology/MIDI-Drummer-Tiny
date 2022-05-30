@@ -897,7 +897,9 @@ sub add_fill {
     my $lcm = _multilcm($fill_duration, values %lengths);
     print "LCM: $lcm\n" if $self->verbose;
 
-    my $fill_chop = int $lcm / $fill_length + 1;
+    my $fill_chop = $fill_duration == $lcm
+        ? $fill_length
+        : int $lcm / $fill_length + 1;
     print "FC: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
@@ -914,11 +916,16 @@ sub add_fill {
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
         my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
-        my $fresh = @$pattern < $lcm
-            ? join '', @{ upsize($pattern, $lcm) }
-            : join '', @$pattern;
+        my $fresh;
+        if (@$pattern < $lcm) {
+            $fresh = join '', @{ upsize($pattern, $lcm) };
+        }
+        else {
+            $fresh = join '', @$pattern;
+        }
         $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
+    print 'Replacements: ', ddc(\%replacement) if $self->verbose;
 
     for my $instrument (keys %fresh_patterns) {
         my $string = join '', @{ $fresh_patterns{$instrument} };
