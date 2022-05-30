@@ -75,9 +75,6 @@ $d->add_fill(
     $d->kick    => [ '11111111' ],
 );
 
-$d = new_ok 'MIDI::Drummer::Tiny' => [
-    verbose => 1
-];
 $d->add_fill(
     undef,
     $d->open_hh => [ '11111111' ],
@@ -85,9 +82,6 @@ $d->add_fill(
     $d->kick    => [ '1111' ],
 );
 
-$d = new_ok 'MIDI::Drummer::Tiny' => [
-    verbose => 1
-];
 $d->add_fill(
     sub {
         my $self = shift;
