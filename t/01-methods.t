@@ -53,4 +53,10 @@ my $expect = [
 @score = $d->score->Score;
 is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 
+$d->add_fill(
+    $d->open_hh => [ ('111111110000') x $d->bars ],
+    $d->snare   => [ ('01011111') x $d->bars ],
+    $d->kick    => [ ('10101111') x $d->bars ],
+);
+
 done_testing();

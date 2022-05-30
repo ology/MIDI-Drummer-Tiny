@@ -847,6 +847,39 @@ sub sync_patterns {
     $self->sync(@subs);
 }
 
+=head2 add_fill
+
+  $d->add_fill( $instrument1 => $patterns1, $inst2 => $pats2, ... );
+  $d->add_fill(
+      $d->open_hh => [ ('11111111') x $d->bars ],
+      $d->snare   => [ ('0101') x $d->bars ],
+      $d->kick    => [ ('1010') x $d->bars ],
+      ...
+  );
+
+Execute the C<pattern> method for multiple voices.
+
+Option defaults:
+
+  duration: quarter-note
+
+=cut
+
+sub add_fill {
+    my ($self, %patterns) = @_;
+
+    my %lengths;
+
+    for my $instrument (keys %patterns) {
+        $lengths{$instrument} = length $patterns{$instrument}->[0];
+    }
+
+    my $lcm = _multilcm(values %lengths);
+warn __PACKAGE__,' L',__LINE__,' ',,"$lcm\n";
+
+    return 1;
+}
+
 =head2 set_time_sig
 
   $d->set_time_sig;
@@ -900,6 +933,22 @@ the file name.
 sub write {
     my $self = shift;
     $self->score->write_score( $self->file );
+}
+
+sub _gcf {
+    my ($x, $y) = @_;
+    ($x, $y) = ($y, $x % $y) while $y;
+    return $x;
+}
+
+sub _lcm {
+    return($_[0] * $_[1] / _gcf($_[0], $_[1]));
+}
+
+sub _multilcm {
+    my $x = shift;
+    $x = _lcm($x, shift) while @_;
+    return $x;
 }
 
 1;
