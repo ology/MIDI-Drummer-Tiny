@@ -888,7 +888,7 @@ sub add_fill {
         };
     };
     my $fill_patterns = $fill->($self);
-    print 'Fills: ', ddc($fill_patterns) if $self->verbose;
+    print 'Fill: ', ddc($fill_patterns) if $self->verbose;
     my $fill_duration = delete $fill_patterns->{duration} || 8;
     my $fill_length   = length((values %$fill_patterns)[0]);
 
