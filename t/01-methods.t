@@ -53,8 +53,9 @@ my $expect = [
 @score = $d->score->Score;
 is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 
-$d = new_ok 'MIDI::Drummer::Tiny';
-
+$d = new_ok 'MIDI::Drummer::Tiny' => [
+    verbose => 1
+];
 $d->add_fill(
     undef,
     $d->open_hh => [ '111111111111' ],
@@ -62,6 +63,9 @@ $d->add_fill(
     $d->kick    => [ '11111111' ],
 );
 
+$d = new_ok 'MIDI::Drummer::Tiny' => [
+    verbose => 1
+];
 $d->add_fill(
     undef,
     $d->open_hh => [ '11111111' ],
@@ -69,11 +73,32 @@ $d->add_fill(
     $d->kick    => [ '1111' ],
 );
 
+$d = new_ok 'MIDI::Drummer::Tiny' => [
+    verbose => 1
+];
 $d->add_fill(
     undef,
     $d->open_hh => [ '11' ],
     $d->snare   => [ '00' ],
     $d->kick    => [ '11' ],
+);
+
+$d = new_ok 'MIDI::Drummer::Tiny' => [
+    verbose => 1
+];
+$d->add_fill(
+    sub {
+        my $self = shift;
+        return {
+          duration       => 16,
+          $self->open_hh => '00000000',
+          $self->snare   => '11111111',
+          $self->kick    => '00000000',
+        };
+    },
+    $d->open_hh => [ '11111111' ],
+    $d->snare   => [ '0101' ],
+    $d->kick    => [ '1010' ],
 );
 
 done_testing();
