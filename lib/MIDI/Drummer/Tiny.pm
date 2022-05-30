@@ -879,13 +879,15 @@ sub add_fill {
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
+        # get a single "flattened" pattern as an arrayref
         my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
+        # the fresh pattern is upsized with the LCM
         $fresh_patterns{$instrument} = [ join '', @{ upsize($pattern, $lcm) } ];
     }
 
     # TODO Replace end of fresh pattern with fill!
 
-    $d->sync_patterns(%fresh_patterns);
+    $self->sync_patterns(%fresh_patterns);
 }
 
 =head2 set_time_sig
