@@ -56,9 +56,10 @@ is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 $d = new_ok 'MIDI::Drummer::Tiny';
 
 $d->add_fill(
+    undef,
     $d->open_hh => [ '111111111111' ],
-    $d->snare   => [ '01010101' ],
-    $d->kick    => [ '10101010' ],
+    $d->snare   => [ '11111111' ],
+    $d->kick    => [ '11111111' ],
 );
 
 done_testing();

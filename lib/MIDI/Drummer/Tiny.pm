@@ -868,14 +868,25 @@ Option defaults:
 =cut
 
 sub add_fill {
-    my ($self, %patterns) = @_;
+    my ($self, $fill, %patterns) = @_;
+
+    $fill ||= sub {
+        return {
+            duration       => 8,
+            $self->open_hh => '111',
+            $self->snare   => '000',
+            $self->kick    => '000',
+        };
+    };
+    my $fill_patterns = $fill->($self);
+    my $fill_duration = delete $fill_patterns->{duration} || 8;
 
     my %lengths;
     for my $instrument (keys %patterns) {
         $lengths{$instrument} = sum0 map { length $_ } @{ $patterns{$instrument} };
     }
 
-    my $lcm = _multilcm(values %lengths);
+    my $lcm = _multilcm($fill_duration, values %lengths);
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
@@ -884,6 +895,8 @@ sub add_fill {
         # the fresh pattern is upsized with the LCM
         $fresh_patterns{$instrument} = [ join '', @{ upsize($pattern, $lcm) } ];
     }
+use Data::Dumper::Compact qw(ddc);
+warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
 
     # TODO Replace end of fresh pattern with fill!
 
