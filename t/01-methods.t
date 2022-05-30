@@ -62,4 +62,11 @@ $d->add_fill(
     $d->kick    => [ '11111111' ],
 );
 
+$d->add_fill(
+    undef,
+    $d->open_hh => [ '11111111' ],
+    $d->snare   => [ '0000' ],
+    $d->kick    => [ '1111' ],
+);
+
 done_testing();
