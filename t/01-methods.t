@@ -59,6 +59,15 @@ __END__
 $d = new_ok 'MIDI::Drummer::Tiny' => [
     verbose => 1
 ];
+for my $n (1 .. 8) {
+    $d->add_fill(
+        undef,
+        $d->open_hh => [ '1' x $n ],
+        $d->snare   => [ '0' x $n ],
+        $d->kick    => [ '1' x $n ],
+    );
+}
+
 $d->add_fill(
     undef,
     $d->open_hh => [ '111111111111' ],
@@ -74,16 +83,6 @@ $d->add_fill(
     $d->open_hh => [ '11111111' ],
     $d->snare   => [ '0000' ],
     $d->kick    => [ '1111' ],
-);
-
-$d = new_ok 'MIDI::Drummer::Tiny' => [
-    verbose => 1
-];
-$d->add_fill(
-    undef,
-    $d->open_hh => [ '11' ],
-    $d->snare   => [ '00' ],
-    $d->kick    => [ '11' ],
 );
 
 $d = new_ok 'MIDI::Drummer::Tiny' => [
