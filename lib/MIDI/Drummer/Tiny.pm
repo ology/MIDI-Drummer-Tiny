@@ -896,7 +896,6 @@ warn __PACKAGE__,' L',__LINE__,' ',,"C: $fill_chop\n";
             ? [ join '', @{ upsize($pattern, $lcm) } ]
             : [ join '', @$pattern ];
     }
-use Data::Dumper::Compact qw(ddc);
 warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
 
     my %replacement;
@@ -905,15 +904,14 @@ warn __PACKAGE__,' L',__LINE__,' ',ddc(\%fresh_patterns, {max_width=>128});
         my $fresh = @$pattern < $lcm
             ? join '', @{ upsize($pattern, $lcm) }
             : join '', @$pattern;
-        $fresh = substr $fresh, -$fill_chop;
-        $replacement{$instrument} = $fresh;
+        $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
 
     for my $instrument (keys %fresh_patterns) {
         my $string = join '', @{ $fresh_patterns{$instrument} };
         my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
-warn __PACKAGE__,' L',__LINE__,' ',,"S: $string\n";
+warn __PACKAGE__,' L',__LINE__,' ',,"$instrument: $string\n";
     }
 
     $self->sync_patterns(%fresh_patterns);
