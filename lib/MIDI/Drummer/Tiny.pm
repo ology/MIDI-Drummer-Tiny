@@ -828,15 +828,20 @@ sub pattern {
       $d->open_hh => [ ('11111111') x $d->bars ],
       $d->snare   => [ ('0101') x $d->bars ],
       $d->kick    => [ ('1010') x $d->bars ],
-      ...
+      duration    => $d->eighth, # render all notes at this level of granularity
   );
 
 Execute the C<pattern> method for multiple voices.
+
+If a C<duration> is provided, this will be used for each pattern
+(primarily for the B<add_fill> method).
 
 =cut
 
 sub sync_patterns {
     my ($self, %patterns) = @_;
+
+    my $master_duration = delete $patterns{duration};
 
     my @subs;
     for my $instrument (keys %patterns) {
@@ -844,6 +849,7 @@ sub sync_patterns {
             $self->pattern(
                 instrument => $instrument,
                 patterns   => $patterns{$instrument},
+                $master_duration ? (duration => $master_duration) : (),
             );
         },
     }
@@ -900,6 +906,10 @@ sub add_fill {
     my $lcm = _multilcm($fill_duration, values %lengths);
     print "LCM: $lcm\n" if $self->verbose;
 
+    my $size = 4 / $lcm;
+    my $dump = reverse_dump('length');
+    my $master_duration = $dump->{$size} || $self->eighth;
+
     my $fill_chop = $fill_duration == $lcm
         ? $fill_length
         : int $lcm / $fill_length + 1;
@@ -941,7 +951,10 @@ sub add_fill {
         $replaced{$instrument} = [ $string ];
     }
 
-    $self->sync_patterns(%replaced);
+    $self->sync_patterns(
+        %replaced,
+        duration => $master_duration,
+    );
 
     return \%replaced;
 }
