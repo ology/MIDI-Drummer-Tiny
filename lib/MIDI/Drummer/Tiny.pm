@@ -919,13 +919,9 @@ sub add_fill {
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
         my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
-        my $fresh;
-        if (@$pattern < $lcm) {
-            $fresh = join '', @{ upsize($pattern, $lcm) };
-        }
-        else {
-            $fresh = join '', @$pattern;
-        }
+        my $fresh = @$pattern < $lcm
+            ? [ join '', @{ upsize($pattern, $lcm) } ]
+            : [ join '', @$pattern ];
         $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
     print 'Replacements: ', ddc(\%replacement) if $self->verbose;
