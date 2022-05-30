@@ -57,7 +57,7 @@ $d = new_ok 'MIDI::Drummer::Tiny';
 
 $d->add_fill(
     undef,
-    $d->open_hh => [ '111111111111' ],
+    $d->open_hh => [ '000000000000' ],
     $d->snare   => [ '11111111' ],
     $d->kick    => [ '11111111' ],
 );
