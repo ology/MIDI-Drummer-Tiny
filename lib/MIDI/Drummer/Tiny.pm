@@ -909,7 +909,7 @@ sub add_fill {
     for my $instrument (keys %patterns) {
         # get a single "flattened" pattern as an arrayref
         my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
-        # the fresh pattern is upsized with the LCM
+        # the fresh pattern is possibly upsized with the LCM
         $fresh_patterns{$instrument} = @$pattern < $lcm
             ? [ join '', @{ upsize($pattern, $lcm) } ]
             : [ join '', @$pattern ];
