@@ -26,7 +26,6 @@ $d->count_in(1);
 #);
 
 $d->add_fill(
-#    undef,
     sub {
         my $self = shift;
         return {
