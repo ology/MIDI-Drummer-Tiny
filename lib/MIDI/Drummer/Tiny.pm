@@ -873,8 +873,8 @@ sub add_fill {
     $fill ||= sub {
         return {
             duration       => 8,
-            $self->open_hh => '111',
-            $self->snare   => '000',
+            $self->open_hh => '000',
+            $self->snare   => '111',
             $self->kick    => '000',
         };
     };
