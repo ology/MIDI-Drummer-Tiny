@@ -995,16 +995,15 @@ sub write {
     $self->score->write_score( $self->file );
 }
 
+# lifted from https://www.perlmonks.org/?node_id=56906
 sub _gcf {
     my ($x, $y) = @_;
     ($x, $y) = ($y, $x % $y) while $y;
     return $x;
 }
-
 sub _lcm {
     return($_[0] * $_[1] / _gcf($_[0], $_[1]));
 }
-
 sub _multilcm {
     my $x = shift;
     $x = _lcm($x, shift) while @_;
