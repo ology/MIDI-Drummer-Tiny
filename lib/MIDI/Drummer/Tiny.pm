@@ -853,12 +853,12 @@ sub sync_patterns {
 
 =head2 add_fill
 
-  $d->add_fill( $instrument1 => $patterns1, $inst2 => $pats2, ... );
+  $d->add_fill( $fill, $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->add_fill(
-      $d->open_hh => [ ('11111111') x $d->bars ],
-      $d->snare   => [ ('0101') x $d->bars ],
-      $d->kick    => [ ('1010') x $d->bars ],
-      ...
+      sub { ... },
+      $d->open_hh => [ '11111111' ],
+      $d->snare   => [ '0101' ],
+      $d->kick    => [ '1010' ],
   );
 
 Execute the C<pattern> method for multiple voices.
