@@ -933,8 +933,8 @@ sub add_fill {
     for my $instrument (keys %fresh_patterns) {
         # get the string to replace
         my $string = join '', @{ $fresh_patterns{$instrument} };
-        my $pos = length $replacement{$instrument};
         # replace the tail of the string
+        my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
         print "$instrument: $string\n" if $self->verbose;
         # prepare the replaced pattern for syncing
