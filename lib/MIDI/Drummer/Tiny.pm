@@ -870,7 +870,9 @@ sub sync_patterns {
   );
 
 Add a fill to the beat pattern.  That is, replace the end of the given
-beat-string phrase with the fill.
+beat-string phrase with a fill.  The fill is given as the first
+argument and should be a coderef that returns a hashref.  The default
+is a three-note, eighth-note snare fill.
 
 =cut
 
