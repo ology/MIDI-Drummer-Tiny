@@ -2,13 +2,13 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.4001';
+our $VERSION = '0.4002';
 
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
-use Music::Duration;
+use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
 
 use Moo;

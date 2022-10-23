@@ -3,6 +3,7 @@ Revision history for MIDI-Drummer
 {{$NEXT}}
     - Add actual tests for add_fill().
     - Add * note to the not-yet-ready-for-primetime add_fill() method.
+    - Avoid implicit imports.
 
 0.4001 2022-05-30 12:11:34
     - Improve documentation.
