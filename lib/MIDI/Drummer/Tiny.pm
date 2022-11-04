@@ -4,15 +4,14 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.4002';
 
+use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
+use Moo;
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
-
-use Moo;
-use strictures 2;
 use namespace::clean;
 
 use constant TICKS => 96; # Per quarter note
@@ -174,7 +173,7 @@ has kit       => ( is => 'ro', default => sub { 0 } );
 has reverb    => ( is => 'ro', default => sub { 15 } );
 has channel   => ( is => 'ro', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
-has bpm       => ( is => 'ro', default => sub { 120 } );
+has bpm       => ( is => 'rw', default => sub { 120 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
 has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
