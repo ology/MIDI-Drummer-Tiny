@@ -53,6 +53,13 @@ my $expect = [
 @score = $d->score->Score;
 is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 
+$expect = 99;
+$d->set_bpm($expect);
+is $d->bpm, $expect, 'set_bpm';
+
+done_testing();
+
+__END__
 $d = new_ok 'MIDI::Drummer::Tiny' => [
 #    verbose => 1
 ];
@@ -86,9 +93,6 @@ for my $n (1 .. 8) {
     is_deeply $got, $expect->[$n - 1], 'add_fill';
 }
 
-done_testing();
-
-__END__
 $d->add_fill(
     undef,
     $d->open_hh => [ '111111111111' ],
