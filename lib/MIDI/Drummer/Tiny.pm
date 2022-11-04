@@ -987,6 +987,18 @@ sub set_time_sig {
     set_time_signature($self->score, $self->signature);
 }
 
+=head2 set_bpm
+
+Reset the beats per minute.
+
+=cut
+
+sub set_bpm {
+    my ($self, $bpm) = @_;
+    $self->bpm($bpm);
+    $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
+}
+
 =head2 sync
 
   $d->sync(@code_refs);
