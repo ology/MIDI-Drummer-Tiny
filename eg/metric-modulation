@@ -20,9 +20,9 @@ $d->count_in(1);
 
 for my $i (1 .. 4) {
     $d->set_bpm($bpm);
-    $d->metronome44;
+    $d->metronome44swing;
     $d->set_bpm($bpm * $lengths->{thn});
-    $d->metronome44;
+    $d->metronome44swing;
 }
 
 $d->write;
