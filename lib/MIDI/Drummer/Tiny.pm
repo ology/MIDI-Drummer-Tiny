@@ -913,7 +913,7 @@ sub add_fill {
 
     my $fill_chop = $fill_duration == $lcm
         ? $fill_length
-        : int $lcm / $fill_length + 1;
+        : int($lcm / $fill_length) + 1;
     print "FC: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
