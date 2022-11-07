@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.4003';
+our $VERSION = '0.4004';
 
 use strictures 2;
 use Data::Dumper::Compact qw(ddc);
@@ -909,7 +909,7 @@ sub add_fill {
 
     my $size = 4 / $lcm;
     my $dump = reverse_dump('length');
-    my $master_duration = $dump->{$size} || $self->eighth;
+    my $master_duration = $dump->{$size} || $self->eighth; # XXX this || is not right
     print "Size: $size, Duration: $master_duration\n" if $self->verbose;
 
     my $fill_chop = $fill_duration == $lcm
