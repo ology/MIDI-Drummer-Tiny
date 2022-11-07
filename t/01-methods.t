@@ -71,8 +71,9 @@ subtest pattern => sub {
 
 subtest fill => sub {
     my $d = new_ok 'MIDI::Drummer::Tiny' => [
-#        verbose => 1
+        verbose => 1
     ];
+
     $expect = [
         { 35 => ['10000000'], 38 => ['00000111'], 46 => ['10000000'] },
         { 35 => ['10001000'], 38 => ['00000111'], 46 => ['10001000'] },
@@ -91,6 +92,7 @@ subtest fill => sub {
           46 => ['10000000100000001000000010000000100000000000000000000000'] },
         { 35 => ['11111000'], 38 => ['00000111'], 46 => ['11111000'] },
     ];
+
     for my $n (1 .. 8) {
         my $got = $d->add_fill(
             undef,
@@ -100,15 +102,18 @@ subtest fill => sub {
         );
         is_deeply $got, $expect->[$n - 1], "$n note add_fill";
     }
+
+    $expect = 
+        { 35 => ['100100100100100000000000'], 38 => ['000000000000000100100100'], 46 => ['101010101010101000000000'] };
+    $got = $d->add_fill(
+        undef,
+        $d->open_hh => [ '111111111111' ],
+        $d->snare   => [ '00000000' ],
+        $d->kick    => [ '11111111' ],
+    );
+    is_deeply $got, $expect, 'add_fill';
 };
 done_testing();exit;
-
-$d->add_fill(
-    undef,
-    $d->open_hh => [ '111111111111' ],
-    $d->snare   => [ '00000000' ],
-    $d->kick    => [ '11111111' ],
-);
 
 $d->add_fill(
     undef,
