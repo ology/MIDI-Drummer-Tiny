@@ -103,6 +103,15 @@ subtest fill => sub {
         is_deeply $got, $expect->[$n - 1], "$n note add_fill";
     }
 
+    $expect = { 35 => ['10101000'], 38 => ['00000111'], 46 => ['11111000'] };
+    $got = $d->add_fill(
+        undef,
+        $d->open_hh => [ '11111111' ],
+        $d->snare   => [ '0000' ],
+        $d->kick    => [ '1111' ],
+    );
+    is_deeply $got, $expect, 'add_fill';
+
     $expect = 
         { 35 => ['100100100100100000000000'], 38 => ['000000000000000100100100'], 46 => ['101010101010101000000000'] };
     $got = $d->add_fill(
@@ -112,29 +121,24 @@ subtest fill => sub {
         $d->kick    => [ '11111111' ],
     );
     is_deeply $got, $expect, 'add_fill';
+
+    $expect = {};
+    $got = $d->add_fill(
+        sub {
+            my $self = shift;
+            return {
+              duration       => 16,
+              $self->open_hh => '00000000',
+              $self->snare   => '11111111',
+              $self->kick    => '00000000',
+            };
+        },
+        $d->open_hh => [ '11111111' ],
+        $d->snare   => [ '0101' ],
+        $d->kick    => [ '1010' ],
+    );
+    is_deeply $got, $expect, 'add_fill';
+warn __PACKAGE__,' L',__LINE__,' ',ddc($got, {max_width=>128});
 };
-done_testing();exit;
-
-$d->add_fill(
-    undef,
-    $d->open_hh => [ '11111111' ],
-    $d->snare   => [ '0000' ],
-    $d->kick    => [ '1111' ],
-);
-
-$d->add_fill(
-    sub {
-        my $self = shift;
-        return {
-          duration       => 16,
-          $self->open_hh => '00000000',
-          $self->snare   => '11111111',
-          $self->kick    => '00000000',
-        };
-    },
-    $d->open_hh => [ '11111111' ],
-    $d->snare   => [ '0101' ],
-    $d->kick    => [ '1010' ],
-);
 
 done_testing();
