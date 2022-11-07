@@ -910,11 +910,12 @@ sub add_fill {
     my $size = 4 / $lcm;
     my $dump = reverse_dump('length');
     my $master_duration = $dump->{$size} || $self->eighth;
+    print "Size: $size, Duration: $master_duration\n" if $self->verbose;
 
     my $fill_chop = $fill_duration == $lcm
         ? $fill_length
         : int($lcm / $fill_length) + 1;
-    print "FC: $fill_chop\n" if $self->verbose;
+    print "Chop: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
