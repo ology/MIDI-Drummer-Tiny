@@ -4,6 +4,7 @@ use Test::More;
 
 use_ok 'MIDI::Drummer::Tiny';
 
+subtest basic => sub {
 my $d = new_ok 'MIDI::Drummer::Tiny';
 
 isa_ok $d->score, 'MIDI::Simple';
@@ -43,6 +44,14 @@ is $d->divisions, 4, '4 divisions default';
 is $score[3][0], 'time_signature', 'time signature added';
 is $score[3][2], 5, '5 signature beats';
 
+$expect = 99;
+$d->set_bpm($expect);
+is $d->bpm, $expect, 'set_bpm';
+};
+
+subtest beatstring => sub {
+my $d = new_ok 'MIDI::Drummer::Tiny';
+
 $d->pattern( instrument => $d->open_hh, patterns => [qw(11111)] );
 my $expect = [
     [ 'patch_change', 0, 9, 46 ],
@@ -52,10 +61,7 @@ my $expect = [
 ];
 @score = $d->score->Score;
 is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
-
-$expect = 99;
-$d->set_bpm($expect);
-is $d->bpm, $expect, 'set_bpm';
+};
 
 done_testing();
 
