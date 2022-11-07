@@ -49,17 +49,20 @@ subtest basic => sub {
     is $d->bpm, $expect, 'set_bpm';
     };
 
-    subtest beatstring => sub {
-my $d = new_ok 'MIDI::Drummer::Tiny';
+subtest beatstring => sub {
+    my $d = new_ok 'MIDI::Drummer::Tiny';
 
-$d->pattern( instrument => $d->open_hh, patterns => [qw(11111)] );
+    $d->pattern( instrument => $d->open_hh, patterns => [qw(11111)] );
+
     my $expect = [
         [ 'patch_change', 0, 9, 46 ],
         [ 'note', 0, 96, 9, 46, 100 ], [ 'note', 96, 96, 9, 46, 100 ],
         [ 'note', 192, 96, 9, 46, 100 ], [ 'note', 288, 96, 9, 46, 100 ],
         [ 'note', 384, 96, 9, 46, 100 ]
     ];
+
     @score = $d->score->Score;
+
     is_deeply [ @score[4 .. 9] ], $expect, 'pattern';
 };
 
