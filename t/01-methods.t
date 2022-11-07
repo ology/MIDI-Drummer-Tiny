@@ -71,7 +71,7 @@ subtest pattern => sub {
 
 subtest fill => sub {
     my $d = new_ok 'MIDI::Drummer::Tiny' => [
-        verbose => 1
+#        verbose => 1
     ];
 
     $expect = [
@@ -124,7 +124,7 @@ subtest fill => sub {
     );
     is_deeply $got, $expect, 'add_fill';
 
-    $expect = {};
+    $expect = { 35 => ['1000000010000000'], 38 => ['0000100011111111'], 46 => ['1010101000000000'] };
     $got = $d->add_fill(
         sub {
             my $self = shift;
@@ -132,7 +132,7 @@ subtest fill => sub {
               duration       => 16,
               $self->open_hh => '00000000',
               $self->snare   => '11111111',
-              $self->kick    => '00000000',
+              $self->kick    => '10000000',
             };
         },
         $d->open_hh => [ '11111111' ],
@@ -140,7 +140,6 @@ subtest fill => sub {
         $d->kick    => [ '1010' ],
     );
     is_deeply $got, $expect, 'add_fill';
-warn __PACKAGE__,' L',__LINE__,' ',ddc($got, {max_width=>128});
 };
 
 done_testing();
