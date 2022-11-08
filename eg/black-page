@@ -25,7 +25,7 @@ $d->sync(
 $d->write;
 
 sub cymbals {
-    for my $i (1 .. 12) {
+    for my $i (1 .. 20) {
         if ($i == 1) {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
@@ -116,4 +116,26 @@ sub skins {
     $d->note('Qqn', $d->snare, $d->closed_hh);
     $d->note('Qqn', $d->snare, $d->closed_hh);
     $d->note('Qqn', $d->kick);
+
+    # 5
+    $d->rest($d->half);
+
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->kick);
+
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->low_tom);
 }
