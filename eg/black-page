@@ -18,7 +18,7 @@ Music::Duration::tuplet('qn', 'Q', 7);
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 8,
+    bars   => 9,
     reverb => 15,
 );
 
@@ -191,4 +191,14 @@ sub beat {
     $d->note('Een', $d->hi_tom);
     $d->note('Een', $d->snare);
     $d->note('Een', $d->snare);
+
+    # 9
+    $d->note($d->sixteenth, $d->kick, $d->crash1);
+    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
 }
