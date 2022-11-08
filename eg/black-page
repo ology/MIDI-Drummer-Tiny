@@ -18,7 +18,7 @@ Music::Duration::tuplet('qn', 'Q', 7);
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 7,
+    bars   => 8,
     reverb => 15,
 );
 
