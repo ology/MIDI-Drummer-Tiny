@@ -73,5 +73,13 @@ sub skins {
     $d->flam('Xhn', $d->hi_floor_tom);
 
     # 3
-    
+    $d->note($d->dotted_eighth, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+
+    $d->crescendo_roll([127, 50, 127, 1], $d->quarter, $d->thirtysecond);
+
+    $d->crescendo_roll([127, 50, 1], $d->quarter, $d->thirtysecond);
+
+    $d->roll($d->quarter, $d->thirtysecond);
 }
