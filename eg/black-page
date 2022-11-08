@@ -72,7 +72,7 @@ sub beat {
 
     $d->rest('Hhn');
     $d->flam('Hhn', $d->hi_tom, $d->hi_tom, 80);
-    $d->flam('Hhn', $d->snare, $d->snare, 80);
+    $d->flam('Hhn', $d->hi_mid_tom, $d->hi_mid_tom, 80);
     $d->flam('Hhn', $d->low_tom, $d->low_tom, 80);
     $d->flam('Hhn', $d->hi_floor_tom, $d->hi_floor_tom, 80);
 
