@@ -642,7 +642,7 @@ before the primary note.
 
 If not provided the B<snare> is used for the B<grace> and B<patch>
 patches.  Also, 1/2 of the score volume is used for the B<accent>
-if it is not given.
+if that is not given.
 
 =cut
 
