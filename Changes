@@ -2,7 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Add the eg/black-page program.
-    - Add another optional patch to the flam() method.
+    - Add an optional patch and accent value to the flam() method.
 
 0.4004 2022-11-07 13:56:25
     - Improve tests!
