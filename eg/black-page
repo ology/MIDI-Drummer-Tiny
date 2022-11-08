@@ -148,13 +148,13 @@ sub beat {
     $d->note($d->quarter, $d->kick, $d->crash1);
 
     $d->rest($d->sixteenth);
-    $d->note($d->dotted_eighth, $d->snare);
+    $d->note($d->dotted_eighth, $d->hi_mid_tom);
 
     $d->rest($d->eighth);
-    $d->note($d->eighth, $d->snare);
+    $d->note($d->eighth, $d->hi_mid_tom);
 
     $d->rest($d->eighth);
-    $d->note($d->sixteenth, $d->snare);
+    $d->note($d->sixteenth, $d->low_tom);
 
     # 7
     $d->rest($d->quarter);
