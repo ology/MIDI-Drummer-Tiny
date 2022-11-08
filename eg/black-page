@@ -7,7 +7,7 @@ use warnings;
 # Transcribed by Phillip Albright
 
 # use local author libraries
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music-Duration);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny Music-Duration);
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
 
