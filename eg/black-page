@@ -66,10 +66,10 @@ sub skins {
     $d->roll($d->eighth, $d->thirtysecond);
 
     $d->rest('Hhn');
-    $d->flam('Hhn', $d->hi_tom);
-    $d->flam('Hhn', $d->snare);
-    $d->flam('Hhn', $d->low_tom);
-    $d->flam('Hhn', $d->hi_floor_tom);
+    $d->flam('Hhn', $d->hi_tom, $d->hi_tom, 90);
+    $d->flam('Hhn', $d->snare, $d->snare, 90);
+    $d->flam('Hhn', $d->low_tom, $d->low_tom, 90);
+    $d->flam('Hhn', $d->hi_floor_tom, $d->hi_floor_tom, 90);
 
     # 3
     $d->note($d->dotted_eighth, $d->kick, $d->crash1);
