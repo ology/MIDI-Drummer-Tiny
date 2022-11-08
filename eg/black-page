@@ -46,7 +46,7 @@ sub pulse {
 
 sub beat {
     # 1
-    $d->flam($d->quarter, $d->kick, $d->snare);
+    $d->flam($d->quarter, $d->kick, $d->snare, ACCENT);
 
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
