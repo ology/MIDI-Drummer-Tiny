@@ -168,5 +168,27 @@ sub beat {
     $d->note($d->eighth, $d->low_tom);
 
     # 8 - D.S. for 18 bars
-    # ... TODO ...
+    $d->rest($d->dotted_eighth);
+    $d->note($d->sixteenth, $d->hi_floor_tom);
+
+    $d->rest($d->quarter);
+
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_tom);
+    $d->note('Qqn', $d->kick);
+
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->snare);
 }
