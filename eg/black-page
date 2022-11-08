@@ -30,9 +30,6 @@ sub cymbals {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
         }
-        elsif ($i == 9 || $i == 14 || $i == 15) {
-            $d->note($d->quarter, $d->pedal_hh, $d->crash1);
-        }
         else {
             $d->note($d->quarter, $d->pedal_hh);
         }
@@ -95,16 +92,16 @@ sub skins {
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->kick);
 
-    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->triplet_sixteenth, $d->snare, $d->crash1);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
-    $d->note('Ehn', $d->kick);
-    $d->note('Ehn', $d->high_tom);
-    $d->note('Ehn', $d->high_tom);
-    $d->note('Ehn', $d->high_tom);
-    $d->note('Ehn', $d->high_tom);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
 
-    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->snare, $d->crash1);
     $d->note('Qqn', $d->kick);
     $d->note('Qqn', $d->kick);
     $d->note('Qqn', $d->snare, $d->closed_hh);
