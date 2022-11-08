@@ -19,13 +19,13 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 
 $d->sync(
-    \&cymbals,
-    \&skins,
+    \&pulse,
+    \&beat,
 );
 
 $d->write;
 
-sub cymbals {
+sub pulse {
     for my $i (1 .. $d->beats * $d->bars) {
         if ($i == 1) {
             $d->rest('d6');
@@ -37,7 +37,7 @@ sub cymbals {
     }
 }
 
-sub skins {
+sub beat {
     # 1
     $d->flam($d->quarter, $d->kick, $d->snare);
 
