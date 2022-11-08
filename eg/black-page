@@ -9,10 +9,6 @@ use Music::Duration ();
 
 Music::Duration::tuplet('hn', 'X', 5);
 
-my $md = Music::MelodicDevice::Ornamentation->new(
-    verbose => 1,
-);
-
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
@@ -29,7 +25,7 @@ $d->write;
 sub cymbals {
     for my $i (1 .. 8) {
         if ($i == 1) {
-            my $spec = $md->flam($d->quarter, $d->kick, -1);
+            my $spec = $d->flam($d->quarter, $d->kick, -1);
             $d->rest($spec->[0][0]);
         }
         $d->note($d->quarter, $d->pedal_hh);
@@ -38,7 +34,7 @@ sub cymbals {
 
 sub skins {
     # 1
-    my $spec = $md->flam($d->quarter, $d->kick, -1);
+    my $spec = $d->flam($d->quarter, $d->kick, -1);
     $spec = [
       [ $spec->[0][0], $d->kick ],
       [ $spec->[1][0], $d->snare ]
@@ -71,25 +67,25 @@ sub skins {
     $d->roll($d->eighth, $d->thirtysecond);
 
     $d->rest('Xhn');
-    $spec = $md->flam('Xhn', $d->hi_tom, -1);
+    $spec = $d->flam('Xhn', $d->hi_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->hi_tom ],
       [ $spec->[1][0], $d->hi_tom ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->flam('Xhn', $d->snare, -1);
+    $spec = $d->flam('Xhn', $d->snare, -1);
     $spec = [
       [ $spec->[0][0], $d->snare ],
       [ $spec->[1][0], $d->snare ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->flam('Xhn', $d->low_tom, -1);
+    $spec = $d->flam('Xhn', $d->low_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->low_tom ],
       [ $spec->[1][0], $d->low_tom ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->flam('Xhn', $d->hi_floor_tom, -1);
+    $spec = $d->flam('Xhn', $d->hi_floor_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->hi_floor_tom ],
       [ $spec->[1][0], $d->hi_floor_tom ]
