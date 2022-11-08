@@ -9,6 +9,7 @@ use Music::Duration ();
 
 Music::Duration::tuplet('hn', 'H', 5);
 Music::Duration::tuplet('en', 'E', 5);
+Music::Duration::tuplet('qn', 'Q', 7);
 
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
@@ -29,7 +30,7 @@ sub cymbals {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
         }
-        elsif ($i == 9 || $i == 14) {
+        elsif ($i == 9 || $i == 14 || $i == 15) {
             $d->note($d->quarter, $d->pedal_hh, $d->crash1);
         }
         else {
@@ -102,4 +103,20 @@ sub skins {
     $d->note('Ehn', $d->high_tom);
     $d->note('Ehn', $d->high_tom);
     $d->note('Ehn', $d->high_tom);
+
+    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->kick);
+    $d->note('Qqn', $d->kick);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->kick);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+
+    $d->note('Qqn', $d->kick);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->kick);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->snare, $d->closed_hh);
+    $d->note('Qqn', $d->kick);
 }
