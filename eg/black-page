@@ -11,9 +11,12 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
 
+use constant ACCENT => 80;
+
 Music::Duration::tuplet('hn', 'H', 5);
 Music::Duration::tuplet('en', 'E', 5);
 Music::Duration::tuplet('qn', 'Q', 7);
+Music::Duration::tuplet('qn', 'R', 5);
 
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
@@ -71,10 +74,10 @@ sub beat {
     $d->roll($d->eighth, $d->thirtysecond);
 
     $d->rest('Hhn');
-    $d->flam('Hhn', $d->hi_tom, $d->hi_tom, 80);
-    $d->flam('Hhn', $d->hi_mid_tom, $d->hi_mid_tom, 80);
-    $d->flam('Hhn', $d->low_tom, $d->low_tom, 80);
-    $d->flam('Hhn', $d->hi_floor_tom, $d->hi_floor_tom, 80);
+    $d->flam('Hhn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->flam('Hhn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
+    $d->flam('Hhn', $d->low_tom, $d->low_tom, ACCENT);
+    $d->flam('Hhn', $d->hi_floor_tom, $d->hi_floor_tom, ACCENT);
 
     # 3
     $d->note($d->dotted_eighth, $d->kick, $d->crash1);
@@ -215,4 +218,15 @@ sub beat {
     $d->note($d->triplet_thirtysecond, $d->crash1);
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->kick);
+
+    $d->rest('Rqn');
+    $d->flam('Rqn');
+    $d->flam('Rqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Rqn', $d->hi_mid_tom);
+    $d->note('Rqn', $d->low_tom);
 }
