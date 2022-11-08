@@ -170,7 +170,7 @@ sub beat {
     $d->rest($d->eighth);
     $d->note($d->eighth, $d->low_tom);
 
-    # 8 - Repeat the next 18 bars ... in theory
+    # 8 - Repeat the next 10 bars ... in theory
     $d->rest($d->dotted_eighth);
     $d->note($d->sixteenth, $d->hi_floor_tom);
 
