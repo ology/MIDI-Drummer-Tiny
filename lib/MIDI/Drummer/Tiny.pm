@@ -633,23 +633,26 @@ sub metronome78 {
 =head2 flam
 
   $d->flam($spec);
-  $d->flam( $spec, $patch );
+  $d->flam( $spec, $grace_note );
+  $d->flam( $spec, $grace_note, $patch );
 
 Add a "flam" to the score, where a ghosted 64th gracenote is played
 before the primary note.
 
-If not provided the B<snare> is used for the B<patch>.
+If not provided the B<snare> is used for the B<grace> and B<patch>
+patches.
 
 =cut
 
 sub flam {
-    my ($self, $spec, $patch) = @_;
+    my ($self, $spec, $grace, $patch) = @_;
+    $grace ||= $self->snare;
     $patch ||= $self->snare;
     my $x = $MIDI::Simple::Length{$spec};
     my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
     my $z = sprintf '%0.f', ($x - $y) * TICKS;
     my $accent = sprintf '%0.f', $self->score->Volume / 2;
-    $self->accent_note($accent, $self->sixtyfourth, $patch);
+    $self->accent_note($accent, $self->sixtyfourth, $grace);
     $self->note('d' . $z, $patch);
 }
 
