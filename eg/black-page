@@ -7,7 +7,8 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
 
-Music::Duration::tuplet('hn', 'X', 5);
+Music::Duration::tuplet('hn', 'H', 5);
+Music::Duration::tuplet('en', 'E', 5);
 
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
@@ -28,7 +29,7 @@ sub cymbals {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
         }
-        elsif ($i == 9) {
+        elsif ($i == 9 || $i == 14) {
             $d->note($d->quarter, $d->pedal_hh, $d->crash1);
         }
         else {
@@ -66,11 +67,11 @@ sub skins {
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->roll($d->eighth, $d->thirtysecond);
 
-    $d->rest('Xhn');
-    $d->flam('Xhn', $d->hi_tom);
-    $d->flam('Xhn', $d->snare);
-    $d->flam('Xhn', $d->low_tom);
-    $d->flam('Xhn', $d->hi_floor_tom);
+    $d->rest('Hhn');
+    $d->flam('Hhn', $d->hi_tom);
+    $d->flam('Hhn', $d->snare);
+    $d->flam('Hhn', $d->low_tom);
+    $d->flam('Hhn', $d->hi_floor_tom);
 
     # 3
     $d->note($d->dotted_eighth, $d->kick);
@@ -82,4 +83,23 @@ sub skins {
     $d->crescendo_roll([127, 50, 1], $d->quarter, $d->thirtysecond);
 
     $d->roll($d->quarter, $d->thirtysecond);
+
+    # 4
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+
+    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note('Ehn', $d->kick);
+    $d->note('Ehn', $d->high_tom);
+    $d->note('Ehn', $d->high_tom);
+    $d->note('Ehn', $d->high_tom);
+    $d->note('Ehn', $d->high_tom);
 }
