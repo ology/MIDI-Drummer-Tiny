@@ -78,7 +78,7 @@ sub skins {
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
 
-    $d->crescendo_roll([127, 50, 127, 1], $d->quarter, $d->thirtysecond);
+    $d->crescendo_roll([127, 50, 1], $d->quarter, $d->thirtysecond);
 
     $d->crescendo_roll([127, 50, 1], $d->quarter, $d->thirtysecond);
 
