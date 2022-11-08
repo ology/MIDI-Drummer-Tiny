@@ -21,7 +21,7 @@ Music::Duration::tuplet('qn', 'R', 5);
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 10,
+    bars   => 11,
     reverb => 15,
 );
 
@@ -224,9 +224,26 @@ sub beat {
     $d->note('Een', $d->snare);
     $d->note('Een', $d->kick);
 
-    $d->rest('Rqn');
+    $d->rest('Rqn', $d->snare, $d->snare, ACCENT);
     $d->flam('Rqn');
     $d->flam('Rqn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Rqn', $d->hi_mid_tom);
     $d->note('Rqn', $d->low_tom);
+
+    # 11
+    $d->flam('Rqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Rqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Rqn', $d->hi_mid_tom);
+    $d->note('Rqn', $d->low_tom);
+    $d->note('Rqn', $d->hi_floor_tom);
+
+    $d->flam('Rqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Rqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Rqn', $d->hi_mid_tom);
+    $d->note('Rqn', $d->low_tom);
+    $d->note('Rqn', $d->hi_floor_tom);
+
+    $d->rest($d->quarter);
+
+    $d->rest($d->quarter);
 }
