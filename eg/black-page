@@ -23,10 +23,13 @@ $d->sync(
 $d->write;
 
 sub cymbals {
-    for my $i (1 .. 8) {
+    for my $i (1 .. 12) {
         if ($i == 1) {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
+        }
+        elsif ($i == 9) {
+            $d->note($d->quarter, $d->pedal_hh, $d->crash1);
         }
         else {
             $d->note($d->quarter, $d->pedal_hh);
@@ -68,4 +71,7 @@ sub skins {
     $d->flam('Xhn', $d->snare);
     $d->flam('Xhn', $d->low_tom);
     $d->flam('Xhn', $d->hi_floor_tom);
+
+    # 3
+    
 }
