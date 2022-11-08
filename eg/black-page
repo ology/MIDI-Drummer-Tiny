@@ -174,10 +174,10 @@ sub beat {
     $d->rest($d->quarter);
 
     $d->note('Qqn', $d->hi_tom);
-    $d->note('Qqn', $d->snare);
-    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_mid_tom);
+    $d->note('Qqn', $d->hi_mid_tom);
     $d->note('Qqn', $d->hi_tom);
-    $d->note('Qqn', $d->snare);
+    $d->note('Qqn', $d->hi_mid_tom);
     $d->note('Qqn', $d->hi_tom);
     $d->note('Qqn', $d->kick);
 
@@ -189,8 +189,8 @@ sub beat {
     $d->note('Een', $d->hi_tom);
     $d->note('Een', $d->hi_tom);
     $d->note('Een', $d->hi_tom);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->snare);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->hi_mid_tom);
 
     # 9
     $d->note($d->sixteenth, $d->kick, $d->crash1);
