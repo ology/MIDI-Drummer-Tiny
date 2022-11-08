@@ -11,7 +11,7 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
 
-use constant ACCENT => 80;
+use constant ACCENT => 70;
 
 Music::Duration::tuplet('hn', 'H', 5);
 Music::Duration::tuplet('en', 'E', 5);
@@ -20,7 +20,7 @@ Music::Duration::tuplet('qn', 'R', 5);
 
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
-    bpm    => 60,
+    bpm    => 50,
     bars   => 10,
     reverb => 15,
 );
