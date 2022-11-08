@@ -25,21 +25,18 @@ $d->write;
 sub cymbals {
     for my $i (1 .. 8) {
         if ($i == 1) {
-            my $spec = $d->flam($d->quarter, $d->kick, -1);
-            $d->rest($spec->[0][0]);
+            $d->rest('d6');
+            $d->note('d90', $d->pedal_hh);
         }
-        $d->note($d->quarter, $d->pedal_hh);
+        else {
+            $d->note($d->quarter, $d->pedal_hh);
+        }
     }
 }
 
 sub skins {
     # 1
-    my $spec = $d->flam($d->quarter, $d->kick, -1);
-    $spec = [
-      [ $spec->[0][0], $d->kick ],
-      [ $spec->[1][0], $d->snare ]
-    ];
-    $d->note(@$_) for @$spec;
+    $d->flam($d->quarter, $d->kick, $d->snare);
 
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
@@ -67,28 +64,8 @@ sub skins {
     $d->roll($d->eighth, $d->thirtysecond);
 
     $d->rest('Xhn');
-    $spec = $d->flam('Xhn', $d->hi_tom, -1);
-    $spec = [
-      [ $spec->[0][0], $d->hi_tom ],
-      [ $spec->[1][0], $d->hi_tom ]
-    ];
-    $d->note(@$_) for @$spec;
-    $spec = $d->flam('Xhn', $d->snare, -1);
-    $spec = [
-      [ $spec->[0][0], $d->snare ],
-      [ $spec->[1][0], $d->snare ]
-    ];
-    $d->note(@$_) for @$spec;
-    $spec = $d->flam('Xhn', $d->low_tom, -1);
-    $spec = [
-      [ $spec->[0][0], $d->low_tom ],
-      [ $spec->[1][0], $d->low_tom ]
-    ];
-    $d->note(@$_) for @$spec;
-    $spec = $d->flam('Xhn', $d->hi_floor_tom, -1);
-    $spec = [
-      [ $spec->[0][0], $d->hi_floor_tom ],
-      [ $spec->[1][0], $d->hi_floor_tom ]
-    ];
-    $d->note(@$_) for @$spec;
+    $d->flam('Xhn', $d->hi_tom);
+    $d->flam('Xhn', $d->snare);
+    $d->flam('Xhn', $d->low_tom);
+    $d->flam('Xhn', $d->hi_floor_tom);
 }
