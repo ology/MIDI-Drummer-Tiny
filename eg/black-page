@@ -1,0 +1,99 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+# use local author libraries
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music-Duration Music-MelodicDevice-Ornamentation);
+use MIDI::Drummer::Tiny ();
+use Music::Duration ();
+use Music::MelodicDevice::Ornamentation ();
+
+Music::Duration::tuplet('hn', 'X', 5);
+
+my $md = Music::MelodicDevice::Ornamentation->new(
+    verbose => 1,
+);
+
+my $d = MIDI::Drummer::Tiny->new(
+    file   => "$0.mid",
+    bpm    => 60,
+    reverb => 15,
+);
+
+$d->sync(
+    \&cymbals,
+    \&skins,
+);
+
+$d->write;
+
+sub cymbals {
+    for my $i (1 .. 8) {
+        if ($i == 1) {
+            my $spec = $md->grace_note($d->quarter, $d->kick, -1);
+            $d->rest($spec->[0][0]);
+        }
+        $d->note($d->quarter, $d->pedal_hh);
+    }
+}
+
+sub skins {
+    # 1
+    my $spec = $md->grace_note($d->quarter, $d->kick, -1);
+    $spec = [
+      [ $spec->[0][0], $d->kick ],
+      [ $spec->[1][0], $d->snare ]
+    ];
+    $d->note(@$_) for @$spec;
+
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->eighth, $d->snare);
+
+    $d->note($d->thirtysecond);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->sixteenth, $d->snare);
+    $d->note($d->eighth, $d->kick);
+
+    $d->rest($d->sixteenth);
+    $d->roll($d->eighth, $d->thirtysecond);
+    $d->note($d->sixteenth, $d->kick);
+
+    # 2
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->eighth, $d->kick);
+
+    $d->note($d->triplet_eighth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->roll($d->eighth, $d->thirtysecond);
+
+    $d->rest('Xhn');
+    $spec = $md->grace_note('Xhn', $d->hi_tom, -1);
+    $spec = [
+      [ $spec->[0][0], $d->hi_tom ],
+      [ $spec->[1][0], $d->hi_tom ]
+    ];
+    $d->note(@$_) for @$spec;
+    $spec = $md->grace_note('Xhn', $d->snare, -1);
+    $spec = [
+      [ $spec->[0][0], $d->snare ],
+      [ $spec->[1][0], $d->snare ]
+    ];
+    $d->note(@$_) for @$spec;
+    $spec = $md->grace_note('Xhn', $d->low_tom, -1);
+    $spec = [
+      [ $spec->[0][0], $d->low_tom ],
+      [ $spec->[1][0], $d->low_tom ]
+    ];
+    $d->note(@$_) for @$spec;
+    $spec = $md->grace_note('Xhn', $d->hi_floor_tom, -1);
+    $spec = [
+      [ $spec->[0][0], $d->hi_floor_tom ],
+      [ $spec->[1][0], $d->hi_floor_tom ]
+    ];
+    $d->note(@$_) for @$spec;
+}
