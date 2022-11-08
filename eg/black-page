@@ -25,7 +25,7 @@ $d->sync(
 $d->write;
 
 sub cymbals {
-    for my $i (1 .. 4 * 7) {
+    for my $i (1 .. $d->beats * 7) {
         if ($i == 1) {
             $d->rest('d6');
             $d->note('d90', $d->pedal_hh);
@@ -161,4 +161,6 @@ sub skins {
 
     $d->rest($d->eighth);
     $d->note($d->eighth, $d->low_tom);
+
+    # 8 - D.S. for 18 bars
 }
