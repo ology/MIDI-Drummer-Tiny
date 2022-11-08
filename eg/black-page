@@ -35,7 +35,7 @@ $d->write;
 sub pulse {
     for my $i (1 .. $d->beats * $d->bars) {
         if ($i == 1) {
-            $d->rest('d6'); # grace-note
+            $d->rest('d6'); # 64th grace-note
             $d->note('d90', $d->pedal_hh);
         }
         else {
