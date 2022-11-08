@@ -6,7 +6,6 @@ use warnings;
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music-Duration Music-MelodicDevice-Ornamentation);
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
-use Music::MelodicDevice::Ornamentation ();
 
 Music::Duration::tuplet('hn', 'X', 5);
 
@@ -30,7 +29,7 @@ $d->write;
 sub cymbals {
     for my $i (1 .. 8) {
         if ($i == 1) {
-            my $spec = $md->grace_note($d->quarter, $d->kick, -1);
+            my $spec = $md->flam($d->quarter, $d->kick, -1);
             $d->rest($spec->[0][0]);
         }
         $d->note($d->quarter, $d->pedal_hh);
@@ -39,7 +38,7 @@ sub cymbals {
 
 sub skins {
     # 1
-    my $spec = $md->grace_note($d->quarter, $d->kick, -1);
+    my $spec = $md->flam($d->quarter, $d->kick, -1);
     $spec = [
       [ $spec->[0][0], $d->kick ],
       [ $spec->[1][0], $d->snare ]
@@ -72,25 +71,25 @@ sub skins {
     $d->roll($d->eighth, $d->thirtysecond);
 
     $d->rest('Xhn');
-    $spec = $md->grace_note('Xhn', $d->hi_tom, -1);
+    $spec = $md->flam('Xhn', $d->hi_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->hi_tom ],
       [ $spec->[1][0], $d->hi_tom ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->grace_note('Xhn', $d->snare, -1);
+    $spec = $md->flam('Xhn', $d->snare, -1);
     $spec = [
       [ $spec->[0][0], $d->snare ],
       [ $spec->[1][0], $d->snare ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->grace_note('Xhn', $d->low_tom, -1);
+    $spec = $md->flam('Xhn', $d->low_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->low_tom ],
       [ $spec->[1][0], $d->low_tom ]
     ];
     $d->note(@$_) for @$spec;
-    $spec = $md->grace_note('Xhn', $d->hi_floor_tom, -1);
+    $spec = $md->flam('Xhn', $d->hi_floor_tom, -1);
     $spec = [
       [ $spec->[0][0], $d->hi_floor_tom ],
       [ $spec->[1][0], $d->hi_floor_tom ]
