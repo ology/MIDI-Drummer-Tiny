@@ -7,16 +7,12 @@ use warnings;
 # Transcribed by Phillip Albright
 
 # use local author libraries
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny Music-Duration);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music-Duration);
 use MIDI::Drummer::Tiny ();
 use Music::Duration ();
+use MIDI::Util qw(dura_size);
 
 use constant ACCENT => 70;
-
-Music::Duration::tuplet('hn', 'H', 5);
-Music::Duration::tuplet('en', 'E', 5);
-Music::Duration::tuplet('qn', 'Q', 7);
-Music::Duration::tuplet('qn', 'R', 5);
 
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
@@ -24,6 +20,14 @@ my $d = MIDI::Drummer::Tiny->new(
     bars   => 15,
     reverb => 15,
 );
+
+Music::Duration::tuplet('hn', 'H', 5);
+Music::Duration::tuplet('en', 'E', 5);
+Music::Duration::tuplet('qn', 'Q', 7);
+Music::Duration::tuplet('qn', 'R', 5);
+
+my $size = dura_size($d->triplet_eighth);
+Music::Duration::add_duration(two_thirds => $size * 2);
 
 $d->sync(
     \&pulse,
@@ -324,8 +328,7 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare);
 
     # 15
-    $d->roll($d->triplet_eighth, $d->thirtysecond, $d->snare);
-    $d->rest($d->triplet_eighth);
+    $d->roll('two_thirds', $d->thirtysecond, $d->snare);
     $d->flam($d->triplet_eighth, $d->hi_tom, $d->hi_tom, ACCENT);
 
     $d->flam($d->triplet_eighth, $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
