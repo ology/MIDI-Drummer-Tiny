@@ -28,8 +28,6 @@ Music::Duration::tuplet('qn', 'D', 5);
 
 my $ten = dura_size($d->triplet_eighth);
 Music::Duration::add_duration(Eten => $ten * 2);
-my $tsn = dura_size($d->triplet_sixteenth);
-Music::Duration::add_duration(Ften => $ten * 2 + $tsn);
 
 $d->sync(
     \&pulse,
@@ -75,7 +73,7 @@ sub beat {
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->eighth, $d->kick);
 
-    $d->note('Ften', $d->kick);
+    $d->note($d->triplet_eighth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->roll($d->eighth, $d->thirtysecond);
 
@@ -375,7 +373,7 @@ sub beat {
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->eighth, $d->kick);
 
-    $d->note('Ften', $d->kick);
+    $d->note($d->triplet_eighth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->roll($d->eighth, $d->thirtysecond, $d->snare);
 
