@@ -17,7 +17,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 22,
+    bars   => 23,
     reverb => 15,
 );
 
@@ -25,9 +25,10 @@ Music::Duration::tuplet('hn', 'A', 5);
 Music::Duration::tuplet('en', 'B', 5);
 Music::Duration::tuplet('qn', 'C', 7);
 Music::Duration::tuplet('qn', 'D', 5);
+Music::Duration::tuplet('qn', 'E', 11);
 
 my $ten = dura_size($d->triplet_eighth);
-Music::Duration::add_duration(Eten => $ten * 2);
+Music::Duration::add_duration(Ften => $ten * 2);
 
 $d->sync(
     \&pulse,
@@ -328,7 +329,7 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare);
 
     # 15
-    $d->roll('Eten', $d->thirtysecond, $d->snare);
+    $d->roll('Ften', $d->thirtysecond, $d->snare);
     $d->flam($d->triplet_eighth, $d->hi_tom, $d->hi_tom, ACCENT);
 
     $d->flam($d->triplet_eighth, $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
@@ -470,4 +471,45 @@ sub beat {
     $d->rest($d->quarter);
 
     $d->rest($d->quarter);
+
+    # 23
+    $d->rest($d->eighth);
+    $d->note('Ben', $d->pedal_hh);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->kick);
+
+    $d->note('Ben', $d->snare, $d->closed_hh);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->snare, $d->closed_hh);
+    $d->note('Ben', $d->snare, $d->closed_hh);
+    $d->note('Ben', $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->snare);
+
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->kick);
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->kick);
 }
