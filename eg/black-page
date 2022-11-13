@@ -502,17 +502,17 @@ sub beat {
     $d->note('Ben', $d->kick);
     $d->note('Ben', $d->snare);
 
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->kick);
-    $d->note('Een', $d->kick);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->kick);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->kick);
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
 
     # 24
     $d->note($d->triplet_half, $d->kick, $d->crash1);
@@ -542,17 +542,17 @@ sub beat {
     $d->note($d->thirtysecond, $d->low_floor_tom);
     $d->note($d->thirtysecond, $d->kick);
 
-    $d->note('Een', $d->snare);
-    $d->note('Een', $d->hi_tom);
-    $d->note('Een', $d->hi_mid_tom);
-    $d->note('Een', $d->hi_mid_tom);
-    $d->note('Een', $d->hi_tom);
-    $d->note('Een', $d->hi_tom);
-    $d->note('Een', $d->hi_tom);
-    $d->note('Een', $d->hi_mid_tom);
-    $d->note('Een', $d->hi_mid_tom);
-    $d->note('Een', $d->low_tom);
-    $d->note('Een', $d->low_tom);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_mid_tom);
+    $d->note('Eqn', $d->hi_mid_tom);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_mid_tom);
+    $d->note('Eqn', $d->hi_mid_tom);
+    $d->note('Eqn', $d->low_tom);
+    $d->note('Eqn', $d->low_tom);
 
     $d->note('Fen', $d->low_floor_tom);
     $d->note('Fen', $d->low_floor_tom);
