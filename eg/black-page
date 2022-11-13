@@ -17,7 +17,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 17,
+    bars   => 22,
     reverb => 15,
 );
 
@@ -393,4 +393,81 @@ sub beat {
     $d->crescendo_roll([100, 50], $d->quarter, $d->thirtysecond);
 
     $d->roll($d->quarter, $d->thirtysecond);
+
+    # 19 (8)
+    $d->rest($d->dotted_eighth);
+    $d->note($d->sixteenth, $d->hi_floor_tom);
+
+    $d->rest($d->quarter);
+
+    $d->note('Cqn', $d->hi_tom);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->hi_tom);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->hi_tom);
+    $d->note('Cqn', $d->kick);
+
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+
+    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->hi_mid_tom);
+    $d->note('Ben', $d->hi_mid_tom);
+
+    # 20 (9)
+    $d->note($d->sixteenth, $d->kick, $d->crash1);
+    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+
+    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+
+    # 21 (10)
+    $d->note($d->quarter, $d->hi_floor_tom);
+
+    $d->note($d->eighth, $d->snare);
+    $d->rest($d->thirtysecond);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+
+    $d->note($d->triplet_thirtysecond, $d->kick);
+    $d->note($d->triplet_thirtysecond, $d->crash1);
+    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note('Ben', $d->hi_mid_tom);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->snare);
+    $d->note('Ben', $d->kick);
+
+    $d->rest('Dqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Dqn');
+    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->low_tom);
+
+    # 22 (11)
+    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->low_tom);
+    $d->note('Dqn', $d->hi_floor_tom);
+
+    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->low_tom);
+    $d->note('Dqn', $d->hi_floor_tom);
+
+    $d->rest($d->quarter);
+
+    $d->rest($d->quarter);
 }
