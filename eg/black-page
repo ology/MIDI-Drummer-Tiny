@@ -17,7 +17,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 16,
+    bars   => 17,
     reverb => 15,
 );
 
@@ -26,8 +26,10 @@ Music::Duration::tuplet('en', 'B', 5);
 Music::Duration::tuplet('qn', 'C', 7);
 Music::Duration::tuplet('qn', 'D', 5);
 
-my $size = dura_size($d->triplet_eighth);
-Music::Duration::add_duration(two_thirds => $size * 2);
+my $ten = dura_size($d->triplet_eighth);
+Music::Duration::add_duration(Eten => $ten * 2);
+my $tsn = dura_size($d->triplet_sixteenth);
+Music::Duration::add_duration(Ften => $ten * 2 + $tsn);
 
 $d->sync(
     \&pulse,
@@ -328,7 +330,7 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare);
 
     # 15
-    $d->roll('two_thirds', $d->thirtysecond, $d->snare);
+    $d->roll('Eten', $d->thirtysecond, $d->snare);
     $d->flam($d->triplet_eighth, $d->hi_tom, $d->hi_tom, ACCENT);
 
     $d->flam($d->triplet_eighth, $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
@@ -366,4 +368,6 @@ sub beat {
     $d->rest($d->sixteenth);
     $d->roll($d->eighth, $d->thirtysecond, $d->snare);
     $d->note($d->sixteenth, $d->kick);
+
+    # 17
 }
