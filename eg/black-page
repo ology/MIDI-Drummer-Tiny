@@ -17,7 +17,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 24,
+    bars   => 25,
     reverb => 15,
 );
 
@@ -26,9 +26,10 @@ Music::Duration::tuplet('en', 'B', 5);
 Music::Duration::tuplet('qn', 'C', 7);
 Music::Duration::tuplet('qn', 'D', 5);
 Music::Duration::tuplet('qn', 'E', 11);
+Music::Duration::tuplet('qn', 'F', 12);
 
 my $ten = dura_size($d->triplet_eighth);
-Music::Duration::add_duration(Ften => $ten * 2);
+Music::Duration::add_duration(Gten => $ten * 2);
 
 $d->sync(
     \&pulse,
@@ -82,7 +83,7 @@ sub beat {
     $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->flam('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
     $d->flam('Ahn', $d->low_tom, $d->low_tom, ACCENT);
-    $d->flam('Ahn', $d->hi_floor_tom, $d->hi_floor_tom, ACCENT);
+    $d->flam('Ahn', $d->low_floor_tom, $d->low_floor_tom, ACCENT);
 
     # 3
     $d->note($d->dotted_eighth, $d->kick, $d->crash1);
@@ -170,14 +171,14 @@ sub beat {
     $d->note($d->quarter, $d->low_tom);
 
     $d->rest($d->sixteenth);
-    $d->note($d->dotted_eighth, $d->hi_floor_tom);
+    $d->note($d->dotted_eighth, $d->low_floor_tom);
 
     $d->rest($d->eighth);
     $d->note($d->eighth, $d->low_tom);
 
     # 8 - Repeat the next 10 bars ... in theory
     $d->rest($d->dotted_eighth);
-    $d->note($d->sixteenth, $d->hi_floor_tom);
+    $d->note($d->sixteenth, $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
@@ -202,16 +203,16 @@ sub beat {
 
     # 9
     $d->note($d->sixteenth, $d->kick, $d->crash1);
-    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
     # 10
-    $d->note($d->quarter, $d->hi_floor_tom);
+    $d->note($d->quarter, $d->low_floor_tom);
 
     $d->note($d->eighth, $d->snare);
     $d->rest($d->thirtysecond);
@@ -240,13 +241,13 @@ sub beat {
     $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Dqn', $d->hi_mid_tom);
     $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->hi_floor_tom);
+    $d->note('Dqn', $d->low_floor_tom);
 
     $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
     $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Dqn', $d->hi_mid_tom);
     $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->hi_floor_tom);
+    $d->note('Dqn', $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
@@ -275,8 +276,8 @@ sub beat {
     # 13
     $d->note($d->thirtysecond, $d->low_tom);
     $d->note($d->thirtysecond, $d->low_tom);
-    $d->note($d->thirtysecond, $d->hi_floor_tom);
-    $d->note($d->thirtysecond, $d->hi_floor_tom);
+    $d->note($d->thirtysecond, $d->low_floor_tom);
+    $d->note($d->thirtysecond, $d->low_floor_tom);
     $d->note($d->thirtysecond, $d->hi_tom);
     $d->note($d->thirtysecond, $d->hi_tom);
     $d->note($d->thirtysecond, $d->hi_mid_tom);
@@ -329,7 +330,7 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare);
 
     # 15
-    $d->roll('Ften', $d->thirtysecond, $d->snare);
+    $d->roll('Gten', $d->thirtysecond, $d->snare);
     $d->flam($d->triplet_eighth, $d->hi_tom, $d->hi_tom, ACCENT);
 
     $d->flam($d->triplet_eighth, $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
@@ -337,7 +338,7 @@ sub beat {
     $d->flam($d->triplet_eighth, $d->low_tom, $d->low_tom, ACCENT);
 
     $d->note('Dqn', $d->kick);
-    $d->note('Dqn', $d->hi_floor_tom,);
+    $d->note('Dqn', $d->low_floor_tom,);
     $d->note('Dqn', $d->hi_mid_tom);
     $d->note('Dqn', $d->snare, $d->closed_hh);
     $d->note('Dqn', $d->hi_mid_tom);
@@ -382,7 +383,7 @@ sub beat {
     $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->flam('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
     $d->flam('Ahn', $d->low_tom, $d->low_tom, ACCENT);
-    $d->flam('Ahn', $d->hi_floor_tom, $d->hi_floor_tom, ACCENT);
+    $d->flam('Ahn', $d->low_floor_tom, $d->low_floor_tom, ACCENT);
 
     # 18 (3)
     $d->note($d->dotted_eighth, $d->kick, $d->crash1);
@@ -397,7 +398,7 @@ sub beat {
 
     # 19 (8)
     $d->rest($d->dotted_eighth);
-    $d->note($d->sixteenth, $d->hi_floor_tom);
+    $d->note($d->sixteenth, $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
@@ -422,16 +423,16 @@ sub beat {
 
     # 20 (9)
     $d->note($d->sixteenth, $d->kick, $d->crash1);
-    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
-    $d->roll($d->quarter, $d->thirtysecond, $d->hi_floor_tom);
+    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
 
     # 21 (10)
-    $d->note($d->quarter, $d->hi_floor_tom);
+    $d->note($d->quarter, $d->low_floor_tom);
 
     $d->note($d->eighth, $d->snare);
     $d->rest($d->thirtysecond);
@@ -460,13 +461,13 @@ sub beat {
     $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Dqn', $d->hi_mid_tom);
     $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->hi_floor_tom);
+    $d->note('Dqn', $d->low_floor_tom);
 
     $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
     $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Dqn', $d->hi_mid_tom);
     $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->hi_floor_tom);
+    $d->note('Dqn', $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
@@ -517,6 +518,52 @@ sub beat {
     $d->note($d->triplet_half, $d->kick, $d->crash1);
     $d->note($d->triplet_half, $d->snare);
     $d->note($d->triplet_half, $d->snare);
+
     $d->roll($d->quarter, $d->thirtysecond);
+
     $d->roll($d->quarter, $d->thirtysecond);
+
+    # 25
+    $d->rest($d->thirtysecond);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->hi_tom);
+    $d->note($d->thirtysecond, $d->hi_tom);
+    $d->note($d->thirtysecond, $d->hi_mid_tom);
+    $d->note($d->thirtysecond, $d->hi_mid_tom);
+
+    $d->note($d->thirtysecond, $d->hi_tom);
+    $d->note($d->thirtysecond, $d->hi_mid_tom);
+    $d->note($d->thirtysecond, $d->hi_mid_tom);
+    $d->note($d->thirtysecond, $d->low_tom);
+    $d->note($d->thirtysecond, $d->low_tom);
+    $d->note($d->thirtysecond, $d->low_floor_tom);
+    $d->note($d->thirtysecond, $d->low_floor_tom);
+    $d->note($d->thirtysecond, $d->kick);
+
+    $d->note('Een', $d->snare);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_tom);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->hi_mid_tom);
+    $d->note('Een', $d->low_tom);
+    $d->note('Een', $d->low_tom);
+
+    $d->note('Fen', $d->low_floor_tom);
+    $d->note('Fen', $d->low_floor_tom);
+    $d->note('Fen', $d->low_floor_tom);
+    $d->note('Fen', $d->hi_tom);
+    $d->note('Fen', $d->hi_mid_tom);
+    $d->note('Fen', $d->hi_mid_tom);
+    $d->note('Fen', $d->hi_floor_tom);
+    $d->note('Fen', $d->hi_tom);
+    $d->note('Fen', $d->hi_tom);
+    $d->note('Fen', $d->hi_tom);
+    $d->note('Fen', $d->hi_mid_tom);
+    $d->note('Fen', $d->hi_mid_tom);
 }
