@@ -17,7 +17,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 23,
+    bars   => 24,
     reverb => 15,
 );
 
@@ -512,4 +512,11 @@ sub beat {
     $d->note('Een', $d->kick);
     $d->note('Een', $d->snare);
     $d->note('Een', $d->kick);
+
+    # 24
+    $d->note($d->triplet_half, $d->kick, $d->crash1);
+    $d->note($d->triplet_half, $d->snare);
+    $d->note($d->triplet_half, $d->snare);
+    $d->roll($d->quarter, $d->thirtysecond);
+    $d->roll($d->quarter, $d->thirtysecond);
 }
