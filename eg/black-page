@@ -75,7 +75,7 @@ sub beat {
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->eighth, $d->kick);
 
-    $d->note($d->triplet_eighth, $d->kick);
+    $d->note('Ften', $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->roll($d->eighth, $d->thirtysecond);
 
@@ -370,4 +370,18 @@ sub beat {
     $d->note($d->sixteenth, $d->kick);
 
     # 17
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->eighth, $d->kick);
+
+    $d->note('Ften', $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->roll($d->eighth, $d->thirtysecond, $d->snare);
+
+    $d->rest('Ahn');
+    $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->flam('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
+    $d->flam('Ahn', $d->low_tom, $d->low_tom, ACCENT);
+    $d->flam('Ahn', $d->hi_floor_tom, $d->hi_floor_tom, ACCENT);
 }
