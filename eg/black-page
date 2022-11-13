@@ -554,18 +554,18 @@ sub beat {
     $d->note('Eqn', $d->low_tom);
     $d->note('Eqn', $d->low_tom);
 
-    $d->note('Fen', $d->low_floor_tom);
-    $d->note('Fen', $d->low_floor_tom);
-    $d->note('Fen', $d->low_floor_tom);
-    $d->note('Fen', $d->hi_tom);
-    $d->note('Fen', $d->hi_mid_tom);
-    $d->note('Fen', $d->hi_mid_tom);
-    $d->note('Fen', $d->hi_floor_tom);
-    $d->note('Fen', $d->hi_tom);
-    $d->note('Fen', $d->hi_tom);
-    $d->note('Fen', $d->hi_tom);
-    $d->note('Fen', $d->hi_mid_tom);
-    $d->note('Fen', $d->hi_mid_tom);
+    $d->note('Fqn', $d->low_floor_tom);
+    $d->note('Fqn', $d->low_floor_tom);
+    $d->note('Fqn', $d->low_floor_tom);
+    $d->note('Fqn', $d->hi_tom);
+    $d->note('Fqn', $d->hi_mid_tom);
+    $d->note('Fqn', $d->hi_mid_tom);
+    $d->note('Fqn', $d->hi_floor_tom);
+    $d->note('Fqn', $d->hi_tom);
+    $d->note('Fqn', $d->hi_tom);
+    $d->note('Fqn', $d->hi_tom);
+    $d->note('Fqn', $d->hi_mid_tom);
+    $d->note('Fqn', $d->hi_mid_tom);
 
     # 26 (9)
     $d->note($d->sixteenth, $d->kick, $d->crash1);
