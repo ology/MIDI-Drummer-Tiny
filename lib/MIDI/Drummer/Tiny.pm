@@ -644,7 +644,7 @@ If not provided the B<snare> is used for the B<grace> and B<patch>
 patches.  Also, 1/2 of the score volume is used for the B<accent>
 if that is not given.
 
-If the B<grace> note is riven as a literal C<'r'>, rest instead adding
+If the B<grace> note is given as a literal C<'r'>, rest instead adding
 a note to the score.
 
 =cut
