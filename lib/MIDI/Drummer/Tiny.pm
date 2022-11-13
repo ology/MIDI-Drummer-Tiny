@@ -644,6 +644,9 @@ If not provided the B<snare> is used for the B<grace> and B<patch>
 patches.  Also, 1/2 of the score volume is used for the B<accent>
 if that is not given.
 
+If the B<grace> note is riven as a literal C<'r'>, rest instead adding
+a note to the score.
+
 =cut
 
 sub flam {
@@ -654,7 +657,12 @@ sub flam {
     my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
     my $z = sprintf '%0.f', ($x - $y) * TICKS;
     $accent ||= sprintf '%0.f', $self->score->Volume / 2;
-    $self->accent_note($accent, $self->sixtyfourth, $grace);
+    if ($grace eq 'r') {
+        $self->rest($self->sixtyfourth);
+    }
+    else {
+        $self->accent_note($accent, $self->sixtyfourth, $grace);
+    }
     $self->note('d' . $z, $patch);
 }
 
