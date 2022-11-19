@@ -171,13 +171,13 @@ sub beat {
     # 7
     $d->rest($d->quarter);
 
-    $d->note($d->quarter, $d->low_tom);
+    $d->note($d->quarter, $d->kick, $d->hi_floor_tom, $d->closed_hh);
 
     $d->rest($d->sixteenth);
-    $d->note($d->dotted_eighth, $d->low_floor_tom);
+    $d->note($d->dotted_eighth, $d->kick, $d->hi_floor_tom, $d->closed_hh);
 
     $d->rest($d->eighth);
-    $d->note($d->eighth, $d->low_tom);
+    $d->note($d->eighth, $d->kick, $d->hi_floor_tom, $d->closed_hh);
 
     # 8 - Repeat the next 10 bars ... in theory
     $d->rest($d->dotted_eighth);
