@@ -304,22 +304,24 @@ sub beat {
 
     # 14
     $d->rest($d->eighth);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
     $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+
+    $d->rest($d->quarter);
+
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->rest($d->eighth);
 
     $d->rest($d->eighth);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
     $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
-
-    $d->rest($d->eighth);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
 
     # 15
     $d->roll('Gten', $d->thirtysecond, $d->snare);
