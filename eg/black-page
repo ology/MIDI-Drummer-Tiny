@@ -205,14 +205,7 @@ sub beat {
     $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 9
-    $d->note($d->sixteenth, $d->kick, $d->crash1);
-    $d->roll($d->dotted_eighth, $d->thirtysecond, $d->low_floor_tom);
-
-    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
-
-    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
-
-    $d->roll($d->quarter, $d->thirtysecond, $d->low_floor_tom);
+    $d->whole($d->quarter, $d->kick, $d->ride1);
 
     # 10
     $d->note($d->quarter, $d->low_floor_tom);
