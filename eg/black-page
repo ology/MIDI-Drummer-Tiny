@@ -75,18 +75,16 @@ sub beat {
     $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
     $d->note('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
     $d->note('Ahn', $d->hi_floor_tom);
-    $d->note('Ahn', $d->kick);
+    $d->note('Ahn', $d->kick, $d->closed_hh);
 
     # 3
-    $d->note($d->dotted_eighth, $d->kick, $d->crash1);
+    $d->note($d->dotted_eighth, $d->kick);
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
 
-    $d->crescendo_roll([100, 50], $d->quarter, $d->thirtysecond);
+    $d->crescendo_roll([100, 50], $d->dotted_quarter, $d->thirtysecond);
 
-    $d->crescendo_roll([100, 50], $d->quarter, $d->thirtysecond);
-
-    $d->roll($d->quarter, $d->thirtysecond);
+    $d->crescendo_roll([50, 100], $d->dotted_quarter, $d->thirtysecond);
 
     # 4
     $d->note($d->thirtysecond, $d->snare);
