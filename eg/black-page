@@ -390,30 +390,41 @@ sub beat {
 
     $d->crescendo_roll([50, 100], $d->dotted_quarter, $d->thirtysecond);
 
-    # 19 (8)
-    $d->rest($d->dotted_eighth);
-    $d->note($d->sixteenth, $d->low_floor_tom);
+    # 19 (4)
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
 
-    $d->rest($d->quarter);
 
-    $d->note('Dqn', $d->hi_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_tom);
+    $d->note($d->triplet_sixteenth, $d->snare);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
+
+    $d->note('Dqn', $d->snare, $d->closed_hh);
     $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
 
-    $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare);
-
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_mid_tom);
-    $d->note('Ben', $d->hi_mid_tom);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
 
     # 20 (9)
     $d->note($d->sixteenth, $d->kick, $d->crash1);
