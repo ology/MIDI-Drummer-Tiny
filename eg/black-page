@@ -96,16 +96,16 @@ sub beat {
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->kick);
 
-    $d->note($d->triplet_sixteenth, $d->snare, $d->crash1);
+    $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->note('Ben', $d->kick);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
+    $d->note('Ben', $d->cowbell);
 
-    $d->note('Cqn', $d->snare, $d->crash1);
+    $d->note('Cqn', $d->snare, $d->closed_hh);
     $d->note('Cqn', $d->kick);
     $d->note('Cqn', $d->kick);
     $d->note('Cqn', $d->snare, $d->closed_hh);
