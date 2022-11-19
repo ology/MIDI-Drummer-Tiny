@@ -49,6 +49,7 @@ $d->sync(
 
 $d->write;
 
+# not part of the original, but handy for debugging
 sub pulse {
     for my $i (1 .. $d->beats * $d->bars) {
         $d->note($d->quarter, $d->pedal_hh);
