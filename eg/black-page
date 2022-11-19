@@ -266,41 +266,41 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare);
 
     # 13
-    $d->note($d->thirtysecond, $d->low_tom);
-    $d->note($d->thirtysecond, $d->low_tom);
-    $d->note($d->thirtysecond, $d->low_floor_tom);
-    $d->note($d->thirtysecond, $d->low_floor_tom);
-    $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->hi_mid_tom);
-    $d->note($d->thirtysecond, $d->hi_mid_tom);
-
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
+    $d->note($d->thirtysecond, $d->snare);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->snare);
 
-    $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->hi_mid_tom);
-    $d->note($d->thirtysecond, $d->hi_mid_tom);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->low_tom);
-    $d->note($d->thirtysecond, $d->low_tom);
+    $d->note($d->thirtysecond, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->closed_hh);
 
-    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->hi_bongo);
+    $d->note($d->thirtysecond, $d->low_bongo);
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->hi_tom);
-    $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->hi_mid_tom);
     $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare, $d->open_hh);
+    $d->note($d->thirtysecond, $d->hi_floor_tom);
+    $d->note($d->thirtysecond, $d->hi_floor_tom);
+
+    $d->note($d->thirtysecond, $d->hi_floor_tom);
+    $d->note($d->thirtysecond, $d->hi_floor_tom);
+    $d->note($d->thirtysecond, $d->hi_tom);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
 
     # 14
     $d->rest($d->eighth);
