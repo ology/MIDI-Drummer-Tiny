@@ -233,21 +233,19 @@ sub beat {
     $d->roll('Cqn', $d->thirtysecond, $d->low_bongo);
 
     # 11
-    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->low_tom);
-    $d->note('Cqn', $d->low_floor_tom);
+    $d->flam('Cqn', $d->hi_bongo, $d->hi_bongo, ACCENT);
+    $d->note('Cqn', $d->low_bongo);
+    $d->note('Cqn', $d->hi_floor_tom);
+    $d->roll('Cqn', $d->thirtysecond, $d->low_bongo);
+    $d->note('Cqn', $d->kick);
 
-    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->low_tom);
-    $d->note('Cqn', $d->low_floor_tom);
+    $d->note('Cqn', $d->kick);
+    $d->flam('Cqn', $d->hi_bongo, $d->hi_bongo, ACCENT);
+    $d->note('Cqn', $d->low_bongo);
+    $d->note('Cqn', $d->hi_floor_tom);
+    $d->roll('Cqn', $d->thirtysecond, $d->low_bongo);
 
-    $d->rest($d->quarter);
-
-    $d->rest($d->quarter);
+    $d->rest($d->half);
 
     # 12
     $d->rest($d->quarter);
