@@ -150,11 +150,11 @@ sub beat {
     $d->note('Pthn', $d->snare);
 
     $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . 60);
-    $d->note('Qthn', $d->snare, 'v' . 70);
-    $d->note('Qthn', $d->snare, 'v' . 80);
-    $d->note('Qthn', $d->snare, 'v' . 90);
-    $d->note('Qthn', $d->snare, 'v' . 100);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 40);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 30);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 20);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 10);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 6
     $d->note($d->quarter, $d->kick, $d->crash1);
