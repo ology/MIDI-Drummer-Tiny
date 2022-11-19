@@ -3,8 +3,6 @@ use strict;
 use warnings;
 
 # Written by Frank Zappa
-# Played by Terry Bozzio
-# Transcribed by Phillip Albright
 
 # use local author libraries
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Drummer-Tiny MIDI-Util Music-Duration);
@@ -17,7 +15,7 @@ use constant ACCENT => 70;
 my $d = MIDI::Drummer::Tiny->new(
     file   => "$0.mid",
     bpm    => 60,
-    bars   => 26,
+    bars   => 30,
     reverb => 15,
 );
 
@@ -40,18 +38,13 @@ $d->write;
 
 sub pulse {
     for my $i (1 .. $d->beats * $d->bars) {
-        if ($i == 1) {
-            $d->flam($d->quarter, 'r', $d->pedal_hh);
-        }
-        else {
-            $d->note($d->quarter, $d->pedal_hh);
-        }
+        $d->note($d->quarter, $d->pedal_hh);
     }
 }
 
 sub beat {
     # 1
-    $d->flam($d->quarter, $d->kick, $d->snare, ACCENT);
+    $d->note($d->quarter, $d->snare);
 
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
@@ -59,9 +52,8 @@ sub beat {
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->eighth, $d->snare);
 
-    $d->note($d->thirtysecond);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->sixteenth, $d->snare);
+    $d->rest($d->sixteenth);
+    $d->flam($d->sixteenth);
     $d->note($d->eighth, $d->kick);
 
     $d->rest($d->sixteenth);
