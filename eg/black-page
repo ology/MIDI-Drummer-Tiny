@@ -32,7 +32,7 @@ Music::Duration::add_duration(Gten => $ten * 2); # Gten
 # for bar 5
 Music::Duration::tuplet($d->triplet_half, 'P', 5); # Pthn
 Music::Duration::tuplet($d->triplet_half, 'Q', 6); # Qthn
-Music::Duration::tuplet($d->triplet_half, 'R', 7); # Rthn
+Music::Duration::tuplet($d->triplet_half, 'R', 7); # Rthn ?
 
 # for bar 15
 Music::Duration::tuplet($d->triplet_whole, 'S', 7);   # Stwn
