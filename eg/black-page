@@ -209,7 +209,7 @@ sub beat {
     $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 9
-    $d->whole($d->quarter, $d->kick, $d->ride1);
+    $d->note($d->whole, $d->kick, $d->ride1);
 
     # 10
     $d->rest($d->quarter);
@@ -497,7 +497,7 @@ sub beat {
     $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 24 (9)
-    $d->whole($d->quarter, $d->kick, $d->ride1);
+    $d->note($d->whole, $d->kick, $d->ride1);
 
     # 25 (10)
     $d->rest($d->quarter);
