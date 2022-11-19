@@ -537,4 +537,46 @@ sub beat {
     $d->roll('Cqn', $d->thirtysecond, $d->low_bongo);
 
     $d->rest($d->half);
+
+    # 27
+    $d->rest($d->eighth);
+    $d->rest('Ben');
+    $d->note('Ben', $d->hi_bongo);
+    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->hi_floor_tom);
+    $d->note('Ben', $d->low_bongo);
+
+    $d->note('Ben', $d->hi_bongo);
+    $d->note('Ben', $d->kick);
+    $d->note('Ben', $d->hi_tom);
+    $d->note('Ben', $d->hi_floor_tom);
+    $d->note('Ben', $d->low_bongo);
+    $d->note($d->thirtysecond, $d->kick);
+    $d->note($d->thirtysecond, $d->hi_bongo);
+    $d->note($d->thirtysecond, $d->hi_tom);
+    $d->note($d->thirtysecond, $d->hi_floor_tom);
+
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_floor_tom);
+    $d->note('Eqn', $d->low_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
+
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->hi_floor_tom);
+    $d->note('Eqn', $d->low_bongo);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->kick);
 }
