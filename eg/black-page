@@ -19,15 +19,28 @@ my $d = MIDI::Drummer::Tiny->new(
     reverb => 15,
 );
 
-Music::Duration::tuplet($d->half, 'A', 5);
-Music::Duration::tuplet($d->eighth, 'B', 5);
-Music::Duration::tuplet($d->quarter, 'C', 7);
-Music::Duration::tuplet($d->quarter, 'D', 5);
-Music::Duration::tuplet($d->quarter, 'E', 11);
-Music::Duration::tuplet($d->quarter, 'F', 12);
+Music::Duration::tuplet($d->half,    'A', 5);  # Ahn
+Music::Duration::tuplet($d->eighth,  'B', 5);  # Ben
+Music::Duration::tuplet($d->quarter, 'C', 5);  # Cqn
+Music::Duration::tuplet($d->quarter, 'D', 7);  # Dqn
+Music::Duration::tuplet($d->quarter, 'E', 11); # Eqn
+Music::Duration::tuplet($d->quarter, 'F', 12); # Fqn
 
 my $ten = dura_size($d->triplet_eighth);
-Music::Duration::add_duration(Gten => $ten * 2);
+Music::Duration::add_duration(Gten => $ten * 2); # Gten
+
+Music::Duration::tuplet($d->triplet_half, 'P', 5); # Pthn
+Music::Duration::tuplet($d->triplet_half, 'Q', 6); # Qthn
+Music::Duration::tuplet($d->triplet_half, 'R', 7); # Rthn
+
+Music::Duration::tuplet($d->triplet_whole, 'S', 7); # Stwn
+
+my $twn = dura_size($d->triplet_whole);
+Music::Duration::add_duration(Ttwn => $twn / 2); # Ttwn
+Music::Duration::add_duration(Utwn => $twn / 7); # Utwn
+
+my $half_twn = dura_size('Ttwn');
+Music::Duration::add_duration(Vtwn => $half_twn / 5); # Vtwn
 
 $d->sync(
     \&pulse,
@@ -105,32 +118,30 @@ sub beat {
     $d->note('Ben', $d->cowbell);
     $d->note('Ben', $d->cowbell);
 
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->kick);
-    $d->note('Cqn', $d->kick);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->kick);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
 
-    $d->note('Cqn', $d->kick);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->kick);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->snare, $d->closed_hh);
-    $d->note('Cqn', $d->kick);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->snare, $d->closed_hh);
+    $d->note('Dqn', $d->kick);
 
     # 5
     $d->rest($d->half);
 
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->kick);
+    $d->note('Ben', $d->hi_bongo);
+    $d->note('Ben', $d->low_bongo);
+    $d->note('Ben', $d->low_bongo);
+    $d->note('Ben', $d->hi_bongo);
+    $d->note('Ben', $d->hi_bongo);
 
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->snare);
@@ -172,13 +183,13 @@ sub beat {
 
     $d->rest($d->quarter);
 
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->kick);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->kick);
 
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->snare);
@@ -220,24 +231,24 @@ sub beat {
     $d->note('Ben', $d->snare);
     $d->note('Ben', $d->kick);
 
-    $d->rest('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn');
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
+    $d->rest('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn');
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
 
     # 11
-    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->low_floor_tom);
+    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
+    $d->note('Cqn', $d->low_floor_tom);
 
-    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->low_floor_tom);
+    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
+    $d->note('Cqn', $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
@@ -327,11 +338,11 @@ sub beat {
     $d->flam($d->triplet_eighth, $d->hi_tom, $d->hi_tom, ACCENT);
     $d->flam($d->triplet_eighth, $d->low_tom, $d->low_tom, ACCENT);
 
-    $d->note('Dqn', $d->kick);
-    $d->note('Dqn', $d->low_floor_tom,);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->snare, $d->closed_hh);
-    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->kick);
+    $d->note('Cqn', $d->low_floor_tom,);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->snare, $d->closed_hh);
+    $d->note('Cqn', $d->hi_mid_tom);
 
     $d->note($d->triplet_sixteenth, $d->snare, $d->closed_hh);
     $d->note($d->triplet_sixteenth, $d->kick);
@@ -392,13 +403,13 @@ sub beat {
 
     $d->rest($d->quarter);
 
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->hi_mid_tom);
-    $d->note('Cqn', $d->hi_tom);
-    $d->note('Cqn', $d->kick);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->hi_mid_tom);
+    $d->note('Dqn', $d->hi_tom);
+    $d->note('Dqn', $d->kick);
 
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->snare);
@@ -440,24 +451,24 @@ sub beat {
     $d->note('Ben', $d->snare);
     $d->note('Ben', $d->kick);
 
-    $d->rest('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn');
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
+    $d->rest('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn');
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
 
     # 22 (11)
-    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->low_floor_tom);
+    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
+    $d->note('Cqn', $d->low_floor_tom);
 
-    $d->flam('Dqn', $d->snare, $d->snare, ACCENT);
-    $d->flam('Dqn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->low_tom);
-    $d->note('Dqn', $d->low_floor_tom);
+    $d->flam('Cqn', $d->snare, $d->snare, ACCENT);
+    $d->flam('Cqn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $d->note('Cqn', $d->hi_mid_tom);
+    $d->note('Cqn', $d->low_tom);
+    $d->note('Cqn', $d->low_floor_tom);
 
     $d->rest($d->quarter);
 
