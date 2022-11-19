@@ -179,30 +179,30 @@ sub beat {
     $d->rest($d->eighth);
     $d->note($d->eighth, $d->kick, $d->hi_floor_tom, $d->closed_hh);
 
-    # 8 - Repeat the next 10 bars ... in theory
+    # 8
     $d->rest($d->dotted_eighth);
-    $d->note($d->sixteenth, $d->low_floor_tom);
+    $d->note($d->sixteenth, $d->kick, $d->hi_floor_tom, $d->closed_hh);
 
     $d->rest($d->quarter);
 
-    $d->note('Dqn', $d->hi_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_tom);
-    $d->note('Dqn', $d->hi_mid_tom);
-    $d->note('Dqn', $d->hi_tom);
-    $d->note('Dqn', $d->kick);
+    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Pthn', $d->low_bongo);
+    $d->note('Pthn', $d->low_bongo);
+    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Pthn', $d->hi_bongo);
 
-    $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->thirtysecond, $d->kick);
-    $d->note($d->thirtysecond, $d->snare);
+    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->snare);
+    $d->note('Pthn', $d->snare);
 
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_tom);
-    $d->note('Ben', $d->hi_mid_tom);
-    $d->note('Ben', $d->hi_mid_tom);
+    $d->note('Qthn', $d->kick);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 40);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 30);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 20);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume - 10);
+    $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 9
     $d->note($d->sixteenth, $d->kick, $d->crash1);
