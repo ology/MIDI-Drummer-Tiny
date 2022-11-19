@@ -43,13 +43,12 @@ my $half_twn = dura_size('Ttwn');
 Music::Duration::add_duration(Vtwn => $half_twn / 5); # Vtwn
 
 $d->sync(
-    \&pulse,
+    \&pulse, # not in the original but handy for debugging
     \&beat,
 );
 
 $d->write;
 
-# not part of the original, but handy for debugging
 sub pulse {
     for my $i (1 .. $d->beats * $d->bars) {
         $d->note($d->quarter, $d->pedal_hh);
