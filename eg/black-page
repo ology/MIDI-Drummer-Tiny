@@ -348,7 +348,7 @@ sub beat {
     $d->note('Vtwn', $d->kick);
 
     # 16 (1)
-    $d->note($d->quarter, $d->kick, $d->crash1);
+    $d->note($d->quarter, $d->snare);
 
     $d->note($d->thirtysecond, $d->snare);
     $d->note($d->thirtysecond, $d->snare);
@@ -356,13 +356,12 @@ sub beat {
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->eighth, $d->snare);
 
-    $d->rest($d->thirtysecond);
-    $d->note($d->thirtysecond, $d->snare);
-    $d->note($d->sixteenth, $d->snare);
+    $d->rest($d->sixteenth);
+    $d->flam($d->sixteenth);
     $d->note($d->eighth, $d->kick);
 
     $d->rest($d->sixteenth);
-    $d->roll($d->eighth, $d->thirtysecond, $d->snare);
+    $d->roll($d->eighth, $d->thirtysecond);
     $d->note($d->sixteenth, $d->kick);
 
     # 17 (2)
@@ -371,15 +370,16 @@ sub beat {
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->eighth, $d->kick);
 
-    $d->note($d->triplet_eighth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
-    $d->roll($d->eighth, $d->thirtysecond, $d->snare);
+    $d->rest($d->triplet_sixteenth);
+    $d->note($d->triplet_sixteenth, $d->kick);
+    $d->roll($d->eighth, $d->thirtysecond);
 
-    $d->rest('Ahn');
+    $d->roll('Ahn', $d->thirtysecond);
     $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
-    $d->flam('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
-    $d->flam('Ahn', $d->low_tom, $d->low_tom, ACCENT);
-    $d->flam('Ahn', $d->low_floor_tom, $d->low_floor_tom, ACCENT);
+    $d->note('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
+    $d->note('Ahn', $d->hi_floor_tom);
+    $d->note('Ahn', $d->kick, $d->closed_hh);
 
     # 18 (3)
     $d->note($d->dotted_eighth, $d->kick, $d->crash1);
