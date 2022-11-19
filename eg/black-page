@@ -442,10 +442,10 @@ sub beat {
     $d->note('Pthn', $d->snare);
 
     $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 40);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 30);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 20);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 10);
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
     $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 21 (6)
@@ -490,10 +490,10 @@ sub beat {
     $d->note('Pthn', $d->snare);
 
     $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 40);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 30);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 20);
-    $d->note('Qthn', $d->snare, 'v' . $d->volume - 10);
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
+    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
     $d->note('Qthn', $d->snare, 'v' . $d->volume);
 
     # 24 (9)
