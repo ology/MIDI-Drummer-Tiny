@@ -235,7 +235,7 @@ sub beat {
     $count += dura_size('Qtqn');
     $d->note('Qtqn', $d->snare, 'v' . $d->volume);
     $count += dura_size('Qtqn');
-warn __PACKAGE__,' L',__LINE__,' ',,"C: $count\n";
+#warn __PACKAGE__,' L',__LINE__,' ',,"C: $count\n";
 
     # 6
     $d->note($d->quarter, $d->snare);
@@ -658,9 +658,9 @@ warn __PACKAGE__,' L',__LINE__,' ',,"C: $count\n";
     $d->note('Eqn', $d->kick);
 
     # 28
-    $d->note($d->triplet_half, $d->closed_hh);
-    $d->note($d->triplet_half, $d->kick);
-    $d->note($d->triplet_half, $d->kick);
+    $d->note($d->triplet_quarter, $d->closed_hh);
+    $d->note($d->triplet_quarter, $d->kick);
+    $d->note($d->triplet_quarter, $d->kick);
 
     $d->crescendo_roll([50, 100], $d->half, $d->thirtysecond);
 
