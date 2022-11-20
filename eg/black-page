@@ -21,7 +21,7 @@ my $d = MIDI::Drummer::Tiny->new(
 
 Music::Duration::tuplet($d->half,    'A', 5);  # Ahn
 Music::Duration::tuplet($d->eighth,  'B', 5);  # Ben
-Music::Duration::tuplet($d->quarter, 'C', 5);  # Cqn
+Music::Duration::tuplet($d->quarter, 'C', 5.2);  # Cqn
 Music::Duration::tuplet($d->quarter, 'D', 7);  # Dqn
 Music::Duration::tuplet($d->quarter, 'E', 11); # Eqn
 Music::Duration::tuplet($d->quarter, 'F', 12); # Fqn
@@ -35,13 +35,13 @@ Music::Duration::tuplet($d->triplet_quarter, 'Q', 6); # Qtqn
 
 # for bar 15
 my $thn = dura_size($d->triplet_half);
-Music::Duration::add_duration(Tthn => $thn / 2);       # Tthn
-Music::Duration::add_duration(Uthn => $thn / 7);       # Uthn
+Music::Duration::add_duration(Tthn => $thn / 2.5);       # Tthn
+Music::Duration::add_duration(Uthn => $thn / 7.5);       # Uthn
 my $half_thn = dura_size('Tthn');
-Music::Duration::add_duration(Vthn => $half_thn / 5);  # Vthn
-Music::Duration::add_duration(Xthn => $half_thn / 4);  # Xthn
+Music::Duration::add_duration(Vthn => $half_thn / 5.5);  # Vthn
+Music::Duration::add_duration(Xthn => $half_thn / 4.5);  # Xthn
 my $half_7thn = dura_size('Uthn');
-Music::Duration::add_duration(Wthn => $half_7thn / 2); # Wthn
+Music::Duration::add_duration(Wthn => $half_7thn / 2.5); # Wthn
 
 $d->sync(
     \&beat,
@@ -344,6 +344,7 @@ sub beat {
     $d->note('Vthn', $d->closed_hh);
     $d->note('Vthn', $d->kick);
     $d->note('Vthn', $d->kick);
+warn __PACKAGE__,' L',__LINE__,' C: ',$d->counter,"\n";
 
     # 16 (1)
     $d->note($d->quarter, $d->snare);
