@@ -14,7 +14,8 @@ subtest basic => sub {
     is $d->divisions, 4, 'divisions computed';
 
     is $d->counter, 0, 'initial counter';
-    is $d->counter( $d->counter + 1 ), 1, 'incremented counter';
+    $d->counter( $d->counter + 1 );
+    is $d->counter, 1, 'incremented counter';
 
     my @score = $d->score->Score;
     is $score[3][0], 'time_signature', 'time signature added';
