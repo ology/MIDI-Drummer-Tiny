@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Fix duration size computation for beat counting.
+    - Improve test.
 
 0.4008 2022-11-20 10:34:59
     - Made beat counting automatic.
