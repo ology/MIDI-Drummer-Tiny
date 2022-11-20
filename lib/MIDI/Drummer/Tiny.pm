@@ -356,7 +356,9 @@ It also keeps track of the beat count with the C<counter> attribute.
 
 sub note {
     my ($self, @spec) = @_;
-    $self->counter( $self->counter + dura_size($spec[0]) );
+    my $size = $spec[0] =~ /^d(\d+)$/ ? $1 / TICKS : dura_size($spec[0]);
+    #warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0] => $size\n";
+    $self->counter( $self->counter + $size );
     return $self->score->n(@spec);
 }
 
@@ -395,7 +397,9 @@ It also keeps track of the beat count with the C<counter> attribute.
 
 sub rest {
     my ($self, @spec) = @_;
-    $self->counter( $self->counter + dura_size($spec[0]) );
+    my $size = $spec[0] =~ /^d(\d+)$/ ? $1 / TICKS : dura_size($spec[0]);
+    #warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0] => $size\n";
+    $self->counter( $self->counter + $size );
     return $self->score->r(@spec);
 }
 
