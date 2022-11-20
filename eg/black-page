@@ -579,4 +579,11 @@ sub beat {
     $d->note('Eqn', $d->snare);
     $d->note('Eqn', $d->snare);
     $d->note('Eqn', $d->kick);
+
+    # 28
+    $d->note($d->triplet_half, $d->closed_hh);
+    $d->note($d->triplet_half, $d->kick);
+    $d->note($d->triplet_half, $d->kick);
+
+    $d->roll($d->half, $d->thirtysecond);
 }
