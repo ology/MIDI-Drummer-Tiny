@@ -630,4 +630,9 @@ sub beat {
     $d->note('Eqn', $d->kick);
     $d->note('Eqn', $d->kick);
     $d->note('Eqn', $d->snare);
+
+    # 30
+    $d->note($d->quarter, $d->kick, $d->snare, $d->closed_hh);
+
+    $d->rest($d->dotted_half);
 }
