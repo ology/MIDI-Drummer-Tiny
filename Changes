@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Made beat counting automatic.
 
 0.4007 2022-11-13 07:54:23
     - Allow flam() to rest for the grace-note.
