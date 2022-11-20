@@ -232,7 +232,6 @@ sub beat {
     $d->note('Cqn', $d->low_bongo);
     $d->note('Cqn', $d->hi_floor_tom);
     $d->roll('Cqn', $d->thirtysecond, $d->low_bongo);
-warn __PACKAGE__,' L',__LINE__,' C: ',$d->counter,"\n";
 
     # 11
     $d->flam('Cqn', $d->hi_bongo, $d->hi_bongo, ACCENT);
