@@ -44,8 +44,8 @@ my $half_7thn = dura_size('Uthn');
 Music::Duration::add_duration(Wthn => $half_7thn / 2); # Wthn
 
 $d->sync(
-#    \&pulse, # not in the original but handy for debugging
     \&beat,
+#    \&pulse, # not in the original but handy for debugging
 );
 
 $d->write;
