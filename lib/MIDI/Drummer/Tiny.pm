@@ -51,7 +51,7 @@ use constant TICKS => 96; # Per quarter note
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
- say 'Count: ', $d->counter;
+ print 'Count: ', $d->counter, "\n";
 
  # Same but with beat-strings:
  $d->sync_patterns(
