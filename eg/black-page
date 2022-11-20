@@ -404,7 +404,7 @@ sub beat {
     $d->note($d->thirtysecond, $d->snare, $d->closed_hh);
 
     # 15
-    $d->roll($d->triplet_whole, $d->thirtysecond, $d->hi_tom);
+    $d->roll($d->triplet_half, $d->thirtysecond, $d->hi_tom);
 
     $d->flam('Tthn', $d->snare, $d->snare, ACCENT);
     $d->note('Tthn', $d->hi_floor_tom);
