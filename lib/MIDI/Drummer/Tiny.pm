@@ -786,7 +786,7 @@ For example:
   patterns => [qw( 0101 0101 0110 0110 )],
 
 This method accumulates the number of beats in the object's B<counter>
-attribute, if the B<count> option is set.
+attribute.
 
 The B<vary> option is a hashref of coderefs, keyed by single character
 tokens, like the digits 0-9.  Each coderef duration should add up to
@@ -801,7 +801,6 @@ Defaults:
     duration: quarter-note
     beats: given by constructor
     repeat: 1
-    count: 0 ( keep track of the beat count)
     negate: 0 (flip the bit values)
     vary:
         0 => sub { $self->rest( $args{duration} ) },
@@ -816,7 +815,6 @@ sub pattern {
     $args{patterns}   ||= [];
     $args{beats}      ||= $self->beats;
     $args{negate}     ||= 0;
-    $args{count}      ||= 0;
     $args{repeat}     ||= 1;
 
     return unless @{ $args{patterns} };
@@ -848,7 +846,6 @@ sub pattern {
         for ( 1 .. $args{repeat} ) {
             for my $bit ( split //, $pattern ) {
                 $args{vary}{$bit}->($self);
-                $self->counter( $self->counter + $size ) if $args{count};
             }
         }
     }
