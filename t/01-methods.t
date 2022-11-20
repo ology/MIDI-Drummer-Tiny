@@ -24,6 +24,7 @@ subtest basic => sub {
     $d->note($d->quarter, $d->closed_hh);
     @score = $d->score->Score;
     is $score[4][0], 'note', 'note added';
+    is $d->counter, 2, 'incremented counter';
 
     $d->set_time_sig('5/8');
 
@@ -49,7 +50,7 @@ subtest basic => sub {
     $expect = 99;
     $d->set_bpm($expect);
     is $d->bpm, $expect, 'set_bpm';
-    };
+};
 
 subtest pattern => sub {
     my $d = new_ok 'MIDI::Drummer::Tiny';
