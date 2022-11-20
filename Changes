@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Remove the double-counting from the ->pattern method.
+
+0.4009 2022-11-20 12:37:47
     - Fix duration size computation for beat counting.
     - Improve test.
 
