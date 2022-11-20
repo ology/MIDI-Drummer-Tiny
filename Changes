@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4008 2022-11-20 10:34:59
     - Made beat counting automatic.
     - Improve documentation.
 
