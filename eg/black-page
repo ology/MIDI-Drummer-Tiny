@@ -378,6 +378,7 @@ sub beat {
     $d->note('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
     $d->note('Ahn', $d->hi_floor_tom);
     $d->note('Ahn', $d->kick, $d->closed_hh);
+    $d->rest('d2'); # differential
 
     # 18 (3)
     $d->note($d->dotted_eighth, $d->kick);
