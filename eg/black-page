@@ -30,23 +30,21 @@ my $ten = dura_size($d->triplet_eighth);
 Music::Duration::add_duration(Gten => $ten * 2); # Gten
 
 # for bar 5
-Music::Duration::tuplet($d->triplet_half, 'P', 5); # Pthn
-Music::Duration::tuplet($d->triplet_half, 'Q', 6); # Qthn
-Music::Duration::tuplet($d->triplet_half, 'R', 7); # Rthn ?
+Music::Duration::tuplet($d->triplet_quarter, 'P', 5); # Ptqn
+Music::Duration::tuplet($d->triplet_quarter, 'Q', 6); # Qtqn
 
 # for bar 15
-Music::Duration::tuplet($d->triplet_whole, 'S', 7);   # Stwn
-my $twn = dura_size($d->triplet_whole);
-Music::Duration::add_duration(Ttwn => $twn / 2);      # Ttwn
-Music::Duration::add_duration(Utwn => $twn / 7);      # Utwn
-my $half_twn = dura_size('Ttwn');
-Music::Duration::add_duration(Vtwn => $half_twn / 5); # Vtwn
-Music::Duration::add_duration(Xtwn => $half_twn / 4); # Xtwn
-my $half_7twn = dura_size('Utwn');
-Music::Duration::add_duration(Wtwn => $half_7twn / 2); # Wtwn
+my $thn = dura_size($d->triplet_half);
+Music::Duration::add_duration(Tthn => $thn / 2);      # Tthn
+Music::Duration::add_duration(Uthn => $thn / 7);      # Uthn
+my $half_thn = dura_size('Tthn');
+Music::Duration::add_duration(Vthn => $half_thn / 5); # Vthn
+Music::Duration::add_duration(Xthn => $half_thn / 4); # Xthn
+my $half_7thn = dura_size('Uthn');
+Music::Duration::add_duration(Wthn => $half_7thn / 2); # Wthn
 
 $d->sync(
-    \&pulse, # not in the original but handy for debugging
+#    \&pulse, # not in the original but handy for debugging
     \&beat,
 );
 
@@ -59,106 +57,185 @@ sub pulse {
 }
 
 sub beat {
+    my $count = 0;
+
     # 1
     $d->note($d->quarter, $d->snare);
+    $count += dura_size($d->quarter);
 
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->eighth, $d->snare);
+    $count += dura_size($d->eighth);
 
     $d->rest($d->sixteenth);
+    $count += dura_size($d->sixteenth);
     $d->flam($d->sixteenth);
+    $count += dura_size($d->sixteenth);
     $d->note($d->eighth, $d->kick);
+    $count += dura_size($d->eighth);
 
     $d->rest($d->sixteenth);
+    $count += dura_size($d->sixteenth);
     $d->roll($d->eighth, $d->thirtysecond);
+    $count += dura_size($d->eighth);
     $d->note($d->sixteenth, $d->kick);
+    $count += dura_size($d->sixteenth);
 
     # 2
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->triplet_sixteenth, $d->snare);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->eighth, $d->kick);
+    $count += dura_size($d->eighth);
 
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->rest($d->triplet_sixteenth);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->roll($d->eighth, $d->thirtysecond);
+    $count += dura_size($d->eighth);
 
     $d->roll('Ahn', $d->thirtysecond);
+    $count += dura_size('Ahn');
     $d->flam('Ahn', $d->hi_tom, $d->hi_tom, ACCENT);
+    $count += dura_size('Ahn');
     $d->note('Ahn', $d->hi_mid_tom, $d->hi_mid_tom, ACCENT);
+    $count += dura_size('Ahn');
     $d->note('Ahn', $d->hi_floor_tom);
+    $count += dura_size('Ahn');
     $d->note('Ahn', $d->kick, $d->closed_hh);
+    $count += dura_size('Ahn');
 
     # 3
     $d->note($d->dotted_eighth, $d->kick);
+    $count += dura_size($d->dotted_eighth);
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
 
     $d->crescendo_roll([100, 50], $d->dotted_quarter, $d->thirtysecond);
+    $count += dura_size($d->dotted_quarter);
 
     $d->crescendo_roll([50, 100], $d->dotted_quarter, $d->thirtysecond);
+    $count += dura_size($d->dotted_quarter);
 
     # 4
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->snare);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
+    $count += dura_size($d->thirtysecond);
     $d->note($d->thirtysecond, $d->kick);
-
+    $count += dura_size($d->thirtysecond);
 
     $d->note($d->triplet_sixteenth, $d->snare);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note($d->triplet_sixteenth, $d->kick);
+    $count += dura_size($d->triplet_sixteenth);
     $d->note('Ben', $d->kick);
+    $count += dura_size('Ben');
     $d->note('Ben', $d->cowbell);
+    $count += dura_size('Ben');
     $d->note('Ben', $d->cowbell);
+    $count += dura_size('Ben');
     $d->note('Ben', $d->cowbell);
+    $count += dura_size('Ben');
     $d->note('Ben', $d->cowbell);
+    $count += dura_size('Ben');
 
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
 
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->snare, $d->closed_hh);
+    $count += dura_size('Dqn');
     $d->note('Dqn', $d->kick);
+    $count += dura_size('Dqn');
 
     # 5
     $d->rest($d->half);
+    $count += dura_size($d->half);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->low_bongo);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->low_bongo);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->hi_bongo);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->hi_bongo);
+    $count += dura_size('Ptqn');
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->snare);
+    $d->note('Ptqn', $d->hi_bongo);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->kick);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->kick);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->snare);
+    $count += dura_size('Ptqn');
+    $d->note('Ptqn', $d->snare);
+    $count += dura_size('Ptqn');
 
-    $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
-    $d->note('Qthn', $d->snare, 'v' . $d->volume);
+    $d->note('Qtqn', $d->kick);
+    $count += dura_size('Qtqn');
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 40));
+    $count += dura_size('Qtqn');
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 30));
+    $count += dura_size('Qtqn');
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 20));
+    $count += dura_size('Qtqn');
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 10));
+    $count += dura_size('Qtqn');
+    $d->note('Qtqn', $d->snare, 'v' . $d->volume);
+    $count += dura_size('Qtqn');
+warn __PACKAGE__,' L',__LINE__,' ',,"C: $count\n";
 
     # 6
     $d->note($d->quarter, $d->snare);
@@ -189,24 +266,24 @@ sub beat {
 
     $d->rest($d->quarter);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->snare);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->snare);
+    $d->note('Ptqn', $d->snare);
 
-    $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
-    $d->note('Qthn', $d->snare, 'v' . $d->volume);
+    $d->note('Qtqn', $d->kick);
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 40));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 30));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 20));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 10));
+    $d->note('Qtqn', $d->snare, 'v' . $d->volume);
 
     # 9
     $d->note($d->whole, $d->kick, $d->ride1);
@@ -329,23 +406,23 @@ sub beat {
     # 15
     $d->roll($d->triplet_whole, $d->thirtysecond, $d->hi_tom);
 
-    $d->flam('Ttwn', $d->snare, $d->snare, ACCENT);
-    $d->note('Ttwn', $d->hi_floor_tom);
-    $d->note('Utwn', $d->hi_floor_tom);
-    $d->note('Utwn', $d->snare);
-    $d->note('Wtwn', $d->hi_floor_tom);
-    $d->note('Wtwn', $d->snare);
-    $d->note('Wtwn', $d->snare);
+    $d->flam('Tthn', $d->snare, $d->snare, ACCENT);
+    $d->note('Tthn', $d->hi_floor_tom);
+    $d->note('Uthn', $d->hi_floor_tom);
+    $d->note('Uthn', $d->snare);
+    $d->note('Wthn', $d->hi_floor_tom);
+    $d->note('Wthn', $d->snare);
+    $d->note('Wthn', $d->snare);
 
-    $d->note('Xtwn', $d->closed_hh);
-    $d->note('Xtwn', $d->hi_mid_tom);
-    $d->note('Xtwn', $d->closed_hh);
-    $d->note('Xtwn', $d->kick);
-    $d->note('Vtwn', $d->kick);
-    $d->note('Vtwn', $d->kick);
-    $d->note('Vtwn', $d->closed_hh);
-    $d->note('Vtwn', $d->kick);
-    $d->note('Vtwn', $d->kick);
+    $d->note('Xthn', $d->closed_hh);
+    $d->note('Xthn', $d->hi_mid_tom);
+    $d->note('Xthn', $d->closed_hh);
+    $d->note('Xthn', $d->kick);
+    $d->note('Vthn', $d->kick);
+    $d->note('Vthn', $d->kick);
+    $d->note('Vthn', $d->closed_hh);
+    $d->note('Vthn', $d->kick);
+    $d->note('Vthn', $d->kick);
 
     # 16 (1)
     $d->note($d->quarter, $d->snare);
@@ -429,24 +506,24 @@ sub beat {
     # 20 (5)
     $d->rest($d->half);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->snare);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->snare);
+    $d->note('Ptqn', $d->snare);
 
-    $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
-    $d->note('Qthn', $d->snare, 'v' . $d->volume);
+    $d->note('Qtqn', $d->kick);
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 40));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 30));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 20));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 10));
+    $d->note('Qtqn', $d->snare, 'v' . $d->volume);
 
     # 21 (6)
     $d->note($d->quarter, $d->snare);
@@ -477,24 +554,24 @@ sub beat {
 
     $d->rest($d->quarter);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->low_bongo);
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->low_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->hi_bongo);
 
-    $d->note('Pthn', $d->hi_bongo);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->snare);
+    $d->note('Ptqn', $d->hi_bongo);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->snare);
+    $d->note('Ptqn', $d->snare);
 
-    $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 40));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 30));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 20));
-    $d->note('Qthn', $d->snare, 'v' . ($d->volume - 10));
-    $d->note('Qthn', $d->snare, 'v' . $d->volume);
+    $d->note('Qtqn', $d->kick);
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 40));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 30));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 20));
+    $d->note('Qtqn', $d->snare, 'v' . ($d->volume - 10));
+    $d->note('Qtqn', $d->snare, 'v' . $d->volume);
 
     # 24 (9)
     $d->note($d->whole, $d->kick, $d->ride1);
@@ -588,24 +665,24 @@ sub beat {
     $d->crescendo_roll([50, 100], $d->half, $d->thirtysecond);
 
     # 29
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->snare);
-    $d->note('Pthn', $d->snare);
+    $d->note('Ptqn', $d->snare);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->snare);
+    $d->note('Ptqn', $d->snare);
 
-    $d->note('Pthn', $d->hi_tom);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->kick);
-    $d->note('Pthn', $d->hi_floor_tom);
-    $d->note('Pthn', $d->hi_floor_tom);
+    $d->note('Ptqn', $d->hi_tom);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->kick);
+    $d->note('Ptqn', $d->hi_floor_tom);
+    $d->note('Ptqn', $d->hi_floor_tom);
 
-    $d->note('Qthn', $d->kick);
-    $d->note('Qthn', $d->low_bongo);
-    $d->note('Qthn', $d->low_bongo);
-    $d->note('Qthn', $d->hi_bongo);
-    $d->note('Qthn', $d->hi_bongo);
-    $d->note('Qthn', $d->low_bongo);
+    $d->note('Qtqn', $d->kick);
+    $d->note('Qtqn', $d->low_bongo);
+    $d->note('Qtqn', $d->low_bongo);
+    $d->note('Qtqn', $d->hi_bongo);
+    $d->note('Qtqn', $d->hi_bongo);
+    $d->note('Qtqn', $d->low_bongo);
 
     $d->note('Eqn', $d->hi_bongo);
     $d->note('Eqn', $d->low_bongo);
