@@ -586,4 +586,48 @@ sub beat {
     $d->note($d->triplet_half, $d->kick);
 
     $d->crescendo_roll([50, 100], $d->half, $d->thirtysecond);
+
+    # 29
+    $d->note('Pthn', $d->snare);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->snare);
+    $d->note('Pthn', $d->snare);
+
+    $d->note('Pthn', $d->hi_tom);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->kick);
+    $d->note('Pthn', $d->hi_floor_tom);
+    $d->note('Pthn', $d->hi_floor_tom);
+
+    $d->note('Qthn', $d->kick);
+    $d->note('Qthn', $d->low_bongo);
+    $d->note('Qthn', $d->low_bongo);
+    $d->note('Qthn', $d->hi_bongo);
+    $d->note('Qthn', $d->hi_bongo);
+    $d->note('Qthn', $d->low_bongo);
+
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->low_bongo);
+    $d->note('Eqn', $d->low_bongo);
+    $d->note('Eqn', $d->hi_bongo);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->low_bongo);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->low_tom);
+    $d->note('Eqn', $d->hi_floor_tom);
+
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->snare);
+    $d->note('Eqn', $d->hi_tom);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->low_tom);
+    $d->note('Eqn', $d->hi_floor_tom);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->kick);
+    $d->note('Eqn', $d->snare);
 }
