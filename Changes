@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    Improve the eg/black-page program.
 
 0.4010 2022-11-20 12:42:12
     - Remove the double-counting from the ->pattern method.
