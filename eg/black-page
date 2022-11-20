@@ -585,5 +585,5 @@ sub beat {
     $d->note($d->triplet_half, $d->kick);
     $d->note($d->triplet_half, $d->kick);
 
-    $d->roll($d->half, $d->thirtysecond);
+    $d->crescendo_roll([50, 100], $d->half, $d->thirtysecond);
 }
