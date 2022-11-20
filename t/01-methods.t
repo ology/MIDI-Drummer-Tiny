@@ -13,6 +13,9 @@ subtest basic => sub {
     is $d->beats, 4, 'beats computed';
     is $d->divisions, 4, 'divisions computed';
 
+    is $d->counter, 0, 'initial counter';
+    is $d->counter( $d->counter + 1 ), 1, 'incremented counter';
+
     my @score = $d->score->Score;
     is $score[3][0], 'time_signature', 'time signature added';
     is $score[3][2], $d->beats, '4 beats';
@@ -29,9 +32,6 @@ subtest basic => sub {
     @score = $d->score->Score;
     is $score[5][0], 'time_signature', 'time signature changed';
     is $score[5][2], $d->beats, '5 beats';
-
-    is $d->counter, 0, 'initial counter';
-    is $d->counter( $d->counter + 1 ), 1, 'incremented counter';
 
     $d = new_ok 'MIDI::Drummer::Tiny' => [
         beats => 8,
