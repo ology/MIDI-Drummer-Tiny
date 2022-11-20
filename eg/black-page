@@ -398,7 +398,6 @@ sub beat {
     $d->note($d->thirtysecond, $d->kick);
     $d->note($d->thirtysecond, $d->kick);
 
-
     $d->note($d->triplet_sixteenth, $d->snare);
     $d->note($d->triplet_sixteenth, $d->kick);
     $d->note($d->triplet_sixteenth, $d->kick);
