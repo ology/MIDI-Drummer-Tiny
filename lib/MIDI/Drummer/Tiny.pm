@@ -51,6 +51,8 @@ use constant TICKS => 96; # Per quarter note
  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
+ say 'Count: ', $d->counter;
+
  # Same but with beat-strings:
  $d->sync_patterns(
     $d->open_hh => [ ('1111') x $d->bars ],
@@ -165,6 +167,9 @@ Default: C<4>
 
 Beat counter of durations, where a quarter-note is equal to 1. An
 eighth-note is 0.5, etc.
+
+This is automatically accumulated each time a C<rest> or C<note> is
+added to the score.
 
 =cut
 
@@ -345,9 +350,15 @@ Add notes to the score.
 
 This method takes the same arguments as L<MIDI::Simple/"Parameters for n/r/noop">.
 
+It also keeps track of the beat count with the C<counter> attribute.
+
 =cut
 
-sub note { return shift->score->n(@_) }
+sub note {
+    my ($self, @spec) = @_;
+    $self->counter( $self->counter + dura_size($spec[0]) );
+    return $self->score->n(@spec);
+}
 
 =head2 accent_note
 
@@ -378,9 +389,15 @@ Add a rest to the score.
 
 This method takes the same arguments as L<MIDI::Simple/"Parameters for n/r/noop">.
 
+It also keeps track of the beat count with the C<counter> attribute.
+
 =cut
 
-sub rest { return shift->score->r(@_) }
+sub rest {
+    my ($self, @spec) = @_;
+    $self->counter( $self->counter + dura_size($spec[0]) );
+    return $self->score->r(@spec);
+}
 
 =head2 count_in
 
