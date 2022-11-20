@@ -344,7 +344,6 @@ sub beat {
     $d->note('Vthn', $d->closed_hh);
     $d->note('Vthn', $d->kick);
     $d->note('Vthn', $d->kick);
-warn __PACKAGE__,' L',__LINE__,' C: ',$d->counter,"\n";
 
     # 16 (1)
     $d->note($d->quarter, $d->snare);
