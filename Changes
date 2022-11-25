@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Allow the patch to be set for the count_in() method.
+    - Improve documentation.
 
 0.4011 2022-11-20 15:26:04
     - Improve the eg/black-page program.
