@@ -407,17 +407,31 @@ sub rest {
 
  $d->count_in;
  $d->count_in($bars);
+ $d->count_in({ bars => $bars, patch => $patch });
 
-Play the closed hihat for the number of beats times the given bars.
-If no bars are given, the default times the number of beats is used.
+Play a patch for the number of beats times the number of bars.
+
+If no bars are given, the object setting is used.  If no patch is
+given, the closed hihat is used.
 
 =cut
 
 sub count_in {
-    my $self = shift;
-    my $bars = shift || $self->bars;
+    my ($self, $args) = @_;
+
+    my $bars  = $self->bars;
+    my $patch = $self->closed_hh;
+
+    if ($args && ref $args) {
+        $bars  = $args->{bars}  if defined $args->{bars};
+        $patch = $args->{patch} if defined $args->{patch};
+    }
+    else {
+        $bars = $args; # given a simple integer
+    }
+
     for my $i ( 1 .. $self->beats * $bars ) {
-        $self->note( $self->quarter, $self->closed_hh );
+        $self->note( $self->quarter, $patch );
     }
 }
 

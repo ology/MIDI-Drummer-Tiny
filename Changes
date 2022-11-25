@@ -1,9 +1,10 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Allow the patch to be set for the count_in() method.
 
 0.4011 2022-11-20 15:26:04
-    Improve the eg/black-page program.
+    - Improve the eg/black-page program.
 
 0.4010 2022-11-20 12:42:12
     - Remove the double-counting from the ->pattern method.
