@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4012 2022-11-25 14:00:33
     - Allow the patch to be set for the count_in() method.
     - Improve documentation.
 
