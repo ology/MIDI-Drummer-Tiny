@@ -14,10 +14,10 @@ my $d = MIDI::Drummer::Tiny->new(
 $d->count_in(1);
 
 #$d->sync_patterns(
-#    $d->closed_hh => [ ('11111111') x $d->bars ],
-#    $d->snare     => [ ('0101') x $d->bars ],
-#    $d->kick      => [ ('1010') x $d->bars ],
-#);
+#    $d->closed_hh => [ '11111111' ],
+#    $d->snare     => [ '0101' ],
+#    $d->kick      => [ '1010' ],
+#) for 1 .. $d->bars;
 
 # For finer-grain control:
 $d->sync(
