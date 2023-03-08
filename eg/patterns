@@ -21,7 +21,7 @@ $d->count_in(1);
 
 # For finer-grain control:
 $d->sync(
-   sub { $d->pattern( instrument => $d->closed_hh, patterns => [ ('11111111') ] ) },
+   sub { $d->pattern( instrument => $d->closed_hh, patterns => [ '11111111' ] ) },
    sub { $d->pattern( instrument => $d->snare,     patterns => [ $d->euclidean(5, 16) ] ) },
    sub { $d->pattern( instrument => $d->kick,      patterns => [ $d->euclidean(7, 16) ] ) },
 ) for 1 .. $d->bars;
@@ -33,7 +33,7 @@ $d->add_fill(
           duration         => 16,   # sixteenth note fill
           $self->closed_hh => '00000000',
           $self->snare     => '11111111',
-          $self->kick      => '00000000',
+          $self->kick      => '10000000',
         };
     },
     $d->closed_hh => [ '11111111' ],  # example phrase
