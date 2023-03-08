@@ -1118,6 +1118,7 @@ __END__
 =head1 SEE ALSO
 
 The F<t/*> test file and the F<eg/*> programs in this distribution.
+
 Also F<eg/drum-fills-advanced> in the L<Music::Duration::Partition>
 distribution.
 
