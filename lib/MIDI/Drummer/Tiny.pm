@@ -61,6 +61,9 @@ use constant TICKS => 96; # Per quarter note
     $d->kick    => [ ('1010') x $d->bars ],
  );
 
+ my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
+ $d->pattern( instrument => $d->kick, patterns => $patterns );
+
  $d->write;
 
 =head1 DESCRIPTION
