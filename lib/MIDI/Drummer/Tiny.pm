@@ -10,7 +10,6 @@ use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
 use Moo;
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-CreatingRhythms);
 use Music::CreatingRhythms ();
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
