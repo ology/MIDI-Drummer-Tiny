@@ -21,10 +21,10 @@ $d->count_in(1);
 
 # For finer-grain control:
 $d->sync(
-   sub { $d->pattern( instrument => $d->closed_hh, patterns => [ ('11111111') x $d->bars ] ) },
-   sub { $d->pattern( instrument => $d->snare,     patterns => [ ('0101') x $d->bars ] ) },
-   sub { $d->pattern( instrument => $d->kick,      patterns => [ ('1010') x $d->bars ] ) },
-);
+   sub { $d->pattern( instrument => $d->closed_hh, patterns => [ ('11111111') ] ) },
+   sub { $d->pattern( instrument => $d->snare,     patterns => [ $d->euclidean(5, 16) ] ) },
+   sub { $d->pattern( instrument => $d->kick,      patterns => [ $d->euclidean(7, 16) ] ) },
+) for 1 .. $d->bars;
 
 $d->add_fill(
     sub {
