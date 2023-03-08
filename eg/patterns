@@ -33,7 +33,7 @@ $d->add_fill(
           duration         => 16,   # sixteenth note fill
           $self->closed_hh => '00000000',
           $self->snare     => '11111111',
-          $self->kick      => '10000000',
+          $self->kick      => '10001000',
         };
     },
     $d->closed_hh => [ '11111111' ],  # example phrase
