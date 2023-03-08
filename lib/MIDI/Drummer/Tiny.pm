@@ -56,10 +56,10 @@ use constant TICKS => 96; # Per quarter note
 
  # Same but with beat-strings:
  $d->sync_patterns(
-    $d->open_hh => [ ('1111') x $d->bars ],
-    $d->snare   => [ ('0101') x $d->bars ],
-    $d->kick    => [ ('1010') x $d->bars ],
- );
+    $d->open_hh => [ '1111' ],
+    $d->snare   => [ '0101' ],
+    $d->kick    => [ '1010' ],
+ ) for 1 .. $d->bars ;
 
  my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
  $d->pattern( instrument => $d->kick, patterns => $patterns );
@@ -873,11 +873,11 @@ sub pattern {
 
   $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->sync_patterns(
-      $d->open_hh => [ ('11111111') x $d->bars ],
-      $d->snare   => [ ('0101') x $d->bars ],
-      $d->kick    => [ ('1010') x $d->bars ],
+      $d->open_hh => [ '11111111') ],
+      $d->snare   => [ '0101' ],
+      $d->kick    => [ '1010' ],
       duration    => $d->eighth, # render all notes at this level of granularity
-  );
+  ) for 1 .. $d->bars;
 
 Execute the C<pattern> method for multiple voices.
 
