@@ -1122,11 +1122,17 @@ The F<t/*> test file and the F<eg/*> programs in this distribution.
 Also F<eg/drum-fills-advanced> in the L<Music::Duration::Partition>
 distribution.
 
+L<Data::Dumper::Compact>
+
+L<List::Util>
+
 L<Math::Bezier>
 
 L<MIDI::Util>
 
 L<Moo>
+
+L<Music::CreatingRhythms>
 
 L<Music::Duration>
 
