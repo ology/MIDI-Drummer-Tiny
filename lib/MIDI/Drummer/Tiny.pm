@@ -10,6 +10,8 @@ use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
 use Moo;
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-CreatingRhythms);
+use Music::CreatingRhythms ();
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
 use namespace::clean;
@@ -1004,6 +1006,22 @@ sub add_fill {
     );
 
     return \%replaced;
+}
+
+=head2 euclidean
+
+  $pattern = $d->euclidean($p, $n);
+
+Return the Euclidean bitstring pattern for B<p> onsets over B<n> beats.
+
+=cut
+
+sub euclidean {
+    my ($self, $p, $n) = @_;
+    return '' unless $n;
+    my $mcr = Music::CreatingRhythms->new;
+    my $sequence = $mcr->euclid($p, $n);
+    return join '', @$sequence;
 }
 
 =head2 set_time_sig
