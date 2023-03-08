@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve examples in documentation.
 
 0.4100 2023-03-08 12:26:32
     - Add the euclidean() method.
