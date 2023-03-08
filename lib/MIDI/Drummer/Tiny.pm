@@ -57,7 +57,9 @@ use constant TICKS => 96; # Per quarter note
     $d->open_hh => [ '1111' ],
     $d->snare   => [ '0101' ],
     $d->kick    => [ '1010' ],
- ) for 1 .. $d->bars ;
+ ) for 1 .. $d->bars - 1;
+
+ $d->add_fill('...');
 
  my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
  $d->pattern( instrument => $d->kick, patterns => $patterns );
