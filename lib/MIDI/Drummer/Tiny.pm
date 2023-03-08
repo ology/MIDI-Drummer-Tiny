@@ -28,7 +28,7 @@ use constant TICKS => 96; # Per quarter note
     signature => '5/4',
     bars      => 8,
     reverb    => 0,
-    kit       => 25, # TR-808 if using GM Level 2
+    #kit   => 25, # TR-808 if using GM Level 2
     #kick  => 36, # Override default patch
     #snare => 40, # "
  );
