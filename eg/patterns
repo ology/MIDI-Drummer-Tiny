@@ -37,8 +37,8 @@ $d->add_fill(
         };
     },
     $d->closed_hh => [ '1111' ],  # example phrase
-    $d->snare     => [ '0101' ],      # "
-    $d->kick      => [ '1010' ],      # "
+    $d->snare     => [ '0101' ],  # "
+    $d->kick      => [ '1010' ],  # "
 );
 
 $d->write;
