@@ -62,7 +62,6 @@ use constant TICKS => 96; # Per quarter note
     $d->kick    => [ '1010' ],
  ) for 1 .. $d->bars;
 
- # Add a fill!
  $d->add_fill('...');
 
  print 'Count: ', $d->counter, "\n";
