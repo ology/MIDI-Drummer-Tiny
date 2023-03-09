@@ -930,8 +930,6 @@ beat-string phrase with a fill.  The fill is given as the first
 argument and should be a coderef that returns a hashref.  The default
 is a three-note, eighth-note snare fill.
 
-* This method is not right at all and is still in development.
-
 =cut
 
 sub add_fill {
