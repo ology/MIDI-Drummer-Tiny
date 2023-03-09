@@ -859,9 +859,9 @@ sub pattern {
     set_chan_patch( $self->score, $self->channel, $args{instrument} );
 
     for my $pattern (@{ $args{patterns} }) {
-        next if $pattern =~ /^0+$/;
-
         $pattern =~ tr/01/10/ if $args{negate};
+
+        next if $pattern =~ /^0+$/;
 
         for ( 1 .. $args{repeat} ) {
             for my $bit ( split //, $pattern ) {
