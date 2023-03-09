@@ -856,8 +856,6 @@ sub pattern {
         1 => sub { $self->note( $args{duration}, $args{instrument} ) },
     };
 
-    set_chan_patch( $self->score, $self->channel, $args{instrument} );
-
     for my $pattern (@{ $args{patterns} }) {
         $pattern =~ tr/01/10/ if $args{negate};
 
@@ -865,7 +863,7 @@ sub pattern {
 
         for ( 1 .. $args{repeat} ) {
             for my $bit ( split //, $pattern ) {
-                $args{vary}{$bit}->($self);
+                $args{vary}{$bit}->($self, %args);
             }
         }
     }
