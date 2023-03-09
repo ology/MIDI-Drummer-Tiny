@@ -920,9 +920,9 @@ sub sync_patterns {
             $self->kick    => '00000000',
           };
       },
-      $d->open_hh => [ ('11111111') x $d->bars ],  # example phrase
-      $d->snare   => [ ('0101') x $d->bars ],      # "
-      $d->kick    => [ ('1010') x $d->bars ],      # "
+      $d->open_hh => [ '11111111' ],  # example phrase
+      $d->snare   => [ '0101' ],      # "
+      $d->kick    => [ '1010' ],      # "
   );
 
 Add a fill to the beat pattern.  That is, replace the end of the given
