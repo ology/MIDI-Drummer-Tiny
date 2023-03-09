@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4102 2023-03-08 16:34:23
     - Improve the eg/patterns program.
     - Improve examples in documentation.
 
