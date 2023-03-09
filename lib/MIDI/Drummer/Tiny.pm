@@ -60,9 +60,9 @@ use constant TICKS => 96; # Per quarter note
     $d->open_hh => [ '1111' ],
     $d->snare   => [ '0101' ],
     $d->kick    => [ '1010' ],
- ) for 1 .. $d->bars - 1;
+ ) for 1 .. $d->bars;
 
- # Add a fill to the end of the phrase!
+ # Add a fill!
  $d->add_fill('...');
 
  print 'Count: ', $d->counter, "\n";
