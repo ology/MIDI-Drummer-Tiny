@@ -4,12 +4,12 @@ package MIDI::Drummer::Tiny;
 
 our $VERSION = '0.4201';
 
+use Moo;
 use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_time_signature);
-use Moo;
 use Music::CreatingRhythms ();
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
