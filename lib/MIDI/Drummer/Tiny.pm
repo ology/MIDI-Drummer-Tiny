@@ -19,9 +19,9 @@ use constant TICKS => 96; # Per quarter note
 
 =head1 SYNOPSIS
 
- use MIDI::Drummer::Tiny;
+  use MIDI::Drummer::Tiny;
 
- my $d = MIDI::Drummer::Tiny->new(
+  my $d = MIDI::Drummer::Tiny->new(
     file      => 'drums.mid',
     bpm       => 100,
     volume    => 100,
@@ -31,46 +31,46 @@ use constant TICKS => 96; # Per quarter note
     #kit   => 25, # TR-808 if using GM Level 2
     #kick  => 36, # Override default patch
     #snare => 40, # "
- );
+  );
 
- $d->count_in(1);  # Closed hi-hat for 1 bar
+  $d->count_in(1);  # Closed hi-hat for 1 bar
 
- $d->metronome54;  # 5/4 time for the number of bars
+  $d->metronome54;  # 5/4 time for the number of bars
 
- $d->rest($d->whole);
+  $d->rest($d->whole);
 
- $d->set_time_sig('4/4');
+  $d->set_time_sig('4/4');
 
- $d->metronome44(3);  # 4/4 time for 3 bars
+  $d->metronome44(3);  # 4/4 time for 3 bars
 
- $d->flam($d->quarter, $d->snare);
- $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
- $d->note($d->sixteenth, $d->crash1);
- $d->accent_note(127, $d->sixteenth, $d->crash2);
+  $d->flam($d->quarter, $d->snare);
+  $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
+  $d->note($d->sixteenth, $d->crash1);
+  $d->accent_note(127, $d->sixteenth, $d->crash2);
 
- my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
- $d->pattern( instrument => $d->kick, patterns => $patterns );
+  my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
+  $d->pattern( instrument => $d->kick, patterns => $patterns );
 
- # Alternate kick and snare
- $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
+  # Alternate kick and snare
+  $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
 
- # Same but with beat-strings:
- $d->sync_patterns(
+  # Same but with beat-strings:
+  $d->sync_patterns(
     $d->open_hh => [ '1111' ],
     $d->snare   => [ '0101' ],
     $d->kick    => [ '1010' ],
- ) for 1 .. $d->bars;
+  ) for 1 .. $d->bars;
 
- $d->add_fill('...');
+  $d->add_fill('...');
 
- print 'Count: ', $d->counter, "\n";
+  print 'Count: ', $d->counter, "\n";
 
- $d->write;
+  $d->write;
 
- # As a convenience, and sometimes necessity:
- $d->set_bpm(200); # handy for tempo changes
- $d->set_channel;  # reset back to 9 if ever changed
+  # As a convenience, and sometimes necessity:
+  $d->set_bpm(200); # handy for tempo changes
+  $d->set_channel;  # reset back to 9 if ever changed
 
 =head1 DESCRIPTION
 
