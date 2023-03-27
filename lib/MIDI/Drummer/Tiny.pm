@@ -187,7 +187,7 @@ has verbose   => ( is => 'ro', default => sub { 0 } );
 has kit       => ( is => 'ro', default => sub { 0 } );
 has reverb    => ( is => 'ro', default => sub { 15 } );
 has channel   => ( is => 'rw', default => sub { 9 } );
-has volume    => ( is => 'ro', default => sub { 100 } );
+has volume    => ( is => 'rw', default => sub { 100 } );
 has bpm       => ( is => 'rw', default => sub { 120 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
 has bars      => ( is => 'ro', default => sub { 4 } );
@@ -1084,6 +1084,23 @@ sub set_channel {
     $channel //= 9;
     $self->channel($channel);
     $self->score->noop( 'c' . $channel );
+}
+
+=head2 set_volume
+
+  $d->set_volume($volume);
+
+Set the volume to the given argument (0-127).
+
+If not given a B<volume> arument, this method mutes (sets to C<0>).
+
+=cut
+
+sub set_volume {
+    my ($self, $volume) = @_;
+    $channel }}= 0;
+    $self->volume($volume);
+    $self->score->noop( 'V' . $volume );
 }
 
 =head2 sync
