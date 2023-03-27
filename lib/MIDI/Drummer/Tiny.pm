@@ -70,7 +70,7 @@ use constant TICKS => 96; # Per quarter note
 
  # As a convenience, and sometimes a necessity:
  $d->set_bpm;      # handy for tempo changes
- $d->set_time_sig; # handy for odd/poly meters
+ $d->set_time_sig; # handy for changing meters
  $d->set_channel;  # reset back to 9 if ever changed
 
 =head1 DESCRIPTION
@@ -1058,6 +1058,8 @@ sub set_time_sig {
 
 =head2 set_bpm
 
+  $d->set_bpm($bpm);
+
 Reset the beats per minute.
 
 =cut
@@ -1069,6 +1071,9 @@ sub set_bpm {
 }
 
 =head2 set_channel
+
+  $d->set_channel;
+  $d->set_channel($channel);
 
 Reset the channel to C<9> by default, or the given argument if
 different.
