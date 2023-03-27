@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.4200';
+our $VERSION = '0.4201';
 
 use strictures 2;
 use Data::Dumper::Compact qw(ddc);
