@@ -1098,7 +1098,7 @@ If not given a B<volume> arument, this method mutes (sets to C<0>).
 
 sub set_volume {
     my ($self, $volume) = @_;
-    $channel }}= 0;
+    $volume ||= 0;
     $self->volume($volume);
     $self->score->noop( 'V' . $volume );
 }
