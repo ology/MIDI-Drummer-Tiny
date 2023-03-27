@@ -31,6 +31,11 @@ subtest basic => sub {
     $d->set_channel;
     is $d->channel, 9, 'set_channel';
 
+    $d->set_volume;
+    is $d->volume, 0, 'set_volume';
+    $d->set_volume(100);
+    is $d->volume, 100, 'set_volume';
+
     $d->set_time_sig('5/8');
 
     is $d->beats, 5, 'beats computed';
