@@ -8,7 +8,7 @@ use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
-use MIDI::Util qw(dura_size reverse_dump set_chan_patch set_time_signature);
+use MIDI::Util qw(dura_size reverse_dump set_time_signature);
 use Moo;
 use Music::CreatingRhythms ();
 use Music::Duration ();
@@ -67,6 +67,11 @@ use constant TICKS => 96; # Per quarter note
  print 'Count: ', $d->counter, "\n";
 
  $d->write;
+
+ # As a convenience, and sometimes a necessity:
+ $d->set_bpm;      # handy for tempo changes
+ $d->set_time_sig; # handy for odd/poly meters
+ $d->set_channel;  # reset back to 9 if ever changed
 
 =head1 DESCRIPTION
 
@@ -1061,6 +1066,19 @@ sub set_bpm {
     my ($self, $bpm) = @_;
     $self->bpm($bpm);
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
+}
+
+=head2 set_channel
+
+Reset the channel to C<9> by default, or the given argument if
+different.
+
+=cut
+
+sub set_channel {
+    my ($self, $channel) = @_;
+    $channel //= 9;
+    $self->score->noop( 'c' . $channel );
 }
 
 =head2 sync
