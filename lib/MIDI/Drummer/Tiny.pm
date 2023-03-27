@@ -187,7 +187,7 @@ added to the score.
 has verbose   => ( is => 'ro', default => sub { 0 } );
 has kit       => ( is => 'ro', default => sub { 0 } );
 has reverb    => ( is => 'ro', default => sub { 15 } );
-has channel   => ( is => 'ro', default => sub { 9 } );
+has channel   => ( is => 'rw', default => sub { 9 } );
 has volume    => ( is => 'ro', default => sub { 100 } );
 has bpm       => ( is => 'rw', default => sub { 120 } );
 has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
@@ -1083,6 +1083,7 @@ different.
 sub set_channel {
     my ($self, $channel) = @_;
     $channel //= 9;
+    $self->channel($channel);
     $self->score->noop( 'c' . $channel );
 }
 
