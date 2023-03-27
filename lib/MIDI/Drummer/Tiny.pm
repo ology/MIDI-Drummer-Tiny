@@ -1088,11 +1088,12 @@ sub set_channel {
 
 =head2 set_volume
 
+  $d->set_volume;
   $d->set_volume($volume);
 
 Set the volume to the given argument (0-127).
 
-If not given a B<volume> arument, this method mutes (sets to C<0>).
+If not given a B<volume> argument, this method mutes (sets to C<0>).
 
 =cut
 
