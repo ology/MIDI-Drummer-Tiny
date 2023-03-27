@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the set_channel() method.
+    - Improve documentation.
 
 0.4103 2023-03-09 06:23:20
     - Negate a pattern before deciding to skip it.
