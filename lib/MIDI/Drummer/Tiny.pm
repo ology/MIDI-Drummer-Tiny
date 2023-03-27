@@ -69,8 +69,8 @@ use constant TICKS => 96; # Per quarter note
  $d->write;
 
  # As a convenience, and sometimes necessity:
- $d->set_bpm;     # handy for tempo changes
- $d->set_channel; # reset back to 9 if ever changed
+ $d->set_bpm(200); # handy for tempo changes
+ $d->set_channel;  # reset back to 9 if ever changed
 
 =head1 DESCRIPTION
 
