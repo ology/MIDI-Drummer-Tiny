@@ -49,9 +49,7 @@ hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
 
 =head2 Miscelaneous
 
-click, bell (metronome)
-
-tambourine, cowbell, vibraslap, etc.
+click, bell (metronome), tambourine, cowbell, vibraslap, etc.
 
 =head1 Handy Duration Aliases
 
