@@ -1,7 +1,15 @@
 package MIDI::Drummer::Tiny::Tutorial::Advanced;
 
-=head1 TBD...
+=head1 Advanced Grooves
 
-=head2 TBD...
+=head2 Cold Sweat (Clyde Stubblefield)
+
+=head2 Fool in the Rain (John Bonham)
+
+=head2 The Purdie Shuffle (Bernard Purdie)
+
+=head1 Beat-string Patterns
+
+=head1 Fills
 
 =cut
