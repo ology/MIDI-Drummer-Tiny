@@ -68,7 +68,7 @@ $d->write;</code></pre>
 
 <div class="row">
   <div class="col-12 col-lg-6">
-    <h2 class="display-1">Download</h2>
+    <h3 class="display-1">Download</h3>
     <p><a class="btn btn-primary btn-lg" href="https://metacpan.org/dist/MIDI-Drummer-Tiny"><i class="fa-solid fa-download"></i> Download from the CPAN</a></p>
   </div>
   <div class="col-12 col-lg-6">
