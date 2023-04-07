@@ -89,6 +89,13 @@ It makes use of a number of "tuplets". For instance: a half note triplet duratio
 
 Please see this very long program at L<https://github.com/ology/MIDI-Drummer-Tiny/blob/master/eg/black-page> (in the F<eg/> directory of this distribution).
 
+=head1 Utility Method
+
+=head2 sync()
+
+This method is identical to the MIDI score method. It's just a
+convenient wrapper for the drummer, as shown below.
+
 =head1 Beat-string Patterns
 
 =head2 pattern()
@@ -147,29 +154,36 @@ combined with the C<sync> method:
 
   $d->sync(
     sub { $d->pattern( instrument => $d->closed_hh, patterns => [ '11111111' ] ) },
-    sub { $d->pattern( instrument => $d->snare,     patterns => [ $d->euclidean($snare_onset, 16) ] ) },
-    sub { $d->pattern( instrument => $d->kick,      patterns => [ $d->euclidean($kick_onset, 16) ] ) },
+    sub { $d->pattern( instrument => $d->snare,     patterns => [ $my_pattern->($snare_onset, 16) ] ) },
+    sub { $d->pattern( instrument => $d->kick,      patterns => [ $my_pattern->($kick_onset, 16) ] ) },
   ) for 1 .. $d->bars - 1;
 
 Why C<bars - 1>? Because next up is a one measure fill!
 
+What is C<my_pattern>? That is an imaginary routine that takes a
+number of onsets and a total number of beats; much like the C<euclid>
+function in the
+L<CreatingRhythms|https://metacpan.org/pod/Music::CreatingRhythms>
+module. Hint hint. ;)
+
 =head1 Fills
 
-This is a work in progress, and is pretty tricky to get right...
+This is a work in progress, and is tricky to get right...
 
   $d->add_fill(
-      sub {
+      sub { # this is the fill itself
           my $self = shift;
           return {
-            duration         => 16,     # sixteenth note fill
+            duration         => 16, # a 16-beat fill
             $self->closed_hh => '00000000',
             $self->snare     => '11111111',
             $self->kick      => '10001000',
           };
       },
-      $d->closed_hh => [ '11111111' ],  # example phrase
-      $d->snare     => [ '0101' ],      # "
-      $d->kick      => [ '1010' ],      # "
+      # the phrase to play before the ending fill 
+      $d->closed_hh => [ '11111111' ],
+      $d->snare     => [ '0101' ],     # "
+      $d->kick      => [ '1010' ],     # "
   );
 
 =cut
