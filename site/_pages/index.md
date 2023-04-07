@@ -37,7 +37,7 @@
 <div class="row">
   <div class="col-lg-6">
     <h3>Alternate kick and snare in 4/4</h3>
-    <pre><code>use MIDI::Drummer::Tiny;
+    <pre><code>use MIDI::Drummer::Tiny ();
 
 my $d = MIDI::Drummer::Tiny->new;
 
@@ -49,7 +49,7 @@ $d->write;</code></pre>
 
   <div class="col-lg-6">
     <h3>Same thing but with beat-strings</h3>
-    <pre><code>use MIDI::Drummer::Tiny;
+    <pre><code>use MIDI::Drummer::Tiny ();
 
 my $d = MIDI::Drummer::Tiny->new;
 

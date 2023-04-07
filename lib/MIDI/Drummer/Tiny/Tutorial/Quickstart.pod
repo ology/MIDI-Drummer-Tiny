@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny::Tutorial::Quickstart;
 
 =head1 Import the Module
 
-  use MIDI::Drummer::Tiny;
+  use MIDI::Drummer::Tiny ();
 
 =head1 Object Instantiation
 
