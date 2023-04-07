@@ -21,6 +21,6 @@
   icon: '<i class="fa-solid fa-circle-dot"></i>'
   target: '_blank'
 - name: github
-  title: Github
+  title: GitHub
   icon: '<i class="fa-brands fa-github"></i>'
   target: '_blank'
