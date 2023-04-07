@@ -149,13 +149,24 @@ The hi-hat is 8 beats long. The kick and snare are 4 beats each. This
 means that the kick and snare are quarter notes, and the hi-hat will
 be treated as eighth notes.
 
+=head2 sync() Revisited
+
 For finer-grain control, you should use the above C<pattern> method
 combined with the C<sync> method:
 
   $d->sync(
-    sub { $d->pattern( instrument => $d->closed_hh, patterns => [ '11111111' ] ) },
-    sub { $d->pattern( instrument => $d->snare,     patterns => [ $my_pattern->($snare_onset, 16) ] ) },
-    sub { $d->pattern( instrument => $d->kick,      patterns => [ $my_pattern->($kick_onset, 16) ] ) },
+    sub { $d->pattern(
+        instrument => $d->closed_hh,
+        patterns   => [ '11111111' ]
+    )},
+    sub { $d->pattern(
+        instrument => $d->snare,
+        patterns   => [ $my_pattern->($snare_onset, 16) ]
+    )},
+    sub { $d->pattern(
+        instrument => $d->kick,
+        patterns   => [ $my_pattern->($kick_onset, 16) ]
+    )},
   ) for 1 .. $d->bars - 1;
 
 Why C<bars - 1>? Because next up is a one measure fill!
