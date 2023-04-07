@@ -1,0 +1,7 @@
+package MIDI::Drummer::Tiny::Tutorial::Advanced;
+
+=head1 TBD...
+
+=head2 TBD...
+
+=cut
