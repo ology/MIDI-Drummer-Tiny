@@ -14,13 +14,13 @@ A steady, traditional metronome pulse:
 
 =head2 Of Rests, Notes, and Accents
 
-Add a single quarter-note with both the closed hihat and the bass drum, to the score:
-
-  $d->note($d->quarter, $d->closed_hh, $d->kick);
-
 Rest for a whole note:
 
   $d->rest($d->whole);
+
+Add a single quarter-note with both the closed hihat and the bass drum, to the score:
+
+  $d->note($d->quarter, $d->closed_hh, $d->kick);
 
 Add an accented snare to the score:
 
