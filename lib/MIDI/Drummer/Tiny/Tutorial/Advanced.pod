@@ -4,9 +4,90 @@ package MIDI::Drummer::Tiny::Tutorial::Advanced;
 
 =head2 Cold Sweat (Clyde Stubblefield)
 
+  my $accent = 30;
+
+  for my $n (1 .. $d->bars) {
+      $d->note($d->eighth, $d->closed_hh, $d->kick);
+      $d->note($d->eighth, $d->closed_hh);
+
+      $d->note($d->eighth, $d->closed_hh, $d->snare);
+      $d->note($d->sixteenth, $d->closed_hh);
+      $d->accent_note($accent, $d->sixteenth, $d->snare);
+
+      $d->note($d->sixteenth, $d->closed_hh);
+      $d->accent_note($accent, $d->sixteenth, $d->snare);
+      $d->note($d->eighth, $d->open_hh, $d->kick);
+
+      $d->note($d->eighth, $d->pedal_hh);
+      $d->note($d->eighth, $d->closed_hh, $d->snare);
+
+      $d->note($d->sixteenth, $d->closed_hh);
+      $d->accent_note($accent, $d->sixteenth, $d->snare);
+      $d->note($d->eighth, $d->closed_hh, $d->kick);
+
+      $d->note($d->eighth, $d->closed_hh, $d->snare);
+      $d->note($d->sixteenth, $d->closed_hh);
+      $d->accent_note($accent, $d->sixteenth, $d->snare);
+
+      $d->note($d->sixteenth, $d->closed_hh);
+      $d->accent_note($accent, $d->sixteenth, $d->snare);
+      $d->note($d->eighth, $d->closed_hh, $d->kick);
+
+      $d->note($d->eighth, $d->closed_hh, $d->snare);
+      $d->note($d->eighth, $d->closed_hh);
+  }
+
 =head2 Fool in the Rain (John Bonham)
 
+  my ($min, $max) = (30, 127);
+
+  for my $n (1 .. $d->bars) {
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+      $d->rest($d->triplet_eighth);
+      $d->note($d->triplet_eighth, $d->open_hh, $d->kick);
+
+      $d->note($d->triplet_eighth, $d->pedal_hh);
+      $d->accent_note($min, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+
+      $d->accent_note($max, $d->triplet_eighth, $d->snare);
+      $d->rest($d->triplet_eighth);
+      $d->note($d->triplet_eighth, $d->closed_hh);
+
+      $d->note($d->triplet_eighth, $d->closed_hh);
+      $d->accent_note($min, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+  }
+
 =head2 The Purdie Shuffle (Bernard Purdie)
+
+  my $accent = 30;
+
+  for my $n (1 .. $d->bars) {
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+      $d->accent_note($accent, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh);
+
+      $d->note($d->triplet_eighth, $d->closed_hh);
+      $d->accent_note($accent, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->snare);
+      $d->accent_note($accent, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh);
+
+      $d->note($d->triplet_eighth, $d->closed_hh);
+      $d->accent_note($accent, $d->triplet_eighth, $d->snare);
+      $d->note($d->triplet_eighth, $d->closed_hh, $d->kick);
+  }
+
+=head2 The Black Page (Frank Zappa)
+
+This is an exercise for the reader. It is the most advanced groove ever.
+
+It makes use of a number of "tuplets". For instance: a half note triplet duration with groups of 5 notes for quarter notes within. Oof!
+
+Please see this very long program at L<https://github.com/ology/MIDI-Drummer-Tiny/blob/master/eg/black-page> (in the F<eg/> directory of this distribution).
 
 =head1 Beat-string Patterns
 
