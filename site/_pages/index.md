@@ -27,7 +27,7 @@
   <h3>The kit itself</h3>
   <p>Open, Closed, and Pedal hihats, Acoustic and Electric snares, Acoustic and Electric bass drums, etc.</p>
   <h3>Drum methods</h3>
-  <p>Flam, Roll, Metronomes in different meters, Bitstring patterns, Fills, etc.</p>
+  <p>Rolls, Flam, Metronomes in different meters, Bitstring patterns, Fills, etc.</p>
 </div>
 
 ----
