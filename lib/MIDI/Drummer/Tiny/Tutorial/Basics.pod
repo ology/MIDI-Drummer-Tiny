@@ -68,7 +68,7 @@ Roll the snare from a volume of 50 up to 127 in a linear fashion:
 
   $d->crescendo_roll([50, 127], $d->eighth, $d->thirtysecond);
 
-Roll the snare from a volume of 50 B<up> to 127 with a curve (as illustrated in the main module's documentation):
+Roll the snare from a volume of 50 up to 127 with a curve (as illustrated in the main module's documentation):
 
   $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
 
