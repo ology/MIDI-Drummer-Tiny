@@ -168,7 +168,8 @@ module. Hint hint. ;)
 
 =head1 Fills
 
-This is a work in progress, and is tricky to get right...
+This is a work in progress, and is tricky to get right... It uses
+beat-stings:
 
   $d->add_fill(
       sub { # this is the fill itself
