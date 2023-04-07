@@ -6,12 +6,15 @@
   children:
     - name: tutorial/quickstart
       title: Quick-start
+      icon: '<i class="fa-solid fa-bicycle"></i>'
       pod: MIDI::Drummer::Tiny::Tutorial::Quickstart
     - name: tutorial/basics
       title: Basics
+      icon: '<i class="fa-solid fa-car-side"></i>'
       pod: MIDI::Drummer::Tiny::Tutorial::Basics
     - name: tutorial/advanced
       title: Advanced
+      icon: '<i class="fa-solid fa-jet-fighter"></i>'
       pod: MIDI::Drummer::Tiny::Tutorial::Advanced
 - name: metacpan
   title: CPAN
