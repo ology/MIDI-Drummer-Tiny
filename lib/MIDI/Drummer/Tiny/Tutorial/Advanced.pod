@@ -139,7 +139,7 @@ key, with instructions for what to do - like roll, possibly.
 =head2 sync_patterns()
 
 Ok. That's fine for a single voice. But more often we want to
-multitrack different parts simultaneously? Enter the C<sync_patterns>
+multitrack different parts simultaneously. Enter the C<sync_patterns>
 method.
 
   $d->sync_patterns(
