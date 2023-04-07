@@ -42,8 +42,11 @@
 
 my $d = MIDI::Drummer::Tiny->new;
 
-$d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
-    for 1 .. $d->beats * $d->bars;
+$d->note(
+    $d->quarter,
+    $d->open_hh,
+    $_ % 2 ? $d->kick : $d->snare
+) for 1 .. $d->beats * $d->bars;
 
 $d->write;</code></pre>
   </div>
