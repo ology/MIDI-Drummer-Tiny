@@ -41,4 +41,3 @@ If you are installing into a system-wide directory, you may need to run:
 
     sudo make install
 
-(But if you are using Mac Homebrew, for instance, you don't need to use the `sudo` command)
