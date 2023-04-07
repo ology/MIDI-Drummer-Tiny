@@ -1,0 +1,14 @@
+name: MIDI-Drummer-Tiny
+abstract: "Glorified metronome"
+abstract_html: 'Glorified Metronome'
+github: https://github.com/ology/MIDI-Drummer-Tiny
+issues: https://github.com/ology/MIDI-Drummer-Tiny/issues
+copyright: "Copyright © 2023 Gene Boggs. All rights reserved."
+theme:
+  light: "#e5e5e5"
+  dark: "#457b9d"
+  primary: "#457b9d"
+  secondary: "#31587a"
+root_url: https://ology.github.io/midi-drummer-tiny-tutorial/
+homepage:
+  banner: ''

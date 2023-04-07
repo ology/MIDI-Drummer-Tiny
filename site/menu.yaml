@@ -1,0 +1,23 @@
+- name: installation
+  title: Installation
+  source: _pages/installation.md
+- name: docs
+  title: Tutorial
+  children:
+    - name: tutorial/quickstart
+      title: Quick-start
+      pod: MIDI::Drummer::Tiny::Tutorial::Quickstart
+    - name: tutorial/basics
+      title: Basics
+      pod: MIDI::Drummer::Tiny::Tutorial::Basics
+    - name: tutorial/advanced
+      title: Advanced
+      pod: MIDI::Drummer::Tiny::Tutorial::Advanced
+- name: metacpan
+  title: CPAN
+  icon: '<i class="fa-solid fa-circle-dot"></i>'
+  target: '_blank'
+- name: github
+  title: Github
+  icon: '<i class="fa-brands fa-github"></i>'
+  target: '_blank'
