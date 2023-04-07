@@ -1,4 +1,5 @@
 <div class="text-center my-5 py-5 mx-auto w-lg-50">
+  <h2 class="display-1">Huh? What?</h2>
   <p class="lead">MIDI::Drummer::Tiny is a Perl module that implements MIDI drum methods.</p>
   <p class="lead">Put some MIDI drums in your next perl composition!</p>
   <p class="pt-5">
@@ -68,8 +69,7 @@ $d->write;</code></pre>
 
 <div class="row">
   <div class="col-12 col-lg-6">
-    <h3 class="display-1">Download</h3>
-    <p><a class="btn btn-primary btn-lg" href="https://metacpan.org/dist/MIDI-Drummer-Tiny"><i class="fa-solid fa-download"></i> Download from the CPAN</a></p>
+    <p><a class="btn btn-primary btn-lg" href="https://metacpan.org/dist/MIDI-Drummer-Tiny"><i class="fa-solid fa-download"></i> View on the CPAN</a></p>
   </div>
   <div class="col-12 col-lg-6">
     <h3>MIDI-Drummer-Tiny is available for Mac, Windows, Linux, and BSD distributions through the CPAN.</h3>
