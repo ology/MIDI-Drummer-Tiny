@@ -150,7 +150,7 @@ method.
 
 The hi-hat is 8 beats long. The kick and snare are 4 beats each. This
 means that the kick and snare are quarter notes, and the hi-hat will
-be treated as eighth notes.
+be treated as eighth notes, because a "common multiple" is computed.
 
 =head2 sync() Revisited
 
