@@ -1,4 +1,4 @@
-<div class="text-center my-5 py-5 mx-auto w-lg-50">
+<div class="text-center">
   <h2 class="display-1">Huh? What?</h2>
   <p class="lead">MIDI::Drummer::Tiny is a Perl module that implements MIDI drum methods.</p>
   <p class="lead">Put some MIDI drums in your next perl composition!</p>
