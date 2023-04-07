@@ -88,9 +88,9 @@ grooves ever. It makes use of a number of "tuplets". For instance: a
 half note triplet duration with groups of 5 notes for quarter notes
 within. Oof!
 
-Please see this very long program at
-L<https://github.com/ology/MIDI-Drummer-Tiny/blob/master/eg/black-page>
-(in the F<eg/> directory of this distribution).
+Please see this
+L<long program|https://github.com/ology/MIDI-Drummer-Tiny/blob/master/eg/black-page>,
+which is in the F<eg/> directory of this distribution.
 
 =head1 Utility Method
 
