@@ -83,7 +83,7 @@ package MIDI::Drummer::Tiny::Tutorial::Advanced;
 
 =head2 The Black Page (Frank Zappa)
 
-This is an exercise for the reader. It is the most advanced groove ever.
+This is an exercise for the reader. It is one of the most advanced grooves ever.
 
 It makes use of a number of "tuplets". For instance: a half note triplet duration with groups of 5 notes for quarter notes within. Oof!
 
