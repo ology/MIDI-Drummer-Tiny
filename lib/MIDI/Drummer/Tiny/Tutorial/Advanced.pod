@@ -195,7 +195,7 @@ beat-stings:
             $self->kick      => '10001000',
           };
       },
-      # the phrase to play before the fill 
+      # the phrase to play before the fill
       $d->closed_hh => [ '11111111' ],
       $d->snare     => [ '0101' ],
       $d->kick      => [ '1010' ],
