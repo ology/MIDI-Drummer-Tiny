@@ -132,7 +132,7 @@ This "vary" option can be made up on the fly, by the caller. We can
 therefore provide different behaviors to perform, when this method is
 called.
 
-Now the string doesn't need to contain only ones and zeros! The string
+Now the string doesn't need to contain only ones and zeros. The string
 could have a C<2> in it! The "vary" would then need to contain a C<2>
 key, with instructions for what to do - like roll, possibly.
 
