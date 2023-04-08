@@ -82,7 +82,8 @@ $d->write;</code></pre>
 ----
 
 <div class="text-center w-lg-75 w-xl-50 mx-auto">
-  <p style="font-size:2rem">Powered by <a class="text-decoration:none" href="http://www.perl.org/">Perl</a> - Built with <a class="text-decoration:none" href="https://metacpan.org/dist/Web-PerlDistSite">Web::PerlDistSite</a></p>
+  <p style="font-size:2rem">Powered by <a class="text-decoration:none" href="http://www.perl.org/">Perl</a></p>
+  <p>Built with <a class="text-decoration:none" href="https://metacpan.org/dist/Web-PerlDistSite">Web::PerlDistSite</a></p>
   <h2 class="h4">What is Perl?</h2>
   <p>Perl is a high-level, general-purpose, interpreted, dynamic programming language and was developed by Larry Wall in 1987 as a Unix scripting language to make report processing easier. Since then, Perl has undergone many changes, revisions and is still in active development!</p>
 </div>
