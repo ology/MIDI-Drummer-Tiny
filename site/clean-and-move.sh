@@ -2,9 +2,9 @@
 
 # It is assumed that we are under the distribution/site directory
 
-rm -rf ../../music-duration-partition-tutorial/assets/
-rm -rf ../../music-duration-partition-tutorial/tutorial/
+rm -rf ../../midi-drummer-tiny-tutorial/assets/
+rm -rf ../../midi-drummer-tiny-tutorial/tutorial/
 
 make clean
 make all
-mv -f docs/* ../../music-duration-partition-tutorial/
+mv -f docs/* ../../midi-drummer-tiny-tutorial/
