@@ -26,5 +26,5 @@
   target: '_blank'
 - name: gene
   title: Gene
-  icon: '<i class="fa-brands fa-user"></i>'
+  icon: '<i class="fa-solid fa-user-circle"></i>'
   href: https://ology.github.io/
