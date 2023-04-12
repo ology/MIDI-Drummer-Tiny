@@ -18,7 +18,7 @@
       pod: MIDI::Drummer::Tiny::Tutorial::Advanced
 - name: metacpan
   title: On CPAN
-  icon: '<i class="fa-solid fa-circle-dot"></i>'
+  icon: '<i class="fa-solid fa-cogs"></i>'
   target: '_blank'
 - name: github
   title: On GitHub
