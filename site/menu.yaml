@@ -24,3 +24,7 @@
   title: On GitHub
   icon: '<i class="fa-brands fa-github"></i>'
   target: '_blank'
+- name: gene
+  title: Gene
+  icon: '<i class="fa-brands fa-atom"></i>'
+  href: https://ology.github.io/
