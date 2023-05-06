@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Accent the 1st note of a bar for count_in().
 
 0.4206 2023-04-07 11:42:24
     - Fix a dumb typo - ugh!
