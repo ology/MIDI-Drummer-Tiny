@@ -429,19 +429,28 @@ given, the closed hihat is used.
 sub count_in {
     my ($self, $args) = @_;
 
-    my $bars  = $self->bars;
-    my $patch = $self->closed_hh;
+    my $bars   = $self->bars;
+    my $patch  = $self->pedal_hh;
+    my $accent = $self->closed_hh;
 
     if ($args && ref $args) {
-        $bars  = $args->{bars}  if defined $args->{bars};
-        $patch = $args->{patch} if defined $args->{patch};
+        $bars   = $args->{bars}   if defined $args->{bars};
+        $patch  = $args->{patch}  if defined $args->{patch};
+        $accent = $args->{accent} if defined $args->{accent};
     }
-    else {
+    elsif ($args) {
         $bars = $args; # given a simple integer
     }
 
+    my $j = 1;
     for my $i ( 1 .. $self->beats * $bars ) {
-        $self->note( $self->quarter, $patch );
+        if ($i == $self->beats * $j - $self->beats + 1) {
+            $self->accent_note( 127, $self->quarter, $accent );
+            $j++;
+        }
+        else {
+            $self->note( $self->quarter, $patch );
+        }
     }
 }
 
