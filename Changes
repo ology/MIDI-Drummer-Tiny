@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4208 2023-05-08 14:43:40
     - Odd. A cpan smoker failed because the DeBruijn module
       was not installed via Music::CreatingRhythms. ...Ok.
 
