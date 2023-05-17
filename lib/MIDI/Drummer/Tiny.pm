@@ -1154,7 +1154,8 @@ file.
 
 sub timidity_cfg {
     my ($self, $config_file) = @_;
-    timidity_conf($self->soundfont, $config_file);
+    my $cfg = timidity_conf($self->soundfont, $config_file);
+    return $cfg;
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
