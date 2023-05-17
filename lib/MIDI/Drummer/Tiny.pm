@@ -9,7 +9,7 @@ use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
-use MIDI::Util qw(dura_size reverse_dump set_time_signature);
+use MIDI::Util qw(dura_size reverse_dump set_time_signature timidity_conf play_timidity);
 use Music::CreatingRhythms ();
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
@@ -28,7 +28,7 @@ use constant TICKS => 96; # Per quarter note
     signature => '5/4',
     bars      => 8,
     reverb    => 0,
-    #kit   => 25, # TR-808 if using GM Level 2
+    soundfont => '/you/soundfonts/TR808.sf2', # option
     #kick  => 36, # Override default patch
     #snare => 40, # "
   );
@@ -1139,6 +1139,22 @@ the file name.
 sub write {
     my $self = shift;
     $self->score->write_score( $self->file );
+}
+
+=head2 timidity_cfg
+
+  $timidity_conf = $d->timidity_cfg;
+  $d->timidity_cfg($config_file);
+
+Return a timidity.cfg paragraph to use the soundfont attribute. If a
+B<config_file> is given, the timidity configuration is written to that
+file.
+
+=cut
+
+sub timidity_cfg {
+    my ($self, $config_file) = @_;
+    timidity_conf($self->soundfont, $config_file);
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
