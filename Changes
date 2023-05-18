@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4302 2023-05-17 19:32:12
     - Pin M::U prereq version.
 
 0.4301 2023-05-17 19:26:01
