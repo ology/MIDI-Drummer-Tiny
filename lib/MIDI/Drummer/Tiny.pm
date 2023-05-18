@@ -1164,7 +1164,6 @@ Play the score with C<timidity>.
 
 If there is a B<soundfont> attribute, either the given B<config_file>
 or C<timidity-midi-util.cfg> is used for the timidity configuration.
-
 If a soundfont is not defined, a timidity configuration file is not
 rendered.
 
