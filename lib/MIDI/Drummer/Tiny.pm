@@ -1142,9 +1142,9 @@ sub write {
   $timidity_conf = $d->timidity_cfg;
   $d->timidity_cfg($config_file);
 
-Return a timidity.cfg paragraph to use the B<soundfont> attribute. If
-a B<config_file> is given, the timidity configuration is written to
-that file.
+Return a timidity.cfg paragraph to use a defined B<soundfont>
+attribute. If a B<config_file> is given, the timidity configuration is
+written to that file.
 
 =cut
 
