@@ -1,6 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Update the Quickstart tutorial.
+
+0.4300 2023-05-17 19:10:26
     - Add the timidity_cfg() and play_with_timidity() methods.
     - Improve documentation.
 
