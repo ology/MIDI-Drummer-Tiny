@@ -1158,6 +1158,36 @@ sub timidity_cfg {
     return $cfg;
 }
 
+=head2 play_with_timidity
+
+  $d->play_with_timidity;
+  $d->play_with_timidity($config_file);
+
+Play the score with C<timidity>.
+
+If there is a B<soundfont> attribute, either the given B<config_file>
+or C<timidity-midi-util.cfg> is used for the timidity configuration.
+
+If a soundfont is not given, a timidity configuration file is not
+rendered and used.
+
+=cut
+
+sub play_with_timidity {
+    my ($self, $config) = @_;
+    $self->write;
+    my @cmd;
+    if ($self->soundfont) {
+        $config ||= 'timidity-midi-util.cfg';
+        timidity_conf($self->soundfont, $config);
+        @cmd = ('timidity', '-c', $config, $self->file);
+    }
+    else {
+        @cmd = ('timidity', $self->file);
+    }
+    system(@cmd) == 0 or die "system(@cmd) failed: $?";
+}
+
 # lifted from https://www.perlmonks.org/?node_id=56906
 sub _gcf {
     my ($x, $y) = @_;
