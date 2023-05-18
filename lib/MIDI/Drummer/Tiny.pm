@@ -47,7 +47,7 @@ use constant TICKS => 96; # Per quarter note
   $d->note($d->sixteenth, $d->crash1);
   $d->accent_note(127, $d->sixteenth, $d->crash2);
 
-  my $patterns = [ $d->euclidean(5, 16), $d->euclidean(7, 16) ];
+  my $patterns = [ your_function(5, 16), your_function(7, 16) ];
   $d->pattern( instrument => $d->kick, patterns => $patterns );
 
   # Alternate kick and snare
