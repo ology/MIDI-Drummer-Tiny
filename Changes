@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Yank Music::CreatingRhythms!
 
 0.4302 2023-05-17 19:32:12
     - Pin M::U prereq version.
