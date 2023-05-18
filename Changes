@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the timidity_cfg() and play_with_timidity() methods.
+    - Improve documentation.
 
 0.4208 2023-05-08 14:43:40
     - Odd. A cpan smoker failed because the DeBruijn module
