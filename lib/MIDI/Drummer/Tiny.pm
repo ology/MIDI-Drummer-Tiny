@@ -95,10 +95,10 @@ sub BUILD {
 
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
-    if ($self->kit) {
-      $self->score->control_change($self->channel, 0, 120);
-      $self->score->patch_change($self->channel, $self->kit)
-    }
+#    if ($self->kit) {
+#      $self->score->control_change($self->channel, 0, 120);
+#      $self->score->patch_change($self->channel, $self->kit)
+#    }
 
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
@@ -122,21 +122,11 @@ Default: C<MIDI-Drummer.mid>
 
 Default: C<MIDI::Simple-E<gt>new_score>
 
-=head2 kit
+=head2 soundfont
 
-Default: C<1> (Standard)
+  $soundfont = $tabla->soundfont;
 
-If you are going to play the MIDI file with a "General MIDI Level 2"
-soundfont, you can change kits.
-
-   8: Room
-  16: Power
-  24: Electronic
-  25: TR-808
-  26: ?
-  32: Jazz
-  40: Brush
-  48: Orchestra
+The file location, where a soundfont lives.
 
 =head2 reverb
 
@@ -189,8 +179,8 @@ added to the score.
 
 =cut
 
+has soundfont => ( is => 'rw');
 has verbose   => ( is => 'ro', default => sub { 0 } );
-has kit       => ( is => 'ro', default => sub { 0 } );
 has reverb    => ( is => 'ro', default => sub { 15 } );
 has channel   => ( is => 'rw', default => sub { 9 } );
 has volume    => ( is => 'rw', default => sub { 100 } );
@@ -1152,14 +1142,15 @@ sub write {
   $timidity_conf = $d->timidity_cfg;
   $d->timidity_cfg($config_file);
 
-Return a timidity.cfg paragraph to use the soundfont attribute. If a
-B<config_file> is given, the timidity configuration is written to that
-file.
+Return a timidity.cfg paragraph to use the B<soundfont> attribute. If
+a B<config_file> is given, the timidity configuration is written to
+that file.
 
 =cut
 
 sub timidity_cfg {
     my ($self, $config_file) = @_;
+    die 'No soundfont defined' unless $self->soundfont;
     my $cfg = timidity_conf($self->soundfont, $config_file);
     return $cfg;
 }
