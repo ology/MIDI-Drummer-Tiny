@@ -176,4 +176,17 @@ subtest euclidean => sub {
     is $got, $expect, 'euclidean';
 };
 
+subtest timidity_conf => sub {
+    my $d = new_ok 'MIDI::Drummer::Tiny' => [
+        soundfont => 'soundfont.sf2',
+    ];
+    my $sf = $d->soundfont;
+    like $d->timidity_cfg, qr/$sf$/, 'timidity_conf';
+    my $filename = 'timidity_conf';
+    $d->timidity_cfg($filename);
+    ok -e $filename, 'timidity_conf with filename';
+    unlink $filename;
+    ok !-e $filename, 'file unlinked';
+};
+
 done_testing();
