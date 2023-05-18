@@ -70,7 +70,13 @@ use constant TICKS => 96; # Per quarter note
   $d->set_bpm(200); # handy for tempo changes
   $d->set_channel;  # reset back to 9 if ever changed
 
+  $d->timidity_cfg('timidity-drummer.cfg');
+
   $d->write;
+
+  # OR:
+
+  $d->play_with_timidity;
 
 =head1 DESCRIPTION
 
