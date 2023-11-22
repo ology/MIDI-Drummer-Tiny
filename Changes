@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Remove misleading channel setting from the Quickstart.
 
 0.4303 2023-05-17 22:06:08
     - Yank Music::CreatingRhythms!
