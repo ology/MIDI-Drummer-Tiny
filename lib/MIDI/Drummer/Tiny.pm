@@ -453,6 +453,7 @@ sub count_in {
 
   $d->metronome38;
   $d->metronome38($bars);
+  $d->metronome38($bars, $cymbal);
 
 Add a steady 3/8 beat to the score.
 
@@ -461,11 +462,12 @@ Add a steady 3/8 beat to the score.
 sub metronome38 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
 
     for ( 1 .. $bars ) {
-        $self->note( $self->eighth, $self->closed_hh, $self->kick );
-        $self->note( $self->eighth, $self->closed_hh);
-        $self->note( $self->eighth, $self->closed_hh, $self->snare );
+        $self->note( $self->eighth, $cymbal, $self->kick );
+        $self->note( $self->eighth, $cymbal);
+        $self->note( $self->eighth, $cymbal, $self->snare );
     }
 }
 
@@ -473,6 +475,7 @@ sub metronome38 {
 
   $d->metronome34;
   $d->metronome34($bars);
+  $d->metronome34($bars, $cymbal);
 
 Add a steady 3/4 beat to the score.
 
@@ -481,11 +484,12 @@ Add a steady 3/4 beat to the score.
 sub metronome34 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
 
     for ( 1 .. $bars ) {
-        $self->note( $self->quarter, $self->ride1, $self->kick );
-        $self->note( $self->quarter, $self->ride1 );
-        $self->note( $self->quarter, $self->ride1, $self->snare );
+        $self->note( $self->quarter, $cymbal, $self->kick );
+        $self->note( $self->quarter, $cymbal );
+        $self->note( $self->quarter, $cymbal, $self->snare );
     }
 }
 
@@ -494,6 +498,7 @@ sub metronome34 {
   $d->metronome44;
   $d->metronome44($bars);
   $d->metronome44($bars, $flag);
+  $d->metronome44($bars, $flag, $cymbal);
 
 Add a steady 4/4 beat to the score.
 
@@ -506,28 +511,29 @@ sub metronome44 {
     my $self = shift;
     my $bars = shift || $self->bars;
     my $flag = shift // 0;
+    my $cymbal = shift || $self->closed_hh;
 
     my $i = 0;
 
     for my $n ( 1 .. $self->beats * $bars ) {
         if ( $n % 2 == 0 )
         {
-            $self->note( $self->quarter, $self->closed_hh, $self->snare );
+            $self->note( $self->quarter, $cymbal, $self->snare );
         }
         else {
             if ( $flag == 0 )
             {
-                $self->note( $self->quarter, $self->closed_hh, $self->kick );
+                $self->note( $self->quarter, $cymbal, $self->kick );
             }
             else
             {
                 if ( $i % 2 == 0 )
                 {
-                    $self->note( $self->quarter, $self->closed_hh, $self->kick );
+                    $self->note( $self->quarter, $cymbal, $self->kick );
                 }
                 else
                 {
-                    $self->note( $self->eighth, $self->closed_hh, $self->kick );
+                    $self->note( $self->eighth, $cymbal, $self->kick );
                     $self->note( $self->eighth, $self->kick );
                 }
             }
@@ -541,6 +547,7 @@ sub metronome44 {
 
   $d->metronome44swing;
   $d->metronome44swing($bars);
+  $d->metronome44swing($bars, $cymbal);
 
 Add a steady 4/4 swing beat to the score.
 
@@ -549,16 +556,17 @@ Add a steady 4/4 swing beat to the score.
 sub metronome44swing {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->ride1;
 
     for my $n ( 1 .. $bars ) {
-        $self->note( $self->quarter,          $self->ride1, $self->kick );
-        $self->note( $self->triplet_eighth,   $self->ride1 );
+        $self->note( $self->quarter,          $cymbal, $self->kick );
+        $self->note( $self->triplet_eighth,   $cymbal );
         $self->rest( $self->triplet_eighth );
-        $self->note( $self->triplet_eighth,   $self->ride1, $self->kick );
-        $self->note( $self->quarter,          $self->ride1, $self->snare );
-        $self->note( $self->triplet_eighth,   $self->ride1, $self->kick );
+        $self->note( $self->triplet_eighth,   $cymbal, $self->kick );
+        $self->note( $self->quarter,          $cymbal, $self->snare );
+        $self->note( $self->triplet_eighth,   $cymbal, $self->kick );
         $self->rest( $self->triplet_eighth );
-        $self->note( $self->triplet_eighth,   $self->ride1 );
+        $self->note( $self->triplet_eighth,   $cymbal );
     }
 }
 
@@ -566,6 +574,7 @@ sub metronome44swing {
 
   $d->metronome54;
   $d->metronome54($bars);
+  $d->metronome54($bars, $cymbal);
 
 Add a 5/4 beat to the score.
 
@@ -574,16 +583,18 @@ Add a 5/4 beat to the score.
 sub metronome54 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
+
     for my $n (1 .. $bars) {
-        $self->note($self->quarter, $self->closed_hh, $self->kick);
-        $self->note($self->quarter, $self->closed_hh);
-        $self->note($self->quarter, $self->closed_hh, $self->snare);
-        $self->note($self->quarter, $self->closed_hh);
+        $self->note($self->quarter, $cymbal, $self->kick);
+        $self->note($self->quarter, $cymbal);
+        $self->note($self->quarter, $cymbal, $self->snare);
+        $self->note($self->quarter, $cymbal);
         if ($n % 2) {
-            $self->note($self->quarter, $self->closed_hh);
+            $self->note($self->quarter, $cymbal);
         }
         else {
-            $self->note($self->eighth, $self->closed_hh);
+            $self->note($self->eighth, $cymbal);
             $self->note($self->eighth, $self->kick);
         }
     }
@@ -593,6 +604,7 @@ sub metronome54 {
 
   $d->metronome58;
   $d->metronome58($bars);
+  $d->metronome58($bars, $cymbal);
 
 Add a 5/8 beat to the score.
 
@@ -601,12 +613,14 @@ Add a 5/8 beat to the score.
 sub metronome58 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
+
     for my $n (1 .. $bars) {
-        $self->note($self->eighth, $self->closed_hh, $self->kick);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh, $self->snare);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $cymbal, $self->kick);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal, $self->snare);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal);
     }
 }
 
@@ -614,6 +628,7 @@ sub metronome58 {
 
   $d->metronome68;
   $d->metronome68($bars);
+  $d->metronome68($bars, $cymbal);
 
 Add a 6/8 beat to the score.
 
@@ -622,13 +637,15 @@ Add a 6/8 beat to the score.
 sub metronome68 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
+
     for my $n (1 .. $bars) {
-        $self->note($self->eighth, $self->closed_hh, $self->kick);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh, $self->snare);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $cymbal, $self->kick);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal, $self->snare);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal);
     }
 }
 
@@ -636,6 +653,7 @@ sub metronome68 {
 
   $d->metronome74;
   $d->metronome74($bars);
+  $d->metronome74($bars, $cymbal);
 
 Add a 7/4 beat to the score.
 
@@ -644,15 +662,17 @@ Add a 7/4 beat to the score.
 sub metronome74 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
+
     for my $n (1 .. $bars) {
-        $self->note($self->quarter, $self->closed_hh, $self->kick);
-        $self->note($self->quarter, $self->closed_hh);
-        $self->note($self->quarter, $self->closed_hh, $self->snare);
-        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->quarter, $cymbal, $self->kick);
+        $self->note($self->quarter, $cymbal);
+        $self->note($self->quarter, $cymbal, $self->snare);
+        $self->note($self->eighth, $cymbal);
         $self->note($self->eighth, $self->kick);
-        $self->note($self->quarter, $self->closed_hh, $self->kick);
-        $self->note($self->quarter, $self->closed_hh, $self->snare);
-        $self->note($self->quarter, $self->closed_hh);
+        $self->note($self->quarter, $cymbal, $self->kick);
+        $self->note($self->quarter, $cymbal, $self->snare);
+        $self->note($self->quarter, $cymbal);
     }
 }
 
@@ -660,6 +680,7 @@ sub metronome74 {
 
   $d->metronome78;
   $d->metronome78($bars);
+  $d->metronome78($bars, $cymbal);
 
 Add a 7/8 beat to the score.
 
@@ -668,14 +689,16 @@ Add a 7/8 beat to the score.
 sub metronome78 {
     my $self = shift;
     my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->closed_hh;
+
     for my $n (1 .. $bars) {
-        $self->note($self->eighth, $self->closed_hh, $self->kick);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh, $self->kick);
-        $self->note($self->eighth, $self->closed_hh, $self->snare);
-        $self->note($self->eighth, $self->closed_hh);
-        $self->note($self->eighth, $self->closed_hh);
+        $self->note($self->eighth, $cymbal, $self->kick);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal, $self->kick);
+        $self->note($self->eighth, $cymbal, $self->snare);
+        $self->note($self->eighth, $cymbal);
+        $self->note($self->eighth, $cymbal);
     }
 }
 
