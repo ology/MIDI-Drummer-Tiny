@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.4307 2025-01-16 22:23:50
     - Lose local author lib line in eg/.
     - Allow a cymbal to be specified to use by the metronome routines.
 
