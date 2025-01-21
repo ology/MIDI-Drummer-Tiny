@@ -43,6 +43,8 @@ use constant STRAIGHT => 50; # Swing percent
 
   $d->metronome44(3);  # 4/4 time for 3 bars
 
+  $d->metronome44swing(3, $d->ride2, $d->eighth, 60);
+
   $d->flam($d->quarter, $d->snare);
   $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
   $d->note($d->sixteenth, $d->crash1);
@@ -545,12 +547,27 @@ sub metronome44 {
     }
 }
 
-sub metronome44x {
+=head2 metronome44swing
+
+  $d->metronome44swing($bars, $cymbal, $tempo, $swing);
+
+Add a steady 4/4 swing beat to the score.
+
+Defaults:
+
+  bars: The object B<bars>
+  cymbal: B<ride1>
+  tempo: B<quarter-note>
+  swing: 67 (percent)
+
+=cut
+
+sub metronome44swing {
     my $self   = shift;
     my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->ride1;
     my $tempo  = shift || $self->quarter;
-    my $swing  = shift || STRAIGHT; # percent
+    my $swing  = shift || 67; # percent
     my $x = dura_size($tempo) * TICKS;
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
@@ -571,33 +588,6 @@ sub metronome44x {
         else {
             $self->note( "d$x", $cymbal );
         }
-    }
-}
-
-=head2 metronome44swing
-
-  $d->metronome44swing;
-  $d->metronome44swing($bars);
-  $d->metronome44swing($bars, $cymbal);
-
-Add a steady 4/4 swing beat to the score.
-
-=cut
-
-sub metronome44swing {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $cymbal = shift || $self->ride1;
-
-    for my $n ( 1 .. $bars ) {
-        $self->note( $self->quarter,          $cymbal, $self->kick );
-        $self->note( $self->triplet_eighth,   $cymbal );
-        $self->rest( $self->triplet_eighth );
-        $self->note( $self->triplet_eighth,   $cymbal, $self->kick );
-        $self->note( $self->quarter,          $cymbal, $self->snare );
-        $self->note( $self->triplet_eighth,   $cymbal, $self->kick );
-        $self->rest( $self->triplet_eighth );
-        $self->note( $self->triplet_eighth,   $cymbal );
     }
 }
 
