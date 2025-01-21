@@ -61,8 +61,11 @@ use constant STRAIGHT => 50; # Swing percent
 
   $d->add_fill('...'); # see doc...
 
-  my $patterns = [ your_function(5, 16), your_function(7, 16) ]; # e.g. a euclidean function
-  $d->pattern( instrument => $d->kick, patterns => $patterns );  # see doc...
+  my $patterns = [
+    your_function(5, 16), # e.g. a euclidean function
+    your_function(7, 16), # ...
+  ];
+  $d->pattern( instrument => $d->kick, patterns => $patterns ); # see doc...
 
   print 'Count: ', $d->counter, "\n";
 
