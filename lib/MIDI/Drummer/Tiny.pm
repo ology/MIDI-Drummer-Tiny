@@ -871,6 +871,10 @@ tokens, like the digits 0-9.  Each coderef duration should add up to
 the given B<duration> option.  The single argument to the coderefs is
 the object itself and may be used as: C<my $self = shift;> in yours.
 
+These patterns can be generated with any custom function, as in the
+L</SYNOPSIS>. For instance, you could use the L<Creating::Rhythms>
+module to generate Euclidean patterns.
+
 Defaults:
 
   instrument: snare
