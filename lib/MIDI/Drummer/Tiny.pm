@@ -656,13 +656,31 @@ sub metronome7 {
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
     for my $n (1 .. $bars) {
-        $self->note($self->eighth, $cymbal, $self->kick);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal, $self->kick);
-        $self->note($self->eighth, $cymbal, $self->snare);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal);
+        $self->note( "d$x", $cymbal, $self->kick );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal, $self->kick );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal, $self->kick );
+        }
+        $self->note( "d$x", $cymbal, $self->snare );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal );
     }
 }
 
