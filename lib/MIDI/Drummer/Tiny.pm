@@ -453,45 +453,30 @@ sub count_in {
     }
 }
 
-=head2 metronome38
+=head2 metronome3
 
-  $d->metronome38;
-  $d->metronome38($bars);
-  $d->metronome38($bars, $cymbal);
+  $d->metronome3;
+  $d->metronome3($bars);
+  $d->metronome3($bars, $cymbal);
+  $d->metronome3($bars, $cymbal, $tempo, $swing);
 
-Add a steady 3/8 beat to the score.
+Add a steady 3/x beat to the score.
 
-=cut
+Defaults:
 
-sub metronome38 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-
-    for ( 1 .. $bars ) {
-        $self->note( $self->eighth, $cymbal, $self->kick );
-        $self->note( $self->eighth, $cymbal);
-        $self->note( $self->eighth, $cymbal, $self->snare );
-    }
-}
-
-=head2 metronome34
-
-  $d->metronome34;
-  $d->metronome34($bars);
-  $d->metronome34($bars, $cymbal);
-  $d->metronome34($bars, $cymbal, $tempo, $swing);
-
-Add a steady 3/4 beat to the score.
+  bars: The object B<bars>
+  cymbal: B<ride1>
+  tempo: B<quarter-note>
+  swing: 50 percent = straight-time
 
 =cut
 
-sub metronome34 {
+sub metronome3 {
     my $self = shift;
     my $bars = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
     my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 67; # percent
+    my $swing  = shift || 50; # percent
     my $x = dura_size($tempo) * TICKS;
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
@@ -558,7 +543,7 @@ sub metronome44 {
     }
 }
 
-=head2 metronome44swing
+=head2 metronome4
 
   $d->metronome44swing($bars, $cymbal, $tempo, $swing);
 
@@ -569,16 +554,16 @@ Defaults:
   bars: The object B<bars>
   cymbal: B<ride1>
   tempo: B<quarter-note>
-  swing: 67 (percent)
+  swing: 50 percent = straight-time
 
 =cut
 
-sub metronome44swing {
+sub metronome4 {
     my $self   = shift;
     my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->ride1;
     my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 67; # percent
+    my $swing  = shift || 50; # percent
     my $x = dura_size($tempo) * TICKS;
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
