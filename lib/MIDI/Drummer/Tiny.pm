@@ -554,10 +554,10 @@ sub metronome44x {
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
     for my $n ( 1 .. $bars ) {
-        $self->note( "d$x", $cymbal );
+        $self->note( "d$x", $cymbal, $self->kick );
         $self->note( "d$y", $cymbal );
         $self->note( "d$z", $cymbal );
-        $self->note( "d$x", $cymbal );
+        $self->note( "d$x", $cymbal, $self->snare );
         $self->note( "d$y", $cymbal );
         $self->note( "d$z", $cymbal );
     }
