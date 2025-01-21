@@ -458,6 +458,7 @@ sub count_in {
   $d->metronome3;
   $d->metronome3($bars);
   $d->metronome3($bars, $cymbal);
+  $d->metronome3($bars, $cymbal, $tempo);
   $d->metronome3($bars, $cymbal, $tempo, $swing);
 
 Add a steady 3/x beat to the score.
@@ -498,6 +499,7 @@ sub metronome3 {
   $d->metronome4;
   $d->metronome4($bars);
   $d->metronome4($bars, $cymbal);
+  $d->metronome4($bars, $cymbal, $tempo);
   $d->metronome4($bars, $cymbal, $tempo, $swing);
 
 Add a steady 4/4 swing beat to the score.
@@ -514,7 +516,7 @@ Defaults:
 sub metronome4 {
     my $self   = shift;
     my $bars   = shift || $self->bars;
-    my $cymbal = shift || $self->ride1;
+    my $cymbal = shift || $self->closed_hh;
     my $tempo  = shift || $self->quarter;
     my $swing  = shift || 50; # percent
     my $x = dura_size($tempo) * TICKS;
@@ -545,6 +547,7 @@ sub metronome4 {
   $d->metronome5;
   $d->metronome5($bars);
   $d->metronome5($bars, $cymbal);
+  $d->metronome5($bars, $cymbal, $tempo);
   $d->metronome5($bars, $cymbal, $tempo, $swing);
 
 Add a 5/x beat to the score.
@@ -588,97 +591,70 @@ sub metronome5 {
     }
 }
 
-=head2 metronome58
+=head2 metronome6
 
-  $d->metronome58;
-  $d->metronome58($bars);
-  $d->metronome58($bars, $cymbal);
+  $d->metronome6;
+  $d->metronome6($bars);
+  $d->metronome6($bars, $cymbal);
+  $d->metronome6($bars, $cymbal, $tempo);
+  $d->metronome6($bars, $cymbal, $tempo, $swing);
 
-Add a 5/8 beat to the score.
+Add a 6/x beat to the score.
 
 =cut
 
-sub metronome58 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
+sub metronome6 {
+    my $self   = shift;
+    my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
-
+    my $tempo  = shift || $self->quarter;
+    my $swing  = shift || 50; # percent
+    my $x = dura_size($tempo) * TICKS;
+    my $y = sprintf '%0.f', ($swing / 100) * $x;
+    my $z = $x - $y;
     for my $n (1 .. $bars) {
-        $self->note($self->eighth, $cymbal, $self->kick);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal, $self->snare);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal);
+        $self->note( "d$x", $cymbal, $self->kick );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal );
+        $self->note( "d$x", $cymbal, $self->snare );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal );
     }
 }
 
-=head2 metronome68
+=head2 metronome7
 
-  $d->metronome68;
-  $d->metronome68($bars);
-  $d->metronome68($bars, $cymbal);
+  $d->metronome7;
+  $d->metronome7($bars);
+  $d->metronome7($bars, $cymbal);
+  $d->metronome7($bars, $cymbal, $tempo);
+  $d->metronome7($bars, $cymbal, $tempo, $swing);
 
-Add a 6/8 beat to the score.
-
-=cut
-
-sub metronome68 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-
-    for my $n (1 .. $bars) {
-        $self->note($self->eighth, $cymbal, $self->kick);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal, $self->snare);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $cymbal);
-    }
-}
-
-=head2 metronome74
-
-  $d->metronome74;
-  $d->metronome74($bars);
-  $d->metronome74($bars, $cymbal);
-
-Add a 7/4 beat to the score.
+Add a 7/x beat to the score.
 
 =cut
 
-sub metronome74 {
+sub metronome7 {
     my $self = shift;
     my $bars = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
-
-    for my $n (1 .. $bars) {
-        $self->note($self->quarter, $cymbal, $self->kick);
-        $self->note($self->quarter, $cymbal);
-        $self->note($self->quarter, $cymbal, $self->snare);
-        $self->note($self->eighth, $cymbal);
-        $self->note($self->eighth, $self->kick);
-        $self->note($self->quarter, $cymbal, $self->kick);
-        $self->note($self->quarter, $cymbal, $self->snare);
-        $self->note($self->quarter, $cymbal);
-    }
-}
-
-=head2 metronome78
-
-  $d->metronome78;
-  $d->metronome78($bars);
-  $d->metronome78($bars, $cymbal);
-
-Add a 7/8 beat to the score.
-
-=cut
-
-sub metronome78 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-
+    my $tempo  = shift || $self->quarter;
+    my $swing  = shift || 50; # percent
+    my $x = dura_size($tempo) * TICKS;
+    my $y = sprintf '%0.f', ($swing / 100) * $x;
+    my $z = $x - $y;
     for my $n (1 .. $bars) {
         $self->note($self->eighth, $cymbal, $self->kick);
         $self->note($self->eighth, $cymbal);
