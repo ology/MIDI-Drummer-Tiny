@@ -480,6 +480,7 @@ sub metronome38 {
   $d->metronome34;
   $d->metronome34($bars);
   $d->metronome34($bars, $cymbal);
+  $d->metronome34($bars, $cymbal, $tempo, $swing);
 
 Add a steady 3/4 beat to the score.
 
@@ -489,11 +490,21 @@ sub metronome34 {
     my $self = shift;
     my $bars = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
-
+    my $tempo  = shift || $self->quarter;
+    my $swing  = shift || 67; # percent
+    my $x = dura_size($tempo) * TICKS;
+    my $y = sprintf '%0.f', ($swing / 100) * $x;
+    my $z = $x - $y;
     for ( 1 .. $bars ) {
-        $self->note( $self->quarter, $cymbal, $self->kick );
-        $self->note( $self->quarter, $cymbal );
-        $self->note( $self->quarter, $cymbal, $self->snare );
+        $self->note( "d$x", $cymbal, $self->kick );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal, $self->snare );
     }
 }
 
