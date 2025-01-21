@@ -555,11 +555,21 @@ sub metronome44x {
     my $z = $x - $y;
     for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
-        $self->note( "d$y", $cymbal );
-        $self->note( "d$z", $cymbal );
+        if ($swing > 50) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
         $self->note( "d$x", $cymbal, $self->snare );
-        $self->note( "d$y", $cymbal );
-        $self->note( "d$z", $cymbal );
+        if ($swing > 50) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
     }
 }
 
