@@ -33,17 +33,15 @@ use constant STRAIGHT => 50; # Swing percent
     #snare => 40, # "
   );
 
+  $d->metronome5($d->bars, $d->ride2, $d->quarter, 60);
+
   $d->count_in(1);  # Closed hi-hat for 1 bar
-
-  $d->metronome54;  # 5/4 time for the number of bars
-
-  $d->rest($d->whole);
 
   $d->set_time_sig('4/4');
 
-  $d->metronome44(3);  # 4/4 time for 3 bars
+  $d->metronome4($d->bars, $d->closed_hh, $d->eighth, 50);
 
-  $d->metronome44swing(3, $d->ride2, $d->eighth, 60);
+  $d->rest($d->whole);
 
   $d->flam($d->quarter, $d->snare);
   $d->crescendo_roll([50, 127, 1], $d->eighth, $d->thirtysecond);
