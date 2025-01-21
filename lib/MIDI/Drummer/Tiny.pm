@@ -48,9 +48,6 @@ use constant STRAIGHT => 50; # Swing percent
   $d->note($d->sixteenth, $d->crash1);
   $d->accent_note(127, $d->sixteenth, $d->crash2);
 
-  my $patterns = [ your_function(5, 16), your_function(7, 16) ];
-  $d->pattern( instrument => $d->kick, patterns => $patterns );
-
   # Alternate kick and snare
   $d->note($d->quarter, $d->open_hh, $_ % 2 ? $d->kick : $d->snare)
     for 1 .. $d->beats * $d->bars;
@@ -63,6 +60,9 @@ use constant STRAIGHT => 50; # Swing percent
   ) for 1 .. $d->bars;
 
   $d->add_fill('...'); # see doc...
+
+  my $patterns = [ your_function(5, 16), your_function(7, 16) ]; # e.g. a euclidean function
+  $d->pattern( instrument => $d->kick, patterns => $patterns );  # see doc...
 
   print 'Count: ', $d->counter, "\n";
 
