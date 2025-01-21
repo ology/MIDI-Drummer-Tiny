@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Breaking change: Now all metronome methods are named differently and use percentage swing.
 
 0.4308 2025-01-20 18:43:56
     - Replace triplet swing with percentage swing.
