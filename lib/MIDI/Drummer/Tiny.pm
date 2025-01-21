@@ -556,7 +556,7 @@ sub metronome44x {
     my $z = $x - $y;
     for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
-        if ($swing > STRAIGHT) {
+        if ( $swing > STRAIGHT ) {
             $self->note( "d$y", $cymbal );
             $self->note( "d$z", $cymbal );
         }
@@ -564,7 +564,7 @@ sub metronome44x {
             $self->note( "d$x", $cymbal );
         }
         $self->note( "d$x", $cymbal, $self->snare );
-        if ($swing > STRAIGHT) {
+        if ( $swing > STRAIGHT ) {
             $self->note( "d$y", $cymbal );
             $self->note( "d$z", $cymbal );
         }
