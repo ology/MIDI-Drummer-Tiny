@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix metronome in the eg/metric-modulation program.
 
 0.5002 2025-01-21 09:23:36
     - Fix synopsis and prereq version.
