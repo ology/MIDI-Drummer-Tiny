@@ -12,8 +12,8 @@ my $d = MIDI::Drummer::Tiny->new(
 
 $d->count_in(1);
 
-$d->metronome44x($d->bars, $d->closed_hh, $d->quarter, 50);
-$d->metronome44x($d->bars, $d->ride2, $d->quarter, 67);
+$d->metronome44x($d->bars, $d->closed_hh, $d->eighth, 50);
+$d->metronome44x($d->bars, $d->ride2, $d->eighth, 67);
 
 $d->note( $d->quarter, $d->ride1, $d->kick );
 
