@@ -472,8 +472,8 @@ Defaults:
 =cut
 
 sub metronome3 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
+    my $self   = shift;
+    my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
     my $tempo  = shift || $self->quarter;
     my $swing  = shift || 50; # percent
@@ -493,59 +493,12 @@ sub metronome3 {
     }
 }
 
-=head2 metronome44
-
-  $d->metronome44;
-  $d->metronome44($bars);
-  $d->metronome44($bars, $flag);
-  $d->metronome44($bars, $flag, $cymbal);
-
-Add a steady 4/4 beat to the score.
-
-If a B<flag> is provided the beat is modified to include alternating
-eighth-note kicks.
-
-=cut
-
-sub metronome44 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $flag = shift // 0;
-    my $cymbal = shift || $self->closed_hh;
-
-    my $i = 0;
-
-    for my $n ( 1 .. $self->beats * $bars ) {
-        if ( $n % 2 == 0 )
-        {
-            $self->note( $self->quarter, $cymbal, $self->snare );
-        }
-        else {
-            if ( $flag == 0 )
-            {
-                $self->note( $self->quarter, $cymbal, $self->kick );
-            }
-            else
-            {
-                if ( $i % 2 == 0 )
-                {
-                    $self->note( $self->quarter, $cymbal, $self->kick );
-                }
-                else
-                {
-                    $self->note( $self->eighth, $cymbal, $self->kick );
-                    $self->note( $self->eighth, $self->kick );
-                }
-            }
-
-            $i++;
-        }
-    }
-}
-
 =head2 metronome4
 
-  $d->metronome44swing($bars, $cymbal, $tempo, $swing);
+  $d->metronome4;
+  $d->metronome4($bars);
+  $d->metronome4($bars, $cymbal);
+  $d->metronome4($bars, $cymbal, $tempo, $swing);
 
 Add a steady 4/4 swing beat to the score.
 
@@ -587,32 +540,50 @@ sub metronome4 {
     }
 }
 
-=head2 metronome54
+=head2 metronome5
 
-  $d->metronome54;
-  $d->metronome54($bars);
-  $d->metronome54($bars, $cymbal);
+  $d->metronome5;
+  $d->metronome5($bars);
+  $d->metronome5($bars, $cymbal);
+  $d->metronome5($bars, $cymbal, $tempo, $swing);
 
-Add a 5/4 beat to the score.
+Add a 5/x beat to the score.
 
 =cut
 
-sub metronome54 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
+sub metronome5 {
+    my $self   = shift;
+    my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->closed_hh;
-
+    my $tempo  = shift || $self->quarter;
+    my $swing  = shift || 50; # percent
+    my $x = dura_size($tempo) * TICKS;
+    my $half = $x / 2;
+    my $y = sprintf '%0.f', ($swing / 100) * $x;
+    my $z = $x - $y;
     for my $n (1 .. $bars) {
-        $self->note($self->quarter, $cymbal, $self->kick);
-        $self->note($self->quarter, $cymbal);
-        $self->note($self->quarter, $cymbal, $self->snare);
-        $self->note($self->quarter, $cymbal);
-        if ($n % 2) {
-            $self->note($self->quarter, $cymbal);
+        $self->note( "d$x", $cymbal, $self->kick );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
         }
         else {
-            $self->note($self->eighth, $cymbal);
-            $self->note($self->eighth, $self->kick);
+            $self->note( "d$x", $cymbal );
+        }
+        $self->note( "d$x", $cymbal, $self->snare );
+        if ( $swing > STRAIGHT ) {
+            $self->note( "d$y", $cymbal );
+            $self->note( "d$z", $cymbal );
+        }
+        else {
+            $self->note( "d$x", $cymbal );
+        }
+        if ($n % 2) {
+            $self->note("d$x", $cymbal);
+        }
+        else {
+            $self->note("d$half", $cymbal);
+            $self->note("d$half", $self->kick);
         }
     }
 }
@@ -716,6 +687,53 @@ sub metronome78 {
         $self->note($self->eighth, $cymbal, $self->snare);
         $self->note($self->eighth, $cymbal);
         $self->note($self->eighth, $cymbal);
+    }
+}
+
+=head2 metronome44
+
+  $d->metronome44;
+  $d->metronome44($bars);
+  $d->metronome44($bars, $flag);
+  $d->metronome44($bars, $flag, $cymbal);
+
+Add a steady quarter-note based 4/4 beat to the score.
+
+If a B<flag> is provided the beat is modified to include alternating
+eighth-note kicks.
+
+=cut
+
+sub metronome44 {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    my $flag = shift // 0;
+    my $cymbal = shift || $self->closed_hh;
+    my $i = 0;
+    for my $n ( 1 .. $self->beats * $bars ) {
+        if ( $n % 2 == 0 )
+        {
+            $self->note( $self->quarter, $cymbal, $self->snare );
+        }
+        else {
+            if ( $flag == 0 )
+            {
+                $self->note( $self->quarter, $cymbal, $self->kick );
+            }
+            else
+            {
+                if ( $i % 2 == 0 )
+                {
+                    $self->note( $self->quarter, $cymbal, $self->kick );
+                }
+                else
+                {
+                    $self->note( $self->eighth, $cymbal, $self->kick );
+                    $self->note( $self->eighth, $self->kick );
+                }
+            }
+            $i++;
+        }
     }
 }
 
