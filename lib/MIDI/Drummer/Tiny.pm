@@ -14,7 +14,8 @@ use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
 use namespace::clean;
 
-use constant TICKS => 96; # Per quarter note
+use constant TICKS    => 96; # Per quarter note
+use constant STRAIGHT => 50; # Swing percent
 
 =head1 SYNOPSIS
 
@@ -549,13 +550,13 @@ sub metronome44x {
     my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->ride1;
     my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
+    my $swing  = shift || STRAIGHT; # percent
     my $x = dura_size($tempo) * TICKS;
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
     for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
-        if ($swing > 50) {
+        if ($swing > STRAIGHT) {
             $self->note( "d$y", $cymbal );
             $self->note( "d$z", $cymbal );
         }
@@ -563,7 +564,7 @@ sub metronome44x {
             $self->note( "d$x", $cymbal );
         }
         $self->note( "d$x", $cymbal, $self->snare );
-        if ($swing > 50) {
+        if ($swing > STRAIGHT) {
             $self->note( "d$y", $cymbal );
             $self->note( "d$z", $cymbal );
         }
