@@ -362,7 +362,8 @@ It also keeps track of the beat count with the C<counter> attribute.
 sub note {
     my ($self, @spec) = @_;
     my $size = $spec[0] =~ /^d(\d+)$/ ? $1 / TICKS : dura_size($spec[0]);
-    #warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0] => $size\n";
+    # warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0]\n";
+    # warn __PACKAGE__,' L',__LINE__,' ',,"$size\n";
     $self->counter( $self->counter + $size );
     return $self->score->n(@spec);
 }
@@ -540,6 +541,25 @@ sub metronome44 {
 
             $i++;
         }
+    }
+}
+
+sub metronome44x {
+    my $self = shift;
+    my $bars = shift || $self->bars;
+    my $cymbal = shift || $self->ride1;
+    my $tempo = shift || $self->quarter;
+    my $swing = shift || 50; # percent
+    my $x = dura_size($tempo) * TICKS;
+    my $y = sprintf '%0.f', ($swing / 100) * $x;
+    my $z = $x - $y;
+    for my $n ( 1 .. $bars ) {
+        $self->note( "d$x", $cymbal );
+        $self->note( "d$y", $cymbal );
+        $self->note( "d$z", $cymbal );
+        $self->note( "d$x", $cymbal );
+        $self->note( "d$y", $cymbal );
+        $self->note( "d$z", $cymbal );
     }
 }
 
