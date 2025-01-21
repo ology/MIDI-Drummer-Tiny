@@ -464,10 +464,10 @@ sub count_in {
 
 Add a steady 3/x beat to the score.
 
-Defaults:
+Defaults for all metronome methods:
 
   bars: The object B<bars>
-  cymbal: B<ride1>
+  cymbal: B<closed_hh>
   tempo: B<quarter-note>
   swing: 50 percent = straight-time
 
@@ -503,14 +503,7 @@ sub metronome3 {
   $d->metronome4($bars, $cymbal, $tempo);
   $d->metronome4($bars, $cymbal, $tempo, $swing);
 
-Add a steady 4/4 swing beat to the score.
-
-Defaults:
-
-  bars: The object B<bars>
-  cymbal: B<ride1>
-  tempo: B<quarter-note>
-  swing: 50 percent = straight-time
+Add a steady 4/x beat to the score.
 
 =cut
 
