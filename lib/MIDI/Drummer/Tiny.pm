@@ -545,11 +545,11 @@ sub metronome44 {
 }
 
 sub metronome44x {
-    my $self = shift;
-    my $bars = shift || $self->bars;
+    my $self   = shift;
+    my $bars   = shift || $self->bars;
     my $cymbal = shift || $self->ride1;
-    my $tempo = shift || $self->quarter;
-    my $swing = shift || 50; # percent
+    my $tempo  = shift || $self->quarter;
+    my $swing  = shift || 50; # percent
     my $x = dura_size($tempo) * TICKS;
     my $y = sprintf '%0.f', ($swing / 100) * $x;
     my $z = $x - $y;
