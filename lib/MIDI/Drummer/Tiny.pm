@@ -57,13 +57,13 @@ use constant STRAIGHT => 50; # Swing percent
     $d->kick    => [ '1010' ],
   ) for 1 .. $d->bars;
 
-  $d->add_fill('...'); # see doc...
-
   my $patterns = [
     your_function(5, 16), # e.g. a euclidean function
     your_function(7, 16), # ...
   ];
   $d->pattern( instrument => $d->kick, patterns => $patterns ); # see doc...
+
+  $d->add_fill('...'); # see doc...
 
   print 'Count: ', $d->counter, "\n";
 
