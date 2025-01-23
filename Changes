@@ -17,7 +17,7 @@ Revision history for MIDI-Drummer
     - Fix synopsis and prereq version.
 
 0.5001 2025-01-21 08:59:30
-    - WTF?
+    - Uhh...
 
 0.5000 2025-01-21 08:48:36
     - Breaking change: Now all metronome methods are named differently and use percentage swing.
