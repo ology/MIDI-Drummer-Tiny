@@ -37,7 +37,7 @@ use constant STRAIGHT => 50; # Swing percent
 
   $d->set_time_sig('4/4');
   $d->count_in(1);  # Closed hi-hat for 1 bar
-  $d->metronome4($d->bars, $d->closed_hh, $d->eighth, 60);
+  $d->metronome4($d->bars, $d->closed_hh, $d->eighth, 60); # swing!
 
   $d->rest($d->whole);
 
