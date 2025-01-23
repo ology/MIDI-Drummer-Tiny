@@ -33,7 +33,7 @@ use constant STRAIGHT => 50; # Swing percent
     #snare => 40, # "
   );
 
-  $d->metronome5($d->bars, $d->ride2, $d->quarter, 50);
+  $d->metronome5;
 
   $d->set_time_sig('4/4');
 
