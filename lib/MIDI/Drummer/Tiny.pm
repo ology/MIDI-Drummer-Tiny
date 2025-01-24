@@ -1207,7 +1207,7 @@ sub play_with_timidity {
     if ($self->soundfont) {
         $config ||= 'timidity-midi-util.cfg';
         timidity_conf($self->soundfont, $config);
-        @cmd = ('timidity', '-c', $config, $self->file);
+        @cmd = ('timidity', '-c', $config, '-Od', $self->file);
     }
     else {
         @cmd = ('timidity', $self->file);
