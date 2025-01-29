@@ -63,9 +63,9 @@ Snare-like things:
 
   quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
 
-  eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
+  eighth, triplet_eighth, dotted_eighth, double_dotted_eighth, ...
 
-etc. up to double-dotted 128th notes.
+etc. down to double-dotted 128th notes!
 
 =head1 Basic Beats
 
