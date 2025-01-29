@@ -22,18 +22,11 @@ $d->count_in(1);
 for my $n (1 .. $d->bars) {
     one();
     two();
-
-    $d->note($dura, $cymbal, $d->kick) for 1 .. 2;
-    $d->note($dura, $cymbal);
-
+    three();
     two();
     one();
     two();
-
-    $d->note($dura, $cymbal, $d->kick);
-    $d->note($dura, $cymbal);
-    $d->note($dura, $cymbal, $d->kick);
-
+    four();
     two();
 }
 
@@ -48,4 +41,15 @@ sub one {
 sub two {
     $d->note($dura, $cymbal, $d->snare);
     $d->note($dura, $cymbal) for 1 .. 2;
+}
+
+sub three {
+    $d->note($dura, $cymbal, $d->kick) for 1 .. 2;
+    $d->note($dura, $cymbal);
+}
+
+sub four {
+    $d->note($dura, $cymbal, $d->kick);
+    $d->note($dura, $cymbal);
+    $d->note($dura, $cymbal, $d->kick);
 }
