@@ -2,6 +2,7 @@ Revision history for MIDI-Drummer
 
 {{$NEXT}}
     - Added the eg/frank.pl program.
+    - Repaired and improved the tutorial POD.
 
 0.5007 2025-01-25 09:59:54
     - Update timidity system command.
