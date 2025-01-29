@@ -23,6 +23,7 @@ package MIDI::Drummer::Tiny::Tutorial::Quickstart;
       reverb     => 0,
       kick       => 36, # Override default patch
       snare      => 40, # "
+      soundfont  => '/Users/you/Music/FluidR3_GM.sf2',
       verbose    => 1,
   );
 
