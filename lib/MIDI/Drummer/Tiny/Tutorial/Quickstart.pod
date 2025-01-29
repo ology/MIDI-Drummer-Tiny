@@ -33,7 +33,7 @@ package MIDI::Drummer::Tiny::Tutorial::Quickstart;
 
 Bass drums ("kicks"):
 
-  acoustic_bass & electric_bass (Generic: C<kick>)
+  acoustic_bass & electric_bass (Generic: kick)
 
 Snare-like things:
 
