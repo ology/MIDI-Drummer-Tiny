@@ -14,10 +14,10 @@ my $d = MIDI::Drummer::Tiny->new(
     soundfont => '/Users/gene/Music/FluidR3_GM.sf2',
 );
 
-$d->count_in(1);
-
 my $dura   = $d->quarter;
 my $cymbal = $d->closed_hh;
+
+$d->count_in(1);
 
 for my $n (1 .. $d->bars) {
     one();
