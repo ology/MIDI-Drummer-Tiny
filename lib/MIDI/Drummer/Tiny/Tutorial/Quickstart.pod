@@ -31,51 +31,57 @@ package MIDI::Drummer::Tiny::Tutorial::Quickstart;
 
 =head2 Kick and snare-like things
 
-acoustic_bass, electric_bass ("kick")
+Bass drums ("kicks"):
 
-acoustic_snare, electric_snare, side_stick, clap
+C<acoustic_bass> & C<electric_bass> (Generic: C<kick>)
+
+Snare-like things:
+
+C<acoustic_snare> & C<electric_snare> (Generic: C<snare>), C<side_stick>, C<clap>
 
 =head2 Cymbals
 
-open_hh, closed_hh, pedal_hh
+  open_hh, closed_hh, pedal_hh
 
-crash1, crash2, splash, china
+  crash1, crash2, splash, china
 
-ride1, ride2, ride_bell
+  ride1, ride2, ride_bell
 
 =head2 Toms
 
-hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
+  hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
 
 =head2 Miscellaneous
 
-click, bell (metronome), tambourine, cowbell, vibraslap, etc.
+  click, bell (i.e. the metronome sound), tambourine, cowbell, vibraslap, etc.
 
 =head1 Handy Duration Aliases
 
-whole, triplet_whole, dotted_whole, double_dotted_whole
+  whole, triplet_whole, dotted_whole, double_dotted_whole
 
-half, triplet_half, dotted_half, double_dotted_half
+  half, triplet_half, dotted_half, double_dotted_half
 
-quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
+  quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
 
-eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
+  eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
 
-etc. up to 128th notes
+etc. up to double-dotted 128th notes.
 
 =head1 Basic Beats
 
 =head2 Rock
 
-  $d->metronome44;
+  $d->metronome3;
+  $d->metronome4;
+  $d->metronome5;
+  $d->metronome6;
+  $d->metronome7;
   # OR
-  $d->metronome44($d->bars, 1);
-
-That's it!
+  $d->metronome44;
 
 =head2 Swing
 
-  $d->metronome44swing;
+  $d->metronome4($d->bars, $d->ride2, $d->eighth, 67);
 
 That's it!
 
@@ -106,22 +112,25 @@ This beat is extra-cheesy.
 
 =head1 And Finally...
 
-Either play the score with the built-in L<timidity++|https://timidity.sourceforge.net/|> functionality:
+Either play the score with the built-in L<timidity++|https://timidity.sourceforge.net/|> functionality, plus a defined C<soundfont>:
 
+  my $d = MIDI::Drummer::Tiny->new(
+    # ...,
+    soundfont => '/you/soundfonts/TR808.sf2',
+  );
+  # ...
   $d->play_with_timidity;
 
 Or write-out the score to a MIDI file:
 
   $d->write;
 
-And then play the score with timidity:
+And then play the score with timidity (where the C<cfg> file specifies the soundfont to be used):
 
-  > timidity drums.mid
+  > timidity -c ~/timidity.cfg -Od drums.mid
 
 You can also use the excellent, cross platform program, L<VLC|https://www.videolan.org/vlc/|>.
 
 You can also convert the MIDI file into MP3, or whatever format you like.
-
-Easy!
 
 =cut
