@@ -21,16 +21,13 @@ $d->count_in(1);
 
 for my $n (1 .. $d->bars) {
     one();
-
     two();
 
     $d->note($dura, $cymbal, $d->kick) for 1 .. 2;
     $d->note($dura, $cymbal);
 
     two();
-
     one();
-
     two();
 
     $d->note($dura, $cymbal, $d->kick);
