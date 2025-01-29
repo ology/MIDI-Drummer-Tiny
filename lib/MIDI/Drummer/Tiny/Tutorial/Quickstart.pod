@@ -33,11 +33,11 @@ package MIDI::Drummer::Tiny::Tutorial::Quickstart;
 
 Bass drums ("kicks"):
 
-C<acoustic_bass> & C<electric_bass> (Generic: C<kick>)
+  acoustic_bass & electric_bass (Generic: C<kick>)
 
 Snare-like things:
 
-C<acoustic_snare> & C<electric_snare> (Generic: C<snare>), C<side_stick>, C<clap>
+  acoustic_snare & electric_snare (Generic: snare), side_stick, clap
 
 =head2 Cymbals
 
@@ -53,7 +53,7 @@ C<acoustic_snare> & C<electric_snare> (Generic: C<snare>), C<side_stick>, C<clap
 
 =head2 Miscellaneous
 
-  click, bell (i.e. the metronome sound), tambourine, cowbell, vibraslap, etc.
+  click & bell (i.e. the metronome sounds), tambourine, cowbell, vibraslap, etc.
 
 =head1 Handy Duration Aliases
 
