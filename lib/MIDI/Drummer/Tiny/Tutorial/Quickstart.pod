@@ -127,7 +127,7 @@ Or write-out the score to a MIDI file:
 
 And then play the score with timidity (where the C<cfg> file specifies the soundfont to be used):
 
-  > timidity -c ~/timidity.cfg -Od drums.mid
+  > timidity -c ~/timidity.cfg -Od MIDI-Drummer.mid
 
 You can also use the excellent, cross platform program, L<VLC|https://www.videolan.org/vlc/|>.
 
