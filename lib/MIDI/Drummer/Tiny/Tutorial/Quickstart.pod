@@ -112,7 +112,9 @@ This beat is extra-cheesy.
 
 =head1 And Finally...
 
-Either play the score with the built-in L<timidity++|https://timidity.sourceforge.net/|> functionality, plus a defined C<soundfont>:
+Either play the score with the built-in
+L<timidity++|https://timidity.sourceforge.net/|>
+functionality, plus a defined C<soundfont>:
 
   my $d = MIDI::Drummer::Tiny->new(
     # ...,
@@ -125,7 +127,8 @@ Or write-out the score to a MIDI file:
 
   $d->write;
 
-And then play the score with timidity (where the C<cfg> file specifies the soundfont to be used):
+And then play the score with timidity (where the C<cfg> file specifies
+the soundfont to be used):
 
   > timidity -c ~/timidity.cfg -Od MIDI-Drummer.mid
 
