@@ -121,12 +121,17 @@ functionality, plus a defined C<soundfont>:
 
 Or write-out the score to a MIDI file:
 
+  my $d = MIDI::Drummer::Tiny->new(
+    # ...,
+    file => 'drums.mid',
+  );
+  # ...
   $d->write;
 
 And then play the score with timidity (where the C<cfg> file specifies
 the soundfont to be used):
 
-  > timidity -c ~/timidity.cfg -Od MIDI-Drummer.mid
+  > timidity -c ~/timidity.cfg -Od drums.mid
 
 You can also use the excellent, cross platform program, L<VLC|https://www.videolan.org/vlc/|>.
 
