@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.5008 2025-01-30 07:08:49
     - Added the eg/frank.pl program.
     - Repaired and improved the tutorial POD.
 
