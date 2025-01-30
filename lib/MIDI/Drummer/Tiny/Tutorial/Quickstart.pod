@@ -77,13 +77,11 @@ etc. down to double-dotted 128th notes!
   $d->metronome6;
   $d->metronome7;
   # OR
-  $d->metronome44;
+  $d->metronome44($d->bars, 1); # nb: 1 is an optional flag
 
 =head2 Swing
 
   $d->metronome4($d->bars, $d->ride2, $d->eighth, 67);
-
-That's it!
 
 =head2 Viennese Waltz
 
@@ -93,7 +91,7 @@ That's it!
       $d->note($d->quarter, $d->ride1, $d->snare);
   }
 
-In 3/4 time
+in 3/4 time
 
 =head2 Disco
 
