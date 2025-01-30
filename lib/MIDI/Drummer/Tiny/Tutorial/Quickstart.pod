@@ -91,8 +91,6 @@ etc. down to double-dotted 128th notes!
       $d->note($d->quarter, $d->ride1, $d->snare);
   }
 
-in 3/4 time
-
 =head2 Disco
 
   for my $n ( 0 .. $d->bars - 1 ) {
