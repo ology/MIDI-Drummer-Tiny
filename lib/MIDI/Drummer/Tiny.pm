@@ -9,7 +9,7 @@ use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use List::Util qw(sum0);
 use Math::Bezier ();
-use MIDI::Util qw(dura_size reverse_dump set_time_signature timidity_conf play_timidity);
+use MIDI::Util qw(dura_size reverse_dump set_time_signature timidity_conf play_timidity play_fluidsynth);
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
 use namespace::clean;
@@ -74,10 +74,10 @@ use constant STRAIGHT => 50; # Swing percent
   $d->timidity_cfg('timidity-drummer.cfg');
 
   $d->write;
-
   # OR:
-
   $d->play_with_timidity;
+  # OR:
+  $d->play_with_fluidsynth;
 
 =head1 DESCRIPTION
 
@@ -1198,11 +1198,29 @@ or C<timidity-midi-util.cfg> is used for the timidity configuration.
 If a soundfont is not defined, a timidity configuration file is not
 rendered.
 
+See L<MIDI::Util/play_timidity> for more details.
+
 =cut
 
 sub play_with_timidity {
     my ($self, $config) = @_;
     play_timidity($self->score, $self->file, $self->soundfont, $config);
+}
+
+=head2 play_with_fluidsynth
+
+  $d->play_with_fluidsynth;
+  $d->play_with_fluidsynth(\@config);
+
+Play the score with C<fluidsynth>.
+
+See L<MIDI::Util/play_fluidsynth> for more details.
+
+=cut
+
+sub play_with_fluidsynth {
+    my ($self, $config) = @_;
+    play_fluidsynth($self->score, $self->file, $self->soundfont, $config);
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
