@@ -30,7 +30,8 @@ for my $n (1 .. $d->bars) {
     two();
 }
 
-$d->play_with_timidity;
+# $d->play_with_timidity;
+$d->play_with_fluidsynth;
 # $d->write;
 
 sub one {
