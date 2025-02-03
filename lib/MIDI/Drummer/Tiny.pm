@@ -1202,17 +1202,7 @@ rendered.
 
 sub play_with_timidity {
     my ($self, $config) = @_;
-    $self->write;
-    my @cmd;
-    if ($self->soundfont) {
-        $config ||= 'timidity-midi-util.cfg';
-        timidity_conf($self->soundfont, $config);
-        @cmd = ('timidity', '-c', $config, '-Od', $self->file);
-    }
-    else {
-        @cmd = ('timidity', $self->file);
-    }
-    system(@cmd) == 0 or die "system(@cmd) failed: $?";
+    play_timidity($self->score, $self->file, $self->soundfont, $config);
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
