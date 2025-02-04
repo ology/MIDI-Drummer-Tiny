@@ -311,6 +311,50 @@ sub _fills {
             dura => dura_size($d->dotted_half),
         },
 
+        19 => {
+            fill => sub {
+                $d->note($d->dotted_eighth, $d->kick, $cymbal);
+                $d->note($d->sixteenth, $d->snare);
+                $d->note($d->dotted_eighth, $d->kick, $cymbal);
+                $d->note($d->sixteenth, $cymbal);
+                $d->note($d->dotted_eighth, $d->kick, $cymbal);
+                $d->note($d->sixteenth, $d->snare);
+                $d->note($d->dotted_eighth, $d->kick, $cymbal);
+                $d->note($d->sixteenth, $d->snare,  $cymbal);
+            },
+            dura => dura_size($d->whole),
+        },
+
+        20 => {
+            fill => sub {
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->note($d->triplet_eighth, $d->kick);
+            },
+            dura => dura_size($d->half),
+        },
+
+        21 => {
+            fill => sub {
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->note($d->triplet_eighth, $d->kick);
+            },
+            dura => dura_size($d->whole),
+        },
+
     );
     return \%fills;
 }
