@@ -15,7 +15,7 @@ use namespace::clean;
 
   for my $i (1 .. $d->beats * $d->bars) {
     my $remainder = $d->beats * $d->bars - $i;
-    my $fill = $f->get_fill($d);
+    my $fill = $f->get_fill($d, $d->ride2);
     if ($remainder == $fill->{dura}) {
       $fill->{fill}->();
       last;
