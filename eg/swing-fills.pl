@@ -6,30 +6,33 @@ use MIDI::Drummer::Tiny;
 use MIDI::Drummer::Tiny::SwingFills;
 
 my $d = MIDI::Drummer::Tiny->new(
+    bars      => 16,
     soundfont => '/Users/gene/Music/FluidR3_GM.sf2',
 );
 my $f = MIDI::Drummer::Tiny::SwingFills->new;
 
-for my $i (1 .. $d->bars * 8) {
+my $every = 4;
+
+for my $i (1 .. $d->bars) {
     my $fill = $f->get_fill($d, $d->ride2);
-    if (($i % $d->bars == 0) && ($fill->{dura} == 4)) {
+    if (($i % $every == 0) && ($fill->{dura} == 4)) {
         $fill->{fill}->();
     }
     else {
         $d->note( $d->quarter, $d->ride2, $d->kick );
-        if (($i % $d->bars == 0) && ($fill->{dura} == 3)) {
+        if (($i % $every == 0) && ($fill->{dura} == 3)) {
             $fill->{fill}->();
         }
         else {
             $d->note( $d->triplet_eighth, $d->ride2 );
             $d->rest( $d->triplet_eighth );
             $d->note( $d->triplet_eighth, $d->ride2, $d->kick );
-            if (($i % $d->bars == 0) && ($fill->{dura} == 2)) {
+            if (($i % $every == 0) && ($fill->{dura} == 2)) {
                 $fill->{fill}->();
             }
             else {
                 $d->note( $d->quarter, $d->ride2, $d->snare );
-                if (($i % $d->bars == 0) && ($fill->{dura} == 1)) {
+                if (($i % $every == 0) && ($fill->{dura} == 1)) {
                     $fill->{fill}->();
                 }
                 else {
