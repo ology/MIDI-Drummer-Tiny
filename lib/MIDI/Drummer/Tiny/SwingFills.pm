@@ -264,6 +264,53 @@ sub _fills {
             dura => dura_size($d->whole),
         },
 
+        16 => {
+            fill => sub {
+                $d->note($d->triplet_eighth, $d->kick, $d->snare, $cymbal);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $cymbal);
+                $d->note($d->triplet_eighth, $d->kick, $cymbal);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->kick, $cymbal);
+                $d->note($d->triplet_eighth, $d->snare);
+                $d->note($d->triplet_eighth, $d->snare, $cymbal);
+            },
+            dura => dura_size($d->dotted_half),
+        },
+
+        17 => {
+            fill => sub {
+                $d->note($d->dotted_eighth, $d->kick, $d->snare, $cymbal);
+                $d->note($d->sixteenth, $cymbal);
+                $d->note($d->quarter, $d->kick, $cymbal);
+                $d->note($d->triplet_sixteenth, $d->snare);
+                $d->note($d->triplet_sixteenth, $d->snare);
+                $d->note($d->triplet_sixteenth, $d->snare);
+                $d->note($d->dotted_eighth, $d->snare);
+                $d->note($d->sixteenth, $d->kick);
+            },
+            dura => dura_size($d->dotted_half),
+        },
+
+        18 => {
+            fill => sub {
+                $d->note($d->triplet_eighth, $d->kick, $cymbal);
+                $d->note($d->triplet_eighth, $d->snare);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $d->snare, $cymbal);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $d->snare, $cymbal);
+                $d->note($d->triplet_eighth, $d->snare, $cymbal);
+                $d->note($d->triplet_eighth, $d->kick);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $d->kick, $cymbal);
+                $d->rest($d->triplet_eighth);
+                $d->note($d->triplet_eighth, $d->kick, $cymbal);
+            },
+            dura => dura_size($d->dotted_half),
+        },
+
     );
     return \%fills;
 }
