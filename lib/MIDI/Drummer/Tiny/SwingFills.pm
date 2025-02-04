@@ -355,6 +355,22 @@ sub _fills {
             dura => dura_size($d->whole),
         },
 
+        22 => {
+            fill => sub {
+                $d->note($d->dotted_eighth, $d->kick, $cymbal);
+                $d->note($d->sixteenth, $d->snare);
+                $d->flam($d->triplet_eighth, $d->kick, $d->snare);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->flam($d->triplet_eighth, $d->snare);
+                $d->note($d->dotted_eighth, $d->kick, $d->snare);
+                $d->note($d->sixteenth, $d->hi_tom);
+                $d->flam($d->triplet_eighth, $d->kick, $d->hi_tom);
+                $d->flam($d->triplet_eighth, $d->hi_tom);
+                $d->flam($d->triplet_eighth, $d->hi_tom);
+            },
+            dura => dura_size($d->whole),
+        },
+
     );
     return \%fills;
 }
