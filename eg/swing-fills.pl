@@ -6,12 +6,11 @@ use MIDI::Drummer::Tiny;
 use MIDI::Drummer::Tiny::SwingFills;
 
 my $d = MIDI::Drummer::Tiny->new(
-    bars      => 16,
     soundfont => '/Users/gene/Music/FluidR3_GM.sf2',
 );
 my $f = MIDI::Drummer::Tiny::SwingFills->new;
 
-for my $i (1 .. $d->bars) {
+for my $i (1 .. $d->bars * 8) {
     my $fill = $f->get_fill($d, $d->ride2);
     if (($i % $d->bars == 0) && ($fill->{dura} == 4)) {
         $fill->{fill}->();
