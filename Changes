@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Use the M::U::ticks() function instead of a hardcoded constant.
 
 0.5010 2025-02-03 08:54:31
     - Simplify play_with_timidity().
