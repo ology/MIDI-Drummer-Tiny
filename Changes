@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.5011 2025-02-09 12:55:04
     - Use the M::U::ticks() function instead of a hardcoded constant.
