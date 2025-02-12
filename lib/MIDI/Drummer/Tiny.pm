@@ -81,7 +81,9 @@ use constant STRAIGHT => 50; # Swing percent
 =head1 DESCRIPTION
 
 This module provides handy defaults and tools to produce a MIDI score
-with drum parts.
+with drum parts. It is full of tools to construct a score with drum
+parts. It is not a traditional "drum machine." Rather, it contains
+methods to construct a drum machine, or play "as a drummer might."
 
 Below, the term "spec" refers to a note length duration, like an
 eighth or quarter note, for instance.
