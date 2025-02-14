@@ -95,19 +95,21 @@ eighth or quarter note, for instance.
 sub BUILD {
     my ( $self, $args ) = @_;
 
-    $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
+    if ( $self->setup ) {
+        $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
-#    if ($self->kit) {
-#      $self->score->control_change($self->channel, 0, 120);
-#      $self->score->patch_change($self->channel, $self->kit)
-#    }
+        # if ($self->kit) {
+          # $self->score->control_change($self->channel, 0, 120);
+          # $self->score->patch_change($self->channel, $self->kit)
+        # }
 
-    $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
+        $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
-    $self->score->control_change($self->channel, 91, $self->reverb);
+        $self->score->control_change($self->channel, 91, $self->reverb);
 
-    # Add a TS to the score but don't reset the beats if given
-    $self->set_time_sig( $self->signature, !$args->{beats} );
+        # Add a TS to the score but don't reset the beats if given
+        $self->set_time_sig( $self->signature, !$args->{beats} );
+    }
 }
 
 =head1 ATTRIBUTES
@@ -168,6 +170,13 @@ Computed from the B<signature>.
 
 Default: C<4>
 
+=head2 setup
+
+Run the commands in the C<BUILD> method that set-up new midi score
+events like tempo, time signature, etc.
+
+Default: C<1>
+
 =head2 counter
 
   $d->counter( $d->counter + $duration );
@@ -193,6 +202,7 @@ has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
 has signature => ( is => 'rw', default => sub { '4/4' });
 has beats     => ( is => 'rw', default => sub { 4 }  );
 has divisions => ( is => 'rw', default => sub { 4 } );
+has setup     => ( is => 'rw', default => sub { 1 } );
 has counter   => ( is => 'rw', default => sub { 0 } );
 
 =head1 KIT
