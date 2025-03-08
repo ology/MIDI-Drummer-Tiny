@@ -11,11 +11,6 @@ my $d = MIDI::Drummer::Tiny->new(
     soundfont => '/Users/gene/Music/soundfont/FluidR3_GM.sf2',
 );
 
-$d->metronome4;
-# $d->play_with_timidity;
-$d->play_with_fluidsynth;
-
-__END__
 $d->count_in(1);
 
 $d->metronome3($d->bars, $d->closed_hh, $d->eighth, 50);
