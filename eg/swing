@@ -8,7 +8,6 @@ my $d = MIDI::Drummer::Tiny->new(
     file => $0 . '.mid',
     bpm  => 90,
     bars => 1,
-    soundfont => '/Users/gene/Music/soundfont/FluidR3_GM.sf2',
 );
 
 $d->count_in(1);
