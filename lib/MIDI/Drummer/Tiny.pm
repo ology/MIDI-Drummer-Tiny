@@ -28,8 +28,8 @@ use constant STRAIGHT => 50; # Swing percent
     bars      => 8,
     reverb    => 0,
     soundfont => '/you/soundfonts/TR808.sf2', # option
-    #kick  => 36, # Override default patch
-    #snare => 40, # "
+    #kick      => 36, # Override default patch
+    #snare     => 40, # "
   );
 
   $d->metronome5;
