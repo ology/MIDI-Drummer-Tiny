@@ -40,7 +40,6 @@ my %pattern = (
     # TODO: revise add_fill() to not require placeholder voices
 );
 
-# IMHO postfix controls are very musically readable
 ## no critic (ControlStructures::ProhibitPostfixControls)
 
 $d->sync_patterns( %pattern, duration => $d->eighth )
