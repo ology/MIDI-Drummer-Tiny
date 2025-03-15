@@ -1009,7 +1009,7 @@ sub add_fill {
         };
     };
     my $fill_patterns = $fill->($self);
-    print 'Fill: ', ddc($fill_patterns) if $self->verbose;
+    warn 'Fill: ', ddc($fill_patterns) if $self->verbose;
     my $fill_duration = delete $fill_patterns->{duration} || 8;
     my $fill_length   = length((values %$fill_patterns)[0]);
 
@@ -1019,17 +1019,17 @@ sub add_fill {
     }
 
     my $lcm = _multilcm($fill_duration, values %lengths);
-    print "LCM: $lcm\n" if $self->verbose;
+    warn "LCM: $lcm\n" if $self->verbose;
 
     my $size = 4 / $lcm;
     my $dump = reverse_dump('length');
     my $master_duration = $dump->{$size} || $self->eighth; # XXX this || is not right
-    print "Size: $size, Duration: $master_duration\n" if $self->verbose;
+    warn "Size: $size, Duration: $master_duration\n" if $self->verbose;
 
     my $fill_chop = $fill_duration == $lcm
         ? $fill_length
         : int($lcm / $fill_length) + 1;
-    print "Chop: $fill_chop\n" if $self->verbose;
+    warn "Chop: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
     for my $instrument (keys %patterns) {
@@ -1040,7 +1040,7 @@ sub add_fill {
             ? [ join '', @{ upsize($pattern, $lcm) } ]
             : [ join '', @$pattern ];
     }
-    print 'Patterns: ', ddc(\%fresh_patterns) if $self->verbose;
+    warn 'Patterns: ', ddc(\%fresh_patterns) if $self->verbose;
 
     my %replacement;
     for my $instrument (keys %$fill_patterns) {
@@ -1053,7 +1053,7 @@ sub add_fill {
         # the replacement string is the tail of the fresh pattern string
         $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
-    print 'Replacements: ', ddc(\%replacement) if $self->verbose;
+    warn 'Replacements: ', ddc(\%replacement) if $self->verbose;
 
     my %replaced;
     for my $instrument (keys %fresh_patterns) {
@@ -1062,7 +1062,7 @@ sub add_fill {
         # replace the tail of the string
         my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
-        print "$instrument: $string\n" if $self->verbose;
+        warn "$instrument: $string\n" if $self->verbose;
         # prepare the replaced pattern for syncing
         $replaced{$instrument} = [ $string ];
     }
