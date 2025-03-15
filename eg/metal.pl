@@ -12,10 +12,6 @@
 # If you want a MIDI file, redirect its output like this:
 #     metal.pl > metal.mid
 
-# TODO: revise MIDI::Drummer::Tiny's `print ddc(...)` calls to warn()
-#       so that setting its `verbose` attribute doesn't make it
-#       interfere with piping MIDI file data to STDOUT
-
 use 5.010;
 use strict;
 use warnings;
