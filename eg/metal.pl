@@ -22,8 +22,8 @@ use warnings;
 use MIDI::Drummer::Tiny;
 
 # default MIDI file output to STDOUT per MIDI::Simple's write_score
-# my $d = MIDI::Drummer::Tiny->new( file => *STDOUT{IO} );
-my $d = MIDI::Drummer::Tiny->new( soundfont => '/Users/gene/Music/soundfont/FluidR3_GM.sf2' );
+my $d = MIDI::Drummer::Tiny->new( file => *STDOUT{IO} );
+# my $d = MIDI::Drummer::Tiny->new( soundfont => '/Users/gene/Music/soundfont/FluidR3_GM.sf2' );
 
 # TODO: revise the `file` attribute to accept - as a synonym for STDOUT
 
