@@ -2,6 +2,8 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
+use 5.010;
+
 our $VERSION = '0.5013';
 
 use Moo;
@@ -12,6 +14,7 @@ use Math::Bezier ();
 use MIDI::Util qw(dura_size reverse_dump set_time_signature timidity_conf play_timidity play_fluidsynth ticks);
 use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
+use MIDI::Drummer::Tiny::Types qw(:all);
 use namespace::clean;
 
 use constant STRAIGHT => 50; # Swing percent
@@ -190,20 +193,34 @@ added to the score.
 
 =cut
 
-has soundfont => ( is => 'rw');
-has verbose   => ( is => 'ro', default => sub { 0 } );
-has reverb    => ( is => 'ro', default => sub { 15 } );
-has channel   => ( is => 'rw', default => sub { 9 } );
-has volume    => ( is => 'rw', default => sub { 100 } );
-has bpm       => ( is => 'rw', default => sub { 120 } );
-has file      => ( is => 'ro', default => sub { 'MIDI-Drummer.mid' } );
-has bars      => ( is => 'ro', default => sub { 4 } );
-has score     => ( is => 'ro', default => sub { MIDI::Simple->new_score } );
-has signature => ( is => 'rw', default => sub { '4/4' });
-has beats     => ( is => 'rw', default => sub { 4 }  );
-has divisions => ( is => 'rw', default => sub { 4 } );
-has setup     => ( is => 'rw', default => sub { 1 } );
-has counter   => ( is => 'rw', default => sub { 0 } );
+has soundfont => ( is => 'rw' );
+my %attr_defaults = (
+    ro => {
+        verbose => 0,
+        reverb  => 15,
+        file    => 'MIDI-Drummer.mid',
+        bars    => 4,
+        score   => sub { MIDI::Simple->new_score },
+    },
+    rw => {
+        channel   => 9,
+        volume    => 100,
+        bpm       => 120,
+        signature => '4/4',
+        beats     => 4,
+        divisions => 4,
+        setup     => 1,
+        counter   => 0,
+    },
+);
+for my $is ( keys %attr_defaults ) {
+    for my $attr ( keys %{ $attr_defaults{$is} } ) {
+        has $attr => (
+            is      => $is,
+            default => $attr_defaults{$is}{$attr},
+        );
+    }
+}
 
 =head1 KIT
 
@@ -241,57 +258,76 @@ can be overridden with the B<electric_bass> (C<'n36'>).
 
 =cut
 
-has click          => ( is => 'ro', default => sub { 33 } );
-has bell           => ( is => 'ro', default => sub { 34 } );
-has kick           => ( is => 'ro', default => sub { 35 } ); # Alt: 36
-has acoustic_bass  => ( is => 'ro', default => sub { 35 } );
-has electric_bass  => ( is => 'ro', default => sub { 36 } );
-has side_stick     => ( is => 'ro', default => sub { 37 } );
-has snare          => ( is => 'ro', default => sub { 38 } ); # Alt: 40
-has acoustic_snare => ( is => 'ro', default => sub { 38 } );
-has electric_snare => ( is => 'ro', default => sub { 40 } );
-has clap           => ( is => 'ro', default => sub { 39 } );
-has open_hh        => ( is => 'ro', default => sub { 46 } );
-has closed_hh      => ( is => 'ro', default => sub { 42 } );
-has pedal_hh       => ( is => 'ro', default => sub { 44 } );
-has crash1         => ( is => 'ro', default => sub { 49 } );
-has crash2         => ( is => 'ro', default => sub { 57 } );
-has splash         => ( is => 'ro', default => sub { 55 } );
-has china          => ( is => 'ro', default => sub { 52 } );
-has ride1          => ( is => 'ro', default => sub { 51 } );
-has ride2          => ( is => 'ro', default => sub { 59 } );
-has ride_bell      => ( is => 'ro', default => sub { 53 } );
-has hi_tom         => ( is => 'ro', default => sub { 50 } );
-has hi_mid_tom     => ( is => 'ro', default => sub { 48 } );
-has low_mid_tom    => ( is => 'ro', default => sub { 47 } );
-has low_tom        => ( is => 'ro', default => sub { 45 } );
-has hi_floor_tom   => ( is => 'ro', default => sub { 43 } );
-has low_floor_tom  => ( is => 'ro', default => sub { 41 } );
-has tambourine     => ( is => 'ro', default => sub { 54 } );
-has cowbell        => ( is => 'ro', default => sub { 56 } );
-has vibraslap      => ( is => 'ro', default => sub { 58 } );
-has hi_bongo       => ( is => 'ro', default => sub { 60 } );
-has low_bongo      => ( is => 'ro', default => sub { 61 } );
-has mute_hi_conga  => ( is => 'ro', default => sub { 62 } );
-has open_hi_conga  => ( is => 'ro', default => sub { 63 } );
-has low_conga      => ( is => 'ro', default => sub { 64 } );
-has high_timbale   => ( is => 'ro', default => sub { 65 } );
-has low_timbale    => ( is => 'ro', default => sub { 66 } );
-has high_agogo     => ( is => 'ro', default => sub { 67 } );
-has low_agogo      => ( is => 'ro', default => sub { 68 } );
-has cabasa         => ( is => 'ro', default => sub { 69 } );
-has maracas        => ( is => 'ro', default => sub { 70 } );
-has short_whistle  => ( is => 'ro', default => sub { 71 } );
-has long_whistle   => ( is => 'ro', default => sub { 72 } );
-has short_guiro    => ( is => 'ro', default => sub { 73 } );
-has long_guiro     => ( is => 'ro', default => sub { 74 } );
-has claves         => ( is => 'ro', default => sub { 75 } );
-has hi_wood_block  => ( is => 'ro', default => sub { 76 } );
-has low_wood_block => ( is => 'ro', default => sub { 77 } );
-has mute_cuica     => ( is => 'ro', default => sub { 78 } );
-has open_cuica     => ( is => 'ro', default => sub { 79 } );
-has mute_triangle  => ( is => 'ro', default => sub { 80 } );
-has open_triangle  => ( is => 'ro', default => sub { 81 } );
+use constant PERCUSSION_START => 33;
+for my $sound ( qw(
+    click
+    bell
+    acoustic_bass
+    electric_bass
+    side_stick
+    acoustic_snare
+    clap
+    electric_snare
+    low_floor_tom
+    closed_hh
+    hi_floor_tom
+    pedal_hh
+    low_tom
+    open_hh
+    low_mid_tom
+    hi_mid_tom
+    crash1
+    hi_tom
+    ride1
+    china
+    ride_bell
+    tambourine
+    splash
+    cowbell
+    crash2
+    vibraslap
+    ride2
+    hi_bongo
+    low_bongo
+    mute_hi_conga
+    open_hi_conga
+    low_conga
+    high_timbale
+    low_timbale
+    high_agogo
+    low_agogo
+    cabasa
+    maracas
+    short_whistle
+    long_whistle
+    short_guiro
+    long_guiro
+    claves
+    hi_wood_block
+    low_wood_block
+    mute_cuica
+    open_cuica
+    mute_triangle
+    open_triangle
+) )
+{
+    state $percussion_note;
+    has $sound => (
+        is      => 'ro',
+        isa     => PercussionNote,
+        default => PERCUSSION_START + $percussion_note++,
+    );
+}
+has kick => (
+    is      => 'ro',
+    isa     => PercussionNote,
+    default => 35,               # Alt: 36
+);
+has snare => (
+    is      => 'ro',
+    isa     => PercussionNote,
+    default => 38,               # Alt: 40
+);
 
 =head1 DURATIONS
 
@@ -317,38 +353,40 @@ has open_triangle  => ( is => 'ro', default => sub { 81 } );
 
 =cut
 
-has whole                         => (is => 'ro', default => sub { 'wn' });
-has triplet_whole                 => (is => 'ro', default => sub { 'twn' });
-has dotted_whole                  => (is => 'ro', default => sub { 'dwn' });
-has double_dotted_whole           => (is => 'ro', default => sub { 'ddwn' });
-has half                          => (is => 'ro', default => sub { 'hn' });
-has triplet_half                  => (is => 'ro', default => sub { 'thn' });
-has dotted_half                   => (is => 'ro', default => sub { 'dhn' });
-has double_dotted_half            => (is => 'ro', default => sub { 'ddhn' });
-has quarter                       => (is => 'ro', default => sub { 'qn' });
-has triplet_quarter               => (is => 'ro', default => sub { 'tqn' });
-has dotted_quarter                => (is => 'ro', default => sub { 'dqn' });
-has double_dotted_quarter         => (is => 'ro', default => sub { 'ddqn' });
-has eighth                        => (is => 'ro', default => sub { 'en' });
-has triplet_eighth                => (is => 'ro', default => sub { 'ten' });
-has dotted_eighth                 => (is => 'ro', default => sub { 'den' });
-has double_dotted_eighth          => (is => 'ro', default => sub { 'dden' });
-has sixteenth                     => (is => 'ro', default => sub { 'sn' });
-has triplet_sixteenth             => (is => 'ro', default => sub { 'tsn' });
-has dotted_sixteenth              => (is => 'ro', default => sub { 'dsn' });
-has double_dotted_sixteenth       => (is => 'ro', default => sub { 'ddsn' });
-has thirtysecond                  => (is => 'ro', default => sub { 'xn' });
-has triplet_thirtysecond          => (is => 'ro', default => sub { 'txn' });
-has dotted_thirtysecond           => (is => 'ro', default => sub { 'dxn' });
-has double_dotted_thirtysecond    => (is => 'ro', default => sub { 'ddxn' });
-has sixtyfourth                   => (is => 'ro', default => sub { 'yn' });
-has triplet_sixtyfourth           => (is => 'ro', default => sub { 'tyn' });
-has dotted_sixtyfourth            => (is => 'ro', default => sub { 'dyn' });
-has double_dotted_sixtyfourth     => (is => 'ro', default => sub { 'ddyn' });
-has onetwentyeighth               => (is => 'ro', default => sub { 'zn' });
-has triplet_onetwentyeighth       => (is => 'ro', default => sub { 'tzn' });
-has dotted_onetwentyeighth        => (is => 'ro', default => sub { 'dzn' });
-has double_dotted_onetwentyeighth => (is => 'ro', default => sub { 'ddzn' });
+my %basic_note_durations = (
+    whole           => 'w',
+    half            => 'h',
+    quarter         => 'q',
+    eighth          => 'e',
+    sixteenth       => 's',
+    thirtysecond    => 'x',
+    sixtyfourth     => 'y',
+    onetwentyeighth => 'z',
+);
+
+my %duration_prefixes = (
+    triplet       => 't',
+    dotted        => 'd',
+    double_dotted => 'dd',
+);
+
+for my $basic_duration ( keys %basic_note_durations ) {
+    my $duration = $basic_note_durations{$basic_duration};
+
+    has $basic_duration => (
+        is      => 'ro',
+        isa     => Duration,
+        default => "${duration}n",
+    );
+
+    for my $prefix ( keys %duration_prefixes ) {
+        has "${prefix}_${duration}" => (
+            is      => 'ro',
+            isa     => Duration,
+            default => "$duration_prefixes{$prefix}${duration}n",
+        );
+    }
+}
 
 =head1 METHODS
 
