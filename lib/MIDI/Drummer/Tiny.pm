@@ -380,7 +380,7 @@ for my $basic_duration ( keys %basic_note_durations ) {
     );
 
     for my $prefix ( keys %duration_prefixes ) {
-        has "${prefix}_${duration}" => (
+        has "${prefix}_${basic_duration}" => (
             is      => 'ro',
             isa     => Duration,
             default => "$duration_prefixes{$prefix}${duration}n",
