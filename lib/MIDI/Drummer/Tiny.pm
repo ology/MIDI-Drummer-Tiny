@@ -1291,6 +1291,10 @@ sub _multilcm {
 
 __END__
 
+=head1 THANK YOU
+
+L<Mark Gardner|https://metacpan.org/author/MJGARDNER> refactoring-master
+
 =head1 SEE ALSO
 
 The F<t/*> test file and the F<eg/*> programs in this distribution.
