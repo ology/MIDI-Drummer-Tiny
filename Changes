@@ -1,6 +1,10 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Update dist.ini.
+    - Use Type-Tiny to create a type constraint library for General MIDI 2 percussion.
+    - Refactor the redundant syntax of attribute definitions.
+    - AddePod::Weaver configuration file.
 
 0.5013 2025-02-13 20:04:06
     - Add the setup attribute.
