@@ -106,6 +106,7 @@ eighth or quarter note, for instance.
 
 sub BUILD ( $self, $args_ref ) {
     return unless $self->setup;
+
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
