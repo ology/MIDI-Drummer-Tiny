@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.6000 2025-03-23 14:24:23
     - MJGardner refactored many many things. This is a modern module now. Woo! :D
 
 0.5013 2025-02-13 20:04:06
