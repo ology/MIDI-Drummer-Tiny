@@ -2,22 +2,31 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-use 5.010;
+use 5.020;
+use experimental qw(postderef signatures);
+use strictures 2;
+use Carp;
+use List::Util 1.26 qw(sum0);
+use Moo;
+use Math::Bezier ();
+use MIDI::Util   qw(
+    dura_size
+    reverse_dump
+    set_time_signature
+    timidity_conf
+    play_timidity
+    play_fluidsynth
+    ticks
+);
+use Music::Duration            ();
+use Music::RhythmSet::Util     qw(upsize);
+use MIDI::Drummer::Tiny::Types qw(:all);
+use Data::Dumper::Compact      qw(ddc);
+use namespace::clean;
 
 our $VERSION = '0.5013';
 
-use Moo;
-use strictures 2;
-use Data::Dumper::Compact qw(ddc);
-use List::Util qw(sum0);
-use Math::Bezier ();
-use MIDI::Util qw(dura_size reverse_dump set_time_signature timidity_conf play_timidity play_fluidsynth ticks);
-use Music::Duration ();
-use Music::RhythmSet::Util qw(upsize);
-use MIDI::Drummer::Tiny::Types qw(:all);
-use namespace::clean;
-
-use constant STRAIGHT => 50; # Swing percent
+use constant STRAIGHT => 50;    # Swing percent
 
 =head1 SYNOPSIS
 
@@ -95,24 +104,22 @@ eighth or quarter note, for instance.
 
 =cut
 
-sub BUILD {
-    my ( $self, $args ) = @_;
+sub BUILD ( $self, $args_ref ) {
+    return unless $self->setup;
+    $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
-    if ( $self->setup ) {
-        $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
+    # if ($self->kit) {
+    #     $self->score->control_change($self->channel, 0, 120);
+    #     $self->score->patch_change($self->channel, $self->kit)
+    # }
 
-        # if ($self->kit) {
-          # $self->score->control_change($self->channel, 0, 120);
-          # $self->score->patch_change($self->channel, $self->kit)
-        # }
+    $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
-        $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
+    $self->score->control_change( $self->channel, 91, $self->reverb );
 
-        $self->score->control_change($self->channel, 91, $self->reverb);
-
-        # Add a TS to the score but don't reset the beats if given
-        $self->set_time_sig( $self->signature, !$args->{beats} );
-    }
+    # Add a TS to the score but don't reset the beats if given
+    $self->set_time_sig( $self->signature, !$args_ref->{beats} );
+    return;
 }
 
 =head1 ATTRIBUTES
