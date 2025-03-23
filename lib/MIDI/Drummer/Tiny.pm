@@ -108,11 +108,6 @@ sub BUILD ( $self, $args_ref ) {
     return unless $self->setup;
     $self->score->noop( 'c' . $self->channel, 'V' . $self->volume );
 
-    # if ($self->kit) {
-    #     $self->score->control_change($self->channel, 0, 120);
-    #     $self->score->patch_change($self->channel, $self->kit)
-    # }
-
     $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
 
     $self->score->control_change( $self->channel, 91, $self->reverb );
