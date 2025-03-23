@@ -1339,7 +1339,10 @@ __END__
 
 =head1 THANK YOU
 
-L<Mark Gardner|https://metacpan.org/author/MJGARDNER> refactoring-master
+L<Mark Gardner|https://metacpan.org/author/MJGARDNER> -
+refactoring-master - modernized everything under the hood, post-0.5013.
+
+Woo!
 
 =head1 SEE ALSO
 
