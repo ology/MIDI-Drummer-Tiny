@@ -24,7 +24,7 @@ use MIDI::Drummer::Tiny::Types qw(:all);
 use Data::Dumper::Compact      qw(ddc);
 use namespace::clean;
 
-our $VERSION = '0.5013';
+our $VERSION = '0.6000_1';
 
 use constant STRAIGHT => 50;    # Swing percent
 
