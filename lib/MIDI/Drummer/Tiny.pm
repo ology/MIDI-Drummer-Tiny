@@ -122,72 +122,162 @@ sub BUILD ( $self, $args_ref ) {
     return;
 }
 
-=head1 ATTRIBUTES
-
-=head2 verbose
+=attr verbose
 
 Default: C<0>
 
-=head2 file
+=attr file
 
 Default: C<MIDI-Drummer.mid>
 
-=head2 score
+=attr score
 
 Default: C<MIDI::Simple-E<gt>new_score>
 
-=head2 soundfont
+=method sync
+
+  $d->sync(@code_refs);
+
+This is a simple pass-through to the B<score> C<synch> method.
+
+This allows simultaneous playing of multiple "tracks" defined by code
+references.
+
+=cut
+
+has score => (
+    is      => 'ro',
+    isa     => InstanceOf ['MIDI::Simple'],
+    default => sub { MIDI::Simple->new_score },
+    handles => { sync => 'synch' },
+);
+
+=attr soundfont
 
   $soundfont = $tabla->soundfont;
 
 The file location, where a soundfont lives.
 
-=head2 reverb
+=cut
+
+has soundfont => (
+    is  => 'rw',
+    isa => NonEmptyStr,
+);
+
+=attr reverb
 
 Default: C<15>
 
-=head2 channel
+=attr channel
 
 Default: C<9>
 
-=head2 volume
+=method set_channel
+
+  $d->set_channel;
+  $d->set_channel($channel);
+
+Reset the channel to C<9> by default, or the given argument if
+different.
+
+=cut
+
+has channel => (
+    is      => 'rwp',
+    isa     => IntRange [ 0, 15 ],
+    default => 9,
+);
+
+sub set_channel ( $self, $channel //= 9 ) {
+    $self->score->noop("c$channel");
+    $self->_set_channel($channel);
+    return;
+}
+
+=attr volume
 
 Default: C<100>
 
-=head2 bpm
+=method set_volume
+
+  $d->set_volume;
+  $d->set_volume($volume);
+
+Set the volume to the given argument (0-127).
+
+If not given a B<volume> argument, this method mutes (sets to C<0>).
+
+=cut
+
+has volume => (
+    is      => 'rwp',
+    isa     => IntRange [ 0, 127 ],
+    default => 100,
+
+);
+
+sub set_volume ( $self, $volume = 0 ) {
+    $self->score->noop("V$volume");
+    $self->_set_volume($volume);
+    return;
+}
+
+=attr bpm
 
 Default: C<120>
 
-=head2 bars
+=method set_bpm
+
+  $d->set_bpm($bpm);
+
+Reset the beats per minute.
+
+=cut
+
+has bpm => (
+    is      => 'rw',
+    isa     => PositiveNum,
+    default => 120,
+    writer  => 'set_bpm',
+    trigger => 1,
+);
+
+sub _trigger_bpm ( $self, $bpm = 120 ) {    ## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
+    $self->score->set_tempo( int( 60_000_000 / $bpm ) );
+    return;
+}
+
+=attr bars
 
 Default: C<4>
 
-=head2 signature
+=attr signature
 
 Default: C<4/4>
 
 B<beats> / B<divisions>
 
-=head2 beats
+=attr beats
 
 Computed from the B<signature>, if not given in the constructor.
 
 Default: C<4>
 
-=head2 divisions
+=attr divisions
 
 Computed from the B<signature>.
 
 Default: C<4>
 
-=head2 setup
+=attr setup
 
 Run the commands in the C<BUILD> method that set-up new midi score
 events like tempo, time signature, etc.
 
 Default: C<1>
 
-=head2 counter
+=attr counter
 
   $d->counter( $d->counter + $duration );
   $count = $d->counter;
@@ -200,19 +290,14 @@ added to the score.
 
 =cut
 
-has soundfont => ( is => 'rw' );
 my %attr_defaults = (
     ro => {
         verbose => 0,
         reverb  => 15,
         file    => 'MIDI-Drummer.mid',
         bars    => 4,
-        score   => sub { MIDI::Simple->new_score },
     },
     rw => {
-        channel   => 9,
-        volume    => 100,
-        bpm       => 120,
         signature => '4/4',
         beats     => 4,
         divisions => 4,
@@ -395,19 +480,17 @@ for my $basic_duration ( keys %basic_note_durations ) {
     }
 }
 
-=head1 METHODS
-
-=head2 new
+=method new
 
   $d = MIDI::Drummer::Tiny->new(%arguments);
 
 Return a new C<MIDI::Drummer::Tiny> object and add a time signature
 event to the score.
 
-=head2 note
+=method note
 
- $d->note( $d->quarter, $d->closed_hh, $d->kick );
- $d->note( 'qn', 42, 35 ); # Same thing
+  $d->note( $d->quarter, $d->closed_hh, $d->kick );
+  $d->note( 'qn', 42, 35 ); # Same thing
 
 Add notes to the score.
 
@@ -417,16 +500,19 @@ It also keeps track of the beat count with the C<counter> attribute.
 
 =cut
 
-sub note {
-    my ($self, @spec) = @_;
-    my $size = $spec[0] =~ /^d(\d+)$/ ? $1 / ticks($self->score) : dura_size($spec[0]);
-    # warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0]\n";
-    # warn __PACKAGE__,' L',__LINE__,' ',,"$size\n";
+sub note ( $self, @spec ) {
+    my $size
+        = $spec[0] =~ /^d(\d+)$/
+        ? $1 / ticks( $self->score )
+        : dura_size( $spec[0] );
+
+    # carp __PACKAGE__,' L',__LINE__,' ',,"$spec[0]\n";
+    # carp __PACKAGE__,' L',__LINE__,' ',,"$size\n";
     $self->counter( $self->counter + $size );
     return $self->score->n(@spec);
 }
 
-=head2 accent_note
+=method accent_note
 
   $d->accent_note($accent_value, $d->sixteenth, $d->snare);
 
@@ -438,18 +524,16 @@ score volume.
 
 =cut
 
-sub accent_note {
-    my $self = shift;
-    my $accent = shift;
+sub accent_note ( $self, $accent, @spec ) {
     my $resume = $self->score->Volume;
     $self->score->Volume($accent);
-    $self->note(@_);
-    $self->score->Volume($resume);
+    $self->note(@spec);
+    return $self->score->Volume($resume);
 }
 
-=head2 rest
+=method rest
 
- $d->rest( $d->quarter );
+  $d->rest( $d->quarter );
 
 Add a rest to the score.
 
@@ -459,19 +543,22 @@ It also keeps track of the beat count with the C<counter> attribute.
 
 =cut
 
-sub rest {
-    my ($self, @spec) = @_;
-    my $size = $spec[0] =~ /^d(\d+)$/ ? $1 / ticks($self->score) : dura_size($spec[0]);
-    #warn __PACKAGE__,' L',__LINE__,' ',,"$spec[0] => $size\n";
+sub rest ( $self, @spec ) {
+    my $size
+        = $spec[0] =~ /^d(\d+)$/
+        ? $1 / ticks( $self->score )
+        : dura_size( $spec[0] );
+
+    # carp __PACKAGE__,' L',__LINE__,' ',,"$spec[0] => $size\n";
     $self->counter( $self->counter + $size );
     return $self->score->r(@spec);
 }
 
-=head2 count_in
+=method count_in
 
- $d->count_in;
- $d->count_in($bars);
- $d->count_in({ bars => $bars, patch => $patch });
+  $d->count_in;
+  $d->count_in($bars);
+  $d->count_in({ bars => $bars, patch => $patch });
 
 Play a patch for the number of beats times the number of bars.
 
@@ -480,25 +567,24 @@ given, the closed hihat is used.
 
 =cut
 
-sub count_in {
-    my ($self, $args) = @_;
+sub count_in ( $self, $args_ref ) {
 
     my $bars   = $self->bars;
     my $patch  = $self->pedal_hh;
     my $accent = $self->closed_hh;
 
-    if ($args && ref $args) {
-        $bars   = $args->{bars}   if defined $args->{bars};
-        $patch  = $args->{patch}  if defined $args->{patch};
-        $accent = $args->{accent} if defined $args->{accent};
+    if ( $args_ref && ref $args_ref ) {
+        $bars   = $args_ref->{bars}   if defined $args_ref->{bars};
+        $patch  = $args_ref->{patch}  if defined $args_ref->{patch};
+        $accent = $args_ref->{accent} if defined $args_ref->{accent};
     }
-    elsif ($args) {
-        $bars = $args; # given a simple integer
+    elsif ($args_ref) {
+        $bars = $args_ref;    # given a simple integer
     }
 
     my $j = 1;
     for my $i ( 1 .. $self->beats * $bars ) {
-        if ($i == $self->beats * $j - $self->beats + 1) {
+        if ( $i == $self->beats * $j - $self->beats + 1 ) {
             $self->accent_note( 127, $self->quarter, $accent );
             $j++;
         }
@@ -506,9 +592,10 @@ sub count_in {
             $self->note( $self->quarter, $patch );
         }
     }
+    return;
 }
 
-=head2 metronome3
+=method metronome3
 
   $d->metronome3;
   $d->metronome3($bars);
@@ -527,14 +614,16 @@ Defaults for all metronome methods:
 
 =cut
 
-sub metronome3 {
-    my $self   = shift;
-    my $bars   = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-    my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
-    my $x = dura_size($tempo) * ticks($self->score);
-    my $y = sprintf '%0.f', ($swing / 100) * $x;
+sub metronome3 (
+    $self,
+    $bars   = $self->bars,
+    $cymbal = $self->closed_hh,
+    $tempo  = $self->quarter,
+    $swing  = 50                  # percent
+    )
+{
+    my $x = dura_size($tempo) * ticks( $self->score );
+    my $y = sprintf '%0.f', ( $swing / 100 ) * $x;
     my $z = $x - $y;
     for ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
@@ -547,9 +636,10 @@ sub metronome3 {
         }
         $self->note( "d$x", $cymbal, $self->snare );
     }
+    return;
 }
 
-=head2 metronome4
+=method metronome4
 
   $d->metronome4;
   $d->metronome4($bars);
@@ -561,14 +651,16 @@ Add a steady 4/x beat to the score.
 
 =cut
 
-sub metronome4 {
-    my $self   = shift;
-    my $bars   = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-    my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
-    my $x = dura_size($tempo) * ticks($self->score);
-    my $y = sprintf '%0.f', ($swing / 100) * $x;
+sub metronome4 (
+    $self,
+    $bars   = $self->bars,
+    $cymbal = $self->closed_hh,
+    $tempo  = $self->quarter,
+    $swing  = 50                  # percent
+    )
+{
+    my $x = dura_size($tempo) * ticks( $self->score );
+    my $y = sprintf '%0.f', ( $swing / 100 ) * $x;
     my $z = $x - $y;
     for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
@@ -588,9 +680,10 @@ sub metronome4 {
             $self->note( "d$x", $cymbal );
         }
     }
+    return;
 }
 
-=head2 metronome5
+=method metronome5
 
   $d->metronome5;
   $d->metronome5($bars);
@@ -602,17 +695,20 @@ Add a 5/x beat to the score.
 
 =cut
 
-sub metronome5 {
-    my $self   = shift;
-    my $bars   = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-    my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
-    my $x = dura_size($tempo) * ticks($self->score);
+sub metronome5 (
+    $self,
+    $bars   = $self->bars,
+    $cymbal = $self->closed_hh,
+    $tempo  = $self->quarter,
+    $swing  = 50                  # percent
+    )
+{
+    my $x    = dura_size($tempo) * ticks( $self->score );
     my $half = $x / 2;
-    my $y = sprintf '%0.f', ($swing / 100) * $x;
-    my $z = $x - $y;
-    for my $n (1 .. $bars) {
+    my $y    = sprintf '%0.f', ( $swing / 100 ) * $x;
+    my $z    = $x - $y;
+
+    for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
         if ( $swing > STRAIGHT ) {
             $self->note( "d$y", $cymbal );
@@ -629,17 +725,18 @@ sub metronome5 {
         else {
             $self->note( "d$x", $cymbal );
         }
-        if ($n % 2) {
-            $self->note("d$x", $cymbal);
+        if ( $n % 2 ) {
+            $self->note( "d$x", $cymbal );
         }
         else {
-            $self->note("d$half", $cymbal);
-            $self->note("d$half", $self->kick);
+            $self->note( "d$half", $cymbal );
+            $self->note( "d$half", $self->kick );
         }
     }
+    return;
 }
 
-=head2 metronome6
+=method metronome6
 
   $d->metronome6;
   $d->metronome6($bars);
@@ -651,16 +748,19 @@ Add a 6/x beat to the score.
 
 =cut
 
-sub metronome6 {
-    my $self   = shift;
-    my $bars   = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-    my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
-    my $x = dura_size($tempo) * ticks($self->score);
-    my $y = sprintf '%0.f', ($swing / 100) * $x;
+sub metronome6 (
+    $self,
+    $bars   = $self->bars,
+    $cymbal = $self->closed_hh,
+    $tempo  = $self->quarter,
+    $swing  = 50                  # percent
+    )
+{
+    my $x = dura_size($tempo) * ticks( $self->score );
+    my $y = sprintf '%0.f', ( $swing / 100 ) * $x;
     my $z = $x - $y;
-    for my $n (1 .. $bars) {
+
+    for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
         if ( $swing > STRAIGHT ) {
             $self->note( "d$y", $cymbal );
@@ -680,9 +780,10 @@ sub metronome6 {
         }
         $self->note( "d$x", $cymbal );
     }
+    return;
 }
 
-=head2 metronome7
+=method metronome7
 
   $d->metronome7;
   $d->metronome7($bars);
@@ -694,16 +795,19 @@ Add a 7/x beat to the score.
 
 =cut
 
-sub metronome7 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $cymbal = shift || $self->closed_hh;
-    my $tempo  = shift || $self->quarter;
-    my $swing  = shift || 50; # percent
-    my $x = dura_size($tempo) * ticks($self->score);
-    my $y = sprintf '%0.f', ($swing / 100) * $x;
+sub metronome7 (
+    $self,
+    $bars   = $self->bars,
+    $cymbal = $self->closed_hh,
+    $tempo  = $self->quarter,
+    $swing  = 50                  # percent
+    )
+{
+    my $x = dura_size($tempo) * ticks( $self->score );
+    my $y = sprintf '%0.f', ( $swing / 100 ) * $x;
     my $z = $x - $y;
-    for my $n (1 .. $bars) {
+
+    for my $n ( 1 .. $bars ) {
         $self->note( "d$x", $cymbal, $self->kick );
         if ( $swing > STRAIGHT ) {
             $self->note( "d$y", $cymbal );
@@ -730,9 +834,10 @@ sub metronome7 {
         }
         $self->note( "d$x", $cymbal );
     }
+    return;
 }
 
-=head2 metronome44
+=method metronome44
 
   $d->metronome44;
   $d->metronome44($bars);
@@ -746,30 +851,25 @@ eighth-note kicks.
 
 =cut
 
-sub metronome44 {
-    my $self = shift;
-    my $bars = shift || $self->bars;
-    my $flag = shift // 0;
-    my $cymbal = shift || $self->closed_hh;
+sub metronome44 (
+    $self, $bars = $self->bars,
+    $flag = 0, $cymbal = $self->closed_hh,
+    )
+{
     my $i = 0;
     for my $n ( 1 .. $self->beats * $bars ) {
-        if ( $n % 2 == 0 )
-        {
+        if ( $n % 2 == 0 ) {
             $self->note( $self->quarter, $cymbal, $self->snare );
         }
         else {
-            if ( $flag == 0 )
-            {
+            if ( $flag == 0 ) {
                 $self->note( $self->quarter, $cymbal, $self->kick );
             }
-            else
-            {
-                if ( $i % 2 == 0 )
-                {
+            else {
+                if ( $i % 2 == 0 ) {
                     $self->note( $self->quarter, $cymbal, $self->kick );
                 }
-                else
-                {
+                else {
                     $self->note( $self->eighth, $cymbal, $self->kick );
                     $self->note( $self->eighth, $self->kick );
                 }
@@ -777,9 +877,10 @@ sub metronome44 {
             $i++;
         }
     }
+    return;
 }
 
-=head2 flam
+=method flam
 
   $d->flam($spec);
   $d->flam( $spec, $grace_note );
@@ -798,24 +899,27 @@ adding a note to the score.
 
 =cut
 
-sub flam {
-    my ($self, $spec, $grace, $patch, $accent) = @_;
-    $grace ||= $self->snare;
-    $patch ||= $self->snare;
-    my $x = $MIDI::Simple::Length{$spec};
-    my $y = $MIDI::Simple::Length{ $self->sixtyfourth };
-    my $z = sprintf '%0.f', ($x - $y) * ticks($self->score);
-    $accent ||= sprintf '%0.f', $self->score->Volume / 2;
-    if ($grace eq 'r') {
-        $self->rest($self->sixtyfourth);
+sub flam (
+    $self, $spec,
+    $grace  = $self->snare,
+    $patch  = $self->snare,
+    $accent = sprintf '%0.f',
+    $self->score->Volume / 2
+    )
+{
+    my ( $x, $y )
+        = @MIDI::Simple::Length{ $spec, $self->sixtyfourth };    ## no critic (Variables::ProhibitPackageVars)
+    my $z = sprintf '%0.f', ( $x - $y ) * ticks( $self->score );
+    if ( $grace eq 'r' ) {
+        $self->rest( $self->sixtyfourth );
     }
     else {
-        $self->accent_note($accent, $self->sixtyfourth, $grace);
+        $self->accent_note( $accent, $self->sixtyfourth, $grace );
     }
-    $self->note('d' . $z, $patch);
+    return $self->note( 'd' . $z, $patch );
 }
 
-=head2 roll
+=method roll
 
   $d->roll( $length, $spec );
   $d->roll( $length, $spec, $patch );
@@ -827,16 +931,14 @@ If not provided the B<snare> is used for the B<patch>.
 
 =cut
 
-sub roll {
-    my ($self, $length, $spec, $patch) = @_;
-    $patch ||= $self->snare;
-    my $x = $MIDI::Simple::Length{$length};
-    my $y = $MIDI::Simple::Length{$spec};
+sub roll ( $self, $length, $spec, $patch = $self->snare ) {
+    my ( $x, $y ) = @MIDI::Simple::Length{ $length, $spec };    ## no critic (Variables::ProhibitPackageVars)
     my $z = sprintf '%0.f', $x / $y;
-    $self->note($spec, $patch) for 1 .. $z;
+    $self->note( $spec, $patch ) for 1 .. $z;
+    return;
 }
 
-=head2 crescendo_roll
+=method crescendo_roll
 
   $d->crescendo_roll( [$start, $end, $bezier], $length, $spec );
   $d->crescendo_roll( [$start, $end, $bezier], $length, $spec, $patch );
@@ -850,56 +952,55 @@ If not provided the B<snare> is used for the B<patch>.
 If true, the B<bezier> flag will render the crescendo with a curve,
 rather than as a straight line.
 
-     |            *
-     |           *
- vol |         *
-     |      *
-     |*
-     ---------------
-           time
+      |            *
+      |           *
+  vol |         *
+      |      *
+      |*
+      ---------------
+            time
 
 =cut
 
-sub crescendo_roll {
-    my ($self, $span, $length, $spec, $patch) = @_;
-    $patch ||= $self->snare;
-    my ($i, $j, $k) = @$span;
-    my $x = $MIDI::Simple::Length{$length};
-    my $y = $MIDI::Simple::Length{$spec};
+sub crescendo_roll ( $self, $span_ref, $length, $spec,
+    $patch = $self->snare )
+{
+    my ( $i, $j, $k ) = $span_ref->@*;
+    my ( $x, $y ) = @MIDI::Simple::Length{ $length, $spec };    ## no critic (Variables::ProhibitPackageVars)
     my $z = sprintf '%0.f', $x / $y;
     if ($k) {
-        my $bezier = Math::Bezier->new(
-            1, $i,
-            $z, $i,
-            $z, $j,
-        );
-        for (my $n = 0; $n <= 1; $n += (1 / ($z - 1))) {
-            my (undef, $v) = $bezier->point($n);
+        my $bezier = Math::Bezier->new( 1, $i, $z, $i, $z, $j, );
+        for ( my $n = 0 ; $n <= 1 ; $n += ( 1 / ( $z - 1 ) ) ) {
+            my ( undef, $v ) = $bezier->point($n);
             $v = sprintf '%0.f', $v;
-#            warn(__PACKAGE__,' ',__LINE__," $n INC: $v\n");
-            $self->accent_note($v, $spec, $patch);
+
+            # carp (__PACKAGE__,' ',__LINE__," $n INC: $v\n");
+            $self->accent_note( $v, $spec, $patch );
         }
     }
     else {
-        my $v = sprintf '%0.f', ($j - $i) / ($z - 1);
-#        warn(__PACKAGE__,' ',__LINE__," VALUE: $v\n");
-        for my $n (1 .. $z) {
-            if ($n == $z) {
-                if ($i < $j) {
+        my $v = sprintf '%0.f', ( $j - $i ) / ( $z - 1 );
+
+        # carp (__PACKAGE__,' ',__LINE__," VALUE: $v\n");
+        for my $n ( 1 .. $z ) {
+            if ( $n == $z ) {
+                if ( $i < $j ) {
                     $i += $j - $i;
                 }
-                elsif ($i > $j) {
+                elsif ( $i > $j ) {
                     $i -= $i - $j;
                 }
             }
-#            warn(__PACKAGE__,' ',__LINE__," $n INC: $i\n");
-            $self->accent_note($i, $spec, $patch);
+
+            # carp (__PACKAGE__,' ',__LINE__," $n INC: $i\n");
+            $self->accent_note( $i, $spec, $patch );
             $i += $v;
         }
     }
+    return;
 }
 
-=head2 pattern
+=method pattern
 
   $d->pattern( patterns => \@patterns );
   $d->pattern( patterns => \@patterns, instrument => $d->kick );
@@ -940,16 +1041,14 @@ Defaults:
 
 =cut
 
-sub pattern {
-    my ( $self, %args ) = @_;
-
+sub pattern ( $self, %args ) {
     $args{instrument} ||= $self->snare;
     $args{patterns}   ||= [];
     $args{beats}      ||= $self->beats;
     $args{negate}     ||= 0;
     $args{repeat}     ||= 1;
 
-    return unless @{ $args{patterns} };
+    return unless $args{patterns}->@*;
 
     # set size and duration
     my $size;
@@ -965,23 +1064,25 @@ sub pattern {
     # set the default beat-string variations
     $args{vary} ||= {
         0 => sub { $self->rest( $args{duration} ) },
-        1 => sub { $self->note( $args{duration}, $args{instrument} ) },
+        1 =>
+            sub { $self->note( $args{duration}, $args{instrument} ) },
     };
 
-    for my $pattern (@{ $args{patterns} }) {
+    for my $pattern ( $args{patterns}->@* ) {
         $pattern =~ tr/01/10/ if $args{negate};
 
         next if $pattern =~ /^0+$/;
 
         for ( 1 .. $args{repeat} ) {
             for my $bit ( split //, $pattern ) {
-                $args{vary}{$bit}->($self, %args);
+                $args{vary}{$bit}->( $self, %args );
             }
         }
     }
+    return;
 }
 
-=head2 sync_patterns
+=method sync_patterns
 
   $d->sync_patterns( $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->sync_patterns(
@@ -998,26 +1099,26 @@ If a C<duration> is provided, this will be used for each pattern
 
 =cut
 
-sub sync_patterns {
-    my ($self, %patterns) = @_;
-
+sub sync_patterns ( $self, %patterns ) {
     my $master_duration = delete $patterns{duration};
 
     my @subs;
-    for my $instrument (keys %patterns) {
+    for my $instrument ( keys %patterns ) {
         push @subs, sub {
             $self->pattern(
                 instrument => $instrument,
                 patterns   => $patterns{$instrument},
-                $master_duration ? (duration => $master_duration) : (),
+                $master_duration
+                ? ( duration => $master_duration )
+                : (),
             );
-        },
+        },;
     }
 
-    $self->sync(@subs);
+    return $self->sync(@subs);
 }
 
-=head2 add_fill
+=method add_fill
 
   $d->add_fill( $fill, $instrument1 => $patterns1, $inst2 => $pats2, ... );
   $d->add_fill(
@@ -1042,85 +1143,94 @@ is a three-note, eighth-note snare fill.
 
 =cut
 
-sub add_fill {
-    my ($self, $fill, %patterns) = @_;
-
-    $fill ||= sub {
-        return {
-            duration       => 8,
-            $self->open_hh => '000',
-            $self->snare   => '111',
-            $self->kick    => '000',
-        };
-    };
+sub add_fill ( $self, $fill = undef, %patterns ) {
+    $fill //= sub { {
+        duration       => 8,
+        $self->open_hh => '000',
+        $self->snare   => '111',
+        $self->kick    => '000',
+    } };
     my $fill_patterns = $fill->($self);
-    warn 'Fill: ', ddc($fill_patterns) if $self->verbose;
+    carp 'Fill: ', ddc($fill_patterns) if $self->verbose;
     my $fill_duration = delete $fill_patterns->{duration} || 8;
-    my $fill_length   = length((values %$fill_patterns)[0]);
+    my $fill_length   = length( ( values %$fill_patterns )[0] );
 
     my %lengths;
-    for my $instrument (keys %patterns) {
-        $lengths{$instrument} = sum0 map { length $_ } @{ $patterns{$instrument} };
+    for my $instrument ( keys %patterns ) {
+        $lengths{$instrument}
+            = sum0 map { length $_ } $patterns{$instrument}->@*;
     }
 
-    my $lcm = _multilcm($fill_duration, values %lengths);
-    warn "LCM: $lcm\n" if $self->verbose;
+    my $lcm = _multilcm( $fill_duration, values %lengths );
+    carp "LCM: $lcm\n" if $self->verbose;
 
     my $size = 4 / $lcm;
     my $dump = reverse_dump('length');
-    my $master_duration = $dump->{$size} || $self->eighth; # XXX this || is not right
-    warn "Size: $size, Duration: $master_duration\n" if $self->verbose;
+    my $master_duration
+        = $dump->{$size} || $self->eighth;    # XXX this || is not right
+    carp "Size: $size, Duration: $master_duration\n" if $self->verbose;
 
-    my $fill_chop = $fill_duration == $lcm
+    my $fill_chop
+        = $fill_duration == $lcm
         ? $fill_length
-        : int($lcm / $fill_length) + 1;
-    warn "Chop: $fill_chop\n" if $self->verbose;
+        : int( $lcm / $fill_length ) + 1;
+    carp "Chop: $fill_chop\n" if $self->verbose;
 
     my %fresh_patterns;
-    for my $instrument (keys %patterns) {
+    for my $instrument ( keys %patterns ) {
+
         # get a single "flattened" pattern as an arrayref
-        my $pattern = [ map { split //, $_ } @{ $patterns{$instrument} } ];
+        my $pattern
+            = [ map { split //, $_ } $patterns{$instrument}->@* ];
+
         # the fresh pattern is possibly upsized with the LCM
-        $fresh_patterns{$instrument} = @$pattern < $lcm
-            ? [ join '', @{ upsize($pattern, $lcm) } ]
-            : [ join '', @$pattern ];
+        $fresh_patterns{$instrument}
+            = $pattern->@* < $lcm
+            ? [ join '', upsize( $pattern, $lcm )->@* ]
+            : [ join '', $pattern->@* ];
     }
-    warn 'Patterns: ', ddc(\%fresh_patterns) if $self->verbose;
+    carp 'Patterns: ', ddc( \%fresh_patterns ) if $self->verbose;
 
     my %replacement;
-    for my $instrument (keys %$fill_patterns) {
+    for my $instrument ( keys $fill_patterns->%* ) {
+
         # get a single "flattened" pattern as a zero-pre-padded arrayref
-        my $pattern = [ split //, sprintf '%0*s', $fill_duration, $fill_patterns->{$instrument} ];
+        my $pattern = [
+            split //,       sprintf '%0*s',
+            $fill_duration, $fill_patterns->{$instrument} ];
+
         # the fresh pattern string is possibly upsized with the LCM
-        my $fresh = @$pattern < $lcm
-            ? join '', @{ upsize($pattern, $lcm) }
-            : join '', @$pattern;
+        my $fresh
+            = $pattern->@* < $lcm
+            ? join '', upsize( $pattern, $lcm )->@*
+            : join '', $pattern->@*;
+
         # the replacement string is the tail of the fresh pattern string
         $replacement{$instrument} = substr $fresh, -$fill_chop;
     }
-    warn 'Replacements: ', ddc(\%replacement) if $self->verbose;
+    carp 'Replacements: ', ddc( \%replacement ) if $self->verbose;
 
     my %replaced;
-    for my $instrument (keys %fresh_patterns) {
+    for my $instrument ( keys %fresh_patterns ) {
+
         # get the string to replace
-        my $string = join '', @{ $fresh_patterns{$instrument} };
+        my $string = join '', $fresh_patterns{$instrument}->@*;
+
         # replace the tail of the string
         my $pos = length $replacement{$instrument};
         substr $string, -$pos, $pos, $replacement{$instrument};
-        warn "$instrument: $string\n" if $self->verbose;
+        carp "$instrument: $string\n" if $self->verbose;
+
         # prepare the replaced pattern for syncing
-        $replaced{$instrument} = [ $string ];
+        $replaced{$instrument} = [$string];
     }
 
-    $self->sync_patterns(
-        %replaced,
-        duration => $master_duration,
-    );
+    $self->sync_patterns( %replaced, duration => $master_duration, );
 
     return \%replaced;
 }
 
-=head2 set_time_sig
+=method set_time_sig
 
   $d->set_time_sig;
   $d->set_time_sig('5/4');
@@ -1135,96 +1245,28 @@ are B<not> reset.
 
 =cut
 
-sub set_time_sig {
-    my ($self, $signature, $set) = @_;
-    $self->signature($signature) if $signature;
-    $set //= 1;
+sub set_time_sig ( $self, $time_signature, $set = 1 ) {
+    $self->signature($time_signature) if $time_signature;
     if ($set) {
-        my ($beats, $divisions) = split /\//, $self->signature;
+        my ( $beats, $divisions ) = split /\//, $self->signature;
         $self->beats($beats);
         $self->divisions($divisions);
     }
-    set_time_signature($self->score, $self->signature);
+    return set_time_signature( $self->score, $self->signature );
 }
 
-=head2 set_bpm
-
-  $d->set_bpm($bpm);
-
-Reset the beats per minute.
-
-=cut
-
-sub set_bpm {
-    my ($self, $bpm) = @_;
-    $self->bpm($bpm);
-    $self->score->set_tempo( int( 60_000_000 / $self->bpm ) );
-}
-
-=head2 set_channel
-
-  $d->set_channel;
-  $d->set_channel($channel);
-
-Reset the channel to C<9> by default, or the given argument if
-different.
-
-=cut
-
-sub set_channel {
-    my ($self, $channel) = @_;
-    $channel //= 9;
-    $self->channel($channel);
-    $self->score->noop( 'c' . $channel );
-}
-
-=head2 set_volume
-
-  $d->set_volume;
-  $d->set_volume($volume);
-
-Set the volume to the given argument (0-127).
-
-If not given a B<volume> argument, this method mutes (sets to C<0>).
-
-=cut
-
-sub set_volume {
-    my ($self, $volume) = @_;
-    $volume ||= 0;
-    $self->volume($volume);
-    $self->score->noop( 'V' . $volume );
-}
-
-=head2 sync
-
-  $d->sync(@code_refs);
-
-This is a simple pass-through to the B<score> C<synch> method.
-
-This allows simultaneous playing of multiple "tracks" defined by code
-references.
-
-=cut
-
-sub sync {
-    my $self = shift;
-    $self->score->synch(@_);
-}
-
-=head2 write
+=method write
 
 Output the score as a MIDI file with the module L</file> attribute as
 the file name.
 
 =cut
 
-sub write {
-    my $self = shift;
-    $self->score->write_score( $self->file );
+sub write ($self) {    ## no critic (Subroutines::ProhibitBuiltinHomonyms)
+    return $self->score->write_score( $self->file );
 }
 
-=head2 timidity_cfg
+=method timidity_cfg
 
   $timidity_conf = $d->timidity_cfg;
   $d->timidity_cfg($config_file);
@@ -1236,13 +1278,13 @@ written to that file.
 =cut
 
 sub timidity_cfg {
-    my ($self, $config_file) = @_;
-    die 'No soundfont defined' unless $self->soundfont;
-    my $cfg = timidity_conf($self->soundfont, $config_file);
+    my $self = shift;
+    croak 'No soundfont defined' unless $self->soundfont;
+    my $cfg = timidity_conf( $self->soundfont, shift );
     return $cfg;
 }
 
-=head2 play_with_timidity
+=method play_with_timidity
 
   $d->play_with_timidity;
   $d->play_with_timidity($config_file);
@@ -1259,11 +1301,12 @@ See L<MIDI::Util/play_timidity> for more details.
 =cut
 
 sub play_with_timidity {
-    my ($self, $config) = @_;
-    play_timidity($self->score, $self->file, $self->soundfont, $config);
+    my $self = shift;
+    return play_timidity( $self->score, $self->file, $self->soundfont,
+        shift );
 }
 
-=head2 play_with_fluidsynth
+=method play_with_fluidsynth
 
   $d->play_with_fluidsynth;
   $d->play_with_fluidsynth(\@config);
@@ -1275,22 +1318,22 @@ See L<MIDI::Util/play_fluidsynth> for more details.
 =cut
 
 sub play_with_fluidsynth {
-    my ($self, $config) = @_;
-    play_fluidsynth($self->score, $self->file, $self->soundfont, $config);
+    my $self = shift;
+    return play_fluidsynth( $self->score, $self->file,
+        $self->soundfont, shift );
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
-sub _gcf {
-    my ($x, $y) = @_;
-    ($x, $y) = ($y, $x % $y) while $y;
+sub _gcf ( $x, $y ) {
+    ( $x, $y ) = ( $y, $x % $y ) while $y;
     return $x;
 }
-sub _lcm {
-    return($_[0] * $_[1] / _gcf($_[0], $_[1]));
-}
-sub _multilcm {
+
+sub _lcm ( $x, $y ) { return $x * $y / _gcf( $x, $y ) }
+
+sub _multilcm {    ## no critic (Subroutines::RequireArgUnpacking)
     my $x = shift;
-    $x = _lcm($x, shift) while @_;
+    $x = _lcm( $x, shift ) while @_;
     return $x;
 }
 
