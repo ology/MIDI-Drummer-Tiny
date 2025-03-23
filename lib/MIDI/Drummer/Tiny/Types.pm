@@ -5,15 +5,17 @@ package MIDI::Drummer::Tiny::Types;
 use strict;
 use warnings;
 
-use Type::Library -base, -declare => qw(
+use Type::Library -extends => [ qw(
+    Types::Standard
+    Types::Common::Numeric
+    Types::Common::String
+) ],
+    -declare => qw(
     MIDINote
     Duration
     PercussionNote
-);
+    );
 use Type::Utils -all;
-
-use Types::Common::Numeric qw(IntRange);
-use Types::Common::String  qw(NonEmptyStr);
 
 use MIDI::Util qw(midi_dump);
 
