@@ -1337,13 +1337,6 @@ sub _multilcm {    ## no critic (Subroutines::RequireArgUnpacking)
 
 __END__
 
-=head1 THANK YOU
-
-L<Mark Gardner|https://metacpan.org/author/MJGARDNER> -
-refactoring-master - modernized everything under the hood, post-0.5013.
-
-Woo!
-
 =head1 SEE ALSO
 
 The F<t/*> test file and the F<eg/*> programs in this distribution.
@@ -1370,5 +1363,12 @@ L<Music::RhythmSet::Util>
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 L<https://en.wikipedia.org/wiki/General_MIDI_Level_2#Drum_sounds>
+
+=head1 THANK YOU
+
+L<Mark Gardner|https://metacpan.org/author/MJGARDNER> -
+refactoring-master - modernized everything under the hood, post-0.5013.
+
+Woo!
 
 =cut
