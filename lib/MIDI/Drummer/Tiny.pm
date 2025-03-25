@@ -312,33 +312,45 @@ for my $is ( keys %attr_defaults ) {
 
 =head1 KIT
 
-  click, bell (metronome)
+=over 4
 
-  open_hh, closed_hh, pedal_hh
+=item click, bell (metronome)
 
-  crash1, crash2, splash, china
+=item open_hh, closed_hh, pedal_hh
 
-  ride1, ride2, ride_bell
+=item crash1, crash2, splash, china
 
-  snare, acoustic_snare, electric_snare, side_stick, clap
+=item ride1, ride2, ride_bell
+
+=item snare, acoustic_snare, electric_snare, side_stick, clap
+
+=back
 
 Where the B<snare> is by default the same as the B<acoustic_snare> but
 can be overridden with the B<electric_snare> (C<'n40'>).
 
-  hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
+=over 4
 
-  kick, acoustic_bass, electric_bass
+=item hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
+
+=item kick, acoustic_bass, electric_bass
+
+=back
 
 Where the B<kick> is by default the same as the B<acoustic_bass> but
 can be overridden with the B<electric_bass> (C<'n36'>).
 
-  tambourine, cowbell, vibraslap
+=over 4
 
-  hi_bongo, low_bongo, mute_hi_conga, open_hi_conga, low_conga, high_timbale, low_timbale
+=item tambourine, cowbell, vibraslap
 
-  high_agogo, low_agogo, cabasa, maracas, short_whistle, long_whistle, short_guiro, long_guiro, claves, hi_wood_block, low_wood_block, mute_cuica, open_cuica
+=item hi_bongo, low_bongo, mute_hi_conga, open_hi_conga, low_conga, high_timbale, low_timbale
 
-  mute_triangle, open_triangle
+=item high_agogo, low_agogo, cabasa, maracas, short_whistle, long_whistle, short_guiro, long_guiro, claves, hi_wood_block, low_wood_block, mute_cuica, open_cuica
+
+=item mute_triangle, open_triangle
+
+=back
 
 =cut
 
@@ -415,21 +427,25 @@ has snare => (
 
 =head1 DURATIONS
 
-  whole, triplet_whole, dotted_whole, double_dotted_whole
+=over 4
 
-  half, triplet_half, dotted_half, double_dotted_half
+=item whole, triplet_whole, dotted_whole, double_dotted_whole
 
-  quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
+=item half, triplet_half, dotted_half, double_dotted_half
 
-  eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
+=item quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
 
-  sixteenth, triplet_sixteenth, dotted_sixteenth, double_dotted_sixteenth
+=item eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
 
-  thirtysecond, triplet_thirtysecond, dotted_thirtysecond, double_dotted_thirtysecond
+=item sixteenth, triplet_sixteenth, dotted_sixteenth, double_dotted_sixteenth
 
-  sixtyfourth, triplet_sixtyfourth, dotted_sixtyfourth, double_dotted_sixtyfourth
+=item thirtysecond, triplet_thirtysecond, dotted_thirtysecond, double_dotted_thirtysecond
 
-  onetwentyeighth, triplet_onetwentyeighth, dotted_onetwentyeighth, double_dotted_onetwentyeighth
+=item sixtyfourth, triplet_sixtyfourth, dotted_sixtyfourth, double_dotted_sixtyfourth
+
+=item onetwentyeighth, triplet_onetwentyeighth, dotted_onetwentyeighth, double_dotted_onetwentyeighth
+
+=back
 
 =cut
 
