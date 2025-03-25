@@ -185,7 +185,7 @@ has channel => (
     default => 9,
 );
 
-sub set_channel ( $self, $channel //= 9 ) {
+sub set_channel ( $self, $channel = 9 ) {
     $self->score->noop("c$channel");
     $self->_set_channel($channel);
     return;
