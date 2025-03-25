@@ -310,43 +310,95 @@ for my $is ( keys %attr_defaults ) {
     }
 }
 
-=head1 KIT
+=kit metronome
 
-=over 4
+=over
 
-=item click, bell (metronome)
+=item click, bell
+
+=back
+
+=kit hi-hats
+
+=over
 
 =item open_hh, closed_hh, pedal_hh
 
+=back
+
+=kit crash and splash cymbals
+
+=over
+
 =item crash1, crash2, splash, china
+
+=back
+
+=kit ride cymbals
+
+=over
 
 =item ride1, ride2, ride_bell
 
+=back
+
+=kit snare drums and handclaps
+
+=over
+
 =item snare, acoustic_snare, electric_snare, side_stick, clap
+
+Where the B<snare> is by default the same as the B<acoustic_snare> but
+can be overridden with the B<electric_snare> (C<40>).
 
 =back
 
-Where the B<snare> is by default the same as the B<acoustic_snare> but
-can be overridden with the B<electric_snare> (C<'n40'>).
+=kit tom-toms
 
-=over 4
+=over
 
 =item hi_tom, hi_mid_tom, low_mid_tom, low_tom, hi_floor_tom, low_floor_tom
 
+=back
+
+=kit bass drums
+
+=over
+
 =item kick, acoustic_bass, electric_bass
+
+Where the B<kick> is by default the same as the B<acoustic_bass> but
+can be overridden with the B<electric_bass> (C<36>).
 
 =back
 
-Where the B<kick> is by default the same as the B<acoustic_bass> but
-can be overridden with the B<electric_bass> (C<'n36'>).
+=kit auxiliary percussion
 
-=over 4
+=over
 
 =item tambourine, cowbell, vibraslap
 
+=back
+
+=kit Latin and African drums
+
+=over
+
 =item hi_bongo, low_bongo, mute_hi_conga, open_hi_conga, low_conga, high_timbale, low_timbale
 
+=back
+
+=kit Latin and African auxiliary percussion
+
+=over
+
 =item high_agogo, low_agogo, cabasa, maracas, short_whistle, long_whistle, short_guiro, long_guiro, claves, hi_wood_block, low_wood_block, mute_cuica, open_cuica
+
+=back
+
+=kit triangles
+
+=over
 
 =item mute_triangle, open_triangle
 
@@ -425,23 +477,65 @@ has snare => (
     default => 38,               # Alt: 40
 );
 
-=head1 DURATIONS
+=duration whole notes
 
-=over 4
+=over
 
 =item whole, triplet_whole, dotted_whole, double_dotted_whole
 
+=back
+
+=duration half notes
+
+=over
+
 =item half, triplet_half, dotted_half, double_dotted_half
+
+=back
+
+=duration quarter notes
+
+=over
 
 =item quarter, triplet_quarter, dotted_quarter, double_dotted_quarter
 
+=back
+
+=duration eighth notes
+
+=over
+
 =item eighth, triplet_eighth, dotted_eighth, double_dotted_eighth
+
+=back
+
+=duration sixteenth notes
+
+=over
 
 =item sixteenth, triplet_sixteenth, dotted_sixteenth, double_dotted_sixteenth
 
+=back
+
+=duration thirty-secondth notes
+
+=over
+
 =item thirtysecond, triplet_thirtysecond, dotted_thirtysecond, double_dotted_thirtysecond
 
+=back
+
+=duration sixty-fourth notes
+
+=over
+
 =item sixtyfourth, triplet_sixtyfourth, dotted_sixtyfourth, double_dotted_sixtyfourth
+
+=back
+
+=duration one-twenty-eighth notes
+
+=over
 
 =item onetwentyeighth, triplet_onetwentyeighth, dotted_onetwentyeighth, double_dotted_onetwentyeighth
 
