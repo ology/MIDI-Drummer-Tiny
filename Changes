@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.6001 2025-03-25 10:17:01
     - Tweak allowed syntax.
