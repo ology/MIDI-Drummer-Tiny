@@ -2,12 +2,12 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-use 5.020;
-use experimental qw(postderef signatures);
+use 5.024;
 use strictures 2;
 use Carp;
 use List::Util 1.26 qw(sum0);
 use Moo;
+use experimental qw(signatures);
 use Math::Bezier ();
 use MIDI::Util   qw(
     dura_size
