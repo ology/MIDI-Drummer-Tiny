@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.6002 2025-03-25 17:05:23
     - Improve documentation.
     - Require Perl v5.24.
     - Move experimental import after Moo.
