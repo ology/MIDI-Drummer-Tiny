@@ -18,10 +18,14 @@ use MIDI::Util   qw(
     play_fluidsynth
     ticks
 );
-use Music::Duration            ();
-use Music::RhythmSet::Util     qw(upsize);
+use Music::Duration        ();
+use Music::RhythmSet::Util qw(upsize);
+
 use MIDI::Drummer::Tiny::Types qw(:all);
-use Data::Dumper::Compact      qw(ddc);
+use Types::Standard            qw(InstanceOf FileHandle);
+use Types::Path::Tiny          qw(File Path assert_Path);
+
+use Data::Dumper::Compact qw(ddc);
 use namespace::clean;
 
 our $VERSION = '0.6002';
@@ -124,7 +128,19 @@ Default: C<0>
 
 =attr file
 
+A L<Types::Path::Tiny/Path> or L<Types::Standard/FileHandle>, or
+something that can be coerced into either, such as a file name string.
+
 Default: C<MIDI-Drummer.mid>
+
+=cut
+
+has file => (
+    is      => 'ro',
+    isa     => Path | FileHandle,
+    coerce  => 1,
+    default => 'MIDI-Drummer.mid',
+);
 
 =attr score
 
@@ -152,13 +168,16 @@ has score => (
 
   $soundfont = $tabla->soundfont;
 
-The file location, where a soundfont lives.
+A L<Types::Path::Tiny/File> location where a soundfont lives, or
+something that can be coerced into it such as a file name string.
+Note that this file B<must> exist if specified.
 
 =cut
 
 has soundfont => (
-    is  => 'rw',
-    isa => NonEmptyStr,
+    is     => 'rw',
+    isa    => File,
+    coerce => 1,
 );
 
 =attr reverb
@@ -181,7 +200,7 @@ different.
 
 has channel => (
     is      => 'rwp',
-    isa     => IntRange [ 0, 15 ],
+    isa     => Channel,
     default => 9,
 );
 
@@ -200,7 +219,7 @@ Default: C<100>
   $d->set_volume;
   $d->set_volume($volume);
 
-Set the volume to the given argument (0-127).
+Set the volume (L<Types::MIDI/Velocity>) to the given argument.
 
 If not given a B<volume> argument, this method mutes (sets to C<0>).
 
@@ -208,7 +227,7 @@ If not given a B<volume> argument, this method mutes (sets to C<0>).
 
 has volume => (
     is      => 'rwp',
-    isa     => IntRange [ 0, 127 ],
+    isa     => Velocity,
     default => 100,
 
 );
@@ -227,13 +246,13 @@ Default: C<120>
 
   $d->set_bpm($bpm);
 
-Reset the beats per minute.
+Reset the L<beats per minute|MIDI::Drummer::Tiny::Types/BPM>.
 
 =cut
 
 has bpm => (
     is      => 'rw',
-    isa     => PositiveNum,
+    isa     => BPM,
     default => 120,
     writer  => 'set_bpm',
     trigger => 1,
@@ -290,7 +309,6 @@ my %attr_defaults = (
     ro => {
         verbose => 0,
         reverb  => 15,
-        file    => 'MIDI-Drummer.mid',
         bars    => 4,
     },
     rw => {
@@ -1394,14 +1412,17 @@ or C<timidity-midi-util.cfg> is used for the timidity configuration.
 If a soundfont is not defined, a timidity configuration file is not
 rendered.
 
+This method will throw an exception if L</file> was not specified as a
+L<Types::Path::Tiny/Path>.
+
 See L<MIDI::Util/play_timidity> for more details.
 
 =cut
 
 sub play_with_timidity {
     my $self = shift;
-    return play_timidity( $self->score, $self->file, $self->soundfont,
-        shift );
+    return play_timidity( $self->score, assert_Path( $self->file ),
+        $self->soundfont, shift );
 }
 
 =method play_with_fluidsynth
@@ -1411,13 +1432,16 @@ sub play_with_timidity {
 
 Play the score with C<fluidsynth>.
 
+This method will throw an exception if L</file> was not specified as a
+L<Types::Path::Tiny/Path>.
+
 See L<MIDI::Util/play_fluidsynth> for more details.
 
 =cut
 
 sub play_with_fluidsynth {
     my $self = shift;
-    return play_fluidsynth( $self->score, $self->file,
+    return play_fluidsynth( $self->score, assert_Path( $self->file ),
         $self->soundfont, shift );
 }
 
