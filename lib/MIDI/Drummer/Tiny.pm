@@ -1394,9 +1394,9 @@ written to that file.
 =cut
 
 sub timidity_cfg {
-    my $self = shift;
+    my ($self, $config) = @_;
     croak 'No soundfont defined' unless $self->soundfont;
-    my $cfg = timidity_conf( $self->soundfont, shift );
+    my $cfg = timidity_conf( $self->soundfont, $config );
     return $cfg;
 }
 
