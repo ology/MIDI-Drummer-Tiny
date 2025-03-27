@@ -78,6 +78,3 @@ L<https://midi.org/general-midi-2>
 =cut
 
 1;
-
-
-1;
