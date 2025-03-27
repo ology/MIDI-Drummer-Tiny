@@ -5,13 +5,14 @@ package MIDI::Drummer::Tiny::Types;
 use strict;
 use warnings;
 
-use Type::Library -extends => [ qw(
-    Types::MIDI
-    Types::Common::String
-) ],
+use Type::Library
+    -extends => [ qw(
+        Types::MIDI
+        Types::Common::String
+    ) ],
     -declare => qw(
-    BPM
-    Duration
+        BPM
+        Duration
     );
 use Type::Utils -all;
 
