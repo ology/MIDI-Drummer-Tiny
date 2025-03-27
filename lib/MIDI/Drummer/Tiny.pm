@@ -128,8 +128,8 @@ Default: C<0>
 
 =attr file
 
-A L<Types::Path::Tiny/Path> or L<Types::Standard/FileHandle>, or
-something that can be coerced into either, such as a file name string.
+This the MIDI file name to write. It can be a string or a
+L<Types::Path::Tiny/Path>, a L<Types::Standard/FileHandle>.
 
 Default: C<MIDI-Drummer.mid>
 
@@ -140,6 +140,21 @@ has file => (
     isa     => Path | FileHandle,
     coerce  => 1,
     default => 'MIDI-Drummer.mid',
+);
+
+=attr soundfont
+
+  $soundfont = $tabla->soundfont;
+
+This is the location of the soundfont file. It can be a string or a
+L<Types::Path::Tiny/File>.
+
+=cut
+
+has soundfont => (
+    is     => 'rw',
+    isa    => File,
+    coerce => 1,
 );
 
 =attr score
@@ -162,22 +177,6 @@ has score => (
     isa     => InstanceOf ['MIDI::Simple'],
     default => sub { MIDI::Simple->new_score },
     handles => { sync => 'synch' },
-);
-
-=attr soundfont
-
-  $soundfont = $tabla->soundfont;
-
-A L<Types::Path::Tiny/File> location where a soundfont lives, or
-something that can be coerced into it such as a file name string.
-Note that this file B<must> exist if specified.
-
-=cut
-
-has soundfont => (
-    is     => 'rw',
-    isa    => File,
-    coerce => 1,
 );
 
 =attr reverb
@@ -1412,17 +1411,14 @@ or C<timidity-midi-util.cfg> is used for the timidity configuration.
 If a soundfont is not defined, a timidity configuration file is not
 rendered.
 
-This method will throw an exception if L</file> was not specified as a
-L<Types::Path::Tiny/Path>.
-
 See L<MIDI::Util/play_timidity> for more details.
 
 =cut
 
 sub play_with_timidity {
-    my $self = shift;
+    my ($self, $config) = @_;
     return play_timidity( $self->score, assert_Path( $self->file ),
-        $self->soundfont, shift );
+        $self->soundfont, $config );
 }
 
 =method play_with_fluidsynth
@@ -1432,17 +1428,14 @@ sub play_with_timidity {
 
 Play the score with C<fluidsynth>.
 
-This method will throw an exception if L</file> was not specified as a
-L<Types::Path::Tiny/Path>.
-
 See L<MIDI::Util/play_fluidsynth> for more details.
 
 =cut
 
 sub play_with_fluidsynth {
-    my $self = shift;
+    my ($self, $config) = @_;
     return play_fluidsynth( $self->score, assert_Path( $self->file ),
-        $self->soundfont, shift );
+        $self->soundfont, $config );
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906
