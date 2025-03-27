@@ -53,7 +53,7 @@ L<General MIDI 2 Percussion Sound Set|/"SEE ALSO">.
 
 =cut
 
-# TODO: update MIDI-Perl's %MIDI::notenum2percussion with all GM2 sounds
+# TODO: update MIDI-Perl's %MIDI::notenum2percussion with all GM2 sounds?
 declare PercussionNote, as Note, where { $_ >= 27 or $_ <= 87 };
 
 =head1 SEE ALSO
