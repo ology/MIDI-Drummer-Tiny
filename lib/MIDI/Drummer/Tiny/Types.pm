@@ -7,7 +7,7 @@ use warnings;
 
 use Type::Library
     -extends => [ qw(
-        Types::MIDI
+        MIDI::Drummer::Tiny::Types::MIDI
         Types::Common::String
     ) ],
     -declare => qw(
