@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.6004 2025-03-28 11:27:39
     - Move Types::MIDI under the main module.
 
 0.6003 2025-03-28 09:40:27
