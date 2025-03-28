@@ -2,6 +2,8 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
+our $VERSION = '0.6003';
+
 use 5.024;
 use strictures 2;
 use Carp;
@@ -27,8 +29,6 @@ use Types::Path::Tiny          qw(File Path assert_Path);
 
 use Data::Dumper::Compact qw(ddc);
 use namespace::clean;
-
-our $VERSION = '0.6002';
 
 use constant STRAIGHT => 50;    # Swing percent
 
