@@ -144,7 +144,7 @@ has file => (
 
 =attr soundfont
 
-  $soundfont = $tabla->soundfont;
+  $soundfont = $d->soundfont;
 
 This is the location of the soundfont file. It can be a string or a
 L<Types::Path::Tiny/File>.
