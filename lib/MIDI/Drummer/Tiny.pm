@@ -128,8 +128,8 @@ Default: C<0>
 
 =attr file
 
-This the MIDI file name to write. It can be a string or a
-L<Types::Path::Tiny/Path>, a L<Types::Standard/FileHandle>.
+This the MIDI file name to write. It can be a string, a
+L<Types::Path::Tiny/Path>, or a L<Types::Standard/FileHandle>.
 
 Default: C<MIDI-Drummer.mid>
 
