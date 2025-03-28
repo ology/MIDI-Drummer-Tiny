@@ -218,7 +218,7 @@ Default: C<100>
   $d->set_volume;
   $d->set_volume($volume);
 
-Set the volume (L<Types::MIDI/Velocity>) to the given argument.
+Set the volume (L<MIDI::Drummer::Tiny::Types::MIDI/Velocity>) to the given argument.
 
 If not given a B<volume> argument, this method mutes (sets to C<0>).
 
