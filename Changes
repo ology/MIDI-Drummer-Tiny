@@ -1,9 +1,11 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Move the Types::MIDI package under the main module.
 
 0.6003 2025-03-28 09:40:27
     - Tweeze documentation.
+    - Add MIDI types.
 
 0.6002 2025-03-25 17:05:23
     - Improve documentation.
