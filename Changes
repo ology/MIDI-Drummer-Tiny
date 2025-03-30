@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Use Types::MIDI now.
 
 0.6004 2025-03-28 11:27:39
     - Move Types::MIDI under the main module.
