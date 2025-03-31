@@ -8,6 +8,7 @@ use warnings;
 use Type::Library
     -extends => [ qw(
         Types::MIDI
+        Types::Common::Numeric
         Types::Common::String
     ) ],
     -declare => qw(
