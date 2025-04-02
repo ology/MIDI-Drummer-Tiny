@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add and use MIDI and soundfont files types.
 
 0.6007 2025-04-02 10:59:40
     - Use Types::Music.
