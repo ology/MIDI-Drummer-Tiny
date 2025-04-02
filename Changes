@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.6008 2025-04-02 11:32:50
     - Add and use MIDI and soundfont file types.
 
 0.6007 2025-04-02 10:59:40
