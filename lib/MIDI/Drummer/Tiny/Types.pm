@@ -38,7 +38,7 @@ The name of the MIDI file to be written.
 
 =cut
 
-declare MIDI_File, as Path | FileHandle;
+declare MIDI_File, as NonEmptyStr | Path | FileHandle;
 
 =type Soundfont_File
 
@@ -46,6 +46,6 @@ The name of the MIDI soundfont file to use.
 
 =cut
 
-declare Soundfont_File, as File;
+declare Soundfont_File, as NonEmptyStr | File;
 
 1;
