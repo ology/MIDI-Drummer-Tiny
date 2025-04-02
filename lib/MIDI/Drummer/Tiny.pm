@@ -24,8 +24,8 @@ use Music::Duration        ();
 use Music::RhythmSet::Util qw(upsize);
 
 use MIDI::Drummer::Tiny::Types qw(:all);
-use Types::Standard            qw(InstanceOf FileHandle);
-use Types::Path::Tiny          qw(File Path assert_Path);
+use Types::Standard            qw(InstanceOf);
+use Types::Path::Tiny          qw(assert_Path);
 
 use Data::Dumper::Compact qw(ddc);
 use namespace::clean;
@@ -137,7 +137,7 @@ Default: C<MIDI-Drummer.mid>
 
 has file => (
     is      => 'ro',
-    isa     => Path | FileHandle,
+    isa     => MIDI_File,
     coerce  => 1,
     default => 'MIDI-Drummer.mid',
 );
@@ -153,7 +153,7 @@ L<Types::Path::Tiny/File>.
 
 has soundfont => (
     is     => 'rw',
-    isa    => File,
+    isa    => Soundfont_File,
     coerce => 1,
 );
 
