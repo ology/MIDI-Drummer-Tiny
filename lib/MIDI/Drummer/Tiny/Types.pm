@@ -8,25 +8,16 @@ use warnings;
 use Type::Library
     -extends => [ qw(
         Types::MIDI
+        Types::Music
         Types::Common::Numeric
         Types::Common::String
     ) ],
     -declare => qw(
-        BPM
         Duration
     );
 use Type::Utils -all;
 
 use MIDI::Util qw(midi_dump);
-
-=type BPM
-
-A L<positive number|Types::Common::Numeric/PositiveNum> expressing
-beats per minute.
-
-=cut
-
-declare BPM, as PositiveNum;
 
 =type Duration
 
