@@ -25,7 +25,6 @@ use Music::RhythmSet::Util qw(upsize);
 
 use MIDI::Drummer::Tiny::Types qw(:all);
 use Types::Standard            qw(InstanceOf);
-use Types::Path::Tiny          qw(assert_Path);
 
 use Data::Dumper::Compact qw(ddc);
 use namespace::clean;
@@ -173,11 +172,15 @@ references.
 =cut
 
 has score => (
-    is      => 'ro',
+    is      => 'lazy',
     isa     => InstanceOf ['MIDI::Simple'],
-    default => sub { MIDI::Simple->new_score },
     handles => { sync => 'synch' },
 );
+
+sub _build_score {
+    my ($self) = @_;
+    return MIDI::Simple->new_score;
+}
 
 =attr reverb
 
@@ -1417,7 +1420,7 @@ See L<MIDI::Util/play_timidity> for more details.
 
 sub play_with_timidity {
     my ($self, $config) = @_;
-    return play_timidity( $self->score, assert_Path( $self->file ),
+    return play_timidity( $self->score, $self->file,
         $self->soundfont, $config );
 }
 
@@ -1434,7 +1437,7 @@ See L<MIDI::Util/play_fluidsynth> for more details.
 
 sub play_with_fluidsynth {
     my ($self, $config) = @_;
-    return play_fluidsynth( $self->score, assert_Path( $self->file ),
+    return play_fluidsynth( $self->score, $self->file,
         $self->soundfont, $config );
 }
 
