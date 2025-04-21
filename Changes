@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.6010 2025-04-21 16:07:12
     - Fix undef score.
 
 0.6009 2025-04-21 14:29:18
