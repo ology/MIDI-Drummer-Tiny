@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.6008';
+our $VERSION = '0.6009';
 
 use 5.024;
 use strictures 2;
@@ -245,7 +245,7 @@ Default: C<120>
 
   $d->set_bpm($bpm);
 
-Reset the L<beats per minute|MIDI::Drummer::Tiny::Types/BPM>.
+Return or set the beats per minute.
 
 =cut
 
