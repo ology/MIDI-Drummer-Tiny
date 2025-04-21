@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix undef score.
 
 0.6009 2025-04-21 14:29:18
     - Fix BPM type.
