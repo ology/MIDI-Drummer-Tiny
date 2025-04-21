@@ -251,7 +251,7 @@ Reset the L<beats per minute|MIDI::Drummer::Tiny::Types/BPM>.
 
 has bpm => (
     is      => 'rw',
-    isa     => BPM,
+    isa     => PosInt,
     default => 120,
     writer  => 'set_bpm',
     trigger => 1,
