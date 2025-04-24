@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Bump Types::Music prereq version.
 
 0.6010 2025-04-21 16:07:12
     - Fix undef score.
