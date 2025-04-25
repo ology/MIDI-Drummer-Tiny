@@ -160,6 +160,15 @@ has soundfont => (
 
 Default: C<MIDI::Simple-E<gt>new_score>
 
+=method sync
+
+  $d->sync(@code_refs);
+
+This is a simple pass-through to the B<score> C<synch> method.
+
+This allows simultaneous playing of multiple "tracks" defined by code
+references.
+
 =cut
 
 has score => (
@@ -255,17 +264,6 @@ sub _trigger_bpm ( $self, $bpm = 120 ) {    ## no critic (Subroutines::ProhibitU
     $self->score->set_tempo( int( 60_000_000 / $bpm ) );
     return;
 }
-
-=method sync
-
-  $d->sync(@code_refs);
-
-This is a simple pass-through to the B<score> C<synch> method.
-
-This allows simultaneous playing of multiple "tracks" defined by code
-references.
-
-=cut
 
 =attr bars
 
