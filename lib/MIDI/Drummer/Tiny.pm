@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny;
 
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.6011';
+our $VERSION = '0.6012';
 
 use 5.024;
 use strictures 2;
