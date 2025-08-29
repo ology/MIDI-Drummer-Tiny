@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Make the file attribute read-write.
 
 0.6011 2025-04-24 12:33:49
     - Bump Types::Music prereq version.
