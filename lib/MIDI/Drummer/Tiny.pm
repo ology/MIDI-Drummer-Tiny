@@ -135,7 +135,7 @@ Default: C<MIDI-Drummer.mid>
 =cut
 
 has file => (
-    is      => 'ro',
+    is      => 'rw',
     isa     => MIDI_File,
     coerce  => 1,
     default => 'MIDI-Drummer.mid',
