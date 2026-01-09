@@ -1182,8 +1182,7 @@ sub pattern ( $self, %args ) {
     # set the default beat-string variations
     $args{vary} ||= {
         0 => sub { $self->rest( $args{duration} ) },
-        1 =>
-            sub { $self->note( $args{duration}, $args{instrument} ) },
+        1 => sub { $self->note( $args{duration}, $args{instrument} ) },
     };
 
     for my $pattern ( $args{patterns}->@* ) {
@@ -1230,7 +1229,7 @@ sub sync_patterns ( $self, %patterns ) {
                 ? ( duration => $master_duration )
                 : (),
             );
-        },;
+        };
     }
 
     return $self->sync(@subs);

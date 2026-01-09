@@ -58,15 +58,11 @@ sub _beats {
         1 => {
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             beat => sub {
-                $d->note($d->quarter, $d->kick);
-                $d->note($d->eighth, $d->snare);
-                $d->note($d->dotted_quarter, $d->kick);
-                $d->note($d->quarter, $d->snare);
-                # $d->sync_patterns(
-                #     $d->snare => [qw(0000 1000 0000 1000)],
-                #     $d->kick  => [qw(1000 0010 0000 0000)],
-                #     duration  => $d->sixteenth,
-                # ),
+                $d->sync_patterns(
+                    $d->kick  => ['1000001000000000'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
             },
         },
 
