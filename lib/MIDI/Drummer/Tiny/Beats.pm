@@ -35,7 +35,8 @@ Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
   $beat = $f->get_beat($drummer, $beat);
 
-Return either the given beat subroutine or a random beat.
+Return either the given B<beat> or a random beat from the collection
+of known beats.
 
 A B<drummer> object and a B<beat> number are required.
 
@@ -43,12 +44,26 @@ A B<drummer> object and a B<beat> number are required.
 
 sub get_beat {
     my ($self, $drummer, $beat_number) = @_;
-    my $beats = $self->_beats($drummer);
+    my $beats = $self->all_beats($drummer);
     unless ($beat_number) {
         my @keys = keys %$beats;
         $beat_number = $keys[ int rand @keys ];
     }
     return $beats->{$beat_number};
+}
+
+=head2 all_beats
+
+  $beats = $f->all_beats($d);
+
+Return all the known beats as a hash reference, given a B<drummer>
+object.
+
+=cut
+
+sub all_beats {
+    my ($self, $drummer) = @_;
+    return $self->_beats($drummer);
 }
 
 sub _beats {
