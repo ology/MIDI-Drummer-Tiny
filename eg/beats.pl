@@ -8,7 +8,8 @@ use MIDI::Drummer::Tiny::Beats;
 my $d = MIDI::Drummer::Tiny->new;
 my $f = MIDI::Drummer::Tiny::Beats->new;
 
-my $beat = $f->get_beat($d, 2);
+for my $n (1 .. )
+my $beat = $f->get_beat($d, $n);
 $beat->{beat}->() for 1 .. 4;
 
 $d->play_with_timidity;
