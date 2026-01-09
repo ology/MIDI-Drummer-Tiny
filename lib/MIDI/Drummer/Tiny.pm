@@ -1137,8 +1137,8 @@ attribute.
 
 The B<vary> option is a hashref of coderefs, keyed by single character
 tokens, like the digits 0-9.  Each coderef duration should add up to
-the given B<duration> option.  The single argument to the coderefs is
-the object itself and may be used as: C<my $self = shift;> in yours.
+the given B<duration> option.  The single argument that is given to a
+coderef is the object itself. It is used like: C<my $self = shift;>.
 
 These patterns can be generated with any custom function, as in the
 L</SYNOPSIS>. For instance, you could use the L<Creating::Rhythms>
