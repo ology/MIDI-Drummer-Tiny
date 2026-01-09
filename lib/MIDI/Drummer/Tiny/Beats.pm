@@ -66,6 +66,18 @@ sub _beats {
             },
         },
 
+        2 => {
+            name => "BOOTS N' CATS",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick      => ['1000000010000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%beats;
 }
