@@ -32,11 +32,11 @@ Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
 =head2 get_beat
 
-  $beat = $f->get_beat($drummer, $beat_number);
+  $beat = $f->get_beat($drummer, $beat);
 
 Return either the given beat subroutine or a random beat.
 
-A B<drummer> object and a B<beat_number> are required.
+A B<drummer> object and a B<beat> number are required.
 
 =cut
 
