@@ -41,7 +41,7 @@ A B<drummer_object> and a B<beat_number> are required.
 =cut
 
 sub get_beat {
-    my ($self, $drummer) = @_;
+    my ($self, $drummer, $beat_number) = @_;
     my $beats = $self->_beats($drummer);
     my @keys = keys %$beats;
     my $beat = $keys[ int rand @keys ];
@@ -52,11 +52,14 @@ sub _beats {
     my ($self, $d) = @_;
     my %beats = (
 
-        1 => sub { # ONE AND SEVEN & FIVE AND THIRTEEN
-            $d->note($d->quarter, $d->kick);
-            $d->note($d->eighth, $d->snare);
-            $d->note($d->dotted_quarter, $d->kick);
-            $d->note($d->quarter, $d->snare);
+        1 => {
+            name => "ONE AND SEVEN & FIVE AND THIRTEEN",
+            beat => sub {
+                $d->note($d->quarter, $d->kick);
+                $d->note($d->eighth, $d->snare);
+                $d->note($d->dotted_quarter, $d->kick);
+                $d->note($d->quarter, $d->snare);
+            },
         },
 
     );
