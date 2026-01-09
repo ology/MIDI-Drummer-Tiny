@@ -6,11 +6,11 @@ use MIDI::Drummer::Tiny;
 use MIDI::Drummer::Tiny::Beats;
 
 my $d = MIDI::Drummer::Tiny->new;
-my $f = MIDI::Drummer::Tiny::Beats->new;
-my $beats = $f->all_beats($d);
+my $b = MIDI::Drummer::Tiny::Beats->new;
+my $beats = $b->all_beats($d);
 
 for my $n (1 .. keys %$beats) {
-    my $beat = $f->get_beat($d, $n);
+    my $beat = $b->get_beat($d, $n);
     $beat->{beat}->() for 1 .. 4;
 }
 
