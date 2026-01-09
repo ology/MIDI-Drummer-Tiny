@@ -18,7 +18,8 @@ use namespace::clean;
 
 =head1 DESCRIPTION
 
-TBD
+Return the common beats, as listed in the "Pocket Operations", that
+are L<linked below|/SEE ALSO>.
 
 =cut
 
@@ -72,6 +73,6 @@ __END__
 
 =head1 SEE ALSO
 
-TBD
+The "Pocket Operations" at L<https://shittyrecording.studio/>
 
 =cut
