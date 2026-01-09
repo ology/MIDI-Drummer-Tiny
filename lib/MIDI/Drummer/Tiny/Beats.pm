@@ -44,9 +44,11 @@ A B<drummer> object and a B<beat> number are required.
 sub get_beat {
     my ($self, $drummer, $beat_number) = @_;
     my $beats = $self->_beats($drummer);
-    my @keys = keys %$beats;
-    my $beat = $keys[ int rand @keys ];
-    return $beats->{$beat};
+    unless ($beat_number) {
+        my @keys = keys %$beats;
+        $beat_number = $keys[ int rand @keys ];
+    }
+    return $beats->{$beat_number};
 }
 
 sub _beats {
