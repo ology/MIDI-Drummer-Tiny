@@ -15,7 +15,7 @@ my $all = $beats->all_beats;
 
 for my $n (1 .. keys %$all) {
     my $beat = $beats->get_beat($n, $d);
-    # print $beat->{name}, "\n";
+    print $beat->{name}, "\n";
     $beat->{beat}->() for 1 .. 4;
 }
 
