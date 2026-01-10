@@ -348,10 +348,24 @@ sub _beats {
         20 => {
             name => "SIBERIAN NIGHTS",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000001000000000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1011101110111011'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        21 => {
+            name => "NEW WAVE",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000001011000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1101111111111111'],
+                    $d->open_hh   => ['0010000000000000'],
+                    $d->maracas   => ['0000100000001000'],
                     duration      => $d->sixteenth,
                 ),
             },
