@@ -3,7 +3,6 @@ package MIDI::Drummer::Tiny::Beats;
 use Moo;
 use strictures 2;
 use MIDI::Drummer::Tiny ();
-use MIDI::Util qw(dura_size);
 use namespace::clean;
 
 =head1 SYNOPSIS
