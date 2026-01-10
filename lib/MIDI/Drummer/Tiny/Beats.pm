@@ -17,16 +17,14 @@ use namespace::clean;
 
   my $all = $beats->all_beats;
 
-  my $beat = $beats->get_beat; # random beat
-  $beat = $beats->get_beat(42); # numbered beat
-  # with a pre-made drummer object
-  $beat = $beats->get_beat(42, $drummer);
-
+  my $beat = $beats->get_beat(0, $drummer); # random beat
+  $beat = $beats->get_beat(42, $drummer); # numbered beat
+  
   say $beat->{name};
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
   # play 4 random rock beats
-  my $rock = $beats->search('rock');
+  my $rock = $beats->search('rock', $drummer);
   my $nums = [ keys %$rock ];
   for (1 .. 4) {
     $beat = $rock->{ $nums[ rand @$nums ] };
@@ -66,15 +64,15 @@ Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
 =head2 get_beat
 
-  $beat = $beats->get_beat; # random beat
-  $beat = $beats->get_beat($beat_number);
   $beat = $beats->get_beat($beat_number, $drummer); # with object
   $beat = $beats->get_beat(0, $drummer); # random beat
 
 Return either the given B<beat> or a random beat from the collection
 of known beats.
 
-A B<drummer> object optional but the B<beat_number> is required.
+A B<drummer> object optional but is really not useful without one.
+The B<beat_number> is required, and C<0> means "return a random
+beat."
 
 =cut
 
@@ -103,7 +101,6 @@ sub all_beats {
 
 =head2 search
 
-  $found = $beats->search($string);
   $found = $beats->search($string, $drummer);
 
 Return the found beats with names matching the given B<string> as a
