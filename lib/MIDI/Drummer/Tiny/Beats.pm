@@ -14,16 +14,18 @@ use namespace::clean;
   
   my $beats = MIDI::Drummer::Tiny::Beats->new;
 
-  my $all = $beats->all_beats($drummer);
+  my $all = $beats->all_beats;
 
-  my $beat = $beats->get_beat($drummer);
-  $beat = $beats->get_beat($drummer, 42);
+  my $beat = $beats->get_beat; # random beat
+  $beat = $beats->get_beat(42); # numbered beat
+  # with a pre-made drummer object
+  $beat = $beats->get_beat(42, $drummer);
+
   say $beat->{name};
-
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
   # play 4 random rock beats
-  my $rock = $beats->search($drummer, 'rock');
+  my $rock = $beats->search('rock');
   my $nums = [ keys %$rock ];
   for (1 .. 4) {
     $beat = $rock->{ $nums[ rand @$nums ] };
@@ -35,6 +37,21 @@ use namespace::clean;
 
 Return the common beats, as listed in the "Pocket Operations", that
 are L<linked below|/SEE ALSO>.
+
+A beat is a numbered and named hash reference, with the following
+structure:
+
+  { 1 => {
+      name => "ONE AND SEVEN & FIVE AND THIRTEEN",
+      beat => sub {
+        $d->sync_patterns(
+        $d->kick  => ['1000001000000000'],
+        $d->snare => ['0000100000001000'],
+        duration  => $d->sixteenth,
+      ),
+    },
+  },
+  2 => { ... }, ... }
 
 =cut
 
@@ -48,17 +65,20 @@ Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
 =head2 get_beat
 
-  $beat = $beats->get_beat($drummer, $beat);
+  $beat = $beats->get_beat; # random beat
+  $beat = $beats->get_beat($beat_number);
+  $beat = $beats->get_beat($beat_number, $drummer); # with object
+  $beat = $beats->get_beat(0, $drummer); # random beat
 
 Return either the given B<beat> or a random beat from the collection
 of known beats.
 
-A B<drummer> object and a B<beat> number are required.
+A B<drummer> object optional but the B<beat_number> is required.
 
 =cut
 
 sub get_beat {
-    my ($self, $drummer, $beat_number) = @_;
+    my ($self, $beat_number, $drummer) = @_;
     my $beats = $self->all_beats($drummer);
     unless ($beat_number) {
         my @keys = keys %$beats;
@@ -69,10 +89,9 @@ sub get_beat {
 
 =head2 all_beats
 
-  $all = $beats->all_beats($drummer);
+  $all = $beats->all_beats;
 
-Return all the known beats as a hash reference, given a required
-B<drummer> object.
+Return all the known beats as a hash reference.
 
 =cut
 
@@ -83,20 +102,22 @@ sub all_beats {
 
 =head2 search
 
-  $all = $beats->search($drummer, $string);
+  $found = $beats->search($string);
+  $found = $beats->search($string, $drummer);
 
-Return the known beats as a hash reference, given a required
-B<drummer> object.
+Return the found beats with names matching the given B<string> as a
+hash reference.
 
 =cut
 
 sub search {
-    my ($self, $drummer) = @_;
+    my ($self, $string, $drummer) = @_;
     return $self->_beats($drummer);
 }
 
 sub _beats {
     my ($self, $d) = @_;
+    $d ||= MIDI::Drummer::Tiny->new;
     my %beats = (
 
         1 => {
