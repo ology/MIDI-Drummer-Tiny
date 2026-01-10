@@ -57,7 +57,7 @@ structure:
 
 =head2 new
 
-  $beats = MIDI::Drummer::Tiny::beats->new;
+  $beats = MIDI::Drummer::Tiny::Beats->new;
 
 Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
