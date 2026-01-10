@@ -10,10 +10,10 @@ use namespace::clean;
   use MIDI::Drummer::Tiny;
   use MIDI::Drummer::Tiny::Beats;
 
-  my $d = MIDI::Drummer::Tiny->new;
+  my $drummer = MIDI::Drummer::Tiny->new;
   my $beats = MIDI::Drummer::Tiny::Beats->new;
 
-  my $beat = $beats->get_beat($d);
+  my $beat = $beats->get_beat($drummer);
   $beat->{beat}->();
 
 =head1 DESCRIPTION
@@ -54,10 +54,10 @@ sub get_beat {
 
 =head2 all_beats
 
-  $all = $beats->all_beats($d);
+  $all = $beats->all_beats($drummer);
 
-Return all the known beats as a hash reference, given a B<drummer>
-object.
+Return all the known beats as a hash reference, given a required
+B<drummer> object.
 
 =cut
 
