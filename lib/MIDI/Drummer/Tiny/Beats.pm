@@ -166,11 +166,62 @@ sub _beats {
         9 => {
             name => "THE UNKNOWN DRUMMER",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1001001000100000'],
                     $d->snare     => ['0100100100001000'],
                     $d->closed_hh => ['0110110100000100'],
                     $d->open_hh   => ['0000000010000010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        10 => {
+            name => "ROCK 1",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000000110100000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    $d->crash     => ['1000000000000000'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        11 => {
+            name => "ROCK 2",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000000110100000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        12 => {
+            name => "ROCK 3",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000000110100000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101000'],
+                    $d->open_hh   => ['0000000000000010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        13 => {
+            name => "ROCK 4",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000000110100000'],
+                    $d->snare     => ['0000100000001011'],
+                    $d->closed_hh => ['1010101010101000'],
+                    $d->open_hh   => ['0000000000000010'],
                     duration      => $d->sixteenth,
                 ),
             },
