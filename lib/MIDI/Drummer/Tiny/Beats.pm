@@ -73,7 +73,7 @@ sub _beats {
         1 => {
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             beat => sub {
-                $d->sync_patterns(
+                $d->sync_patterns(#123456789ABCDEF0
                     $d->kick  => ['1000001000000000'],
                     $d->snare => ['0000100000001000'],
                     duration  => $d->sixteenth,
@@ -88,7 +88,7 @@ sub _beats {
                     $d->kick      => ['1000000010000000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101010101010'],
-                    duration  => $d->sixteenth,
+                    duration      => $d->sixteenth,
                 ),
             },
         },
@@ -99,7 +99,30 @@ sub _beats {
                 $d->sync_patterns( # 123456789ABCDEF0
                     $d->kick    => ['1000100010001000'],
                     $d->open_hh => ['0010001000100010'],
+                    duration    => $d->sixteenth,
+                ),
+            },
+        },
+
+        4 => {
+            name => "GOOD TO GO",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1001001000100000'],
+                    $d->snare => ['0000100000001000'],
                     duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        5 => {
+            name => "HIP HOP",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1010001100000010'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    duration      => $d->sixteenth,
                 ),
             },
         },
