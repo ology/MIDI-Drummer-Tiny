@@ -78,12 +78,12 @@ beat."
 
 sub get_beat {
     my ($self, $beat_number, $drummer) = @_;
-    my $beats = $self->all_beats($drummer);
+    my $all = $self->all_beats($drummer);
     unless ($beat_number) {
-        my @keys = keys %$beats;
+        my @keys = keys %$all;
         $beat_number = $keys[ int rand @keys ];
     }
-    return $beats->{$beat_number};
+    return $all->{$beat_number};
 }
 
 =head2 all_beats
@@ -110,7 +110,14 @@ hash reference.
 
 sub search {
     my ($self, $string, $drummer) = @_;
-    return $self->_beats($drummer);
+    $string = lc $string;
+    my $all = $self->all_beats($drummer);
+    my $found = {};
+    for my $n (keys %$all) {
+        $found->{$n} = $all->{$n}
+            if lc($all->{$n}{name}) =~ /$string/;
+    }
+    return $found;
 }
 
 sub _beats {
