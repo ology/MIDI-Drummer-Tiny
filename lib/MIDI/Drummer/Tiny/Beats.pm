@@ -11,10 +11,23 @@ use namespace::clean;
   use MIDI::Drummer::Tiny::Beats;
 
   my $drummer = MIDI::Drummer::Tiny->new;
+  
   my $beats = MIDI::Drummer::Tiny::Beats->new;
 
+  my $all = $beats->all_beats($drummer);
+
   my $beat = $beats->get_beat($drummer);
-  $beat->{beat}->();
+  $beat = $beats->get_beat($drummer, 42);
+
+  $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
+
+  # play 4 random rock beats
+  my $rock = $beats->search('rock');
+  my $nums = [ keys %$rock ];
+  for (1 .. 4) {
+    $beat = $rock->{ $nums[ rand @$nums ] };
+    $beat->{beat}->();
+  }
 
 =head1 DESCRIPTION
 
@@ -192,7 +205,7 @@ sub _beats {
         11 => {
             name => "ROCK 2",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000000110100000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101010101010'],
@@ -217,7 +230,7 @@ sub _beats {
         13 => {
             name => "ROCK 4",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
                     $d->kick      => ['1000000110100000'],
                     $d->snare     => ['0000100000001011'],
                     $d->closed_hh => ['1010101010101000'],
