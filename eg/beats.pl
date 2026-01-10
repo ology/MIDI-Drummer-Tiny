@@ -6,10 +6,12 @@ use MIDI::Drummer::Tiny;
 use MIDI::Drummer::Tiny::Beats;
 
 my $d = MIDI::Drummer::Tiny->new;
-my $b = MIDI::Drummer::Tiny::Beats->new;
-my $beats = $b->all_beats($d);
 
-for my $n (1 .. keys %$beats) {
+my $beats = MIDI::Drummer::Tiny::Beats->new;
+
+my $all = $beats->all_beats($d);
+
+for my $n (1 .. keys %$all) {
     my $beat = $b->get_beat($d, $n);
     $beat->{beat}->() for 1 .. 4;
 }
