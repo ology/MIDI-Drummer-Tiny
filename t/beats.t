@@ -14,7 +14,7 @@ subtest all => sub {
     isa_ok $all, 'HASH', 'all_beats';
     ok exists($all->{1}), '1 exists';
     is $all->{1}{name}, 'ONE AND SEVEN & FIVE AND THIRTEEN', '1 named';
-    isa_ok $all->{1}{beat}, 'CODE', '1 beat sub';
+    isa_ok $all->{1}{beat}, 'CODE', '1 beat';
 };
 
 subtest search => sub {
@@ -22,7 +22,7 @@ subtest search => sub {
     isa_ok $found, 'HASH', 'all_beats';
     ok exists($found->{10}), '10 exists';
     is $found->{10}{name}, 'ROCK 1', '10 named';
-    isa_ok $found->{10}{beat}, 'CODE', '10 beat sub';
+    isa_ok $found->{10}{beat}, 'CODE', '10 beat';
 };
 
 done_testing();
