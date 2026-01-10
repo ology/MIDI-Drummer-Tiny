@@ -130,7 +130,7 @@ sub _beats {
         6 => {
             name => "STANDARD BREAK 1",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000000000100000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101011101010'],
@@ -142,7 +142,7 @@ sub _beats {
         7 => {
             name => "STANDARD BREAK 2",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000000000100000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101110100010'],
@@ -154,10 +154,23 @@ sub _beats {
         8 => {
             name => "ROLLING BREAK",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000000100100000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101010101010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        9 => {
+            name => "THE UNKNOWN DRUMMER",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1001001000100000'],
+                    $d->snare     => ['0100100100001000'],
+                    $d->closed_hh => ['0110110100000100'],
+                    $d->open_hh   => ['0000000010000010'],
                     duration      => $d->sixteenth,
                 ),
             },
