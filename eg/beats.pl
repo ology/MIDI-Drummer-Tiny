@@ -14,7 +14,7 @@ my $beats = MIDI::Drummer::Tiny::Beats->new;
 # my $all = $beats->all_beats;
 my $all = $beats->search('rock', $d);
 
-for my $n (1 .. keys %$all) {
+for my $n (keys %$all) {
     my $beat = $beats->get_beat($n, $d);
     # print $beat->{name}, "\n";
     $beat->{beat}->() for 1 .. 4;
