@@ -267,12 +267,80 @@ sub _beats {
         13 => {
             name => "ROCK 4",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000000110100000'],
                     $d->snare     => ['0000100000001011'],
                     $d->closed_hh => ['1010101010101000'],
                     $d->open_hh   => ['0000000000000010'],
                     duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        14 => {
+            name => "ELECTRO 1 - A",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1000001000000000'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        15 => {
+            name => "ELECTRO 1 - B",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1000001000100010'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        # nb: ELECTRO 2 - A == ELECTRO 1 - A
+
+        16 => {
+            name => "ELECTRO 2 - B",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1000000000100100'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        17 => {
+            name => "ELECTRO 3 - A",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1000001000010000'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        18 => {
+            name => "ELECTRO 3 - B",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0
+                    $d->kick  => ['1000001000010100'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
+                ),
+            },
+        },
+
+        19 => {
+            name => "ELECTRO 4",
+            beat => sub {
+                $d->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $d->kick  => ['1000001000100100'],
+                    $d->snare => ['0000100000001000'],
+                    duration  => $d->sixteenth,
                 ),
             },
         },
