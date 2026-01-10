@@ -5,6 +5,8 @@ use warnings;
 use MIDI::Drummer::Tiny ();
 use MIDI::Drummer::Tiny::Beats ();
 
+my $search = shift || 'rock';
+
 my $d = MIDI::Drummer::Tiny->new(
     kick  => 36,
     snare => 40,
@@ -12,7 +14,7 @@ my $d = MIDI::Drummer::Tiny->new(
 my $beats = MIDI::Drummer::Tiny::Beats->new;
 
 # my $all = $beats->all_beats;
-my $all = $beats->search('rock', $d);
+my $all = $beats->search($search, $d);
 
 for my $n (keys %$all) {
     my $beat = $beats->get_beat($n, $d);
