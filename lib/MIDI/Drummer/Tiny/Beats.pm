@@ -11,9 +11,9 @@ use namespace::clean;
   use MIDI::Drummer::Tiny::Beats;
 
   my $d = MIDI::Drummer::Tiny->new;
-  my $f = MIDI::Drummer::Tiny::Beats->new;
+  my $beats = MIDI::Drummer::Tiny::Beats->new;
 
-  my $beat = $f->get_beat($d);
+  my $beat = $beats->get_beat($d);
   $beat->{beat}->();
 
 =head1 DESCRIPTION
@@ -27,13 +27,13 @@ are L<linked below|/SEE ALSO>.
 
 =head2 new
 
-  $f = MIDI::Drummer::Tiny::beats->new;
+  $beats = MIDI::Drummer::Tiny::beats->new;
 
 Return a new C<MIDI::Drummer::Tiny::Beats> object.
 
 =head2 get_beat
 
-  $beat = $f->get_beat($drummer, $beat);
+  $beat = $beats->get_beat($drummer, $beat);
 
 Return either the given B<beat> or a random beat from the collection
 of known beats.
@@ -54,7 +54,7 @@ sub get_beat {
 
 =head2 all_beats
 
-  $beats = $f->all_beats($d);
+  $beats = $beats->all_beats($d);
 
 Return all the known beats as a hash reference, given a B<drummer>
 object.
