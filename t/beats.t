@@ -1,5 +1,4 @@
 #!perl
-
 use Test::More;
 
 use MIDI::Drummer::Tiny ();
