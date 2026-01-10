@@ -54,7 +54,7 @@ sub get_beat {
 
 =head2 all_beats
 
-  $beats = $beats->all_beats($d);
+  $all = $beats->all_beats($d);
 
 Return all the known beats as a hash reference, given a B<drummer>
 object.
