@@ -12,7 +12,7 @@ my $beats = MIDI::Drummer::Tiny::Beats->new;
 my $all = $beats->all_beats($d);
 
 for my $n (1 .. keys %$all) {
-    my $beat = $b->get_beat($d, $n);
+    my $beat = $beats->get_beat($d, $n);
     $beat->{beat}->() for 1 .. 4;
 }
 
