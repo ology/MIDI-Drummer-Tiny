@@ -118,8 +118,44 @@ sub _beats {
         5 => {
             name => "HIP HOP",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1010001100000010'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        6 => {
+            name => "STANDARD BREAK 1",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000000000100000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101011101010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        7 => {
+            name => "STANDARD BREAK 2",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000000000100000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101110100010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        8 => {
+            name => "ROLLING BREAK",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000000100100000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1010101010101010'],
                     duration      => $d->sixteenth,
