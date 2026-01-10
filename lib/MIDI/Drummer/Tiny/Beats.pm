@@ -18,14 +18,16 @@ use namespace::clean;
 
   my $beat = $beats->get_beat($drummer);
   $beat = $beats->get_beat($drummer, 42);
+  say $beat->{name};
 
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
   # play 4 random rock beats
-  my $rock = $beats->search('rock');
+  my $rock = $beats->search($drummer, 'rock');
   my $nums = [ keys %$rock ];
   for (1 .. 4) {
     $beat = $rock->{ $nums[ rand @$nums ] };
+    say $beat->{name};
     $beat->{beat}->();
   }
 
@@ -75,6 +77,20 @@ B<drummer> object.
 =cut
 
 sub all_beats {
+    my ($self, $drummer) = @_;
+    return $self->_beats($drummer);
+}
+
+=head2 search
+
+  $all = $beats->search($drummer, $string);
+
+Return the known beats as a hash reference, given a required
+B<drummer> object.
+
+=cut
+
+sub search {
     my ($self, $drummer) = @_;
     return $self->_beats($drummer);
 }
