@@ -364,12 +364,52 @@ sub _beats {
         21 => {
             name => "NEW WAVE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000001011000000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1101111111111111'],
                     $d->open_hh   => ['0010000000000000'],
                     $d->maracas   => ['0000100000001000'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        22 => {
+            name => "HOUSE",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick    => ['1000100010001000'],
+                    $d->snare   => ['0000100000001000'],
+                    $d->open_hh => ['0010001000100010'],
+                    $d->crash1  => ['1000000000000000'],
+                    duration    => $d->sixteenth,
+                ),
+            },
+        },
+
+        23 => {
+            name => "HOUSE 2",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000001011000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1101101111011011'],
+                    $d->open_hh   => ['0010010000100100'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        24 => {
+            name => "BRIT HOUSE",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000001011000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1101110111011101'],
+                    $d->open_hh   => ['0010001000100010'],
+                    $d->crash1    => ['0010001000100010'],
                     duration      => $d->sixteenth,
                 ),
             },
