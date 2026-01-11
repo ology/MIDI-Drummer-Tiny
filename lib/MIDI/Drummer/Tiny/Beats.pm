@@ -487,7 +487,7 @@ sub _beats {
         30 => {
             name => "FOOTWORK - A",
             beat => sub {
-                $d->sync_patterns(    # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(    # 123456789ABCDEF0
                     $d->kick       => ['1001001010010010'],
                     $d->clap       => ['0000000000001000'],
                     $d->closed_hh  => ['0010000000100000'],
@@ -500,12 +500,61 @@ sub _beats {
         31 => {
             name => "FOOTWORK - B",
             beat => sub {
-                $d->sync_patterns(    # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(    # 123456789ABCDEF0
                     $d->kick       => ['1001001010010010'],
                     $d->clap       => ['0000000000001000'],
                     $d->closed_hh  => ['0010001100100010'],
                     $d->side_stick => ['1111111111111111'],
                     duration       => $d->sixteenth,
+                ),
+            },
+        },
+
+        32 => {
+            name => "MIAMI BASS - A",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000001000100100'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1011101110111011'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        33 => {
+            name => "MIAMI BASS - B",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000001000000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1011101110111011'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        34 => {
+            name => "SALLY",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0
+                    $d->kick      => ['1000001000100010'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    $d->low_tom   => ['1000001000100010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        33 => {
+            name => "ROCK THE PLANET",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1001001000000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1011101110111111'],
+                    duration      => $d->sixteenth,
                 ),
             },
         },
