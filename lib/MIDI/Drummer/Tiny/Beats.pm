@@ -125,6 +125,7 @@ sub _beats {
     my %beats = (
 
         1 => {
+            cat  => "",
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
