@@ -125,7 +125,7 @@ sub _beats {
     my %beats = (
 
         1 => {
-            cat  => "",
+            cat  => "Basic Patterns",
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -137,7 +137,7 @@ sub _beats {
         },
 
         2 => {
-            cat  => "",
+            cat  => "Basic Patterns",
             name => "BOOTS N' CATS",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -150,7 +150,7 @@ sub _beats {
         },
 
         3 => {
-            cat  => "",
+            cat  => "Basic Patterns",
             name => "TINY HOUSE",
             beat => sub {
                 $d->sync_patterns( # 123456789ABCDEF0
@@ -162,7 +162,7 @@ sub _beats {
         },
 
         4 => {
-            cat  => "",
+            cat  => "Basic Patterns",
             name => "GOOD TO GO",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -174,7 +174,7 @@ sub _beats {
         },
 
         5 => {
-            cat  => "",
+            cat  => "Basic Patterns",
             name => "HIP HOP",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -187,7 +187,7 @@ sub _beats {
         },
 
         6 => {
-            cat  => "",
+            cat  => "Standard Breaks",
             name => "STANDARD BREAK 1",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -200,7 +200,7 @@ sub _beats {
         },
 
         7 => {
-            cat  => "",
+            cat  => "Standard Breaks",
             name => "STANDARD BREAK 2",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -213,7 +213,7 @@ sub _beats {
         },
 
         8 => {
-            cat  => "",
+            cat  => "Standard Breaks",
             name => "ROLLING BREAK",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -226,7 +226,7 @@ sub _beats {
         },
 
         9 => {
-            cat  => "",
+            cat  => "Standard Breaks",
             name => "THE UNKNOWN DRUMMER",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -240,7 +240,7 @@ sub _beats {
         },
 
         10 => {
-            cat  => "",
+            cat  => "Rock",
             name => "ROCK 1",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -254,7 +254,7 @@ sub _beats {
         },
 
         11 => {
-            cat  => "",
+            cat  => "Rock",
             name => "ROCK 2",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -267,7 +267,7 @@ sub _beats {
         },
 
         12 => {
-            cat  => "",
+            cat  => "Rock",
             name => "ROCK 3",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -281,7 +281,7 @@ sub _beats {
         },
 
         13 => {
-            cat  => "",
+            cat  => "Rock",
             name => "ROCK 4",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -295,7 +295,7 @@ sub _beats {
         },
 
         14 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 1 - A",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -307,7 +307,7 @@ sub _beats {
         },
 
         15 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 1 - B",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -321,7 +321,7 @@ sub _beats {
         # nb: ELECTRO 2 - A == ELECTRO 1 - A
 
         16 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 2 - B",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -333,7 +333,7 @@ sub _beats {
         },
 
         17 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 3 - A",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -345,7 +345,7 @@ sub _beats {
         },
 
         18 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 3 - B",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -357,7 +357,7 @@ sub _beats {
         },
 
         19 => {
-            cat  => "",
+            cat  => "Electro",
             name => "ELECTRO 4",
             beat => sub {
                 $d->sync_patterns(#123456789ABCDEF0
@@ -369,7 +369,7 @@ sub _beats {
         },
 
         20 => {
-            cat  => "",
+            cat  => "Electro",
             name => "SIBERIAN NIGHTS",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -382,7 +382,7 @@ sub _beats {
         },
 
         21 => {
-            cat  => "",
+            cat  => "Electro",
             name => "NEW WAVE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -397,7 +397,7 @@ sub _beats {
         },
 
         22 => {
-            cat  => "",
+            cat  => "House",
             name => "HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -411,7 +411,7 @@ sub _beats {
         },
 
         23 => {
-            cat  => "",
+            cat  => "House",
             name => "HOUSE 2",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -425,7 +425,7 @@ sub _beats {
         },
 
         24 => {
-            cat  => "",
+            cat  => "House",
             name => "BRIT HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -440,7 +440,7 @@ sub _beats {
         },
 
         25 => {
-            cat  => "",
+            cat  => "House",
             name => "FRENCH HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -455,7 +455,7 @@ sub _beats {
         },
 
         26 => {
-            cat  => "",
+            cat  => "House",
             name => "DIRTY HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -470,7 +470,7 @@ sub _beats {
         },
 
         27 => {
-            cat  => "",
+            cat  => "House",
             name => "DEEP HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -484,7 +484,7 @@ sub _beats {
         },
 
         28 => {
-            cat  => "",
+            cat  => "House",
             name => "DEEPER HOUSE",
             beat => sub {
                 $d->sync_patterns(     # 123456789ABCDEF0
@@ -499,7 +499,7 @@ sub _beats {
         },
 
         29 => {
-            cat  => "",
+            cat  => "House",
             name => "SLOW DEEP HOUSE",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -514,7 +514,7 @@ sub _beats {
         },
 
         30 => {
-            cat  => "",
+            cat  => "House",
             name => "FOOTWORK - A",
             beat => sub {
                 $d->sync_patterns(    # 123456789ABCDEF0
@@ -528,7 +528,7 @@ sub _beats {
         },
 
         31 => {
-            cat  => "",
+            cat  => "House",
             name => "FOOTWORK - B",
             beat => sub {
                 $d->sync_patterns(    # 123456789ABCDEF0
@@ -542,7 +542,7 @@ sub _beats {
         },
 
         32 => {
-            cat  => "",
+            cat  => "Miami Bass",
             name => "MIAMI BASS - A",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -555,7 +555,7 @@ sub _beats {
         },
 
         33 => {
-            cat  => "",
+            cat  => "Miami Bass",
             name => "MIAMI BASS - B",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -568,7 +568,7 @@ sub _beats {
         },
 
         34 => {
-            cat  => "",
+            cat  => "Miami Bass",
             name => "SALLY",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0
@@ -582,7 +582,7 @@ sub _beats {
         },
 
         33 => {
-            cat  => "",
+            cat  => "Miami Bass",
             name => "ROCK THE PLANET",
             beat => sub {
                 $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
