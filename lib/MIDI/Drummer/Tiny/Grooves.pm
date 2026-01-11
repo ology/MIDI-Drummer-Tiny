@@ -100,21 +100,25 @@ sub all_beats {
 
 =head2 search
 
-  $found = $beats->search($string, $drummer);
+  $found = $beats->search(cat => $string, drummer => $drummer);
+  $found = $beats->search(name => $string, drummer => $drummer);
 
 Return the found beats with names matching the given B<string> as a
 hash reference.
 
+The B<drummer> object is required.
+
 =cut
 
 sub search {
-    my ($self, $string, $drummer) = @_;
-    $string = lc $string;
-    my $all = $self->all_beats($drummer);
+    my ($self, %args) = @_;
+    my $key = exists $args{cat} ? 'cat' : 'name';
+    my $string = lc $args{$key};
+    my $all = $self->all_beats($args{drummer});
     my $found = {};
     for my $n (keys %$all) {
         $found->{$n} = $all->{$n}
-            if lc($all->{$n}{name}) =~ /$string/;
+            if lc($all->{$n}{$key}) =~ /$string/;
     }
     return $found;
 }
