@@ -404,12 +404,26 @@ sub _beats {
         24 => {
             name => "BRIT HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(   # 123456789ABCDEF0
                     $d->kick      => ['1000001011000000'],
                     $d->snare     => ['0000100000001000'],
                     $d->closed_hh => ['1101110111011101'],
                     $d->open_hh   => ['0010001000100010'],
                     $d->crash1    => ['0010001000100010'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        24 => {
+            name => "FRENCH HOUSE",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000001011000000'],
+                    $d->snare     => ['0000100000001000'],
+                    $d->closed_hh => ['1010101010101010'],
+                    $d->open_hh   => ['0101010101010101'],
+                    $d->maracas   => ['1110101111101011'],
                     duration      => $d->sixteenth,
                 ),
             },
