@@ -1,4 +1,4 @@
-package MIDI::Drummer::Tiny::Beats;
+package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
@@ -8,11 +8,11 @@ use namespace::clean;
 =head1 SYNOPSIS
 
   use MIDI::Drummer::Tiny;
-  use MIDI::Drummer::Tiny::Beats;
+  use MIDI::Drummer::Tiny::Grooves;
 
   my $drummer = MIDI::Drummer::Tiny->new;
   
-  my $beats = MIDI::Drummer::Tiny::Beats->new;
+  my $beats = MIDI::Drummer::Tiny::Grooves->new;
 
   my $all = $beats->all_beats;
 
@@ -57,9 +57,9 @@ structure:
 
 =head2 new
 
-  $beats = MIDI::Drummer::Tiny::Beats->new;
+  $beats = MIDI::Drummer::Tiny::Grooves->new;
 
-Return a new C<MIDI::Drummer::Tiny::Beats> object.
+Return a new C<MIDI::Drummer::Tiny::Grooves> object.
 
 =head2 get_beat
 
