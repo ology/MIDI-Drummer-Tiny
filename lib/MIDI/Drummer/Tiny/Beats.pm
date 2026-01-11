@@ -497,6 +497,19 @@ sub _beats {
             },
         },
 
+        31 => {
+            name => "FOOTWORK - B",
+            beat => sub {
+                $d->sync_patterns(    # 123456789ABCDEF0 0000000000000000
+                    $d->kick       => ['1001001010010010'],
+                    $d->clap       => ['0000000000001000'],
+                    $d->closed_hh  => ['0010001100100010'],
+                    $d->side_stick => ['1111111111111111'],
+                    duration       => $d->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%beats;
 }
