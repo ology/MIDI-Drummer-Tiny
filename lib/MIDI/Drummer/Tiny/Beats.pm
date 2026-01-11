@@ -459,12 +459,26 @@ sub _beats {
         28 => {
             name => "DEEPER HOUSE",
             beat => sub {
-                $d->sync_patterns(     # 123456789ABCDEF0 0000000000000000
+                $d->sync_patterns(     # 123456789ABCDEF0
                     $d->kick        => ['1000100010001000'],
                     $d->clap        => ['0100000001000000'],
                     $d->open_hh     => ['0010001000110010'],
                     $d->maracas     => ['0001000010000000'],
                     $d->low_mid_tom => ['0010000100100000'],
+                    duration      => $d->sixteenth,
+                ),
+            },
+        },
+
+        29 => {
+            name => "SLOW DEEP HOUSE",
+            beat => sub {
+                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $d->kick      => ['1000100010001000'],
+                    $d->clap      => ['0000100000001000'],
+                    $d->closed_hh => ['1000100010001000'],
+                    $d->open_hh   => ['0011001101100010'],
+                    $d->maracas   => ['1111111111111111'],
                     duration      => $d->sixteenth,
                 ),
             },
