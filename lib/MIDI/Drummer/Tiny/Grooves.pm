@@ -11,14 +11,14 @@ use namespace::clean;
   use MIDI::Drummer::Tiny::Grooves;
 
   my $drummer = MIDI::Drummer::Tiny->new;
-  
+
   my $beats = MIDI::Drummer::Tiny::Grooves->new;
 
   my $all = $beats->all_beats;
 
   my $beat = $beats->get_beat(0, $drummer); # random beat
   $beat = $beats->get_beat(42, $drummer); # numbered beat
-  
+
   say $beat->{name};
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
