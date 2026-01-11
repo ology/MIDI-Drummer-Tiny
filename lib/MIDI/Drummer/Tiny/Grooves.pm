@@ -116,9 +116,9 @@ sub search {
     my $string = lc $args{$key};
     my $all = $self->all_beats($args{drummer});
     my $found = {};
-    for my $n (keys %$all) {
-        $found->{$n} = $all->{$n}
-            if lc($all->{$n}{$key}) =~ /$string/;
+    for my $k (keys %$all) {
+        $found->{$k} = $all->{$k}
+            if lc($all->{$k}{$key}) =~ /$string/;
     }
     return $found;
 }
