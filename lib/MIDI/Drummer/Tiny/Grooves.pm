@@ -23,7 +23,7 @@ use namespace::clean;
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
   # play 4 random rock beats
-  my $rock = $beats->search('rock', $drummer);
+  my $rock = $beats->search(cat => 'rock', drummer => $drummer);
   my $nums = [ keys %$rock ];
   for (1 .. 4) {
     $beat = $rock->{ $nums[ rand @$nums ] };
