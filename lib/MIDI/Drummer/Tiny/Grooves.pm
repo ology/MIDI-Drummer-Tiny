@@ -9,11 +9,12 @@ use namespace::clean;
 
   use MIDI::Drummer::Tiny;
   use MIDI::Drummer::Tiny::Grooves;
+  use MIDI::Drummer::Tiny::Grooves (:house :rock); <- TODO
 
   my $drummer = MIDI::Drummer::Tiny->new;
 
   my $beats = MIDI::Drummer::Tiny::Grooves->new;
-
+  
   my $all = $beats->all_beats;
 
   my $beat = $beats->get_beat(0, $drummer); # random beat
