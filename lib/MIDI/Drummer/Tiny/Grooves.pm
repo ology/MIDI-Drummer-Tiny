@@ -13,18 +13,18 @@ use namespace::clean;
 
   my $drummer = MIDI::Drummer::Tiny->new;
 
-  my $beats = MIDI::Drummer::Tiny::Grooves->new;
+  my $beats = MIDI::Drummer::Tiny::Grooves->new(drummer => $drummer);
   
   my $all = $beats->all_beats;
 
-  my $beat = $beats->get_beat(0, $drummer); # random beat
-  $beat = $beats->get_beat(42, $drummer); # numbered beat
+  my $beat = $beats->get_beat(0); # random beat
+  $beat = $beats->get_beat(42); # numbered beat
 
   say $beat->{name};
   $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
 
   # play 4 random rock beats
-  my $rock = $beats->search(cat => 'rock', drummer => $drummer);
+  my $rock = $beats->search(cat => 'rock');
   my $nums = [ keys %$rock ];
   for (1 .. 4) {
     $beat = $rock->{ $nums[ rand @$nums ] };
