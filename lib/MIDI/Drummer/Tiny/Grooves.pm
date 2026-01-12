@@ -17,7 +17,7 @@ use namespace::clean;
   
   my $all = $grooves->all_grooves;
 
-  my $groove = $grooves->get_groove(0); # random groove
+  my $groove = $grooves->get_groove;  # random groove
   $groove = $grooves->get_groove(42); # numbered groove
 
   say $groove->{name};
