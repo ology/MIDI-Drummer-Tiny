@@ -77,6 +77,7 @@ has drummer => (
 =head2 new
 
   $grooves = MIDI::Drummer::Tiny::Grooves->new;
+  $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $drummer);
 
 Return a new C<MIDI::Drummer::Tiny::Grooves> object.
 
