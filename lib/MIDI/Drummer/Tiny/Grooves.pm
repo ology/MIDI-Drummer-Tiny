@@ -20,6 +20,7 @@ use namespace::clean;
   my $groove = $grooves->get_groove;  # random groove
   $groove = $grooves->get_groove(42); # numbered groove
 
+  say $groove->{cat};
   say $groove->{name};
   $groove->{groove}->() for 1 .. 4; # play the groove 4 times!
 
