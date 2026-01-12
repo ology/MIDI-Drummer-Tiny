@@ -1,11 +1,7 @@
 #!perl
 use Test::More;
 
-use MIDI::Drummer::Tiny ();
-
 use_ok 'MIDI::Drummer::Tiny::Grooves';
-
-my $drummer = MIDI::Drummer::Tiny->new;
 
 my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves';
 
@@ -18,7 +14,7 @@ subtest all => sub {
 };
 
 subtest search => sub {
-    my $found = $grooves->search(cat => 'rock', drummer => $drummer);
+    my $found = $grooves->search(cat => 'rock');
     isa_ok $found, 'HASH', 'all_grooves';
     ok exists($found->{10}), '10 exists';
     is $found->{10}{name}, 'ROCK 1', '10 named';
