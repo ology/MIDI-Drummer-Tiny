@@ -13,36 +13,36 @@ use namespace::clean;
 
   my $drummer = MIDI::Drummer::Tiny->new;
 
-  my $beats = MIDI::Drummer::Tiny::Grooves->new(drummer => $drummer);
+  my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $drummer);
   
-  my $all = $beats->all_beats;
+  my $all = $grooves->all_grooves;
 
-  my $beat = $beats->get_beat(0); # random beat
-  $beat = $beats->get_beat(42); # numbered beat
+  my $groove = $grooves->get_groove(0); # random groove
+  $groove = $grooves->get_groove(42); # numbered groove
 
-  say $beat->{name};
-  $beat->{beat}->() for 1 .. 4; # play the beat 4 times!
+  say $groove->{name};
+  $groove->{groove}->() for 1 .. 4; # play the groove 4 times!
 
-  # play 4 random rock beats
-  my $rock = $beats->search(cat => 'rock');
+  # play 4 random rock grooves
+  my $rock = $grooves->search(cat => 'rock');
   my @nums = keys %$rock;
   for (1 .. 4) {
-    $beat = $rock->{ $nums[ rand @nums ] };
-    say $beat->{name};
-    $beat->{beat}->();
+    $groove = $rock->{ $nums[ rand @nums ] };
+    say $groove->{name};
+    $groove->{groove}->();
   }
 
 =head1 DESCRIPTION
 
-Return the common beats, as listed in the "Pocket Operations", that
+Return the common grooves, as listed in the "Pocket Operations", that
 are L<linked below|/SEE ALSO>.
 
-A beat is a numbered and named hash reference, with the following
+A groove is a numbered and named hash reference, with the following
 structure:
 
   { 1 => {
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
-      beat => sub {
+      groove => sub {
         $self->drummer->sync_patterns(
         $self->drummer->kick  => ['1000001000000000'],
         $self->drummer->snare => ['0000100000001000'],
@@ -75,53 +75,53 @@ has drummer => (
 
 =head2 new
 
-  $beats = MIDI::Drummer::Tiny::Grooves->new;
+  $grooves = MIDI::Drummer::Tiny::Grooves->new;
 
 Return a new C<MIDI::Drummer::Tiny::Grooves> object.
 
-=head2 get_beat
+=head2 get_groove
 
-  $beat = $beats->get_beat($beat_number, $drummer); # with object
-  $beat = $beats->get_beat(0, $drummer); # random beat
+  $groove = $grooves->get_groove($groove_number);
+  $groove = $grooves->get_groove(0); # random groove
 
-Return either the given B<beat> or a random beat from the collection
-of known beats.
+Return a numbered or random groove from the collection of known
+grooves.
 
 A B<drummer> object optional but is really not useful without one.
-The B<beat_number> is required, and C<0> means "return a random
-beat."
+The B<groove_number> is required, and C<0> means "return a random
+groove."
 
 =cut
 
-sub get_beat {
-    my ($self, $beat_number) = @_;
-    my $all = $self->all_beats;
-    unless ($beat_number) {
+sub get_groove {
+    my ($self, $groove_number) = @_;
+    my $all = $self->all_grooves;
+    unless ($groove_number) {
         my @keys = keys %$all;
-        $beat_number = $keys[ int rand @keys ];
+        $groove_number = $keys[ int rand @keys ];
     }
-    return $all->{$beat_number};
+    return $all->{$groove_number};
 }
 
-=head2 all_beats
+=head2 all_grooves
 
-  $all = $beats->all_beats;
+  $all = $grooves->all_grooves;
 
-Return all the known beats as a hash reference.
+Return all the known grooves as a hash reference.
 
 =cut
 
-sub all_beats {
+sub all_grooves {
     my ($self) = @_;
-    return $self->_beats;
+    return $self->_grooves;
 }
 
 =head2 search
 
-  $found = $beats->search(cat => $string, drummer => $drummer);
-  $found = $beats->search(name => $string, drummer => $drummer);
+  $found = $grooves->search(cat => $string, drummer => $drummer);
+  $found = $grooves->search(name => $string, drummer => $drummer);
 
-Return the found beats with names matching the given B<string> as a
+Return the found grooves with names matching the given B<string> as a
 hash reference.
 
 The B<drummer> object is required.
@@ -132,7 +132,7 @@ sub search {
     my ($self, %args) = @_;
     my $key = exists $args{cat} ? 'cat' : 'name';
     my $string = lc $args{$key};
-    my $all = $self->all_beats($self->drummer);
+    my $all = $self->all_grooves;
     my $found = {};
     for my $k (keys %$all) {
         $found->{$k} = $all->{$k}
@@ -141,14 +141,14 @@ sub search {
     return $found;
 }
 
-sub _beats {
+sub _grooves {
     my ($self) = @_;
-    my %beats = (
+    my %grooves = (
 
         1 => {
             cat  => "Basic Patterns",
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000000000'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -160,7 +160,7 @@ sub _beats {
         2 => {
             cat  => "Basic Patterns",
             name => "BOOTS N' CATS",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000010000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -173,7 +173,7 @@ sub _beats {
         3 => {
             cat  => "Basic Patterns",
             name => "TINY HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns( # 123456789ABCDEF0
                     $self->drummer->kick    => ['1000100010001000'],
                     $self->drummer->open_hh => ['0010001000100010'],
@@ -185,7 +185,7 @@ sub _beats {
         4 => {
             cat  => "Basic Patterns",
             name => "GOOD TO GO",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1001001000100000'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -197,7 +197,7 @@ sub _beats {
         5 => {
             cat  => "Basic Patterns",
             name => "HIP HOP",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1010001100000010'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -210,7 +210,7 @@ sub _beats {
         6 => {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 1",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000000100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -223,7 +223,7 @@ sub _beats {
         7 => {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 2",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000000100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -236,7 +236,7 @@ sub _beats {
         8 => {
             cat  => "Standard Breaks",
             name => "ROLLING BREAK",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000100100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -249,7 +249,7 @@ sub _beats {
         9 => {
             cat  => "Standard Breaks",
             name => "THE UNKNOWN DRUMMER",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001001000100000'],
                     $self->drummer->snare     => ['0100100100001000'],
@@ -263,7 +263,7 @@ sub _beats {
         10 => {
             cat  => "Rock",
             name => "ROCK 1",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000110100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -277,7 +277,7 @@ sub _beats {
         11 => {
             cat  => "Rock",
             name => "ROCK 2",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000110100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -290,7 +290,7 @@ sub _beats {
         12 => {
             cat  => "Rock",
             name => "ROCK 3",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000110100000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -304,7 +304,7 @@ sub _beats {
         13 => {
             cat  => "Rock",
             name => "ROCK 4",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000000110100000'],
                     $self->drummer->snare     => ['0000100000001011'],
@@ -318,7 +318,7 @@ sub _beats {
         14 => {
             cat  => "Electro",
             name => "ELECTRO 1 - A",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000000000'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -330,7 +330,7 @@ sub _beats {
         15 => {
             cat  => "Electro",
             name => "ELECTRO 1 - B",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000100010'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -344,7 +344,7 @@ sub _beats {
         16 => {
             cat  => "Electro",
             name => "ELECTRO 2 - B",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000000000100100'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -356,7 +356,7 @@ sub _beats {
         17 => {
             cat  => "Electro",
             name => "ELECTRO 3 - A",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000010000'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -368,7 +368,7 @@ sub _beats {
         18 => {
             cat  => "Electro",
             name => "ELECTRO 3 - B",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000010100'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -380,7 +380,7 @@ sub _beats {
         19 => {
             cat  => "Electro",
             name => "ELECTRO 4",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1000001000100100'],
                     $self->drummer->snare => ['0000100000001000'],
@@ -392,7 +392,7 @@ sub _beats {
         20 => {
             cat  => "Electro",
             name => "SIBERIAN NIGHTS",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -405,7 +405,7 @@ sub _beats {
         21 => {
             cat  => "Electro",
             name => "NEW WAVE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001011000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -420,7 +420,7 @@ sub _beats {
         22 => {
             cat  => "House",
             name => "HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick    => ['1000100010001000'],
                     $self->drummer->snare   => ['0000100000001000'],
@@ -434,7 +434,7 @@ sub _beats {
         23 => {
             cat  => "House",
             name => "HOUSE 2",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001011000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -448,7 +448,7 @@ sub _beats {
         24 => {
             cat  => "House",
             name => "BRIT HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001011000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -463,7 +463,7 @@ sub _beats {
         25 => {
             cat  => "House",
             name => "FRENCH HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001011000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -478,7 +478,7 @@ sub _beats {
         26 => {
             cat  => "House",
             name => "DIRTY HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1010100010101001'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -493,7 +493,7 @@ sub _beats {
         27 => {
             cat  => "House",
             name => "DEEP HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100010001000'],
                     $self->drummer->clap      => ['0000100000001000'],
@@ -507,7 +507,7 @@ sub _beats {
         28 => {
             cat  => "House",
             name => "DEEPER HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(     # 123456789ABCDEF0
                     $self->drummer->kick        => ['1000100010001000'],
                     $self->drummer->clap        => ['0100000001000000'],
@@ -522,7 +522,7 @@ sub _beats {
         29 => {
             cat  => "House",
             name => "SLOW DEEP HOUSE",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100010001000'],
                     $self->drummer->clap      => ['0000100000001000'],
@@ -537,7 +537,7 @@ sub _beats {
         30 => {
             cat  => "House",
             name => "FOOTWORK - A",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
                     $self->drummer->kick       => ['1001001010010010'],
                     $self->drummer->clap       => ['0000000000001000'],
@@ -551,7 +551,7 @@ sub _beats {
         31 => {
             cat  => "House",
             name => "FOOTWORK - B",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
                     $self->drummer->kick       => ['1001001010010010'],
                     $self->drummer->clap       => ['0000000000001000'],
@@ -565,7 +565,7 @@ sub _beats {
         32 => {
             cat  => "Miami Bass",
             name => "MIAMI BASS - A",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000100100'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -578,7 +578,7 @@ sub _beats {
         33 => {
             cat  => "Miami Bass",
             name => "MIAMI BASS - B",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -591,7 +591,7 @@ sub _beats {
         34 => {
             cat  => "Miami Bass",
             name => "SALLY",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000100010'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -605,7 +605,7 @@ sub _beats {
         33 => {
             cat  => "Miami Bass",
             name => "ROCK THE PLANET",
-            beat => sub {
+            groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
                     $self->drummer->kick      => ['1001001000000000'],
                     $self->drummer->snare     => ['0000100000001000'],
@@ -616,7 +616,7 @@ sub _beats {
         },
 
     );
-    return \%beats;
+    return \%grooves;
 }
 
 1;
