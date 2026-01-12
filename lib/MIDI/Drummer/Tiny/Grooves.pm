@@ -25,9 +25,9 @@ use namespace::clean;
 
   # play 4 random rock beats
   my $rock = $beats->search(cat => 'rock');
-  my $nums = [ keys %$rock ];
+  my @nums = keys %$rock;
   for (1 .. 4) {
-    $beat = $rock->{ $nums[ rand @$nums ] };
+    $beat = $rock->{ $nums[ rand @nums ] };
     say $beat->{name};
     $beat->{beat}->();
   }
