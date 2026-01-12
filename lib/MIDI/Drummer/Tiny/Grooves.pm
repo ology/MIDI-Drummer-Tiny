@@ -43,16 +43,33 @@ structure:
   { 1 => {
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
       beat => sub {
-        $d->sync_patterns(
-        $d->kick  => ['1000001000000000'],
-        $d->snare => ['0000100000001000'],
-        duration  => $d->sixteenth,
+        $self->drummer->sync_patterns(
+        $self->drummer->kick  => ['1000001000000000'],
+        $self->drummer->snare => ['0000100000001000'],
+        duration => $self->drummer->sixteenth,
       ),
     },
   },
   2 => { ... }, ... }
 
 =cut
+
+=head1 ACCESSORS
+
+=head2 drummer
+
+  $drummer = $grooves->drummer;
+
+The L<MIDI::Drummer::Tiny> object. If not given in the constructor, a
+new one is created when a method is called.
+
+=cut
+
+has drummer => (
+  is      => 'rw',
+  isa     => sub { die "Invalid drummer object" unless ref($_[0]) eq 'MIDI::Drummer::Tiny' },
+  default => sub { MIDI::Drummer::Tiny->new },
+);
 
 =head1 METHODS
 
@@ -77,8 +94,8 @@ beat."
 =cut
 
 sub get_beat {
-    my ($self, $beat_number, $drummer) = @_;
-    my $all = $self->all_beats($drummer);
+    my ($self, $beat_number) = @_;
+    my $all = $self->all_beats;
     unless ($beat_number) {
         my @keys = keys %$all;
         $beat_number = $keys[ int rand @keys ];
@@ -95,8 +112,8 @@ Return all the known beats as a hash reference.
 =cut
 
 sub all_beats {
-    my ($self, $drummer) = @_;
-    return $self->_beats($drummer);
+    my ($self) = @_;
+    return $self->_beats;
 }
 
 =head2 search
@@ -115,7 +132,7 @@ sub search {
     my ($self, %args) = @_;
     my $key = exists $args{cat} ? 'cat' : 'name';
     my $string = lc $args{$key};
-    my $all = $self->all_beats($args{drummer});
+    my $all = $self->all_beats($self->drummer);
     my $found = {};
     for my $k (keys %$all) {
         $found->{$k} = $all->{$k}
@@ -125,18 +142,17 @@ sub search {
 }
 
 sub _beats {
-    my ($self, $d) = @_;
-    $d ||= MIDI::Drummer::Tiny->new;
+    my ($self) = @_;
     my %beats = (
 
         1 => {
             cat  => "Basic Patterns",
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000000000'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000000000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -145,11 +161,11 @@ sub _beats {
             cat  => "Basic Patterns",
             name => "BOOTS N' CATS",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000010000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000010000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -158,10 +174,10 @@ sub _beats {
             cat  => "Basic Patterns",
             name => "TINY HOUSE",
             beat => sub {
-                $d->sync_patterns( # 123456789ABCDEF0
-                    $d->kick    => ['1000100010001000'],
-                    $d->open_hh => ['0010001000100010'],
-                    duration    => $d->sixteenth,
+                $self->drummer->sync_patterns( # 123456789ABCDEF0
+                    $self->drummer->kick    => ['1000100010001000'],
+                    $self->drummer->open_hh => ['0010001000100010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -170,10 +186,10 @@ sub _beats {
             cat  => "Basic Patterns",
             name => "GOOD TO GO",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1001001000100000'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1001001000100000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -182,11 +198,11 @@ sub _beats {
             cat  => "Basic Patterns",
             name => "HIP HOP",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1010001100000010'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1010001100000010'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -195,11 +211,11 @@ sub _beats {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 1",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000000100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101011101010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000000100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101011101010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -208,11 +224,11 @@ sub _beats {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 2",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000000100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101110100010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000000100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101110100010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -221,11 +237,11 @@ sub _beats {
             cat  => "Standard Breaks",
             name => "ROLLING BREAK",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000100100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000100100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -234,12 +250,12 @@ sub _beats {
             cat  => "Standard Breaks",
             name => "THE UNKNOWN DRUMMER",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1001001000100000'],
-                    $d->snare     => ['0100100100001000'],
-                    $d->closed_hh => ['0110110100000100'],
-                    $d->open_hh   => ['0000000010000010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1001001000100000'],
+                    $self->drummer->snare     => ['0100100100001000'],
+                    $self->drummer->closed_hh => ['0110110100000100'],
+                    $self->drummer->open_hh   => ['0000000010000010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -248,12 +264,12 @@ sub _beats {
             cat  => "Rock",
             name => "ROCK 1",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000110100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    $d->crash1    => ['1000000000000000'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000110100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    $self->drummer->crash1    => ['1000000000000000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -262,11 +278,11 @@ sub _beats {
             cat  => "Rock",
             name => "ROCK 2",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000110100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000110100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -275,12 +291,12 @@ sub _beats {
             cat  => "Rock",
             name => "ROCK 3",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000110100000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101000'],
-                    $d->open_hh   => ['0000000000000010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000110100000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101000'],
+                    $self->drummer->open_hh   => ['0000000000000010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -289,12 +305,12 @@ sub _beats {
             cat  => "Rock",
             name => "ROCK 4",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000000110100000'],
-                    $d->snare     => ['0000100000001011'],
-                    $d->closed_hh => ['1010101010101000'],
-                    $d->open_hh   => ['0000000000000010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000000110100000'],
+                    $self->drummer->snare     => ['0000100000001011'],
+                    $self->drummer->closed_hh => ['1010101010101000'],
+                    $self->drummer->open_hh   => ['0000000000000010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -303,10 +319,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 1 - A",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000000000'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000000000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -315,10 +331,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 1 - B",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000100010'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000100010'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -329,10 +345,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 2 - B",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000000000100100'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000000000100100'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -341,10 +357,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 3 - A",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000010000'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000010000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -353,10 +369,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 3 - B",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000010100'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000010100'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -365,10 +381,10 @@ sub _beats {
             cat  => "Electro",
             name => "ELECTRO 4",
             beat => sub {
-                $d->sync_patterns(#123456789ABCDEF0
-                    $d->kick  => ['1000001000100100'],
-                    $d->snare => ['0000100000001000'],
-                    duration  => $d->sixteenth,
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1000001000100100'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration  => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -377,11 +393,11 @@ sub _beats {
             cat  => "Electro",
             name => "SIBERIAN NIGHTS",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001000000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1011101110111011'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001000000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1011101110111011'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -390,13 +406,13 @@ sub _beats {
             cat  => "Electro",
             name => "NEW WAVE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001011000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1101111111111111'],
-                    $d->open_hh   => ['0010000000000000'],
-                    $d->maracas   => ['0000100000001000'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1101111111111111'],
+                    $self->drummer->open_hh   => ['0010000000000000'],
+                    $self->drummer->maracas   => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -405,12 +421,12 @@ sub _beats {
             cat  => "House",
             name => "HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick    => ['1000100010001000'],
-                    $d->snare   => ['0000100000001000'],
-                    $d->open_hh => ['0010001000100010'],
-                    $d->crash1  => ['1000000000000000'],
-                    duration    => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick    => ['1000100010001000'],
+                    $self->drummer->snare   => ['0000100000001000'],
+                    $self->drummer->open_hh => ['0010001000100010'],
+                    $self->drummer->crash1  => ['1000000000000000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -419,12 +435,12 @@ sub _beats {
             cat  => "House",
             name => "HOUSE 2",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001011000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1101101111011011'],
-                    $d->open_hh   => ['0010010000100100'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1101101111011011'],
+                    $self->drummer->open_hh   => ['0010010000100100'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -433,13 +449,13 @@ sub _beats {
             cat  => "House",
             name => "BRIT HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001011000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1101110111011101'],
-                    $d->open_hh   => ['0010001000100010'],
-                    $d->crash1    => ['0010001000100010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1101110111011101'],
+                    $self->drummer->open_hh   => ['0010001000100010'],
+                    $self->drummer->crash1    => ['0010001000100010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -448,13 +464,13 @@ sub _beats {
             cat  => "House",
             name => "FRENCH HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001011000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    $d->open_hh   => ['0101010101010101'],
-                    $d->maracas   => ['1110101111101011'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    $self->drummer->open_hh   => ['0101010101010101'],
+                    $self->drummer->maracas   => ['1110101111101011'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -463,13 +479,13 @@ sub _beats {
             cat  => "House",
             name => "DIRTY HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1010100010101001'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['0000000000100001'],
-                    $d->open_hh   => ['0010000000000010'],
-                    $d->clap      => ['0010100010101000'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1010100010101001'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['0000000000100001'],
+                    $self->drummer->open_hh   => ['0010000000000010'],
+                    $self->drummer->clap      => ['0010100010101000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -478,12 +494,12 @@ sub _beats {
             cat  => "House",
             name => "DEEP HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000100010001000'],
-                    $d->clap      => ['0000100000001000'],
-                    $d->closed_hh => ['0100000101000000'],
-                    $d->open_hh   => ['0010001000100010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000100010001000'],
+                    $self->drummer->clap      => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['0100000101000000'],
+                    $self->drummer->open_hh   => ['0010001000100010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -492,13 +508,13 @@ sub _beats {
             cat  => "House",
             name => "DEEPER HOUSE",
             beat => sub {
-                $d->sync_patterns(     # 123456789ABCDEF0
-                    $d->kick        => ['1000100010001000'],
-                    $d->clap        => ['0100000001000000'],
-                    $d->open_hh     => ['0010001000110010'],
-                    $d->maracas     => ['0001000010000000'],
-                    $d->low_mid_tom => ['0010000100100000'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(     # 123456789ABCDEF0
+                    $self->drummer->kick        => ['1000100010001000'],
+                    $self->drummer->clap        => ['0100000001000000'],
+                    $self->drummer->open_hh     => ['0010001000110010'],
+                    $self->drummer->maracas     => ['0001000010000000'],
+                    $self->drummer->low_mid_tom => ['0010000100100000'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -507,13 +523,13 @@ sub _beats {
             cat  => "House",
             name => "SLOW DEEP HOUSE",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000100010001000'],
-                    $d->clap      => ['0000100000001000'],
-                    $d->closed_hh => ['1000100010001000'],
-                    $d->open_hh   => ['0011001101100010'],
-                    $d->maracas   => ['1111111111111111'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000100010001000'],
+                    $self->drummer->clap      => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1000100010001000'],
+                    $self->drummer->open_hh   => ['0011001101100010'],
+                    $self->drummer->maracas   => ['1111111111111111'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -522,12 +538,12 @@ sub _beats {
             cat  => "House",
             name => "FOOTWORK - A",
             beat => sub {
-                $d->sync_patterns(    # 123456789ABCDEF0
-                    $d->kick       => ['1001001010010010'],
-                    $d->clap       => ['0000000000001000'],
-                    $d->closed_hh  => ['0010000000100000'],
-                    $d->side_stick => ['1111111111111111'],
-                    duration       => $d->sixteenth,
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                    $self->drummer->kick       => ['1001001010010010'],
+                    $self->drummer->clap       => ['0000000000001000'],
+                    $self->drummer->closed_hh  => ['0010000000100000'],
+                    $self->drummer->side_stick => ['1111111111111111'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -536,12 +552,12 @@ sub _beats {
             cat  => "House",
             name => "FOOTWORK - B",
             beat => sub {
-                $d->sync_patterns(    # 123456789ABCDEF0
-                    $d->kick       => ['1001001010010010'],
-                    $d->clap       => ['0000000000001000'],
-                    $d->closed_hh  => ['0010001100100010'],
-                    $d->side_stick => ['1111111111111111'],
-                    duration       => $d->sixteenth,
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                    $self->drummer->kick       => ['1001001010010010'],
+                    $self->drummer->clap       => ['0000000000001000'],
+                    $self->drummer->closed_hh  => ['0010001100100010'],
+                    $self->drummer->side_stick => ['1111111111111111'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -550,11 +566,11 @@ sub _beats {
             cat  => "Miami Bass",
             name => "MIAMI BASS - A",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001000100100'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1011101110111011'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001000100100'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1011101110111011'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -563,11 +579,11 @@ sub _beats {
             cat  => "Miami Bass",
             name => "MIAMI BASS - B",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001000000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1011101110111011'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001000000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1011101110111011'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -576,12 +592,12 @@ sub _beats {
             cat  => "Miami Bass",
             name => "SALLY",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0
-                    $d->kick      => ['1000001000100010'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1010101010101010'],
-                    $d->low_tom   => ['1000001000100010'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1000001000100010'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    $self->drummer->low_tom   => ['1000001000100010'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
@@ -590,11 +606,11 @@ sub _beats {
             cat  => "Miami Bass",
             name => "ROCK THE PLANET",
             beat => sub {
-                $d->sync_patterns(   # 123456789ABCDEF0 0000000000000000
-                    $d->kick      => ['1001001000000000'],
-                    $d->snare     => ['0000100000001000'],
-                    $d->closed_hh => ['1011101110111111'],
-                    duration      => $d->sixteenth,
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1001001000000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1011101110111111'],
+                    duration => $self->drummer->sixteenth,
                 ),
             },
         },
