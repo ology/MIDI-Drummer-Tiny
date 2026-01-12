@@ -83,14 +83,10 @@ Return a new C<MIDI::Drummer::Tiny::Grooves> object.
 =head2 get_groove
 
   $groove = $grooves->get_groove($groove_number);
-  $groove = $grooves->get_groove(0); # random groove
+  $groove = $grooves->get_groove; # random groove
 
 Return a numbered or random groove from the collection of known
 grooves.
-
-A B<drummer> object optional but is really not useful without one.
-The B<groove_number> is required, and C<0> means "return a random
-groove."
 
 =cut
 
