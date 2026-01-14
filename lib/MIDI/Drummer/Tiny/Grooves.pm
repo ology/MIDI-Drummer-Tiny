@@ -877,12 +877,27 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "SNOOP STYLES",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0
                     $self->drummer->kick       => ['1001001000010000'],
                     $self->drummer->snare      => ['0000100000001000'],
                     $self->drummer->clap       => ['0000100000001000'],
                     $self->drummer->side_stick => ['0010010010010000'],
                     $self->drummer->open_hh    => ['1001001000010000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        57 => {
+            cat  => "Hip Hop",
+            name => "THE GROOVE - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1001000100010010'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->maracas   => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    $self->drummer->open_hh   => ['0000000100000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
