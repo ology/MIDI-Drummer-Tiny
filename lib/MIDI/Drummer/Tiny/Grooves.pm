@@ -778,10 +778,25 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "TRAP - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['0010100000000000'],
                     $self->drummer->snare     => ['0000000010000000'],
                     $self->drummer->closed_hh => ['1110101010101110'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        50 => {
+            cat  => "Hip Hop",
+            name => "PLANET ROCK - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1000001000000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->clap      => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1011101110111111'],
+                    $self->drummer->open_hh   => ['0000000000000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
