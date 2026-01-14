@@ -600,14 +600,38 @@ sub _grooves {
             },
         },
 
-        33 => {
+        35 => {
             cat  => "Miami Bass",
             name => "ROCK THE PLANET",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001001000000000'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->closed_hh => ['1011101110111111'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        36 => {
+            cat  => "Hip Hop",
+            name => "HIP HOP 1 - A",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick  => ['1000001100010010'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        37 => {
+            cat  => "Hip Hop",
+            name => "HIP HOP 1 - B",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick  => ['1000000100010000'],
+                    $self->drummer->snare => ['0000100000001000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
