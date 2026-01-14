@@ -892,7 +892,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "THE GROOVE - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001000100010010'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->maracas   => ['0000100000001000'],
@@ -907,7 +907,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "THE GROOVE - B",
             groove => sub {
-                $self->drummer->sync_patterns(     # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(     # 123456789ABCDEF0
                     $self->drummer->kick        => ['1001000100010010'],
                     $self->drummer->snare       => ['0000100000001000'],
                     $self->drummer->maracas     => ['0000100000001000'],
@@ -916,6 +916,21 @@ sub _grooves {
                     $self->drummer->hi_mid_tom  => ['0000000001100000'],
                     $self->drummer->low_mid_tom => ['0000000000010100'],
                     $self->drummer->low_tom     => ['0000000000000011'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        58 => {
+            cat  => "Hip Hop",
+            name => "BOOM BAP",
+            groove => sub {
+                $self->drummer->sync_patterns(     # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick        => ['1010010001000100'],
+                    $self->drummer->snare       => ['0010001000100010'],
+                    $self->drummer->clap        => ['0010001000100010'],
+                    $self->drummer->closed_hh   => ['1111111111111101'],
+                    $self->drummer->cowbell     => ['0000000010000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
