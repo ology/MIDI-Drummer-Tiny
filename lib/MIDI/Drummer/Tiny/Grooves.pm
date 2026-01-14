@@ -925,12 +925,27 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "BOOM BAP",
             groove => sub {
-                $self->drummer->sync_patterns(     # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(     # 123456789ABCDEF0
                     $self->drummer->kick        => ['1010010001000100'],
                     $self->drummer->snare       => ['0010001000100010'],
                     $self->drummer->clap        => ['0010001000100010'],
                     $self->drummer->closed_hh   => ['1111111111111101'],
                     $self->drummer->cowbell     => ['0000000010000000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        59 => {
+            cat  => "Hip Hop",
+            name => "MOST WANTED - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1000001011000001'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->clap      => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['0010101010101010'],
+                    $self->drummer->crash1    => ['1000000000000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
