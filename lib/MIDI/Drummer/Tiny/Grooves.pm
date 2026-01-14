@@ -951,6 +951,21 @@ sub _grooves {
             },
         },
 
+        60 => {
+            cat  => "Hip Hop",
+            name => "MOST WANTED - B",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['0010001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->clap      => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['0010101010101010'],
+                    $self->drummer->open_hh   => ['0010000000000000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%grooves;
 }
