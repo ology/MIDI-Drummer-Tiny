@@ -831,6 +831,19 @@ sub _grooves {
             },
         },
 
+        53 => {
+            cat  => "Hip Hop",
+            name => "ICE",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick    => ['1000001000100010'],
+                    $self->drummer->snare   => ['0000100000001000'],
+                    $self->drummer->maracas => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%grooves;
 }
