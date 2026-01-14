@@ -796,7 +796,7 @@ sub _grooves {
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->clap      => ['0000100000001000'],
                     $self->drummer->closed_hh => ['1011101110111111'],
-                    $self->drummer->open_hh   => ['0000000000000000'],
+                    $self->drummer->cowbell   => ['1010101101011010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
