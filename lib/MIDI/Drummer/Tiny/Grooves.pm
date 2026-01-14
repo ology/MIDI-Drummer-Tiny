@@ -677,8 +677,44 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 3 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(#123456789ABCDEF0
                     $self->drummer->kick  => ['1010000011010000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        42 => {
+            cat  => "Hip Hop",
+            name => "HIP HOP 4 - A",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0
+                    $self->drummer->kick  => ['1001000101100001'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        43 => {
+            cat  => "Hip Hop",
+            name => "HIP HOP 4 - B",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick  => ['1001000111100000'],
+                    $self->drummer->snare => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        44 => {
+            cat  => "Hip Hop",
+            name => "HIP HOP 5",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick  => ['1001000110100000'],
                     $self->drummer->snare => ['0000100000001000'],
                     duration => $self->drummer->sixteenth,
                 ),
