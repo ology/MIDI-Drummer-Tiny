@@ -903,6 +903,24 @@ sub _grooves {
             },
         },
 
+        58 => {
+            cat  => "Hip Hop",
+            name => "THE GROOVE - B",
+            groove => sub {
+                $self->drummer->sync_patterns(     # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick        => ['1001000100010010'],
+                    $self->drummer->snare       => ['0000100000001000'],
+                    $self->drummer->maracas     => ['0000100000001000'],
+                    $self->drummer->closed_hh   => ['1010101010000100'],
+                    $self->drummer->open_hh     => ['0000000100111010'],
+                    $self->drummer->hi_mid_tom  => ['0000000001100000'],
+                    $self->drummer->low_mid_tom => ['0000000000010100'],
+                    $self->drummer->low_tom     => ['0000000000000011'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%grooves;
 }
