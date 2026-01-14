@@ -802,16 +802,30 @@ sub _grooves {
             },
         },
 
-        50 => {
+        51 => {
             cat  => "Hip Hop",
             name => "PLANET ROCK - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000100100'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->clap      => ['0000100000001000'],
                     $self->drummer->closed_hh => ['1011101110111111'],
                     $self->drummer->cowbell   => ['1010101101011010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        52 => {
+            cat  => "Hip Hop",
+            name => "INNA CLUB",
+            groove => sub {
+                $self->drummer->sync_patterns( # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick    => ['0010000100100001'],
+                    $self->drummer->snare   => ['0000100000001000'],
+                    $self->drummer->clap    => ['0000100000001000'],
+                    $self->drummer->open_hh => ['1010101010101010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
