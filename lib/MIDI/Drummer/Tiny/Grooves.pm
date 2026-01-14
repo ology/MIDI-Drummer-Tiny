@@ -765,10 +765,23 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "TRAP - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001000001000'],
                     $self->drummer->snare     => ['0000000010000000'],
                     $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        49 => {
+            cat  => "Hip Hop",
+            name => "TRAP - B",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['0010100000000000'],
+                    $self->drummer->snare     => ['0000000010000000'],
+                    $self->drummer->closed_hh => ['1110101010101110'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
