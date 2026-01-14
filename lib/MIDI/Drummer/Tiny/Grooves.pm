@@ -116,11 +116,10 @@ sub all_grooves {
 
 =head2 search
 
-  $found = $grooves->search(cat => $string, drummer => $drummer);
-  $found = $grooves->search(name => $string, drummer => $drummer);
+  $found = $grooves->search(cat => $x, name => $y, drummer => $drummer);
 
-Return the found grooves with names matching the given B<string> as a
-hash reference.
+Return the found grooves with names matching the given B<cat> or
+B<name> strings as a hash reference.
 
 The B<drummer> object is required.
 
@@ -128,13 +127,21 @@ The B<drummer> object is required.
 
 sub search {
     my ($self, %args) = @_;
-    my $key = exists $args{cat} ? 'cat' : 'name';
-    my $string = lc $args{$key};
     my $all = $self->all_grooves;
     my $found = {};
-    for my $k (keys %$all) {
-        $found->{$k} = $all->{$k}
-            if lc($all->{$k}{$key}) =~ /$string/;
+    if (exists $args{cat}) {
+        my $string = lc $args{cat};
+        for my $k (keys %$all) {
+            $found->{$k} = $all->{$k}
+                if lc($all->{$k}{cat}) =~ /$string/;
+        }
+    }
+    if (exists $args{name}) {
+        my $string = lc $args{name};
+        for my $k (keys %$all) {
+            $found->{$k} = $all->{$k}
+                if lc($all->{$k}{name}) =~ /$string/;
+        }
     }
     return $found;
 }
