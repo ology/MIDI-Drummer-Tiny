@@ -940,7 +940,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "MOST WANTED - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000001011000001'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->clap      => ['0000100000001000'],
@@ -955,12 +955,68 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "MOST WANTED - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['0010001011000000'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->clap      => ['0000100000001000'],
                     $self->drummer->closed_hh => ['0010101010101010'],
                     $self->drummer->open_hh   => ['0010000000000000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        60 => {
+            cat  => "Funk and Soul",
+            name => "AMEN BREAK - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1010000000110000'],
+                    $self->drummer->snare     => ['0000000101001001'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        60 => {
+            cat  => "Funk and Soul",
+            name => "AMEN BREAK - B",
+            groove => sub {
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                    $self->drummer->kick       => ['1010000000110000'],
+                    $self->drummer->snare      => ['0000100101001001'],
+                    $self->drummer->side_stick => ['0000100000000000'],
+                    $self->drummer->closed_hh  => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        61 => {
+            cat  => "Funk and Soul",
+            name => "AMEN BREAK - C",
+            groove => sub {
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                    $self->drummer->kick       => ['1010000000100000'],
+                    $self->drummer->snare      => ['0000100101001001'],
+                    $self->drummer->side_stick => ['0000000000000010'],
+                    $self->drummer->closed_hh  => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        62 => {
+            cat  => "Funk and Soul",
+            name => "AMEN BREAK - D",
+            groove => sub {
+                $self->drummer->sync_patterns(    # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick       => ['1010000000100000'],
+                    $self->drummer->snare      => ['0100100101000010'],
+                    $self->drummer->side_stick => ['0000000000000010'],
+                    $self->drummer->closed_hh  => ['1010101010001010'],
+                    $self->drummer->crash1     => ['0000000000100000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
