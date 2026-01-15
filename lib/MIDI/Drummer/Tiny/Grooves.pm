@@ -1023,7 +1023,6 @@ sub _grooves {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0 0000000000000000
                     $self->drummer->kick       => ['1010000000100000'],
                     $self->drummer->snare      => ['0100100101000010'],
-                    $self->drummer->side_stick => ['0000000000000010'],
                     $self->drummer->closed_hh  => ['1010101010001010'],
                     $self->drummer->crash1     => ['0000000000100000'],
                     duration => $self->drummer->sixteenth,
