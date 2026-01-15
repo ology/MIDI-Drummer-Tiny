@@ -988,7 +988,7 @@ sub _grooves {
             },
         },
 
-        60 => {
+        61 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - B",
             groove => sub {
@@ -1002,7 +1002,7 @@ sub _grooves {
             },
         },
 
-        61 => {
+        62 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - C",
             groove => sub {
@@ -1016,7 +1016,7 @@ sub _grooves {
             },
         },
 
-        62 => {
+        63 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - D",
             groove => sub {
