@@ -129,18 +129,20 @@ sub search {
     my ($self, %args) = @_;
     my $all = $self->all_grooves;
     my $found = {};
-    if (exists $args{cat}) {
+    if ($args{cat}) {
         my $string = lc $args{cat};
         for my $k (keys %$all) {
-            $found->{$k} = $all->{$k}
-                if lc($all->{$k}{cat}) =~ /$string/;
+            if (lc($all->{$k}{cat}) =~ /$string/) {
+                $found->{$k} = $all->{$k};
+            }
         }
     }
-    if (exists $args{name}) {
+    if ($args{name}) {
         my $string = lc $args{name};
         for my $k (keys %$all) {
-            $found->{$k} = $all->{$k}
-                if lc($all->{$k}{name}) =~ /$string/;
+            if (lc($all->{$k}{name}) =~ /$string/) {
+                $found->{$k} = $all->{$k};
+            }
         }
     }
     return $found;
