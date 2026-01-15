@@ -20,7 +20,7 @@ my $all = $grooves->search(cat => $cat, name => $name);
 for my $n (keys %$all) {
     my $groove = $grooves->get_groove($n);
     print $groove->{name}, "\n";
-    # $groove->{groove}->() for 1 .. 4;
+    $groove->{groove}->() for 1 .. 4;
 }
 
 $d->play_with_timidity;
