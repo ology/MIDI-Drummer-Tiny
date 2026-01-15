@@ -16,11 +16,10 @@ my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $d);
 
 # my $all = $grooves->all_grooves;
 my $all = $grooves->search(cat => $cat, name => $name);
-# print join ',', keys %$all;
-__END__
+
 for my $n (keys %$all) {
     my $groove = $grooves->get_groove($n);
-    # print $groove->{name}, "\n";
+    print $groove->{name}, "\n";
     # $groove->{groove}->() for 1 .. 4;
 }
 
