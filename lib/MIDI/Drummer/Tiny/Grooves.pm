@@ -1020,7 +1020,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - D",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1010000000100000'],
                     $self->drummer->snare     => ['0100100101000010'],
                     $self->drummer->closed_hh => ['1010101010001010'],
@@ -1062,8 +1062,21 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "WHEN THE LEVEE BREAKS",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1100000100110000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010101010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        67 => {
+            cat  => "Funk and Soul",
+            name => "IT'S A NEW DAY",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1010000000110001'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->closed_hh => ['1010101010101010'],
                     duration => $self->drummer->sixteenth,
