@@ -1088,10 +1088,25 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "THE BIG BEAT",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001001010000000'],
                     $self->drummer->snare     => ['0000100000001000'],
                     $self->drummer->closed_hh => ['0000100000001000'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        69 => {
+            cat  => "Funk and Soul",
+            name => "ASHLEY'S ROACHCLIP",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1010001011000000'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101010001010'],
+                    $self->drummer->open_hh   => ['0000000000100000'],
+                    $self->drummer->cowbell   => ['1010101010101010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
