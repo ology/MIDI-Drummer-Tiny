@@ -1034,11 +1034,25 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "THE FUNKY DRUMMER",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1010001000100100'],
                     $self->drummer->snare     => ['0000100101011001'],
                     $self->drummer->closed_hh => ['1111111011111011'],
                     $self->drummer->crash1    => ['0000000100000100'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        65 => {
+            cat  => "Funk and Soul",
+            name => "IMPEACH THE PRESIDENT",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1000000110000010'],
+                    $self->drummer->snare     => ['0000100000001000'],
+                    $self->drummer->closed_hh => ['1010101110001010'],
+                    $self->drummer->crash1    => ['0000000000100000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
