@@ -1030,6 +1030,20 @@ sub _grooves {
             },
         },
 
+        64 => {
+            cat  => "Funk and Soul",
+            name => "THE FUNKY DRUMMER",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1010001000100100'],
+                    $self->drummer->snare     => ['0000100101011001'],
+                    $self->drummer->closed_hh => ['1111111011111011'],
+                    $self->drummer->crash1    => ['0000000100000100'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
     );
     return \%grooves;
 }
