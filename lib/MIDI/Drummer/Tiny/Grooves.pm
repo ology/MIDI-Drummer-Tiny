@@ -1143,10 +1143,22 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001010001011010'],
                     $self->drummer->snare     => ['0000100101100000'],
                     $self->drummer->closed_hh => ['0000000000001010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        73 => {
+            cat  => "Funk and Soul",
+            name => "CISSY STRUT - B",
+            groove => sub {
+                $self->drummer->sync_patterns(#123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick  => ['1001000101011010'],
+                    $self->drummer->snare => ['0010011011000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
