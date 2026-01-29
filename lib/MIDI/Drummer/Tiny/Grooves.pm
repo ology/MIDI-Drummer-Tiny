@@ -1130,10 +1130,23 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "SUPERSTITION",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100010001000'],
                     $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101111101011'],
+                    $self->drummer->crash1    => ['1010101111101011'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        72 => {
+            cat  => "Funk and Soul",
+            name => "CISSY STRUT - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1001010001011010'],
+                    $self->drummer->snare     => ['0000100101100000'],
+                    $self->drummer->closed_hh => ['0000000000001010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
