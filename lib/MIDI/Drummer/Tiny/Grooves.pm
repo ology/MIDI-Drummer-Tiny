@@ -172,7 +172,7 @@ sub _grooves {
             cat  => "Basic Patterns",
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000000000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -184,7 +184,7 @@ sub _grooves {
             cat  => "Basic Patterns",
             name => "BOOTS N' CATS",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000010000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -209,7 +209,7 @@ sub _grooves {
             cat  => "Basic Patterns",
             name => "GOOD TO GO",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1001001000100000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -221,7 +221,7 @@ sub _grooves {
             cat  => "Basic Patterns",
             name => "HIP HOP",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010001100000010'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -234,7 +234,7 @@ sub _grooves {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 1",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000000100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101011101010'],
@@ -247,7 +247,7 @@ sub _grooves {
             cat  => "Standard Breaks",
             name => "STANDARD BREAK 2",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000000100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101110100010'],
@@ -260,7 +260,7 @@ sub _grooves {
             cat  => "Standard Breaks",
             name => "ROLLING BREAK",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000100100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -273,7 +273,7 @@ sub _grooves {
             cat  => "Standard Breaks",
             name => "THE UNKNOWN DRUMMER",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001001000100000'],
                     $args{snare}     => ['0100100100001000'],
                     $args{closed} => ['0110110100000100'],
@@ -287,7 +287,7 @@ sub _grooves {
             cat  => "Rock",
             name => "ROCK 1",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -301,7 +301,7 @@ sub _grooves {
             cat  => "Rock",
             name => "ROCK 2",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -314,7 +314,7 @@ sub _grooves {
             cat  => "Rock",
             name => "ROCK 3",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110100000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101000'],
@@ -328,7 +328,7 @@ sub _grooves {
             cat  => "Rock",
             name => "ROCK 4",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110100000'],
                     $args{snare}     => ['0000100000001011'],
                     $args{closed} => ['1010101010101000'],
@@ -342,7 +342,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 1 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000000000'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -354,7 +354,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 1 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000100010'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -368,7 +368,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 2 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000000000100100'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -380,7 +380,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 3 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000010000'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -392,7 +392,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 3 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000010100'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -404,7 +404,7 @@ sub _grooves {
             cat  => "Electro",
             name => "ELECTRO 4",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001000100100'],
                     $args{snare} => ['0000100000001000'],
                     duration  => $args{duration},
@@ -416,7 +416,7 @@ sub _grooves {
             cat  => "Electro",
             name => "SIBERIAN NIGHTS",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1011101110111011'],
@@ -429,7 +429,7 @@ sub _grooves {
             cat  => "Electro",
             name => "NEW WAVE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1101111111111111'],
@@ -444,7 +444,7 @@ sub _grooves {
             cat  => "House",
             name => "HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}    => ['1000100010001000'],
                     $args{snare}   => ['0000100000001000'],
                     $args{open} => ['0010001000100010'],
@@ -458,7 +458,7 @@ sub _grooves {
             cat  => "House",
             name => "HOUSE 2",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1101101111011011'],
@@ -472,7 +472,7 @@ sub _grooves {
             cat  => "House",
             name => "BRIT HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1101110111011101'],
@@ -487,7 +487,7 @@ sub _grooves {
             cat  => "House",
             name => "FRENCH HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -502,7 +502,7 @@ sub _grooves {
             cat  => "House",
             name => "DIRTY HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010100010101001'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['0000000000100001'],
@@ -517,7 +517,7 @@ sub _grooves {
             cat  => "House",
             name => "DEEP HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000100010001000'],
                     $args{clap}      => ['0000100000001000'],
                     $args{closed} => ['0100000101000000'],
@@ -531,7 +531,7 @@ sub _grooves {
             cat  => "House",
             name => "DEEPER HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(     # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}        => ['1000100010001000'],
                     $args{clap}        => ['0100000001000000'],
                     $args{open}     => ['0010001000110010'],
@@ -546,7 +546,7 @@ sub _grooves {
             cat  => "House",
             name => "SLOW DEEP HOUSE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000100010001000'],
                     $args{clap}      => ['0000100000001000'],
                     $args{closed} => ['1000100010001000'],
@@ -561,7 +561,7 @@ sub _grooves {
             cat  => "House",
             name => "FOOTWORK - A",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}       => ['1001001010010010'],
                     $args{clap}       => ['0000000000001000'],
                     $args{closed}  => ['0010000000100000'],
@@ -575,7 +575,7 @@ sub _grooves {
             cat  => "House",
             name => "FOOTWORK - B",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}       => ['1001001010010010'],
                     $args{clap}       => ['0000000000001000'],
                     $args{closed}  => ['0010001100100010'],
@@ -589,7 +589,7 @@ sub _grooves {
             cat  => "Miami Bass",
             name => "MIAMI BASS - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000100100'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1011101110111011'],
@@ -602,7 +602,7 @@ sub _grooves {
             cat  => "Miami Bass",
             name => "MIAMI BASS - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1011101110111011'],
@@ -615,7 +615,7 @@ sub _grooves {
             cat  => "Miami Bass",
             name => "SALLY",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000100010'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -629,7 +629,7 @@ sub _grooves {
             cat  => "Miami Bass",
             name => "ROCK THE PLANET",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001001000000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1011101110111111'],
@@ -642,7 +642,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 1 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000001100010010'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -654,7 +654,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 1 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000000100010000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -666,7 +666,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 2 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000000111010101'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -678,7 +678,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 2 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1000000110010000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -690,7 +690,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 3 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1010000010100000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -702,7 +702,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 3 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1010000011010000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -714,7 +714,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 4 - A",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1001000101100001'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -726,7 +726,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 4 - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1010000111100000'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -738,7 +738,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 5",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1010000110100001'],
                     $args{snare} => ['0000100000001000'],
                     duration => $args{duration},
@@ -750,7 +750,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 6",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010000000110001'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -763,7 +763,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 7",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000100100101'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -776,7 +776,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "HIP HOP 8",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001000010110000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1101101111011011'],
@@ -790,7 +790,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "TRAP - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000001000'],
                     $args{snare}     => ['0000000010000000'],
                     $args{closed} => ['1010101010101010'],
@@ -803,7 +803,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "TRAP - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['0010100000000000'],
                     $args{snare}     => ['0000000010000000'],
                     $args{closed} => ['1110101010101110'],
@@ -816,7 +816,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "PLANET ROCK - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['0000100000001000'],
@@ -831,7 +831,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "PLANET ROCK - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000100100'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['0000100000001000'],
@@ -860,7 +860,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "ICE",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}    => ['1000001000100010'],
                     $args{snare}   => ['0000100000001000'],
                     $args{shaker} => ['1010101010101010'],
@@ -873,7 +873,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "BACK TO CALI - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['0000101010001010'],
@@ -887,7 +887,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "BACK TO CALI - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001000100100'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['1000101010001000'],
@@ -902,7 +902,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "SNOOP STYLES",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}       => ['1001001000010000'],
                     $args{snare}      => ['0000100000001000'],
                     $args{clap}       => ['0000100000001000'],
@@ -917,7 +917,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "THE GROOVE - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001000100010010'],
                     $args{snare}     => ['0000100000001000'],
                     $args{shaker}   => ['0000100000001000'],
@@ -932,7 +932,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "THE GROOVE - B",
             groove => sub {
-                $self->drummer->sync_patterns(     # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}        => ['1001000100010010'],
                     $args{snare}       => ['0000100000001000'],
                     $args{shaker}     => ['0000100000001000'],
@@ -950,7 +950,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "BOOM BAP",
             groove => sub {
-                $self->drummer->sync_patterns(     # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}        => ['1010010001000100'],
                     $args{snare}       => ['0010001000100010'],
                     $args{clap}        => ['0010001000100010'],
@@ -965,7 +965,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "MOST WANTED - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000001011000001'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['0000100000001000'],
@@ -980,7 +980,7 @@ sub _grooves {
             cat  => "Hip Hop",
             name => "MOST WANTED - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['0010001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{clap}      => ['0000100000001000'],
@@ -995,7 +995,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010000000110000'],
                     $args{snare}     => ['0000000101001001'],
                     $args{closed} => ['1010101010101010'],
@@ -1008,7 +1008,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - B",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}       => ['1010000000110000'],
                     $args{snare}      => ['0000100101001001'],
                     $args{rimshot} => ['0000100000000000'],
@@ -1022,7 +1022,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - C",
             groove => sub {
-                $self->drummer->sync_patterns(    # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}       => ['1010000000100000'],
                     $args{snare}      => ['0000100101001001'],
                     $args{rimshot} => ['0000000000000010'],
@@ -1036,7 +1036,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - D",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010000000100000'],
                     $args{snare}     => ['0100100101000010'],
                     $args{closed} => ['1010101010001010'],
@@ -1050,7 +1050,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "THE FUNKY DRUMMER",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010001000100100'],
                     $args{snare}     => ['0000100101011001'],
                     $args{closed} => ['1111111011111011'],
@@ -1064,7 +1064,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "IMPEACH THE PRESIDENT",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110000010'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101110001010'],
@@ -1078,7 +1078,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "WHEN THE LEVEE BREAKS",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1100000100110000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -1091,7 +1091,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "IT'S A NEW DAY",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010000000110001'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010101010'],
@@ -1104,7 +1104,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "THE BIG BEAT",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001001010000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['0000100000001000'],
@@ -1117,7 +1117,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "ASHLEY'S ROACHCLIP",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010001011000000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101010001010'],
@@ -1132,7 +1132,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "PAPA WAS TOO",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000000110100001'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['0000100010101011'],
@@ -1146,7 +1146,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "SUPERSTITION",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000100010001000'],
                     $args{snare}     => ['0000100000001000'],
                     $args{closed} => ['1010101111101011'],
@@ -1159,7 +1159,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1001010001011010'],
                     $args{snare}     => ['0000100101100000'],
                     $args{cymbal}    => ['0000000000001010'],
@@ -1172,7 +1172,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - B",
             groove => sub {
-                $self->drummer->sync_patterns(#123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}  => ['1001000101011010'],
                     $args{snare} => ['0010011011000000'],
                     duration => $args{duration},
@@ -1184,7 +1184,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - C",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000100101011010'],
                     $args{snare}     => ['0010111001000000'],
                     $args{cymbal}    => ['0000000000001010'],
@@ -1197,7 +1197,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - D",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1000100101011010'],
                     $args{snare}     => ['1010010011000000'],
                     $args{cymbal}    => ['0000000000001010'],
@@ -1210,7 +1210,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - A",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1010000001000110'],
                     $args{snare}     => ['0000101100101000'],
                     $args{cymbal}    => ['1011010011010010'],
@@ -1223,7 +1223,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - B",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['0000000000000010'],
                     $args{snare}     => ['1000110100110011'],
                     $args{cymbal}    => ['1101001011001010'],
@@ -1236,7 +1236,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - C",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                $self->drummer->sync_patterns(
                     $args{kick}      => ['1100000000001101'],
                     $args{snare}     => ['0010101100110010'],
                     $args{cymbal}    => ['1010110101001100'],
@@ -1249,7 +1249,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - D",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(# 123456789ABCDEF0 0000000000000000
                     $args{kick}      => ['1010010000010110'],
                     $args{snare}     => ['0000100100100001'],
                     $args{cymbal}    => ['1010110100000000'],
