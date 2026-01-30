@@ -1133,7 +1133,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100010001000'],
                     $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->crash1    => ['1010101111101011'],
+                    $self->drummer->closed_hh => ['1010101111101011'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
@@ -1146,7 +1146,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1001010001011010'],
                     $self->drummer->snare     => ['0000100101100000'],
-                    $self->drummer->closed_hh => ['0000000000001010'],
+                    $self->drummer->crash1    => ['0000000000001010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
@@ -1171,7 +1171,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100101011010'],
                     $self->drummer->snare     => ['0010111001000000'],
-                    $self->drummer->closed_hh => ['0000000000001010'],
+                    $self->drummer->crash1    => ['0000000000001010'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
@@ -1181,10 +1181,62 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - D",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1000100101011010'],
                     $self->drummer->snare     => ['1010010011000000'],
-                    $self->drummer->closed_hh => ['0000000000001010'],
+                    $self->drummer->crash1    => ['0000000000001010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        76 => {
+            cat  => "Funk and Soul",
+            name => "HOOK AND SLING - A",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['1010000001000110'],
+                    $self->drummer->snare     => ['0000101100101000'],
+                    $self->drummer->crash1    => ['1011010011010010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        77 => {
+            cat  => "Funk and Soul",
+            name => "HOOK AND SLING - B",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
+                    $self->drummer->kick      => ['0000000000000010'],
+                    $self->drummer->snare     => ['1000110100110011'],
+                    $self->drummer->crash1    => ['1101001011001010'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        78 => {
+            cat  => "Funk and Soul",
+            name => "HOOK AND SLING - C",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1100000000001101'],
+                    $self->drummer->snare     => ['0010101100110010'],
+                    $self->drummer->crash1    => ['1010110101001100'],
+                    duration => $self->drummer->sixteenth,
+                ),
+            },
+        },
+
+        79 => {
+            cat  => "Funk and Soul",
+            name => "HOOK AND SLING - D",
+            groove => sub {
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                    $self->drummer->kick      => ['1100000000001101'],
+                    $self->drummer->snare     => ['0010101100110010'],
+                    $self->drummer->crash1    => ['1010110101001100'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
