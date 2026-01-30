@@ -1220,7 +1220,7 @@ sub _grooves {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - C",
             groove => sub {
-                $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
+                $self->drummer->sync_patterns(   # 123456789ABCDEF0
                     $self->drummer->kick      => ['1100000000001101'],
                     $self->drummer->snare     => ['0010101100110010'],
                     $self->drummer->crash1    => ['1010110101001100'],
@@ -1234,9 +1234,9 @@ sub _grooves {
             name => "HOOK AND SLING - D",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
-                    $self->drummer->kick      => ['1100000000001101'],
-                    $self->drummer->snare     => ['0010101100110010'],
-                    $self->drummer->crash1    => ['1010110101001100'],
+                    $self->drummer->kick      => ['1010010000010110'],
+                    $self->drummer->snare     => ['0000100100100001'],
+                    $self->drummer->crash1    => ['1010110100000000'],
                     duration => $self->drummer->sixteenth,
                 ),
             },
