@@ -149,7 +149,23 @@ sub search {
 }
 
 sub _grooves {
-    my ($self) = @_;
+    my ($self, %args) = @_;
+
+    $args{kick}    ||= $self->drummer->kick;
+    $args{snare}   ||= $self->drummer->snare;
+    $args{closed}  ||= $self->drummer->closed_hh;
+    $args{open}    ||= $self->drummer->open_hh;
+    $args{cowbell} ||= $self->drummer->cowbell;
+    $args{cymbal}  ||= $self->drummer->crash1;
+    $args{shaker}  ||= $self->drummer->maracas;
+    $args{clap}    ||= $self->drummer->clap;
+    $args{hi_tom}  ||= $self->drummer->hi_mid_tom;
+    $args{mid_tom} ||= $self->drummer->low_mid_tom;
+    $args{low_tom} ||= $self->drummer->low_tom;
+    $args{rimshot} ||= $self->drummer->side_stick;
+
+    $args{duration} ||= $self->drummer->sixteenth;
+
     my %grooves = (
 
         1 => {
@@ -157,9 +173,9 @@ sub _grooves {
             name => "ONE AND SEVEN & FIVE AND THIRTEEN",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000000000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000000000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -169,10 +185,10 @@ sub _grooves {
             name => "BOOTS N' CATS",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000010000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000010000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -182,9 +198,9 @@ sub _grooves {
             name => "TINY HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns( # 123456789ABCDEF0
-                    $self->drummer->kick    => ['1000100010001000'],
-                    $self->drummer->open_hh => ['0010001000100010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}    => ['1000100010001000'],
+                    $args{open} => ['0010001000100010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -194,9 +210,9 @@ sub _grooves {
             name => "GOOD TO GO",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1001001000100000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1001001000100000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -206,10 +222,10 @@ sub _grooves {
             name => "HIP HOP",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010001100000010'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010001100000010'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -219,10 +235,10 @@ sub _grooves {
             name => "STANDARD BREAK 1",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000000100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101011101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000000100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101011101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -232,10 +248,10 @@ sub _grooves {
             name => "STANDARD BREAK 2",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000000100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101110100010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000000100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101110100010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -245,10 +261,10 @@ sub _grooves {
             name => "ROLLING BREAK",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000100100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000100100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -258,11 +274,11 @@ sub _grooves {
             name => "THE UNKNOWN DRUMMER",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001001000100000'],
-                    $self->drummer->snare     => ['0100100100001000'],
-                    $self->drummer->closed_hh => ['0110110100000100'],
-                    $self->drummer->open_hh   => ['0000000010000010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001001000100000'],
+                    $args{snare}     => ['0100100100001000'],
+                    $args{closed} => ['0110110100000100'],
+                    $args{open}   => ['0000000010000010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -272,11 +288,11 @@ sub _grooves {
             name => "ROCK 1",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    $self->drummer->crash1    => ['1000000000000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    $args{cymbal}    => ['1000000000000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -286,10 +302,10 @@ sub _grooves {
             name => "ROCK 2",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -299,11 +315,11 @@ sub _grooves {
             name => "ROCK 3",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110100000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101000'],
-                    $self->drummer->open_hh   => ['0000000000000010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110100000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101000'],
+                    $args{open}   => ['0000000000000010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -313,11 +329,11 @@ sub _grooves {
             name => "ROCK 4",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110100000'],
-                    $self->drummer->snare     => ['0000100000001011'],
-                    $self->drummer->closed_hh => ['1010101010101000'],
-                    $self->drummer->open_hh   => ['0000000000000010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110100000'],
+                    $args{snare}     => ['0000100000001011'],
+                    $args{closed} => ['1010101010101000'],
+                    $args{open}   => ['0000000000000010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -327,9 +343,9 @@ sub _grooves {
             name => "ELECTRO 1 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000000000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000000000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -339,9 +355,9 @@ sub _grooves {
             name => "ELECTRO 1 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000100010'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000100010'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -353,9 +369,9 @@ sub _grooves {
             name => "ELECTRO 2 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000000000100100'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000000000100100'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -365,9 +381,9 @@ sub _grooves {
             name => "ELECTRO 3 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000010000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000010000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -377,9 +393,9 @@ sub _grooves {
             name => "ELECTRO 3 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000010100'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000010100'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -389,9 +405,9 @@ sub _grooves {
             name => "ELECTRO 4",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001000100100'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration  => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001000100100'],
+                    $args{snare} => ['0000100000001000'],
+                    duration  => $args{duration},
                 ),
             },
         },
@@ -401,10 +417,10 @@ sub _grooves {
             name => "SIBERIAN NIGHTS",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1011101110111011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -414,12 +430,12 @@ sub _grooves {
             name => "NEW WAVE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1101111111111111'],
-                    $self->drummer->open_hh   => ['0010000000000000'],
-                    $self->drummer->maracas   => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1101111111111111'],
+                    $args{open}   => ['0010000000000000'],
+                    $args{shaker}   => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -429,11 +445,11 @@ sub _grooves {
             name => "HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick    => ['1000100010001000'],
-                    $self->drummer->snare   => ['0000100000001000'],
-                    $self->drummer->open_hh => ['0010001000100010'],
-                    $self->drummer->crash1  => ['1000000000000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}    => ['1000100010001000'],
+                    $args{snare}   => ['0000100000001000'],
+                    $args{open} => ['0010001000100010'],
+                    $args{cymbal}  => ['1000000000000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -443,11 +459,11 @@ sub _grooves {
             name => "HOUSE 2",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1101101111011011'],
-                    $self->drummer->open_hh   => ['0010010000100100'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1101101111011011'],
+                    $args{open}   => ['0010010000100100'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -457,12 +473,12 @@ sub _grooves {
             name => "BRIT HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1101110111011101'],
-                    $self->drummer->open_hh   => ['0010001000100010'],
-                    $self->drummer->crash1    => ['0010001000100010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1101110111011101'],
+                    $args{open}   => ['0010001000100010'],
+                    $args{cymbal}    => ['0010001000100010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -472,12 +488,12 @@ sub _grooves {
             name => "FRENCH HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    $self->drummer->open_hh   => ['0101010101010101'],
-                    $self->drummer->maracas   => ['1110101111101011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    $args{open}   => ['0101010101010101'],
+                    $args{shaker}   => ['1110101111101011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -487,12 +503,12 @@ sub _grooves {
             name => "DIRTY HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010100010101001'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0000000000100001'],
-                    $self->drummer->open_hh   => ['0010000000000010'],
-                    $self->drummer->clap      => ['0010100010101000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010100010101001'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['0000000000100001'],
+                    $args{open}   => ['0010000000000010'],
+                    $args{clap}      => ['0010100010101000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -502,11 +518,11 @@ sub _grooves {
             name => "DEEP HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000100010001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0100000101000000'],
-                    $self->drummer->open_hh   => ['0010001000100010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000100010001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['0100000101000000'],
+                    $args{open}   => ['0010001000100010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -516,12 +532,12 @@ sub _grooves {
             name => "DEEPER HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(     # 123456789ABCDEF0
-                    $self->drummer->kick        => ['1000100010001000'],
-                    $self->drummer->clap        => ['0100000001000000'],
-                    $self->drummer->open_hh     => ['0010001000110010'],
-                    $self->drummer->maracas     => ['0001000010000000'],
-                    $self->drummer->low_mid_tom => ['0010000100100000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}        => ['1000100010001000'],
+                    $args{clap}        => ['0100000001000000'],
+                    $args{open}     => ['0010001000110010'],
+                    $args{shaker}     => ['0001000010000000'],
+                    $args{mid_tom} => ['0010000100100000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -531,12 +547,12 @@ sub _grooves {
             name => "SLOW DEEP HOUSE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000100010001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1000100010001000'],
-                    $self->drummer->open_hh   => ['0011001101100010'],
-                    $self->drummer->maracas   => ['1111111111111111'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000100010001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['1000100010001000'],
+                    $args{open}   => ['0011001101100010'],
+                    $args{shaker}   => ['1111111111111111'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -546,11 +562,11 @@ sub _grooves {
             name => "FOOTWORK - A",
             groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
-                    $self->drummer->kick       => ['1001001010010010'],
-                    $self->drummer->clap       => ['0000000000001000'],
-                    $self->drummer->closed_hh  => ['0010000000100000'],
-                    $self->drummer->side_stick => ['1111111111111111'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}       => ['1001001010010010'],
+                    $args{clap}       => ['0000000000001000'],
+                    $args{closed}  => ['0010000000100000'],
+                    $args{rimshot} => ['1111111111111111'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -560,11 +576,11 @@ sub _grooves {
             name => "FOOTWORK - B",
             groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
-                    $self->drummer->kick       => ['1001001010010010'],
-                    $self->drummer->clap       => ['0000000000001000'],
-                    $self->drummer->closed_hh  => ['0010001100100010'],
-                    $self->drummer->side_stick => ['1111111111111111'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}       => ['1001001010010010'],
+                    $args{clap}       => ['0000000000001000'],
+                    $args{closed}  => ['0010001100100010'],
+                    $args{rimshot} => ['1111111111111111'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -574,10 +590,10 @@ sub _grooves {
             name => "MIAMI BASS - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000100100'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000100100'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1011101110111011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -587,10 +603,10 @@ sub _grooves {
             name => "MIAMI BASS - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1011101110111011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -600,11 +616,11 @@ sub _grooves {
             name => "SALLY",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000100010'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    $self->drummer->low_tom   => ['1000001000100010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000100010'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    $args{low_tom}   => ['1000001000100010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -614,10 +630,10 @@ sub _grooves {
             name => "ROCK THE PLANET",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001001000000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111111'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001001000000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1011101110111111'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -627,9 +643,9 @@ sub _grooves {
             name => "HIP HOP 1 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000001100010010'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000001100010010'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -639,9 +655,9 @@ sub _grooves {
             name => "HIP HOP 1 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000000100010000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000000100010000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -651,9 +667,9 @@ sub _grooves {
             name => "HIP HOP 2 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000000111010101'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000000111010101'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -663,9 +679,9 @@ sub _grooves {
             name => "HIP HOP 2 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1000000110010000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1000000110010000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -675,9 +691,9 @@ sub _grooves {
             name => "HIP HOP 3 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1010000010100000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1010000010100000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -687,9 +703,9 @@ sub _grooves {
             name => "HIP HOP 3 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1010000011010000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1010000011010000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -699,9 +715,9 @@ sub _grooves {
             name => "HIP HOP 4 - A",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1001000101100001'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1001000101100001'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -711,9 +727,9 @@ sub _grooves {
             name => "HIP HOP 4 - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1010000111100000'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1010000111100000'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -723,9 +739,9 @@ sub _grooves {
             name => "HIP HOP 5",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1010000110100001'],
-                    $self->drummer->snare => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1010000110100001'],
+                    $args{snare} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -735,10 +751,10 @@ sub _grooves {
             name => "HIP HOP 6",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010000000110001'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010000000110001'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -748,10 +764,10 @@ sub _grooves {
             name => "HIP HOP 7",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000100100101'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000100100101'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -761,11 +777,11 @@ sub _grooves {
             name => "HIP HOP 8",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001000010110000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1101101111011011'],
-                    $self->drummer->open_hh   => ['0000010000000100'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001000010110000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1101101111011011'],
+                    $args{open}   => ['0000010000000100'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -775,10 +791,10 @@ sub _grooves {
             name => "TRAP - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000001000'],
-                    $self->drummer->snare     => ['0000000010000000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000001000'],
+                    $args{snare}     => ['0000000010000000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -788,10 +804,10 @@ sub _grooves {
             name => "TRAP - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['0010100000000000'],
-                    $self->drummer->snare     => ['0000000010000000'],
-                    $self->drummer->closed_hh => ['1110101010101110'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['0010100000000000'],
+                    $args{snare}     => ['0000000010000000'],
+                    $args{closed} => ['1110101010101110'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -801,12 +817,12 @@ sub _grooves {
             name => "PLANET ROCK - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111111'],
-                    $self->drummer->cowbell   => ['1010101101011010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['1011101110111111'],
+                    $args{cowbell}   => ['1010101101011010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -816,12 +832,12 @@ sub _grooves {
             name => "PLANET ROCK - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000100100'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1011101110111111'],
-                    $self->drummer->cowbell   => ['1010101101011010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000100100'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['1011101110111111'],
+                    $args{cowbell}   => ['1010101101011010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -831,11 +847,11 @@ sub _grooves {
             name => "INNA CLUB",
             groove => sub {
                 $self->drummer->sync_patterns( # 123456789ABCDEF0
-                    $self->drummer->kick    => ['0010000100100001'],
-                    $self->drummer->snare   => ['0000100000001000'],
-                    $self->drummer->clap    => ['0000100000001000'],
-                    $self->drummer->open_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}    => ['0010000100100001'],
+                    $args{snare}   => ['0000100000001000'],
+                    $args{clap}    => ['0000100000001000'],
+                    $args{open} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -845,10 +861,10 @@ sub _grooves {
             name => "ICE",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick    => ['1000001000100010'],
-                    $self->drummer->snare   => ['0000100000001000'],
-                    $self->drummer->maracas => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}    => ['1000001000100010'],
+                    $args{snare}   => ['0000100000001000'],
+                    $args{shaker} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -858,11 +874,11 @@ sub _grooves {
             name => "BACK TO CALI - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['0000101010001010'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['0000101010001010'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -872,12 +888,12 @@ sub _grooves {
             name => "BACK TO CALI - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001000100100'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['1000101010001000'],
-                    $self->drummer->closed_hh => ['1010101010100010'],
-                    $self->drummer->open_hh   => ['0000000000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001000100100'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['1000101010001000'],
+                    $args{closed} => ['1010101010100010'],
+                    $args{open}   => ['0000000000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -887,12 +903,12 @@ sub _grooves {
             name => "SNOOP STYLES",
             groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
-                    $self->drummer->kick       => ['1001001000010000'],
-                    $self->drummer->snare      => ['0000100000001000'],
-                    $self->drummer->clap       => ['0000100000001000'],
-                    $self->drummer->side_stick => ['0010010010010000'],
-                    $self->drummer->open_hh    => ['1001001000010000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}       => ['1001001000010000'],
+                    $args{snare}      => ['0000100000001000'],
+                    $args{clap}       => ['0000100000001000'],
+                    $args{rimshot} => ['0010010010010000'],
+                    $args{open}    => ['1001001000010000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -902,12 +918,12 @@ sub _grooves {
             name => "THE GROOVE - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001000100010010'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->maracas   => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    $self->drummer->open_hh   => ['0000000100000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001000100010010'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{shaker}   => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    $args{open}   => ['0000000100000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -917,15 +933,15 @@ sub _grooves {
             name => "THE GROOVE - B",
             groove => sub {
                 $self->drummer->sync_patterns(     # 123456789ABCDEF0
-                    $self->drummer->kick        => ['1001000100010010'],
-                    $self->drummer->snare       => ['0000100000001000'],
-                    $self->drummer->maracas     => ['0000100000001000'],
-                    $self->drummer->closed_hh   => ['1010101010000100'],
-                    $self->drummer->open_hh     => ['0000000100111010'],
-                    $self->drummer->hi_mid_tom  => ['0000000001100000'],
-                    $self->drummer->low_mid_tom => ['0000000000010100'],
-                    $self->drummer->low_tom     => ['0000000000000011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}        => ['1001000100010010'],
+                    $args{snare}       => ['0000100000001000'],
+                    $args{shaker}     => ['0000100000001000'],
+                    $args{closed}   => ['1010101010000100'],
+                    $args{open}     => ['0000000100111010'],
+                    $args{hi_tom}  => ['0000000001100000'],
+                    $args{mid_tom} => ['0000000000010100'],
+                    $args{low_tom}     => ['0000000000000011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -935,12 +951,12 @@ sub _grooves {
             name => "BOOM BAP",
             groove => sub {
                 $self->drummer->sync_patterns(     # 123456789ABCDEF0
-                    $self->drummer->kick        => ['1010010001000100'],
-                    $self->drummer->snare       => ['0010001000100010'],
-                    $self->drummer->clap        => ['0010001000100010'],
-                    $self->drummer->closed_hh   => ['1111111111111101'],
-                    $self->drummer->cowbell     => ['0000000010000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}        => ['1010010001000100'],
+                    $args{snare}       => ['0010001000100010'],
+                    $args{clap}        => ['0010001000100010'],
+                    $args{closed}   => ['1111111111111101'],
+                    $args{cowbell}     => ['0000000010000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -950,12 +966,12 @@ sub _grooves {
             name => "MOST WANTED - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000001011000001'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0010101010101010'],
-                    $self->drummer->crash1    => ['1000000000000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000001011000001'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['0010101010101010'],
+                    $args{cymbal}    => ['1000000000000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -965,12 +981,12 @@ sub _grooves {
             name => "MOST WANTED - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['0010001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->clap      => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0010101010101010'],
-                    $self->drummer->open_hh   => ['0010000000000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['0010001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{clap}      => ['0000100000001000'],
+                    $args{closed} => ['0010101010101010'],
+                    $args{open}   => ['0010000000000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -980,10 +996,10 @@ sub _grooves {
             name => "AMEN BREAK - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010000000110000'],
-                    $self->drummer->snare     => ['0000000101001001'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010000000110000'],
+                    $args{snare}     => ['0000000101001001'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -993,11 +1009,11 @@ sub _grooves {
             name => "AMEN BREAK - B",
             groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
-                    $self->drummer->kick       => ['1010000000110000'],
-                    $self->drummer->snare      => ['0000100101001001'],
-                    $self->drummer->side_stick => ['0000100000000000'],
-                    $self->drummer->closed_hh  => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}       => ['1010000000110000'],
+                    $args{snare}      => ['0000100101001001'],
+                    $args{rimshot} => ['0000100000000000'],
+                    $args{closed}  => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1007,11 +1023,11 @@ sub _grooves {
             name => "AMEN BREAK - C",
             groove => sub {
                 $self->drummer->sync_patterns(    # 123456789ABCDEF0
-                    $self->drummer->kick       => ['1010000000100000'],
-                    $self->drummer->snare      => ['0000100101001001'],
-                    $self->drummer->side_stick => ['0000000000000010'],
-                    $self->drummer->closed_hh  => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}       => ['1010000000100000'],
+                    $args{snare}      => ['0000100101001001'],
+                    $args{rimshot} => ['0000000000000010'],
+                    $args{closed}  => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1021,11 +1037,11 @@ sub _grooves {
             name => "AMEN BREAK - D",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010000000100000'],
-                    $self->drummer->snare     => ['0100100101000010'],
-                    $self->drummer->closed_hh => ['1010101010001010'],
-                    $self->drummer->crash1    => ['0000000000100000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010000000100000'],
+                    $args{snare}     => ['0100100101000010'],
+                    $args{closed} => ['1010101010001010'],
+                    $args{cymbal}    => ['0000000000100000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1035,11 +1051,11 @@ sub _grooves {
             name => "THE FUNKY DRUMMER",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010001000100100'],
-                    $self->drummer->snare     => ['0000100101011001'],
-                    $self->drummer->closed_hh => ['1111111011111011'],
-                    $self->drummer->open_hh   => ['0000000100000100'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010001000100100'],
+                    $args{snare}     => ['0000100101011001'],
+                    $args{closed} => ['1111111011111011'],
+                    $args{open}   => ['0000000100000100'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1049,11 +1065,11 @@ sub _grooves {
             name => "IMPEACH THE PRESIDENT",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110000010'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101110001010'],
-                    $self->drummer->open_hh   => ['0000000000100000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110000010'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101110001010'],
+                    $args{open}   => ['0000000000100000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1063,10 +1079,10 @@ sub _grooves {
             name => "WHEN THE LEVEE BREAKS",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1100000100110000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1100000100110000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1076,10 +1092,10 @@ sub _grooves {
             name => "IT'S A NEW DAY",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010000000110001'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010000000110001'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1089,10 +1105,10 @@ sub _grooves {
             name => "THE BIG BEAT",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001001010000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0000100000001000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001001010000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['0000100000001000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1102,12 +1118,12 @@ sub _grooves {
             name => "ASHLEY'S ROACHCLIP",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010001011000000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101010001010'],
-                    $self->drummer->open_hh   => ['0000000000100000'],
-                    $self->drummer->cowbell   => ['1010101010101010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010001011000000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101010001010'],
+                    $args{open}   => ['0000000000100000'],
+                    $args{cowbell}   => ['1010101010101010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1117,11 +1133,11 @@ sub _grooves {
             name => "PAPA WAS TOO",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000000110100001'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['0000100010101011'],
-                    $self->drummer->crash1    => ['0000100000000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000000110100001'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['0000100010101011'],
+                    $args{cymbal}    => ['0000100000000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1131,10 +1147,10 @@ sub _grooves {
             name => "SUPERSTITION",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000100010001000'],
-                    $self->drummer->snare     => ['0000100000001000'],
-                    $self->drummer->closed_hh => ['1010101111101011'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000100010001000'],
+                    $args{snare}     => ['0000100000001000'],
+                    $args{closed} => ['1010101111101011'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1144,10 +1160,10 @@ sub _grooves {
             name => "CISSY STRUT - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1001010001011010'],
-                    $self->drummer->snare     => ['0000100101100000'],
-                    $self->drummer->crash1    => ['0000000000001010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1001010001011010'],
+                    $args{snare}     => ['0000100101100000'],
+                    $args{cymbal}    => ['0000000000001010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1157,9 +1173,9 @@ sub _grooves {
             name => "CISSY STRUT - B",
             groove => sub {
                 $self->drummer->sync_patterns(#123456789ABCDEF0
-                    $self->drummer->kick  => ['1001000101011010'],
-                    $self->drummer->snare => ['0010011011000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}  => ['1001000101011010'],
+                    $args{snare} => ['0010011011000000'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1169,10 +1185,10 @@ sub _grooves {
             name => "CISSY STRUT - C",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000100101011010'],
-                    $self->drummer->snare     => ['0010111001000000'],
-                    $self->drummer->crash1    => ['0000000000001010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000100101011010'],
+                    $args{snare}     => ['0010111001000000'],
+                    $args{cymbal}    => ['0000000000001010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1182,10 +1198,10 @@ sub _grooves {
             name => "CISSY STRUT - D",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1000100101011010'],
-                    $self->drummer->snare     => ['1010010011000000'],
-                    $self->drummer->crash1    => ['0000000000001010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1000100101011010'],
+                    $args{snare}     => ['1010010011000000'],
+                    $args{cymbal}    => ['0000000000001010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1195,10 +1211,10 @@ sub _grooves {
             name => "HOOK AND SLING - A",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1010000001000110'],
-                    $self->drummer->snare     => ['0000101100101000'],
-                    $self->drummer->crash1    => ['1011010011010010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010000001000110'],
+                    $args{snare}     => ['0000101100101000'],
+                    $args{cymbal}    => ['1011010011010010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1208,10 +1224,10 @@ sub _grooves {
             name => "HOOK AND SLING - B",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['0000000000000010'],
-                    $self->drummer->snare     => ['1000110100110011'],
-                    $self->drummer->crash1    => ['1101001011001010'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['0000000000000010'],
+                    $args{snare}     => ['1000110100110011'],
+                    $args{cymbal}    => ['1101001011001010'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1221,10 +1237,10 @@ sub _grooves {
             name => "HOOK AND SLING - C",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0
-                    $self->drummer->kick      => ['1100000000001101'],
-                    $self->drummer->snare     => ['0010101100110010'],
-                    $self->drummer->crash1    => ['1010110101001100'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1100000000001101'],
+                    $args{snare}     => ['0010101100110010'],
+                    $args{cymbal}    => ['1010110101001100'],
+                    duration => $args{duration},
                 ),
             },
         },
@@ -1234,10 +1250,10 @@ sub _grooves {
             name => "HOOK AND SLING - D",
             groove => sub {
                 $self->drummer->sync_patterns(   # 123456789ABCDEF0 0000000000000000
-                    $self->drummer->kick      => ['1010010000010110'],
-                    $self->drummer->snare     => ['0000100100100001'],
-                    $self->drummer->crash1    => ['1010110100000000'],
-                    duration => $self->drummer->sixteenth,
+                    $args{kick}      => ['1010010000010110'],
+                    $args{snare}     => ['0000100100100001'],
+                    $args{cymbal}    => ['1010110100000000'],
+                    duration => $args{duration},
                 ),
             },
         },
