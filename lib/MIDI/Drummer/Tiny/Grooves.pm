@@ -48,7 +48,8 @@ A groove is a numbered and named hash reference, with the following
 structure:
 
   { 1 => {
-      name => "ONE AND SEVEN & FIVE AND THIRTEEN",
+      cat    => "Basic Patterns",
+      name   => "ONE AND SEVEN & FIVE AND THIRTEEN",
       groove => sub {
         $self->drummer->sync_patterns(
         $self->kick  => ['1000001000000000'],
