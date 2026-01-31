@@ -76,6 +76,56 @@ has drummer => (
   default => sub { MIDI::Drummer::Tiny->new },
 );
 
+
+has kick => (
+    is      => 'rw',
+    default => 99,
+);
+has rimshot => (
+    is      => 'rw',
+    default => 99,
+);
+has snare => (
+    is      => 'rw',
+    default => 99,
+);
+has clap => (
+    is      => 'rw',
+    default => 99,
+);
+has cowbell => (
+    is      => 'rw',
+    default => 99,
+);
+has shaker => (
+    is      => 'rw',
+    default => 99,
+);
+has closed => (
+    is      => 'rw',
+    default => 99,
+);
+has open => (
+    is      => 'rw',
+    default => 99,
+);
+has cymbals => (
+    is      => 'rw',
+    default => 99,
+);
+has low_tom => (
+    is      => 'rw',
+    default => 99,
+);
+has mid_tom => (
+    is      => 'rw',
+    default => 99,
+);
+has hi_tom => (
+    is      => 'rw',
+    default => 99,
+);
+
 =head1 METHODS
 
 =head2 new
