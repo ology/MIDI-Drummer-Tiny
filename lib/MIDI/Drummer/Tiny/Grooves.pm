@@ -9,7 +9,7 @@ use namespace::clean;
 
   use MIDI::Drummer::Tiny;
   use MIDI::Drummer::Tiny::Grooves;
-  use MIDI::Drummer::Tiny::Grooves qw(:house :rock); <- TODO
+  # TODO use MIDI::Drummer::Tiny::Grooves qw(:house :rock);
 
   my $drummer = MIDI::Drummer::Tiny->new(
     file => "grooves.mid",
