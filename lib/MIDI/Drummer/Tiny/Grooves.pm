@@ -146,7 +146,7 @@ sub search {
             }
         }
     }
-    return $self, $found;
+    return $found;
 }
 
 sub _grooves {
