@@ -126,7 +126,6 @@ B<name> strings as a hash reference.
 
 sub search {
     my ($self, $set, %args) = @_;
-    print "$self, $set, %args\n";
     unless (keys %$set) {
         $set = $self->all_grooves;
     }
