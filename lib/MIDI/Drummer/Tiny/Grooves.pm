@@ -77,10 +77,30 @@ has drummer => (
   default => sub { MIDI::Drummer::Tiny->new },
 );
 
+=head2 duration
+
+  $grooves->duration($duration);
+  $duration = $grooves->duration;
+
+The "resolution" duration that is given to the
+L<MIDI::Drummer::Tiny/sync_patterns> method.
+
+=cut
+
 has duration => (
     is => 'lazy',
 );
 sub _build_duration { shift->drummer->sixteenth }
+
+=head2 kick, rimshot, snare, clap, cowbell, shaker, closed, open, cymbals, hi_tom, mid_tom, low_tom
+
+  $grooves->kick(36);
+  $kick = $grooves->kick;
+
+Each is initialized to patches of the L<MIDI::Drummer::Tiny> object
+that is given to, or created by the constructor.
+
+=cut
 
 for my $patch (qw(
     kick
