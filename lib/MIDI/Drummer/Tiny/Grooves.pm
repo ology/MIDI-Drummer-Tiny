@@ -63,6 +63,7 @@ structure:
 
 =head2 drummer
 
+  $grooves->drummer($drummer);
   $drummer = $grooves->drummer;
 
 The L<MIDI::Drummer::Tiny> object. If not given in the constructor, a
