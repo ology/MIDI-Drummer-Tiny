@@ -13,7 +13,10 @@ use namespace::clean;
 
   my $drummer = MIDI::Drummer::Tiny->new;
 
-  my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $drummer);
+  my $grooves = MIDI::Drummer::Tiny::Grooves->new(
+    drummer => $drummer,
+    file    => "grooves.mid",
+  );
   
   my $all = $grooves->all_grooves;
 
@@ -34,7 +37,7 @@ use namespace::clean;
 
   $grooves->drummer->write;
   # then:
-  > timidity MIDI-Drummer.mid
+  > timidity grooves.mid
 
 =head1 DESCRIPTION
 
