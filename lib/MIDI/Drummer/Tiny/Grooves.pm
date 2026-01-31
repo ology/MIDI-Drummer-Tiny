@@ -76,7 +76,10 @@ has drummer => (
   default => sub { MIDI::Drummer::Tiny->new },
 );
 
-
+has duration => (
+    is      => 'rw',
+    default => 'sn', # sixteenth-note
+);
 has kick => (
     is      => 'rw',
     default => 35,
@@ -209,20 +212,6 @@ sub search {
 
 sub _grooves {
     my ($self) = @_;
-
-    $args{kick}    ||= $self->kick;
-    $args{snare}   ||= $self->snare;
-    $args{clap}    ||= $self->clap;
-    $args{closed}  ||= $self->closed_hh;
-    $args{open}    ||= $self->open_hh;
-    $args{cowbell} ||= $self->cowbell;
-    $args{cymbal}  ||= $self->cymbal;
-    $args{shaker}  ||= $self->shaker;
-    $args{hi_tom}  ||= $self->hi_tom;
-    $args{mid_tom} ||= $self->mid_tom;
-    $args{low_tom} ||= $self->low_tom;
-    $args{rimshot} ||= $self->rimshot;
-    $args{duration} ||= $self->duration;
 
     my %grooves = (
 
