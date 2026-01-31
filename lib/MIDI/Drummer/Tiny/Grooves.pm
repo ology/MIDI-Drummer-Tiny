@@ -49,9 +49,9 @@ structure:
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
       groove => sub {
         $self->drummer->sync_patterns(
-        $self->drummer->kick  => ['1000001000000000'],
-        $self->drummer->snare => ['0000100000001000'],
-        duration => $self->drummer->sixteenth,
+        $args{kick}  => ['1000001000000000'],
+        $args{snare} => ['0000100000001000'],
+        duration     => $args{duration},
       ),
     },
   },
