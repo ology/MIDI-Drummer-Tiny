@@ -5,8 +5,8 @@ use warnings;
 use MIDI::Drummer::Tiny ();
 use MIDI::Drummer::Tiny::Grooves ();
 
-my $cat  = shift // 'House';
-my $name = shift // 'DEEP';
+my $cat  = shift // 'house';
+my $name = shift // 'deep';
 
 my $d = MIDI::Drummer::Tiny->new(
     kick  => 36,
