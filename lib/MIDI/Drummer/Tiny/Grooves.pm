@@ -134,8 +134,8 @@ sub _build_closed  { shift->drummer->closed_hh }
 sub _build_open    { shift->drummer->open_hh }
 sub _build_cymbals { shift->drummer->crash1 }
 sub _build_hi_tom  { shift->drummer->hi_mid_tom }
-sub _build_mid_tom { shift->drummer->mid_tom }
-sub _build_low_tom { shift->drummer->low_mid_tom }
+sub _build_mid_tom { shift->drummer->low_mid_tom }
+sub _build_low_tom { shift->drummer->low_tom }
 
 =head1 METHODS
 
