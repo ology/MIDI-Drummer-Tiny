@@ -1337,7 +1337,7 @@ sub _grooves {
                     $self->hi_tom  => ['0000000000000000'],
                     $self->mid_tom => ['0000000000000000'],
                     $self->low_tom => ['0000000000000000'],
-                    duration      => $self->duration,
+                    duration       => $self->duration,
                 ),
             },
         },
