@@ -955,7 +955,7 @@ sub _grooves {
             },
         },
 
-        58 => {
+        59 => {
             cat  => "Hip Hop",
             name => "BOOM BAP",
             groove => sub {
@@ -970,7 +970,7 @@ sub _grooves {
             },
         },
 
-        59 => {
+        60 => {
             cat  => "Hip Hop",
             name => "MOST WANTED - A",
             groove => sub {
@@ -985,7 +985,7 @@ sub _grooves {
             },
         },
 
-        60 => {
+        61 => {
             cat  => "Hip Hop",
             name => "MOST WANTED - B",
             groove => sub {
@@ -1000,7 +1000,7 @@ sub _grooves {
             },
         },
 
-        61 => {
+        62 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - A",
             groove => sub {
@@ -1013,7 +1013,7 @@ sub _grooves {
             },
         },
 
-        62 => {
+        63 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - B",
             groove => sub {
@@ -1027,7 +1027,7 @@ sub _grooves {
             },
         },
 
-        63 => {
+        64 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - C",
             groove => sub {
@@ -1041,7 +1041,7 @@ sub _grooves {
             },
         },
 
-        64 => {
+        65 => {
             cat  => "Funk and Soul",
             name => "AMEN BREAK - D",
             groove => sub {
@@ -1055,7 +1055,7 @@ sub _grooves {
             },
         },
 
-        65 => {
+        66 => {
             cat  => "Funk and Soul",
             name => "THE FUNKY DRUMMER",
             groove => sub {
@@ -1069,7 +1069,7 @@ sub _grooves {
             },
         },
 
-        66 => {
+        67 => {
             cat  => "Funk and Soul",
             name => "IMPEACH THE PRESIDENT",
             groove => sub {
@@ -1083,7 +1083,7 @@ sub _grooves {
             },
         },
 
-        67 => {
+        68 => {
             cat  => "Funk and Soul",
             name => "WHEN THE LEVEE BREAKS",
             groove => sub {
@@ -1096,7 +1096,7 @@ sub _grooves {
             },
         },
 
-        68 => {
+        69 => {
             cat  => "Funk and Soul",
             name => "IT'S A NEW DAY",
             groove => sub {
@@ -1109,7 +1109,7 @@ sub _grooves {
             },
         },
 
-        69 => {
+        70 => {
             cat  => "Funk and Soul",
             name => "THE BIG BEAT",
             groove => sub {
@@ -1122,7 +1122,7 @@ sub _grooves {
             },
         },
 
-        70 => {
+        71 => {
             cat  => "Funk and Soul",
             name => "ASHLEY'S ROACHCLIP",
             groove => sub {
@@ -1137,7 +1137,7 @@ sub _grooves {
             },
         },
 
-        71 => {
+        72 => {
             cat  => "Funk and Soul",
             name => "PAPA WAS TOO",
             groove => sub {
@@ -1151,7 +1151,7 @@ sub _grooves {
             },
         },
 
-        72 => {
+        73 => {
             cat  => "Funk and Soul",
             name => "SUPERSTITION",
             groove => sub {
@@ -1164,7 +1164,7 @@ sub _grooves {
             },
         },
 
-        73 => {
+        74 => {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - A",
             groove => sub {
@@ -1177,7 +1177,7 @@ sub _grooves {
             },
         },
 
-        74 => {
+        75 => {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - B",
             groove => sub {
@@ -1189,7 +1189,7 @@ sub _grooves {
             },
         },
 
-        75 => {
+        76 => {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - C",
             groove => sub {
@@ -1202,7 +1202,7 @@ sub _grooves {
             },
         },
 
-        76 => {
+        77 => {
             cat  => "Funk and Soul",
             name => "CISSY STRUT - D",
             groove => sub {
@@ -1215,7 +1215,7 @@ sub _grooves {
             },
         },
 
-        77 => {
+        78 => {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - A",
             groove => sub {
@@ -1228,7 +1228,7 @@ sub _grooves {
             },
         },
 
-        78 => {
+        79 => {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - B",
             groove => sub {
@@ -1241,7 +1241,7 @@ sub _grooves {
             },
         },
 
-        79 => {
+        80 => {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - C",
             groove => sub {
@@ -1254,7 +1254,7 @@ sub _grooves {
             },
         },
 
-        80 => {
+        81 => {
             cat  => "Funk and Soul",
             name => "HOOK AND SLING - D",
             groove => sub {
