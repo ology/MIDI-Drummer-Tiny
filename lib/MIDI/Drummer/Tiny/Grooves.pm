@@ -33,6 +33,8 @@ use namespace::clean;
     $groove->{groove}->();
   }
 
+  $drummer->write;
+
 =head1 DESCRIPTION
 
 Return the common grooves, as listed in the "Pocket Operations", that
