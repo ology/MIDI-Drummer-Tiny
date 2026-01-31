@@ -32,7 +32,7 @@ use namespace::clean;
     $groove->{groove}->();
   }
 
-  $drummer->write;
+  $grooves->drummer->write;
   # then:
   > timidity MIDI-Drummer.mid
 
