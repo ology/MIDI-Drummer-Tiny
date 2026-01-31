@@ -11,11 +11,13 @@ use namespace::clean;
   use MIDI::Drummer::Tiny::Grooves;
   use MIDI::Drummer::Tiny::Grooves qw(:house :rock); <- TODO
 
-  my $drummer = MIDI::Drummer::Tiny->new;
+  my $drummer = MIDI::Drummer::Tiny->new(
+    file => "grooves.mid",
+    kick => 36,
+  );
 
   my $grooves = MIDI::Drummer::Tiny::Grooves->new(
     drummer => $drummer,
-    file    => "grooves.mid",
   );
   
   my $all = $grooves->all_grooves;
