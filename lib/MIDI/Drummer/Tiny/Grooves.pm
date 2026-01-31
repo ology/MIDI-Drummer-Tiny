@@ -79,51 +79,51 @@ has drummer => (
 
 has kick => (
     is      => 'rw',
-    default => 99,
+    default => 35,
 );
 has rimshot => (
     is      => 'rw',
-    default => 99,
+    default => 37,
 );
 has snare => (
     is      => 'rw',
-    default => 99,
+    default => 38,
 );
 has clap => (
     is      => 'rw',
-    default => 99,
+    default => 39,
 );
 has cowbell => (
     is      => 'rw',
-    default => 99,
+    default => 56,
 );
 has shaker => (
     is      => 'rw',
-    default => 99,
+    default => 70,
 );
 has closed => (
     is      => 'rw',
-    default => 99,
+    default => 42,
 );
 has open => (
     is      => 'rw',
-    default => 99,
+    default => 46,
 );
 has cymbals => (
     is      => 'rw',
-    default => 99,
+    default => 49,
 );
 has low_tom => (
     is      => 'rw',
-    default => 99,
+    default => 45,
 );
 has mid_tom => (
     is      => 'rw',
-    default => 99,
+    default => 47,
 );
 has hi_tom => (
     is      => 'rw',
-    default => 99,
+    default => 48,
 );
 
 =head1 METHODS
