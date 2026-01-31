@@ -85,20 +85,24 @@ Return a new C<MIDI::Drummer::Tiny::Grooves> object.
 
   $groove = $grooves->get_groove($groove_number);
   $groove = $grooves->get_groove; # random groove
+  $groove = $grooves->get_groove(0, $set); # random groove of set
+  $groove = $grooves->get_groove($groove_number, $set); # numbered groove of set
 
-Return a numbered or random groove from the collection of known
-grooves.
+Return a numbered or random groove from either the given B<set> or
+all known grooves.
 
 =cut
 
 sub get_groove {
-    my ($self, $groove_number) = @_;
-    my $all = $self->all_grooves;
+    my ($self, $groove_number, $set) = @_;
+    unless (keys %$set) {
+        $set = $self->all_grooves;
+    }
     unless ($groove_number) {
-        my @keys = keys %$all;
+        my @keys = keys %$set;
         $groove_number = $keys[ int rand @keys ];
     }
-    return $all->{$groove_number};
+    return $set->{$groove_number};
 }
 
 =head2 all_grooves
