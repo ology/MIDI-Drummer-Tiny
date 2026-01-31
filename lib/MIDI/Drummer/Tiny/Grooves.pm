@@ -78,57 +78,41 @@ has drummer => (
 );
 
 has duration => (
-    is      => 'rw',
-    default => 'sn', # sixteenth-note
+    is => 'lazy',
 );
-has kick => (
-    is      => 'rw',
-    default => 35,
-);
-has rimshot => (
-    is      => 'rw',
-    default => 37,
-);
-has snare => (
-    is      => 'rw',
-    default => 38,
-);
-has clap => (
-    is      => 'rw',
-    default => 39,
-);
-has cowbell => (
-    is      => 'rw',
-    default => 56,
-);
-has shaker => (
-    is      => 'rw',
-    default => 70,
-);
-has closed => (
-    is      => 'rw',
-    default => 42,
-);
-has open => (
-    is      => 'rw',
-    default => 46,
-);
-has cymbals => (
-    is      => 'rw',
-    default => 49,
-);
-has low_tom => (
-    is      => 'rw',
-    default => 45,
-);
-has mid_tom => (
-    is      => 'rw',
-    default => 47,
-);
-has hi_tom => (
-    is      => 'rw',
-    default => 48,
-);
+sub _build_duration { shift->drummer->sixteenth }
+
+for my $patch (qw(
+    kick
+    rimshot
+    snare
+    clap
+    cowbell
+    shaker
+    closed
+    open
+    cymbals
+    hi_tom
+    mid_tom
+    low_tom
+)) {
+    has $patch => (
+        is      => 'lazy',
+        builder => '_build_' . $patch,
+    );
+}
+sub _build_kick    { shift->drummer->kick }
+sub _build_rimshot { shift->drummer->side_stick }
+sub _build_snare   { shift->drummer->snare }
+sub _build_clap    { shift->drummer->clap }
+sub _build_cowbell { shift->drummer->cowbell }
+sub _build_shaker  { shift->drummer->maracas }
+sub _build_closed  { shift->drummer->closed_hh }
+sub _build_open    { shift->drummer->open_hh }
+sub _build_cymbals { shift->drummer->crash1 }
+sub _build_hi_tom  { shift->drummer->hi_mid_tom }
+sub _build_mid_tom { shift->drummer->mid_tom }
+sub _build_low_tom { shift->drummer->low_mid_tom }
 
 =head1 METHODS
 
