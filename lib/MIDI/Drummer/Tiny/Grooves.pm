@@ -1214,7 +1214,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(
                     $args{kick}   => ['1010000001000110'],
                     $args{snare}  => ['0000101100101000'],
-                    $args{cymbal} => ['1011010011010010'],
+                    $args{closed} => ['1011010011010010'],
                     duration => $args{duration},
                 ),
             },
@@ -1227,7 +1227,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(
                     $args{kick}   => ['0000000000000010'],
                     $args{snare}  => ['1000110100110011'],
-                    $args{cymbal} => ['1101001011001010'],
+                    $args{closed} => ['1101001011001010'],
                     duration => $args{duration},
                 ),
             },
@@ -1240,7 +1240,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(
                     $args{kick}   => ['1100000000001101'],
                     $args{snare}  => ['0010101100110010'],
-                    $args{cymbal} => ['1010110101001100'],
+                    $args{closed} => ['1010110101001100'],
                     duration => $args{duration},
                 ),
             },
@@ -1253,7 +1253,7 @@ sub _grooves {
                 $self->drummer->sync_patterns(# 123456789ABCDEF0 0000000000000000
                     $args{kick}   => ['1010010000010110'],
                     $args{snare}  => ['0000100100100001'],
-                    $args{cymbal} => ['1010110100000000'],
+                    $args{closed} => ['1010110100000000'],
                     duration      => $args{duration},
                 ),
             },
