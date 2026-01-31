@@ -17,8 +17,8 @@ my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $d);
 my $set = {};
 # $set = $grooves->all_grooves;
 # $set = $grooves->search($set, cat => $cat, name => $name); # boolean or
-$set = $grooves->search($set, cat => $cat) if $cat;          # boolean and
-$set = $grooves->search($set, name => $name) if $name;       # "
+$set = $grooves->search($set, { cat => $cat }) if $cat;     # boolean and
+$set = $grooves->search($set, { name => $name }) if $name;  # "
 
 for my $n (sort keys %$set) {
     my $groove = $grooves->get_groove($n, $set);
