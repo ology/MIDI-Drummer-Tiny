@@ -34,6 +34,8 @@ use namespace::clean;
   }
 
   $drummer->write;
+  # then:
+  > timidity MIDI-Drummer.mid
 
 =head1 DESCRIPTION
 
