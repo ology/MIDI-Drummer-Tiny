@@ -133,7 +133,7 @@ sub search {
     my $found = {};
     if ($args{cat}) {
         my $string = lc $args{cat};
-        for my $k (sort keys %$set) {
+        for my $k (keys %$set) {
             if (lc($set->{$k}{cat}) =~ /$string/) {
                 $found->{$k} = $set->{$k};
             }
@@ -141,7 +141,7 @@ sub search {
     }
     if ($args{name}) {
         my $string = lc $args{name};
-        for my $k (sort keys %$set) {
+        for my $k (keys %$set) {
             if (lc($set->{$k}{name}) =~ /$string/) {
                 $found->{$k} = $set->{$k};
             }
