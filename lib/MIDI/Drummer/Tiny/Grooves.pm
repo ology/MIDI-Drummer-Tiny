@@ -24,7 +24,6 @@ use namespace::clean;
   say $groove->{name};
   $groove->{groove}->() for 1 .. 4; # play the groove 4 times!
 
-  # play grooves
   my $set = $grooves->search({}, cat => 'house');
   $set = $grooves->search($set, name => 'deep');
   my @nums = keys %$set;
