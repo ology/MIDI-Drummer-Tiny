@@ -14,9 +14,10 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $d);
 
-# my $set = $grooves->all_grooves;
-my $set = $grooves->search({}, cat => $cat);
-$set = $grooves->search($set, name => $name);
+my $set = {};
+# $set = $grooves->all_grooves;
+$set = $grooves->search($set, cat => $cat) if $cat;
+$set = $grooves->search($set, name => $name) if $name;
 
 for my $n (sort keys %$set) {
     my $groove = $grooves->get_groove($n);
