@@ -21,7 +21,7 @@ use namespace::clean;
   $groove = $grooves->get_groove(42); # numbered groove
   say $groove->{cat};
   say $groove->{name};
-  $groove->{groove}->() for 1 .. 4; # play the groove 4 times!
+  $groove->{groove}->() for 1 .. 4; # add to score
 
   my $set = $grooves->search({}, { cat => 'house' });
   $set = $grooves->search($set, { name => 'deep' });
