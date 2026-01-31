@@ -97,6 +97,8 @@ sub _build_duration { shift->drummer->sixteenth }
   $grooves->kick(36);
   $kick = $grooves->kick;
 
+The patches that are used by the grooves.
+
 Each is initialized to a corresponding patch of the
 L<MIDI::Drummer::Tiny> object that is given to, or created by the
 constructor.
