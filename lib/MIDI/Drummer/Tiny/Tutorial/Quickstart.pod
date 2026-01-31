@@ -108,18 +108,7 @@ This beat is extra-cheesy.
 
 =head1 And Finally...
 
-Either play the score with the built-in
-L<timidity++|https://timidity.sourceforge.net/|>
-functionality, plus a defined C<soundfont>:
-
-  my $d = MIDI::Drummer::Tiny->new(
-    # ...,
-    soundfont => '/you/soundfonts/TR808.sf2',
-  );
-  # ...
-  $d->play_with_timidity;
-
-Or write-out the score to a MIDI file:
+Write-out the score to a MIDI file:
 
   my $d = MIDI::Drummer::Tiny->new(
     # ...,
@@ -133,8 +122,7 @@ the soundfont to be used):
 
   > timidity -c ~/timidity.cfg -Od drums.mid
 
-You can also use the excellent, cross platform program, L<VLC|https://www.videolan.org/vlc/|>.
-
-You can also convert the MIDI file into MP3, or whatever format you like.
+You can also use the excellent fludisynth or
+L<VLC|https://www.videolan.org/vlc/|> programs.
 
 =cut

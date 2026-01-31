@@ -69,7 +69,6 @@ $d->add_fill(
 #       qb() function defined below
 
 $d->write;
-# $d->play_with_fluidsynth;
 
 # creates a fill that can have individual instruments overridden
 # with a code reference

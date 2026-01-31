@@ -11,20 +11,17 @@ use List::Util 1.26 qw(sum0);
 use Moo;
 use experimental qw(signatures);
 use Math::Bezier ();
-use MIDI::Util   qw(
+use MIDI::Util qw(
     dura_size
     reverse_dump
     set_time_signature
-    timidity_conf
-    play_timidity
-    play_fluidsynth
     ticks
 );
-use Music::Duration        ();
+use Music::Duration ();
 use Music::RhythmSet::Util qw(upsize);
 
 use MIDI::Drummer::Tiny::Types qw(:all);
-use Types::Standard            qw(InstanceOf);
+use Types::Standard qw(InstanceOf);
 
 use Data::Dumper::Compact qw(ddc);
 use namespace::clean;
@@ -86,13 +83,7 @@ use constant STRAIGHT => 50;    # Swing percent
   $d->set_bpm(200); # handy for tempo changes
   $d->set_channel;  # reset back to 9 if ever changed
 
-  $d->timidity_cfg('timidity-drummer.cfg');
-
   $d->write;
-  # OR:
-  $d->play_with_timidity;
-  # OR:
-  $d->play_with_fluidsynth;
 
 =head1 DESCRIPTION
 
@@ -1382,63 +1373,6 @@ the file name.
 
 sub write ($self) {    ## no critic (Subroutines::ProhibitBuiltinHomonyms)
     return $self->score->write_score( $self->file );
-}
-
-=method timidity_cfg
-
-  $timidity_conf = $d->timidity_cfg;
-  $d->timidity_cfg($config_file);
-
-Return a timidity.cfg paragraph to use a defined B<soundfont>
-attribute. If a B<config_file> is given, the timidity configuration is
-written to that file.
-
-=cut
-
-sub timidity_cfg {
-    my ($self, $config) = @_;
-    croak 'No soundfont defined' unless $self->soundfont;
-    my $cfg = timidity_conf( $self->soundfont, $config );
-    return $cfg;
-}
-
-=method play_with_timidity
-
-  $d->play_with_timidity;
-  $d->play_with_timidity($config_file);
-
-Play the score with C<timidity>.
-
-If there is a B<soundfont> attribute, either the given B<config_file>
-or C<timidity-midi-util.cfg> is used for the timidity configuration.
-If a soundfont is not defined, a timidity configuration file is not
-rendered.
-
-See L<MIDI::Util/play_timidity> for more details.
-
-=cut
-
-sub play_with_timidity {
-    my ($self, $config) = @_;
-    return play_timidity( $self->score, $self->file,
-        $self->soundfont, $config );
-}
-
-=method play_with_fluidsynth
-
-  $d->play_with_fluidsynth;
-  $d->play_with_fluidsynth(\@config);
-
-Play the score with C<fluidsynth>.
-
-See L<MIDI::Util/play_fluidsynth> for more details.
-
-=cut
-
-sub play_with_fluidsynth {
-    my ($self, $config) = @_;
-    return play_fluidsynth( $self->score, $self->file,
-        $self->soundfont, $config );
 }
 
 # lifted from https://www.perlmonks.org/?node_id=56906

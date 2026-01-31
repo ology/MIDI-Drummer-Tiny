@@ -45,6 +45,4 @@ for my $i (1 .. $d->bars) {
     }
 }
 
-# $d->write;
-$d->play_with_timidity;
-# $d->play_with_fluidsynth;
+$d->write;

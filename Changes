@@ -3,6 +3,7 @@ Revision history for MIDI-Drummer
 {{$NEXT}}
     - Add the Grooves module and grooves.pl example program.
     - Improve documentation.
+    - Removed the ->play_with_* methods.
 
 0.6012 2025-08-28 17:04:54
     - Make the file attribute read-write.
