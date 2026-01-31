@@ -24,11 +24,12 @@ use namespace::clean;
   say $groove->{name};
   $groove->{groove}->() for 1 .. 4; # play the groove 4 times!
 
-  # play 4 random rock grooves
-  my $rock = $grooves->search(cat => 'rock');
-  my @nums = keys %$rock;
+  # play grooves
+  my $set = $grooves->search({}, cat => 'house');
+  $set = $grooves->search($set, name => 'deep');
+  my @nums = keys %$set;
   for (1 .. 4) {
-    $groove = $rock->{ $nums[ rand @nums ] };
+    $groove = $set->{ $nums[ rand @nums ] };
     say $groove->{name};
     $groove->{groove}->();
   }
@@ -111,41 +112,43 @@ Return all the known grooves as a hash reference.
 
 sub all_grooves {
     my ($self) = @_;
-    return $self->_grooves;
+    return $self->_grooves();
 }
 
 =head2 search
 
-  $found = $grooves->search(cat => $x, name => $y, drummer => $drummer);
+  $set = $grooves->search({}, cat => $x, name => $y); # search all grooves
+  $set = $grooves->search($set, cat => $x, name => $y); # search the subset
 
 Return the found grooves with names matching the given B<cat> or
 B<name> strings as a hash reference.
 
-The B<drummer> object is required.
-
 =cut
 
 sub search {
-    my ($self, %args) = @_;
-    my $all = $self->all_grooves;
+    my ($self, $set, %args) = @_;
+    print "$self, $set, %args\n";
+    unless (keys %$set) {
+        $set = $self->all_grooves;
+    }
     my $found = {};
     if ($args{cat}) {
         my $string = lc $args{cat};
-        for my $k (keys %$all) {
-            if (lc($all->{$k}{cat}) =~ /$string/) {
-                $found->{$k} = $all->{$k};
+        for my $k (keys %$set) {
+            if (lc($set->{$k}{cat}) =~ /$string/) {
+                $found->{$k} = $set->{$k};
             }
         }
     }
     if ($args{name}) {
         my $string = lc $args{name};
-        for my $k (keys %$all) {
-            if (lc($all->{$k}{name}) =~ /$string/) {
-                $found->{$k} = $all->{$k};
+        for my $k (keys %$set) {
+            if (lc($set->{$k}{name}) =~ /$string/) {
+                $found->{$k} = $set->{$k};
             }
         }
     }
-    return $found;
+    return $self, $found;
 }
 
 sub _grooves {

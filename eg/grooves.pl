@@ -5,8 +5,8 @@ use warnings;
 use MIDI::Drummer::Tiny ();
 use MIDI::Drummer::Tiny::Grooves ();
 
-my $cat  = shift // 'rock';
-my $name = shift // '';
+my $cat  = shift // 'House';
+my $name = shift // 'DEEP';
 
 my $d = MIDI::Drummer::Tiny->new(
     kick  => 36,
@@ -14,10 +14,11 @@ my $d = MIDI::Drummer::Tiny->new(
 );
 my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $d);
 
-# my $all = $grooves->all_grooves;
-my $all = $grooves->search(cat => $cat, name => $name);
+# my $set = $grooves->all_grooves;
+my $set = $grooves->search({}, cat => $cat);
+$set = $grooves->search($set, name => $name);
 
-for my $n (keys %$all) {
+for my $n (sort keys %$set) {
     my $groove = $grooves->get_groove($n);
     print $groove->{name}, "\n";
     $groove->{groove}->() for 1 .. 4;
