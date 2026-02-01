@@ -7,8 +7,8 @@ use namespace::clean;
 
 =head1 SYNOPSIS
 
-  use MIDI::Drummer::Tiny;
-  use MIDI::Drummer::Tiny::Grooves;
+  use MIDI::Drummer::Tiny ();
+  use MIDI::Drummer::Tiny::Grooves ();
   # TODO use MIDI::Drummer::Tiny::Grooves qw(:house :rock);
 
   my $drummer = MIDI::Drummer::Tiny->new(
