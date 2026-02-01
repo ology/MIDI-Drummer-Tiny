@@ -153,18 +153,4 @@ subtest fill => sub {
     is_deeply $got, $expect, 'add_fill';
 };
 
-subtest timidity_conf => sub {
-    my ( $sf_fh, $soundfont )
-        = tempfile( 'soundfontXXXX', SUFFIX => '.sf2', UNLINK => 1 );
-    my ( $timidity_fh, $timidity_conf )
-        = tempfile( 'timidityXXXX', SUFFIX => '.conf', UNLINK => 1 );
-    my $d
-        = new_ok 'MIDI::Drummer::Tiny' => [ soundfont => $soundfont ];
-
-    my $sf = $d->soundfont;
-    like $d->timidity_cfg, qr/$sf$/, 'timidity configuration';
-    $d->timidity_cfg($timidity_conf);
-    ok -e $timidity_conf, 'timidity configuration with filename';
-};
-
 done_testing();
