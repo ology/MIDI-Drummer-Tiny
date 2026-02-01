@@ -39,7 +39,7 @@ use namespace::clean;
 
   $grooves->drummer->write;
   # then:
-  > timidity grooves.mid
+  # > timidity grooves.mid
 
 =head1 DESCRIPTION
 
