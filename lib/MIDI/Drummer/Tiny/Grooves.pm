@@ -19,7 +19,7 @@ use namespace::clean;
   my $grooves = MIDI::Drummer::Tiny::Grooves->new(
     drummer => $drummer,
   );
-  
+
   my $all = $grooves->all_grooves;
 
   my $groove = $grooves->get_groove;  # random groove
