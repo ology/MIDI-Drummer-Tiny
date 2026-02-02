@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 
+# use Data::Dumper::Compact 'ddc';
 use MIDI::Drummer::Tiny ();
 use MIDI::Drummer::Tiny::Grooves ();
 
@@ -17,8 +18,8 @@ my $grooves = MIDI::Drummer::Tiny::Grooves->new(drummer => $d);
 my $set = {};
 # $set = $grooves->all_grooves;
 # $set = $grooves->search($set, { cat => $cat, name => $name }); # boolean OR
-$set = $grooves->search($set, { cat => $cat }) if $cat;    # boolean AND
-$set = $grooves->search($set, { name => $name }) if $name; # "
+$set = $grooves->search({ cat => $cat }) if $cat;    # boolean AND
+$set = $grooves->search({ name => $name }, $set) if $name; # "
 
 for my $n (sort keys %$set) {
     my $groove = $grooves->get_groove($n, $set);
