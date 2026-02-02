@@ -4,6 +4,8 @@ Revision history for MIDI-Drummer
 
 0.7001 2026-02-02 15:10:51
     - Update copyright!
+    - Improve documentation.
+    - Improve tests.
 
 0.7000 2026-01-31 17:24:13
     - Add the Grooves module and grooves.pl example program.
