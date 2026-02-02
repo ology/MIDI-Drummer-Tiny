@@ -90,6 +90,9 @@ has drummer => (
 The "resolution" duration that is given to the
 L<MIDI::Drummer::Tiny/sync_patterns> method.
 
+This is initialized to the sixteenth duration of the drummer
+L<MIDI::Drummer::Tiny> object.
+
 =cut
 
 has duration => (
@@ -104,7 +107,7 @@ sub _build_duration { shift->drummer->sixteenth }
 
 The drum patches that are used by the grooves.
 
-Each is initialized to a corresponding patch of the
+Each is initialized to a corresponding patch of the drummer
 L<MIDI::Drummer::Tiny> object that is given to, or created by the
 constructor. (So changing these can be done in either the
 L<MIDI::Drummer::Tiny> object, or in the C<Groove> constructor.)
