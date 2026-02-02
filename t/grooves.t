@@ -14,11 +14,17 @@ subtest all => sub {
 };
 
 subtest search => sub {
-    my $found = $grooves->search({}, { cat => 'rock' });
-    isa_ok $found, 'HASH', 'all_grooves';
-    ok exists($found->{10}), '10 exists';
-    is $found->{10}{name}, 'ROCK 1', '10 named';
-    isa_ok $found->{10}{groove}, 'CODE', '10 groove';
+    my $got = $grooves->search({ cat => 'house' });
+    use Data::Dumper::Compact 'ddc';
+    isa_ok $got, 'HASH', 'search all';
+    is scalar(keys %$got), 10, 'size';
+    my $n = 27;
+    ok exists($got->{$n}), 'exists';
+    is $got->{$n}{name}, 'DEEP HOUSE', 'named';
+    isa_ok $got->{$n}{groove}, 'CODE', 'groove';
+    $got = $grooves->search({ name => 'deep' });
+    isa_ok $got, 'HASH', 'search subset';
+    is scalar(keys %$got), 3, 'size';
 };
 
 done_testing();
