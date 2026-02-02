@@ -194,17 +194,17 @@ sub all_grooves {
 
 =head2 search
 
-  $set = $grooves->search({}, { cat => $x, name => $y }); # search all grooves
-  $set = $grooves->search($set, { cat => $x, name => $y }); # search the subset
+  $set = $grooves->search({ cat => $x, name => $y }); # search all grooves
+  $set = $grooves->search({ cat => $x, name => $y }, $set); # search a subset
 
-Return the found grooves with names matching the given B<cat> or
-B<name> strings as a hash reference.
+Return the found grooves with names matching the B<cat> or B<name>
+strings and given an optional set of grooves to search in.
 
 =cut
 
 sub search {
-    my ($self, $set, $args) = @_;
-    unless (keys %$set) {
+    my ($self, $args, $set) = @_;
+    unless ($set && keys %$set) {
         $set = $self->all_grooves;
     }
     my $found = {};
