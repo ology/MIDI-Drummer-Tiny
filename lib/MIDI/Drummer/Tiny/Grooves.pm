@@ -33,7 +33,7 @@ use namespace::clean;
   my @nums = keys %$set;
   for (1 .. 4) {
     $groove = $set->{ $nums[ rand @nums ] };
-    say $groove->{name};
+    say "$groove->{cat}\n\t$groove->{name}";
     $groove->{groove}->();
   }
 
