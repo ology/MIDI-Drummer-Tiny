@@ -1276,8 +1276,7 @@ sub _grooves {
             cat  => "",
             name => "",
             groove => sub {
-                $self->_groove(
-                                      # 123456789ABCDEF0
+                $self->_groove(       # 123456789ABCDEF0
                     $self->kick    => ['0000000000000000'],
                     $self->snare   => ['0000000000000000'],
                     $self->rimshot => ['0000000000000000'],
