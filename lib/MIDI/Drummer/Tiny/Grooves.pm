@@ -68,8 +68,8 @@ structure:
 
 =head2 drummer
 
-  $grooves->drummer($drummer);
   $drummer = $grooves->drummer;
+  $grooves->drummer($drummer);
 
 The L<MIDI::Drummer::Tiny> object. If not given in the constructor, a
 new one is created when a method is called.
@@ -84,8 +84,8 @@ has drummer => (
 
 =head2 duration
 
-  $grooves->duration($duration);
   $duration = $grooves->duration;
+  $grooves->duration($duration);
 
 The "resolution" duration that is given to the
 L<MIDI::Drummer::Tiny/sync_patterns> method.
@@ -102,8 +102,8 @@ sub _build_duration { shift->drummer->sixteenth }
 
 =head2 kick, rimshot, snare, clap, cowbell, shaker, closed, open, cymbal, hi_tom, mid_tom, low_tom
 
-  $grooves->kick(36);
   $kick = $grooves->kick;
+  $grooves->kick(36);
 
 The drum patches that are used by the grooves.
 
