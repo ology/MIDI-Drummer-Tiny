@@ -16,7 +16,7 @@ use namespace::clean;
     kick => 36,
   );
 
-  $grooves = MIDI::Drummer::Tiny::Grooves->new(
+  my $grooves = MIDI::Drummer::Tiny::Grooves->new(
     drummer => $drummer
   );
 
