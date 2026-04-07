@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
+    - Add the eg/eg/groove-patterns.pl example program.
 
 0.7003 2026-04-07 12:44:16
     - Make the Grooves module return either a "raw" hash-ref of patterns or call the sync_patterns() method on a drummer object.

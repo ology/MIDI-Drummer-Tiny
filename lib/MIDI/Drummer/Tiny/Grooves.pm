@@ -16,8 +16,8 @@ use namespace::clean;
     kick => 36,
   );
 
-  my $grooves = MIDI::Drummer::Tiny::Grooves->new(
-    drummer => $drummer,
+  $grooves = MIDI::Drummer::Tiny::Grooves->new(
+    drummer => $drummer
   );
 
   my $all = $grooves->all_grooves;
@@ -41,6 +41,13 @@ use namespace::clean;
   $grooves->drummer->write;
   # then:
   # > timidity grooves.mid
+
+  # OR:
+  $grooves = MIDI::Drummer::Tiny::Grooves->new(
+    return_patterns => 1
+  );
+  $set = $grooves->search({}, { cat => 'house' }); # etc. as above
+  my $pattern = $set->{27}{groove}->(); # { kick => '...', }
 
 =head1 DESCRIPTION
 
