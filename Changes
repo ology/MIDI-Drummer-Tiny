@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7004 2026-04-07 14:57:18
     - Improve documentation.
     - Add the eg/eg/groove-patterns.pl example program.
 
