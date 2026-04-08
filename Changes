@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix code typo.
 
 0.7004 2026-04-07 14:57:18
     - Improve documentation.

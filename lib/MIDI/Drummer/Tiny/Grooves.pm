@@ -258,7 +258,7 @@ sub _groove {
     }
     else {
         $self->drummer->sync_patterns(
-            map { $patterns{num} => $patterns{pat} } keys %patterns;
+            map { $patterns{num} => $patterns{pat} } keys %patterns,
             duration => $self->duration,
         );
     }
