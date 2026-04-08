@@ -254,11 +254,11 @@ sub search {
 sub _groove {
     my ($self, %patterns) = @_;
     if ($self->return_patterns) {
-        return map { $_ => $patterns{$_}{pat} } keys %patterns;
+        return map { $_ => [ split '', $patterns{$_}{pat}[0] ] } keys %patterns;
     }
     else {
         $self->drummer->sync_patterns(
-            map { $patterns{$_}{num} => $patterns{$_}{pat} } keys %patterns,
+            (map { $patterns{$_}{num} => $patterns{$_}{pat} } keys %patterns),
             duration => $self->duration,
         );
     }
