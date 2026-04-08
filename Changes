@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7005 2026-04-08 10:03:48
     - Fix code typo.
     - Return groove patterns correctly.
 
