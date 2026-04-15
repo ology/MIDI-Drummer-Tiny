@@ -1374,6 +1374,112 @@ sub _grooves {
             },
         },
 
+        90 => {
+            cat  => "Funk and Soul",
+            name => "THE THRILL IS GONE",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['0000000110100000'] },
+                    snare   => { num => $self->snare,   pat => ['1000100010001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1010101010101010'] },
+                ),
+            },
+        },
+
+        91 => {
+            cat  => "Funk and Soul",
+            name => "POP TECH - A",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['1000000000000000'] },
+                    snare   => { num => $self->snare,   pat => ['0000100000001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1000000010000000'] },
+                ),
+            },
+        },
+
+        92 => {
+            cat  => "Funk and Soul",
+            name => "POP TECH - B",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['0100000000000111'] },
+                    snare   => { num => $self->snare,   pat => ['0000100000001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1000000010000000'] },
+                ),
+            },
+        },
+
+        92 => {
+            cat  => "Funk and Soul",
+            name => "YA MAMA - A",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['1000000010000000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['0000100000001000'] },
+                ),
+            },
+        },
+
+        93 => {
+            cat  => "Funk and Soul",
+            name => "YA MAMA - B",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['1000000110000000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['0000100000001000'] },
+                ),
+            },
+        },
+
+        94 => {
+            cat  => "Funk and Soul",
+            name => "COLD SWEAT - A",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['1000000010100000'] },
+                    snare   => { num => $self->snare,   pat => ['0000100100000010'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1010101010101010'] },
+                ),
+            },
+        },
+
+        95 => {
+            cat  => "Funk and Soul",
+            name => "COLD SWEAT - B",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['0010000010100010'] },
+                    snare   => { num => $self->snare,   pat => ['0110100101001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1010101010101010'] },
+                ),
+            },
+        },
+
+        96 => {
+            cat  => "Funk and Soul",
+            name => "I GOT YOU (I FEEL GOOD) - A",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['1000000000100000'] },
+                    snare   => { num => $self->snare,   pat => ['0000100000001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1010101010101010'] },
+                ),
+            },
+        },
+
+        97 => {
+            cat  => "Funk and Soul",
+            name => "I GOT YOU (I FEEL GOOD) - B",
+            groove => sub {
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['0010001000100010'] },
+                    snare   => { num => $self->snare,   pat => ['0000100000001000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['1010101010101010'] },
+                ),
+            },
+        },
+
         # TODO MORE!
         0 => {
             cat  => "",
