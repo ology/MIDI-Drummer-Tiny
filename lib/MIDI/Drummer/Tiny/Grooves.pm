@@ -253,6 +253,9 @@ sub search {
     return $found;
 }
 
+sub _collect {
+    my ($self) = @_;
+}
 sub _groove {
     my ($self, %patterns) = @_;
     if ($self->return_patterns) {
@@ -1492,7 +1495,7 @@ sub _grooves {
                     snare   => { num => $self->snare,   pat => ['0000000000000000'] },
                     rimshot => { num => $self->rimshot, pat => ['0000000000000000'] },
                     clap    => { num => $self->clap,    pat => ['0000000000000000'] },
-                    conga   => { num => $self->clap,    pat => ['0000000000000000'] },
+                    conga   => { num => $self->conga,   pat => ['0000000000000000'] },
                     shaker  => { num => $self->shaker,  pat => ['0000000000000000'] },
                     closed  => { num => $self->closed,  pat => ['0000000000000000'] },
                     open    => { num => $self->open,    pat => ['0000000000000000'] },
