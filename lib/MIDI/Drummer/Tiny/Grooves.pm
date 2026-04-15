@@ -1278,22 +1278,82 @@ sub _grooves {
             },
         },
 
+        82 => {
+            cat  => "Funk and Soul",
+            name => "KISSING MY LOVE - A",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1101000000010010'] },
+                    snare  => { num => $self->snare,  pat => ['0000100101001000'] },
+                    cymbal => { num => $self->cymbal, pat => ['1111111111111110'] },
+                ),
+            },
+        },
+
+        83 => {
+            cat  => "Funk and Soul",
+            name => "KISSING MY LOVE - B",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1101000000010100'] },
+                    snare  => { num => $self->snare,  pat => ['0000100101001001'] },
+                    cymbal => { num => $self->cymbal, pat => ['1111111111111111'] },
+                ),
+            },
+        },
+
+        84 => {
+            cat  => "Funk and Soul",
+            name => "KISSING MY LOVE - C",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1101000000101100'] },
+                    snare  => { num => $self->snare,  pat => ['0000100101000001'] },
+                    cymbal => { num => $self->cymbal, pat => ['1111111111111111'] },
+                ),
+            },
+        },
+
+        85 => {
+            cat  => "Funk and Soul",
+            name => "KISSING MY LOVE - D",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1001000000010010'] },
+                    snare  => { num => $self->snare,  pat => ['0000100001001000'] },
+                    cymbal => { num => $self->cymbal, pat => ['1111111111111110'] },
+                ),
+            },
+        },
+
+        86 => {
+            cat  => "Funk and Soul",
+            name => "KISSING MY LOVE - E",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1000000000010100'] },
+                    snare  => { num => $self->snare,  pat => ['0000100101001000'] },
+                    cymbal => { num => $self->cymbal, pat => ['1111111111111110'] },
+                ),
+            },
+        },
+
         # TODO MORE!
         0 => {
             cat  => "",
             name => "",
             groove => sub {
-                $self->_groove(       # 123456789ABCDEF0
-                    kick    => { num => $self->kick, pat => ['0000000000000000'] },
-                    snare   => { num => $self->snare, pat => ['0000000000000000'] },
+                $self->_groove(                                # 123456789ABCDEF0
+                    kick    => { num => $self->kick,    pat => ['0000000000000000'] },
+                    snare   => { num => $self->snare,   pat => ['0000000000000000'] },
                     rimshot => { num => $self->rimshot, pat => ['0000000000000000'] },
-                    clap    => { num => $self->clap, pat => ['0000000000000000'] },
-                    shaker  => { num => $self->shaker, pat => ['0000000000000000'] },
-                    closed  => { num => $self->closed, pat => ['0000000000000000'] },
-                    open    => { num => $self->open, pat => => ['0000000000000000'] },
+                    clap    => { num => $self->clap,    pat => ['0000000000000000'] },
+                    shaker  => { num => $self->shaker,  pat => ['0000000000000000'] },
+                    closed  => { num => $self->closed,  pat => ['0000000000000000'] },
+                    open    => { num => $self->open,    pat => ['0000000000000000'] },
                     cowbell => { num => $self->cowbell, pat => ['0000000000000000'] },
-                    cymbal  => { num => $self->cymbal, pat => ['0000000000000000'] },
-                    hi_tom  => { num => $self->hi_tom, pat => ['0000000000000000'] },
+                    cymbal  => { num => $self->cymbal,  pat => ['0000000000000000'] },
+                    hi_tom  => { num => $self->hi_tom,  pat => ['0000000000000000'] },
                     mid_tom => { num => $self->mid_tom, pat => ['0000000000000000'] },
                     low_tom => { num => $self->low_tom, pat => ['0000000000000000'] },
                 ),
