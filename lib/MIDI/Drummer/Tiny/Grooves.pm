@@ -62,8 +62,9 @@ structure:
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
       groove => sub {
           $self->_groove(
-              kick  => { num => $self->kick, pat => ['1000001000000000'] },
+              kick  => { num => $self->kick,  pat => ['1000001000000000'] },
               snare => { num => $self->snare, pat => ['0000100000001000'] },
+              ...
           );
       },
   },
@@ -116,8 +117,7 @@ The drum patches that are used by the grooves.
 
 Each is initialized to a corresponding patch of the drummer
 L<MIDI::Drummer::Tiny> object that is given to, or created by the
-constructor. (So changing these can be done in either the
-L<MIDI::Drummer::Tiny> object, or in the C<Groove> constructor.)
+constructor.
 
 =cut
 
@@ -1512,6 +1512,6 @@ __END__
 
 =head1 SEE ALSO
 
-The "Pocket Operations" at L<https://shittyrecording.studio/>
+The "Pocket Operations" at L<https://shittyrecording.studio/> (which contains a few typos and duplicates.)
 
 =cut
