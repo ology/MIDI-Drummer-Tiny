@@ -146,6 +146,8 @@ has _source => (
 sub _build__source {
     my ($self) = @_;
     # TODO read and parse file
+    my $source;
+    return $source;
 }
 
 for my $patch (qw(
