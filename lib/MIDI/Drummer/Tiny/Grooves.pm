@@ -139,6 +139,15 @@ has return_patterns => (
   default => sub { 0 },
 );
 
+has _source => (
+    is      => 'lazy',
+    builder => '_build__source',
+);
+sub _build__source {
+    my ($self) = @_;
+    # TODO read and parse file
+}
+
 for my $patch (qw(
     kick
     rimshot
@@ -254,9 +263,6 @@ sub search {
     return $found;
 }
 
-sub _collect {
-    my ($self) = @_;
-}
 sub _groove {
     my ($self, %patterns) = @_;
     if ($self->return_patterns) {
