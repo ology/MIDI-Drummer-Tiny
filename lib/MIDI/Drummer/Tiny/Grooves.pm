@@ -52,7 +52,8 @@ use namespace::clean;
 =head1 DESCRIPTION
 
 Return the common grooves, as listed in the "Pocket Operations", that
-are L<linked below|/SEE ALSO>.
+are L<linked below|/SEE ALSO>. There are a total of 269 known drum
+patterns.
 
 A groove is a numbered and named hash reference, with the following
 structure:
