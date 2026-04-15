@@ -2,6 +2,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
+use Data::Dumper::Compact qw(ddc);
 use File::ShareDir qw(dist_dir);
 use Path::Tiny;
 use MIDI::Drummer::Tiny ();
@@ -152,6 +153,12 @@ sub _build__source {
     $path = 'share' . $file unless -e $path;
     my @contents = path($path)->lines;
     my $source = {};
+    for my $line (@contents) {
+        if ($line =~ /^\* (.+)$/) {
+            $source->{$1} = {};
+        }
+    }
+    print ddc $source;
     return $source;
 }
 
