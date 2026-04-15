@@ -146,8 +146,11 @@ has _source => (
 );
 sub _build__source {
     my ($self) = @_;
+    my $file = '/drum-pattern-bit-strings.txt';
+    my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
+    $path = 'share' . $file unless -e $path;
     # TODO read and parse file
-    my $file = eval { dist_dir('MIDI-Drummer-Tiny') . '/drum-pattern-bit-strings.txt' };
+    my $data = {};
     return $data;
 }
 
