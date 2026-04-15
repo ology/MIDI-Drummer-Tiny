@@ -108,7 +108,7 @@ has duration => (
 );
 sub _build_duration { shift->drummer->sixteenth }
 
-=head2 kick, rimshot, snare, clap, cowbell, shaker, closed, open, cymbal, hi_tom, mid_tom, low_tom
+=head2 kick, rimshot, snare, clap, conga, cowbell, shaker, closed, open, cymbal, hi_tom, mid_tom, low_tom
 
   $kick = $grooves->kick;
   $grooves->kick(36);
