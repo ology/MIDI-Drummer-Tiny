@@ -1338,6 +1338,42 @@ sub _grooves {
             },
         },
 
+        87 => {
+            cat  => "Funk and Soul",
+            name => "LADY - A",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1000000010010010'] },
+                    snare  => { num => $self->snare,  pat => ['0000110000000000'] },
+                    cymbal => { num => $self->cymbal, pat => ['0010001000000000'] },
+                ),
+            },
+        },
+
+        88 => {
+            cat  => "Funk and Soul",
+            name => "LADY - B",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1000000000010010'] },
+                    snare  => { num => $self->snare,  pat => ['0000110010000000'] },
+                    cymbal => { num => $self->cymbal, pat => ['0010001000000000'] },
+                ),
+            },
+        },
+
+        89 => {
+            cat  => "Funk and Soul",
+            name => "KNOCKS ME OFF MY FEET",
+            groove => sub {
+                $self->_groove(                              # 123456789ABCDEF0
+                    kick   => { num => $self->kick,   pat => ['1010100110101001'] },
+                    snare  => { num => $self->snare,  pat => ['0000100000001000'] },
+                    cymbal => { num => $self->cymbal, pat => ['1010001100101001'] },
+                ),
+            },
+        },
+
         # TODO MORE!
         0 => {
             cat  => "",
