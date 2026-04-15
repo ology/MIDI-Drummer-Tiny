@@ -143,6 +143,7 @@ for my $patch (qw(
     rimshot
     snare
     clap
+    conga
     cowbell
     shaker
     closed
@@ -161,6 +162,7 @@ sub _build_kick    { shift->drummer->kick }
 sub _build_rimshot { shift->drummer->side_stick }
 sub _build_snare   { shift->drummer->snare }
 sub _build_clap    { shift->drummer->clap }
+sub _build_conga   { shift->drummer->open_hi_conga }
 sub _build_cowbell { shift->drummer->cowbell }
 sub _build_shaker  { shift->drummer->maracas }
 sub _build_closed  { shift->drummer->closed_hh }
@@ -871,7 +873,7 @@ sub _grooves {
                 $self->_groove(
                     kick    => { num => $self->kick, pat => ['1000001000000000'] },
                     snare   => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap    => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga   => { num => $self->clap, pat => ['0000100000001000'] },
                     closed  => { num => $self->closed, pat => ['1011101110111111'] },
                     cowbell => { num => $self->cowbell, pat => ['1010101101011010'] },
                 ),
@@ -885,7 +887,7 @@ sub _grooves {
                 $self->_groove(
                     kick    => { num => $self->kick, pat => ['1000001000100100'] },
                     snare   => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap    => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga   => { num => $self->clap, pat => ['0000100000001000'] },
                     closed  => { num => $self->closed, pat => ['1011101110111111'] },
                     cowbell => { num => $self->cowbell, pat => ['1010101101011010'] },
                 ),
@@ -899,7 +901,7 @@ sub _grooves {
                 $self->_groove( # 123456789ABCDEF0
                     kick  => { num => $self->kick, pat => ['0010000100100001'] },
                     snare => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap  => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga => { num => $self->clap, pat => ['0000100000001000'] },
                     open  => { num => $self->open, pat => => ['1010101010101010'] },
                 ),
             },
@@ -924,7 +926,7 @@ sub _grooves {
                 $self->_groove(
                     kick   => { num => $self->kick, pat => ['1000001000000000'] },
                     snare  => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap   => { num => $self->clap, pat => ['0000101010001010'] },
+                    conga  => { num => $self->clap, pat => ['0000101010001010'] },
                     closed => { num => $self->closed, pat => ['1010101010101010'] },
                 ),
             },
@@ -937,7 +939,7 @@ sub _grooves {
                 $self->_groove(
                     kick   => { num => $self->kick, pat => ['1000001000100100'] },
                     snare  => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap   => { num => $self->clap, pat => ['1000101010001000'] },
+                    conga  => { num => $self->clap, pat => ['1000101010001000'] },
                     closed => { num => $self->closed, pat => ['1010101010100010'] },
                     open   => { num => $self->open, pat => => ['0000000000001000'] },
                 ),
@@ -951,7 +953,7 @@ sub _grooves {
                 $self->_groove(
                     kick    => { num => $self->kick, pat => ['1001001000010000'] },
                     snare   => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap    => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga   => { num => $self->clap, pat => ['0000100000001000'] },
                     rimshot => { num => $self->rimshot, pat => ['0010010010010000'] },
                     open    => { num => $self->open, pat => => ['1001001000010000'] },
                 ),
@@ -1010,7 +1012,7 @@ sub _grooves {
                 $self->_groove(
                     kick   => { num => $self->kick, pat => ['1000001011000001'] },
                     snare  => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap   => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga  => { num => $self->clap, pat => ['0000100000001000'] },
                     closed => { num => $self->closed, pat => ['0010101010101010'] },
                     cymbal => { num => $self->cymbal, pat => ['1000000000000000'] },
                 ),
@@ -1024,7 +1026,7 @@ sub _grooves {
                 $self->_groove(
                     kick   => { num => $self->kick, pat => ['0010001011000000'] },
                     snare  => { num => $self->snare, pat => ['0000100000001000'] },
-                    clap   => { num => $self->clap, pat => ['0000100000001000'] },
+                    conga  => { num => $self->clap, pat => ['0000100000001000'] },
                     closed => { num => $self->closed, pat => ['0010101010101010'] },
                     open   => { num => $self->open, pat => => ['0010000000000000'] },
                 ),
@@ -1490,6 +1492,7 @@ sub _grooves {
                     snare   => { num => $self->snare,   pat => ['0000000000000000'] },
                     rimshot => { num => $self->rimshot, pat => ['0000000000000000'] },
                     clap    => { num => $self->clap,    pat => ['0000000000000000'] },
+                    conga   => { num => $self->clap,    pat => ['0000000000000000'] },
                     shaker  => { num => $self->shaker,  pat => ['0000000000000000'] },
                     closed  => { num => $self->closed,  pat => ['0000000000000000'] },
                     open    => { num => $self->open,    pat => ['0000000000000000'] },
