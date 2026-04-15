@@ -2,6 +2,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
+use File::ShareDir qw(dist_dir);
 use MIDI::Drummer::Tiny ();
 use namespace::clean;
 
@@ -146,8 +147,8 @@ has _source => (
 sub _build__source {
     my ($self) = @_;
     # TODO read and parse file
-    my $source;
-    return $source;
+    my $file = eval { dist_dir('MIDI-Drummer-Tiny') . '/drum-pattern-bit-strings.txt' };
+    return $data;
 }
 
 for my $patch (qw(
