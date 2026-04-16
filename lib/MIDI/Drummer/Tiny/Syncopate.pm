@@ -2,7 +2,6 @@ package MIDI::Drummer::Tiny::Syncopate;
 
 # ABSTRACT: Syncopation logic
 
-use Algorithm::Combinatorics qw(variations_with_repetition);
 use MIDI::Util qw(dura_size);
 
 use Moo;
@@ -159,7 +158,7 @@ sub combinatorial {
     my @items = $opts->{patterns}
         ? @{ $opts->{patterns} }
         : sort map { join '', @$_ }
-            variations_with_repetition( [ keys %{ $opts->{vary} } ], $opts->{beats} );
+            @{ _variations_with_repetition( [ keys %{ $opts->{vary} } ], $opts->{beats} ) };
 
     for my $pattern (@items) {
         next if $pattern =~ /^0+$/;
@@ -173,6 +172,23 @@ sub combinatorial {
             }
         }
     }
+}
+
+sub _variations_with_repetition {
+    my ($elements, $k) = @_;
+    # Base case: if k is 0, return a single empty variation
+    return [""] if $k == 0;
+    # Base case: if k is 1, return each element as a variation
+    return [map { [$_] } @$elements] if $k == 1;
+    # Recursive step
+    my @result;
+    my $sub_variations = _variations_with_repetition($elements, $k - 1);
+    for my $element (@$elements) {
+        for my $sub (@$sub_variations) {
+            push @result, [ $element, @$sub ];
+        }
+    }
+    return \@result;
 }
 
 1;
