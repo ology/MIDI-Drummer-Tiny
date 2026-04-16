@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7011 2026-04-15 22:47:03
     - Ok. It works on Windows now. Whew.
     - Fix documentation.
 
