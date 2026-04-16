@@ -191,7 +191,6 @@ sub _build__source {
             $name = $line;
         }
     }
-print ddc \@source;
     return \@source;
 }
 
