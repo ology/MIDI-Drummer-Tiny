@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
-use Data::Dumper::Compact qw(ddc);
+# use Data::Dumper::Compact qw(ddc);
 use File::ShareDir qw(dist_dir);
 use Path::Tiny;
 use MIDI::Drummer::Tiny ();
@@ -309,12 +309,10 @@ sub search {
 
 =head2 groove
 
-  groove => sub {
-    $self->groove(
-      kick => { num => $self->kick,  pat => ['1000001000000000'] },
-      ...
+  $self->groove(%patterns);
 
-The method to call when creating a new groove.
+Add the patterns to the score. If the B<return_patterns> attribute is
+on, the patterns are just returned.
 
 =cut
 
@@ -324,8 +322,6 @@ sub groove {
         return map { $_ => [ split '', $patterns{$_}{pat}[0] ] } keys %patterns;
     }
     else {
-        # print "Hello\n";
-        # print ddc \%patterns;
         $self->drummer->sync_patterns(
             (map { $patterns{$_}{num} => $patterns{$_}{pat} } keys %patterns),
             duration => $self->duration,
