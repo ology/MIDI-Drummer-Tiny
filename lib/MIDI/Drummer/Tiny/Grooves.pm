@@ -161,6 +161,7 @@ sub _build__source {
         HT => 'hi_tom',
         MT => 'mid_tom',
         LT => 'low_tom',
+        HC => 'conga',
     );
     my $file = '/drum-pattern-bit-strings.txt';
     my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
