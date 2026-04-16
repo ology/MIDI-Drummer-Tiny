@@ -27,8 +27,7 @@ use namespace::clean;
 
   my $groove = $grooves->get_groove;  # random groove
   $groove = $grooves->get_groove(42); # numbered groove
-  say $groove->{cat};
-  say $groove->{name};
+  print "42. $groove->{cat}\n$groove->{name}";
   $groove->{groove}->() for 1 .. 4; # add to score
 
   my $set = $grooves->search({ cat => 'house' });
@@ -37,7 +36,7 @@ use namespace::clean;
 
   for my $i (sort keys %$set) {
     $groove = $set->{$i};
-    say "$i. $groove->{cat}\n$groove->{name}";
+    print "$i. $groove->{cat}\n$groove->{name}]\n";
     $grooves->groove(%{ $groove->{groove} }); # a bit redundant!
   }
 
