@@ -185,10 +185,11 @@ sub _build__grooves {
         }
         else {
             if (keys %patterns) {
+                # print ddc \%patterns;
                 $grooves{++$i} = {
                     cat    => $cat,
                     name   => $name,
-                    groove => sub { $self->groove(%patterns) },
+                    groove => [ %patterns ],
                 };
             }
             %patterns = ();
@@ -331,6 +332,8 @@ sub groove {
         return map { $_ => [ split '', $patterns{$_}{pat}[0] ] } keys %patterns;
     }
     else {
+        # print "Hello\n";
+        # print ddc \%patterns;
         $self->drummer->sync_patterns(
             (map { $patterns{$_}{num} => $patterns{$_}{pat} } keys %patterns),
             duration => $self->duration,
