@@ -12,7 +12,7 @@ use namespace::clean;
 
   use MIDI::Drummer::Tiny ();
   use MIDI::Drummer::Tiny::Grooves ();
-  # TODO use MIDI::Drummer::Tiny::Grooves qw(:house :rock);
+  # TODO use MIDI::Drummer::Tiny::Grooves qw(:house :rock); # maybe
 
   my $drummer = MIDI::Drummer::Tiny->new(
     file => "grooves.mid",
@@ -31,14 +31,14 @@ use namespace::clean;
   say $groove->{name};
   $groove->{groove}->() for 1 .. 4; # add to score
 
-  my $set = $grooves->search({}, { cat => 'house' });
-  $set = $grooves->search($set, { name => 'deep' });
+  my $set = $grooves->search({ cat => 'house' });
+  $set = $grooves->search({ name => 'deep' }, $set);
   my @nums = keys %$set;
   for (1 .. 4) {
     $groove = $set->{ $nums[ rand @nums ] };
     say $groove->{cat};
     say $groove->{name};
-    $groove->{groove}->();
+    $grooves->groove(@{ $groove->{groove} }); # a bit redundant!
   }
 
   $grooves->drummer->write;
@@ -49,8 +49,8 @@ use namespace::clean;
   $grooves = MIDI::Drummer::Tiny::Grooves->new(
     return_patterns => 1
   );
-  $set = $grooves->search({}, { cat => 'house' }); # etc. as above
-  my $pattern = $set->{27}{groove}->(); # { kick => '...', }
+  $set = $grooves->search({ cat => 'house' }); # etc. as above
+  my $pattern = $set->{27}{groove}; # { kick => '...', }
 
 =head1 DESCRIPTION
 
