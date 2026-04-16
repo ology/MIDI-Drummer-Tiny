@@ -152,10 +152,25 @@ sub _build__source {
     my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
     $path = 'share' . $file unless -e $path;
     my @contents = path($path)->lines;
-    my $source = {};
+    my (@source, $cat, $name, @grooves);
     for my $line (@contents) {
-        if ($line =~ /^\* (.+)$/) {
-            $source->{$1} = {};
+        if ($line =~ /^Instrument/) {
+            next;
+        }
+        elsif ($line =~ /^([A-Z][A-Z]),([01]+)$/) {
+            push @grooves, { $1 => $2 };
+        }
+        elsif ($line =~ /^\* (.+)$/) {
+            $cat = $1;
+        }
+        else {
+            push @source, {
+                cat    => $cat,
+                name   => $name,
+                groove => \@grooves,
+            } if @grooves;
+            @grooves = ();
+            $name = $line;
         }
     }
     print ddc $source;
