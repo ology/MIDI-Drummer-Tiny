@@ -1,8 +1,9 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Improve documentation.
 
-0.7008 2026-04-15 21:22:18
+0.7008-TRIAL 2026-04-15 21:22:18
     - Improve documentation.
     - Fixed groove datatype. Oops.
     - Fixed-up the tests and eg/grooves.pl, naturally.

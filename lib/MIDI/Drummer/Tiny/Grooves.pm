@@ -32,7 +32,7 @@ use namespace::clean;
 
   my $set = $grooves->search({ cat => 'house' });
   my $pattern = $set->{27}{groove}; # { kick => '...', }
-  $set = $grooves->search({ name => 'deep' }, $set);
+  $set = $grooves->search({ name => 'deep' }, $set); # refine search
 
   for my $i (sort keys %$set) {
     $groove = $set->{$i};
