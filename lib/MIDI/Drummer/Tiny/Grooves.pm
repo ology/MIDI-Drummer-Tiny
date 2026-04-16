@@ -28,7 +28,7 @@ use namespace::clean;
   my $groove = $grooves->get_groove;  # random groove
   $groove = $grooves->get_groove(42); # numbered groove
   print "42. $groove->{cat}\n$groove->{name}";
-  $groove->{groove}->() for 1 .. 4; # add to score
+  $grooves->groove(%{ $groove->{groove} }) for 1 .. 4; # add to score
 
   my $set = $grooves->search({ cat => 'house' });
   my $pattern = $set->{27}{groove}; # { kick => '...', }

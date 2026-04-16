@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Ok. It works on Windows now. Whew.
 
 0.7010-TRIAL 2026-04-15 22:31:34
     - Handle newlines and \r correctly.
