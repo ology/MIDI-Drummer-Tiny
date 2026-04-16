@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7007 2026-04-15 20:29:15
     - Add all the grooves with a shared text file processed and fixed from the "Pocket Operator" PDF.
     - Change how grooves are processed.
     - Improve documentation.
