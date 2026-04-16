@@ -163,7 +163,7 @@ sub _build__grooves {
     my $i = 0;
     for my $line (@contents) {
         chomp $line;
-        chop $line;
+        chop $line if $line =~ /\r$/;
         if ($line =~ /^Instrument/) {
             next;
         }

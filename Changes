@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Handle newlines and \r correctly.
 
 0.7009 2026-04-15 22:02:05
     - Improve documentation.
