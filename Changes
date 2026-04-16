@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7009 2026-04-15 22:02:05
     - Improve documentation.
     - Drop Algorithm::Combinatorics like a hot potato.
 
