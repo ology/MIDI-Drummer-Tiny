@@ -32,25 +32,18 @@ use namespace::clean;
   $groove->{groove}->() for 1 .. 4; # add to score
 
   my $set = $grooves->search({ cat => 'house' });
+  my $pattern = $set->{27}{groove}; # { kick => '...', }
   $set = $grooves->search({ name => 'deep' }, $set);
-  my @nums = keys %$set;
-  for (1 .. 4) {
-    $groove = $set->{ $nums[ rand @nums ] };
-    say $groove->{cat};
-    say $groove->{name};
-    $grooves->groove(@{ $groove->{groove} }); # a bit redundant!
+
+  for my $i (sort keys %$set) {
+    $groove = $set->{$i};
+    say "$i. $groove->{cat}\n$groove->{name}";
+    $grooves->groove(%{ $groove->{groove} }); # a bit redundant!
   }
 
   $grooves->drummer->write;
   # then:
   # > timidity grooves.mid
-
-  # OR:
-  $grooves = MIDI::Drummer::Tiny::Grooves->new(
-    return_patterns => 1
-  );
-  $set = $grooves->search({ cat => 'house' }); # etc. as above
-  my $pattern = $set->{27}{groove}; # { kick => '...', }
 
 =head1 DESCRIPTION
 
@@ -130,7 +123,7 @@ constructor.
   $return_patterns = $grooves->return_patterns;
 
 Either return the raw patterns of 16 beats or C<synch>'ed B<drummer>
-object phrases.
+object phrases from the B<groove()> method.
 
 Default: C<0>
 
@@ -189,7 +182,7 @@ sub _build__grooves {
                 $grooves{++$i} = {
                     cat    => $cat,
                     name   => $name,
-                    groove => [ %patterns ],
+                    groove => { %patterns },
                 };
             }
             %patterns = ();
