@@ -171,7 +171,6 @@ sub _build__source {
                 name   => $name,
                 groove => \@patterns,
             } if @patterns;
-            print ddc \@patterns;
             @patterns = ();
             $name = $line;
         }
