@@ -148,6 +148,21 @@ has _source => (
 );
 sub _build__source {
     my ($self) = @_;
+    my %mapping = (
+        BD => 'kick',
+        SN => 'snare',
+        RS => 'rimshot',
+        CH => 'closed',
+        OH => 'open',
+        AC => 'accent',
+        CY => 'cymbal',
+        CB => 'cowbell',
+        CL => 'clap',
+        SH => 'shaker',
+        HT => 'hi_tom',
+        MT => 'mid_tom',
+        LT => 'low_tom',
+    )
     my $file = '/drum-pattern-bit-strings.txt';
     my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
     $path = 'share' . $file unless -e $path;
@@ -160,7 +175,7 @@ sub _build__source {
             next;
         }
         elsif ($line =~ /^([A-Z][A-Z]),([01]+)$/) {
-            push @patterns, { $1 => $2 };
+            push @patterns, { $mapping{$1} => $2 };
         }
         elsif ($line =~ /^\* (.+)$/) {
             $cat = $1;
