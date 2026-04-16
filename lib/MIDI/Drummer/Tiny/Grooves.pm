@@ -65,7 +65,7 @@ structure:
       cat  => "Basic Patterns",
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
       groove => sub {
-          $self->_groove(
+          $self->groove(
               kick  => { num => $self->kick,  pat => ['1000001000000000'] },
               snare => { num => $self->snare, pat => ['0000100000001000'] },
               ...
@@ -188,7 +188,7 @@ sub _build__grooves {
                 $grooves{++$i} = {
                     cat    => $cat,
                     name   => $name,
-                    groove => sub { $self->_groove(%patterns) },
+                    groove => sub { $self->groove(%patterns) },
                 };
             }
             %patterns = ();
@@ -314,7 +314,18 @@ sub search {
     return $found;
 }
 
-sub _groove {
+=head2 groove
+
+  groove => sub {
+    $self->groove(
+      kick => { num => $self->kick,  pat => ['1000001000000000'] },
+      ...
+
+The method to call when creating a new groove.
+
+=cut
+
+sub groove {
     my ($self, %patterns) = @_;
     if ($self->return_patterns) {
         return map { $_ => [ split '', $patterns{$_}{pat}[0] ] } keys %patterns;
