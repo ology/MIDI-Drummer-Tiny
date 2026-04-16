@@ -154,7 +154,6 @@ sub _build__source {
         RS => 'rimshot',
         CH => 'closed',
         OH => 'open',
-        AC => 'accent',
         CY => 'cymbal',
         CB => 'cowbell',
         CL => 'clap',
@@ -162,7 +161,7 @@ sub _build__source {
         HT => 'hi_tom',
         MT => 'mid_tom',
         LT => 'low_tom',
-    )
+    );
     my $file = '/drum-pattern-bit-strings.txt';
     my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
     $path = 'share' . $file unless -e $path;
@@ -175,7 +174,9 @@ sub _build__source {
             next;
         }
         elsif ($line =~ /^([A-Z][A-Z]),([01]+)$/) {
-            push @patterns, { $mapping{$1} => $2 };
+            my $mapping = $mapping{$1} || next;
+            my $val = { num => $self->$mapping, pat => [$2] };
+            push @patterns, { $mapping => $val };
         }
         elsif ($line =~ /^\* (.+)$/) {
             $cat = $1;
