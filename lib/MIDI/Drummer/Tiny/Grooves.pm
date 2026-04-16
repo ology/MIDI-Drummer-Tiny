@@ -173,8 +173,8 @@ sub _build__source {
             $name = $line;
         }
     }
-    print ddc $source;
-    return $source;
+    print ddc \@source;
+    return \@source;
 }
 
 for my $patch (qw(
