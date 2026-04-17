@@ -28,7 +28,7 @@ use namespace::clean;
   my $groove = $grooves->get_groove;  # random groove
   $groove = $grooves->get_groove(42); # numbered groove
   print "42. $groove->{cat}\n$groove->{name}";
-  $grooves->groove(%{ $groove->{groove} }) for 1 .. 4; # add to score
+  $grooves->groove($groove->{groove}) for 1 .. 4; # add to score
 
   my $set = $grooves->search({ cat => 'house' });
   my $pattern = $set->{27}{groove}; # { kick => '...', }
@@ -37,7 +37,7 @@ use namespace::clean;
   for my $i (sort keys %$set) {
     $groove = $set->{$i};
     print "$i. $groove->{cat}\n$groove->{name}]\n";
-    $grooves->groove(%{ $groove->{groove} }); # a bit redundant!
+    $grooves->groove($groove->{groove}); # a bit redundant!
   }
 
   $grooves->drummer->write;
@@ -56,15 +56,12 @@ structure:
   1 => {
       cat  => "Basic Patterns",
       name => "ONE AND SEVEN & FIVE AND THIRTEEN",
-      groove => sub {
-          $self->groove(
-              kick  => { num => $self->kick,  pat => ['1000001000000000'] },
-              snare => { num => $self->snare, pat => ['0000100000001000'] },
-              ...
-          );
+      groove => {
+        kick  => { num => $self->kick,  pat => ['1000001000000000'] },
+        snare => { num => $self->snare, pat => ['0000100000001000'] },
+        ...
       },
   },
-  2 => { ... }, ... }
 
 =cut
 
@@ -309,7 +306,7 @@ sub search {
 
 =head2 groove
 
-  $self->groove(%patterns);
+  $self->groove(\%patterns);
 
 Add the patterns to the score. If the B<return_patterns> attribute is
 on, the patterns are just returned.
@@ -317,13 +314,13 @@ on, the patterns are just returned.
 =cut
 
 sub groove {
-    my ($self, %patterns) = @_;
+    my ($self, $patterns) = @_;
     if ($self->return_patterns) {
-        return map { $_ => [ split '', $patterns{$_}{pat}[0] ] } keys %patterns;
+        return map { $_ => [ split '', $patterns->{$_}{pat}[0] ] } keys %$patterns;
     }
     else {
         $self->drummer->sync_patterns(
-            (map { $patterns{$_}{num} => $patterns{$_}{pat} } keys %patterns),
+            (map { $patterns->{$_}{num} => $patterns->{$_}{pat} } keys %$patterns),
             duration => $self->duration,
         );
     }

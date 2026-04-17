@@ -26,7 +26,7 @@ $set = $grooves->search({ name => $name }, $set) if $name;       # "
 for my $n (sort keys %$set) {
     my $groove = $set->{$n};
     print $groove->{name}, "\n";
-    $grooves->groove($groove->{groove}->%*);
+    $grooves->groove($groove->{groove});
 }
 
 $d->write;

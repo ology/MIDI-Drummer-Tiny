@@ -32,7 +32,7 @@ subtest groove => sub {
     my $n = 11;
     ok exists($got->{$n}), 'exists';
     is $got->{$n}{name}, 'ROCK 2', 'named';
-    my %got = $grooves->groove(%{ $got->{$n}{groove} });
+    my %got = $grooves->groove($got->{$n}{groove});
     is_deeply $got{kick}, [qw(1 0 0 0 0 0 0 1 1 0 1 0 0 0 0 0)], 'kick';
 };
 

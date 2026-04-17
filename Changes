@@ -1,7 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
-    - Replaced "’" with "'". :eyeroll:
+    - Replaced "’" with "'" in the shared grooves file. :eyeroll:
+    - Changed the groove() method to acceptr hash-ref, instead of key/values.
 
 0.7012 2026-04-16 08:20:15
     - Improve documentation.
