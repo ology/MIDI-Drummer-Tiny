@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Replaced "’" with "'". :eyeroll:
 
 0.7012 2026-04-16 08:20:15
     - Improve documentation.
