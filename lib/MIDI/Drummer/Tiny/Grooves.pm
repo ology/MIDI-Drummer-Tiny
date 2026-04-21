@@ -101,7 +101,7 @@ has duration => (
 );
 sub _build_duration { shift->drummer->sixteenth }
 
-=head2 kick, rimshot, snare, clap, conga, cowbell, shaker, closed, open, cymbal, hi_tom, mid_tom, low_tom
+=head2 kick, rimshot, snare, clap, conga, cowbell, shaker, closed, open, crash, hi_tom, mid_tom, low_tom
 
   $kick = $grooves->kick;
   $grooves->kick(36);
@@ -143,7 +143,7 @@ sub _build__grooves {
         RS => 'rimshot',
         CH => 'closed',
         OH => 'open',
-        CY => 'cymbal',
+        CY => 'crash',
         CB => 'cowbell',
         CL => 'clap',
         SH => 'shaker',
@@ -199,7 +199,7 @@ for my $patch (qw(
     shaker
     closed
     open
-    cymbal
+    crash
     hi_tom
     mid_tom
     low_tom
@@ -218,7 +218,7 @@ sub _build_cowbell { shift->drummer->cowbell }
 sub _build_shaker  { shift->drummer->maracas }
 sub _build_closed  { shift->drummer->closed_hh }
 sub _build_open    { shift->drummer->open_hh }
-sub _build_cymbal  { shift->drummer->crash1 }
+sub _build_crash   { shift->drummer->crash1 }
 sub _build_hi_tom  { shift->drummer->hi_mid_tom }
 sub _build_mid_tom { shift->drummer->low_mid_tom }
 sub _build_low_tom { shift->drummer->low_tom }
