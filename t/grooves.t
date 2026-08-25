@@ -4,7 +4,9 @@ use Test::More;
 use_ok 'MIDI::Drummer::Tiny::Grooves';
 
 subtest all => sub {
-    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves';
+    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves' => [
+        share_file => './share/drum-pattern-bit-strings.txt',
+    ];
     my $all = $grooves->all_grooves;
     isa_ok $all, 'HASH', 'all_grooves';
     ok exists($all->{1}), '1 exists';
@@ -13,7 +15,9 @@ subtest all => sub {
 };
 
 subtest search => sub {
-    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves';
+    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves' => [
+        share_file => './share/drum-pattern-bit-strings.txt',
+    ];
     my $got = $grooves->search({ cat => 'house' });
     isa_ok $got, 'HASH', 'search all';
     is scalar(keys %$got), 9, 'size';
@@ -27,7 +31,10 @@ subtest search => sub {
 };
 
 subtest groove => sub {
-    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves' => [ return_patterns => 1 ];
+    my $grooves = new_ok 'MIDI::Drummer::Tiny::Grooves' => [
+        share_file      => './share/drum-pattern-bit-strings.txt',
+        return_patterns => 1,
+    ];
     my $got = $grooves->search({ cat => 'rock' });
     my $n = 11;
     ok exists($got->{$n}), 'exists';

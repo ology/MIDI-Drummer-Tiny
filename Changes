@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Make the shared file of groove patterns a settable attribute.
 
 0.7014 2026-04-21 00:48:27
     - Rename 'cymbal' to 'crash'.

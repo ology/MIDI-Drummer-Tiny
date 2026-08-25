@@ -131,6 +131,30 @@ has return_patterns => (
   default => sub { 0 },
 );
 
+=head2 share_file
+
+  $share_file = $grooves->share_file;
+
+The path to the F<drum-pattern-bit-strings.txt> file.
+
+Default: The installed distribution directory/file.
+
+=cut
+
+has share_file => (
+  is      => 'rw',
+  isa     => sub { die "Invalid share_file" unless -e $_[0] },
+  builder => '_build_share_file',
+);
+
+sub _build_share_file {
+    my ($self) = @_;
+    my $file = '/drum-pattern-bit-strings.txt';
+    my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
+    $path = 'share' . $file unless -e $path;
+    return $path;
+}
+
 has _grooves => (
     is      => 'lazy',
     builder => '_build__grooves',
@@ -152,9 +176,7 @@ sub _build__grooves {
         LT => 'low_tom',
         HC => 'conga',
     );
-    my $file = '/drum-pattern-bit-strings.txt';
-    my $path = dist_dir('MIDI-Drummer-Tiny') . $file;
-    $path = 'share' . $file unless -e $path;
+    my $path = $self->share_file;
     my @contents = path($path)->lines;
     my (%grooves, $cat, $name, %patterns);
     my $i = 0;
