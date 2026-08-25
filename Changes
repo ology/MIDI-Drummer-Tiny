@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7015 2026-08-25 12:33:08
     - Make the shared file of groove patterns a settable attribute.
 
 0.7014 2026-04-21 00:48:27
