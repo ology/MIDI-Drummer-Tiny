@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the `swap_pat()` method to the Grooves module.
 
 0.7015 2026-08-25 12:33:08
     - Make the shared file of groove patterns a settable attribute.

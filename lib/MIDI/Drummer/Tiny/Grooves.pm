@@ -2,7 +2,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
-# use Data::Dumper::Compact qw(ddc);
+use Data::Dumper::Compact qw(ddc);
 use File::ShareDir qw(dist_dir);
 use Path::Tiny;
 use MIDI::Drummer::Tiny ();
@@ -328,7 +328,7 @@ sub search {
 
 =head2 groove
 
-  $self->groove(\%patterns);
+  $grooves->groove(\%patterns);
 
 Add the patterns to the score. If the B<return_patterns> attribute is
 on, the patterns are just returned.
@@ -346,6 +346,21 @@ sub groove {
             duration => $self->duration,
         );
     }
+}
+
+=head2 swap_pat
+
+  $pat = $grooves->swap_pat($pattern, 'crash', 'closed');
+
+=cut
+
+sub swap_pat {
+    my ($self, $pat, $source, $dest) = @_;
+    if (!exists $pat->{$dest} && exists $pat->{$source}) {
+        my $x = delete $pat->{$source};
+        $pat->{$dest} = { num => $self->$dest, pat => $x->{pat} };
+    }
+    return $pat;
 }
 
 1;
