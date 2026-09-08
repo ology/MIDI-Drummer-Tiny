@@ -25,13 +25,13 @@ use namespace::clean;
     drummer => $drummer
   );
 
-  my $set = $grooves->all_grooves;
-
   # get a random groove from all known grooves
   my $groove = $grooves->get_groove;
-  # get a random groove from the set
-  $groove = $grooves->get_groove(0, $set);
 
+  my $set = $grooves->all_grooves;
+
+  # get a random groove from a set
+  $groove = $grooves->get_groove(0, $set);
   # get a numbered groove
   $groove = $grooves->get_groove(42);
   print "42. $groove->{cat}\n$groove->{name}";
