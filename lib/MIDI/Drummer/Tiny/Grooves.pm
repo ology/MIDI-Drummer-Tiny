@@ -4,7 +4,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
-use Data::Dumper::Compact qw(ddc);
+# use Data::Dumper::Compact qw(ddc); # debugging
 use File::ShareDir qw(dist_dir);
 use Path::Tiny;
 use MIDI::Drummer::Tiny ();
@@ -34,6 +34,8 @@ use namespace::clean;
   # get a numbered groove
   $groove = $grooves->get_groove(42);
   print "42. $groove->{cat}\n$groove->{name}";
+
+  my $density = $grooves->density($groove);
 
   # searching
   $set = $grooves->search({ cat => 'house' });
@@ -398,6 +400,26 @@ sub swap_pat {
         $pat->{$dest} = { num => $self->$dest, pat => $x->{pat} };
     }
     return $pat;
+}
+
+=head2 density
+
+  $density = $grooves->density($groove);
+
+Return the total number of strikes. This is basically the number of
+C<1>s in the instrument pattern.
+
+=cut
+
+sub density {
+    my ($self, $pat) = @_;
+    my $density = 0;
+    for my $instrument (keys $pat->{groove}->%*) {
+        print "$instrument\n";
+        my $ones =()= $pat->{groove}{$instrument}{pat} =~ /1/g;
+        $density += $ones;
+    }
+    return $density;
 }
 
 1;
