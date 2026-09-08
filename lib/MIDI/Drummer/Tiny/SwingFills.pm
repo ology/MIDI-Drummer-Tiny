@@ -1,5 +1,7 @@
 package MIDI::Drummer::Tiny::SwingFills;
 
+# ABSTRACT: Drum fills with swing
+
 use Moo;
 use strictures 2;
 use MIDI::Util qw(dura_size);

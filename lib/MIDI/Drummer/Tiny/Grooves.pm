@@ -1,5 +1,7 @@
 package MIDI::Drummer::Tiny::Grooves;
 
+# ABSTRACT: Common drum grooves
+
 use Moo;
 use strictures 2;
 use Data::Dumper::Compact qw(ddc);
