@@ -956,8 +956,8 @@ sub metronome7 (
 
 Add a steady quarter-note based 4/4 beat to the score.
 
-If a B<flag> is provided the beat is modified to include alternating
-eighth-note kicks.
+If a B<flag> is provided to include alternating eighth-note kicks in
+the groove.
 
 =cut
 

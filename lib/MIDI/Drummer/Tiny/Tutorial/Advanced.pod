@@ -2,6 +2,9 @@ package MIDI::Drummer::Tiny::Tutorial::Advanced;
 
 =head1 Advanced Grooves
 
+You can construct your own, custom grooves as below. Or you can play
+a common groove with L<MIDI::Drummer::Tiny::Grooves>.
+
 =head2 Cold Sweat (Clyde Stubblefield)
 
   my $accent = 30;
