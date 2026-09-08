@@ -1,6 +1,7 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Fix stupid typo.
 
 0.7018 2026-09-08 10:36:10
     - Add an ABSTRACT where it's missing.
