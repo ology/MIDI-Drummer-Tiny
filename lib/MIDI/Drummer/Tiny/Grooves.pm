@@ -14,7 +14,6 @@ use namespace::clean;
 
   use MIDI::Drummer::Tiny ();
   use MIDI::Drummer::Tiny::Grooves ();
-  # TODO use MIDI::Drummer::Tiny::Grooves qw(:house :rock); # maybe
 
   my $drummer = MIDI::Drummer::Tiny->new(
     file => "grooves.mid",
@@ -404,6 +403,10 @@ sub swap_pat {
 1;
 
 __END__
+
+=head1 TO DO
+
+`use MIDI::Drummer::Tiny::Grooves qw(:house :rock);` # maybe?
 
 =head1 SEE ALSO
 
