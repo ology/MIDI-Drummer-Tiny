@@ -52,7 +52,7 @@ use namespace::clean;
     $grooves->groove($groove->{groove}); # a bit redundant - ugh!
   }
 
-  $grooves->drummer->write;
+  $drummer->write;
   # then:
   # > timidity grooves.mid
 
