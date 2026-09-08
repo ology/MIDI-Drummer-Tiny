@@ -1,11 +1,11 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+    - Add the groove `density()` method.
+    - Improve documentation.
 
 0.7019 2026-09-08 10:58:40
     - Fix stupid typo and docs in general.
-    - Add the groove `density()` method.
-    - Improve documentation.
 
 0.7018 2026-09-08 10:36:10
     - Add an ABSTRACT where it's missing.
