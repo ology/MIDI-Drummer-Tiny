@@ -40,7 +40,7 @@ use namespace::clean;
   $set = $grooves->search({ name => 'deep' }, $set); # refine search
   $set = $grooves->search({ cat => 'house', name => 'deep' }); # same
 
-  # funk and soul patterns have WAY to much crashing imho:
+  # funk and soul patterns have WAY too much crashing imho:
   $set = $grooves->search({ cat => 'funk' });
   $groove = $grooves->get_groove(0, $set); # random funk groove
   $groove = $grooves->swap_pat($groove, 'crash', 'closed');
