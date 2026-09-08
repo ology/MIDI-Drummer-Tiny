@@ -23,21 +23,32 @@ use namespace::clean;
     drummer => $drummer
   );
 
-  my $all = $grooves->all_grooves;
+  my $set = $grooves->all_grooves;
 
-  my $groove = $grooves->get_groove;  # random groove
-  $groove = $grooves->get_groove(42); # numbered groove
+  # get a random groove from all known grooves
+  my $groove = $grooves->get_groove;
+  # get a random groove from the set
+  $groove = $grooves->get_groove(0, $set);
+
+  # get a numbered groove
+  $groove = $grooves->get_groove(42);
   print "42. $groove->{cat}\n$groove->{name}";
-  $grooves->groove($groove->{groove}) for 1 .. 4; # add to score
 
-  my $set = $grooves->search({ cat => 'house' });
-  my $pattern = $set->{27}{groove}; # { kick => '...', }
+  # searching
+  $set = $grooves->search({ cat => 'house' });
   $set = $grooves->search({ name => 'deep' }, $set); # refine search
+  $set = $grooves->search({ cat => 'house', name => 'deep' }); # same
 
+  # funk and soul patterns have WAY to much crashing imho:
+  $set = $grooves->search({ cat => 'funk' });
+  $groove = $grooves->get_groove(0, $set); # random funk groove
+  $groove = $grooves->swap_pat($groove, 'crash', 'closed');
+
+  # add grooves to the score
   for my $i (sort keys %$set) {
     $groove = $set->{$i};
     print "$i. $groove->{cat}\n$groove->{name}]\n";
-    $grooves->groove($groove->{groove}); # a bit redundant!
+    $grooves->groove($groove->{groove}); # a bit redundant - ugh!
   }
 
   $grooves->drummer->write;
@@ -62,6 +73,31 @@ structure:
         ...
       },
   },
+
+The known groove categories are:
+
+  Afro-Cuban,
+  Basic Patterns,
+  Breaks,
+  Breaks - Kick,
+  Breaks - Snare,
+  Drum Rolls,
+  Drum and Bass,
+  Dub,
+  EDM,
+  Electro,
+  Funk and Soul,
+  Ghost Snares,
+  Hip-Hop,
+  House,
+  Hybrid Breaks With Alternate Endings,
+  Irregular Breaks,
+  Miami Bass,
+  Pop,
+  Reggaeton,
+  Rock,
+  Rolling Breaks,
+  Standard Breaks
 
 =cut
 
