@@ -33,9 +33,10 @@ use namespace::clean;
   $groove = $grooves->get_groove(0, $set);
   # get a numbered groove
   $groove = $grooves->get_groove(42);
-  print "42. $groove->{cat}\n$groove->{name}";
 
   my $density = $grooves->density($groove);
+
+  print "42. Density: $density, $groove->{cat}\n$groove->{name}";
 
   # searching
   $set = $grooves->search({ cat => 'house' });
