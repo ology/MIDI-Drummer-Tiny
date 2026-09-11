@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer
 
 {{$NEXT}}
+
+0.7100 2026-09-11 11:01:45
     - Update the Grooves module synopsis.
     - Add verbose output to the Grooves module.
     - Make the Grooves module a subclass of the main.
