@@ -11,6 +11,8 @@ use Path::Tiny;
 use MIDI::Drummer::Tiny ();
 use namespace::clean;
 
+extends 'MIDI::Drummer::Tiny';
+
 =head1 SYNOPSIS
 
   use MIDI::Drummer::Tiny ();
