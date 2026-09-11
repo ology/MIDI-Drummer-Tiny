@@ -382,7 +382,6 @@ on, the patterns are just returned.
 
 sub groove {
     my ($self, $patterns) = @_;
-    carp "Groove patterns: $patterns\n" if $self->verbose;
     if ($self->return_patterns) {
         return map { $_ => [ split '', $patterns->{$_}{pat}[0] ] } keys %$patterns;
     }
