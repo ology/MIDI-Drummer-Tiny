@@ -4,6 +4,7 @@ package MIDI::Drummer::Tiny::Grooves;
 
 use Moo;
 use strictures 2;
+use Carp;
 # use Data::Dumper::Compact qw(ddc); # debugging
 use File::ShareDir qw(dist_dir);
 use Path::Tiny;
@@ -131,8 +132,7 @@ has drummer => (
 The "resolution" duration that is given to the
 L<MIDI::Drummer::Tiny/sync_patterns> method.
 
-This is initialized to the sixteenth duration of the drummer
-L<MIDI::Drummer::Tiny> object.
+Default: 'sn' (sixteenth-note)
 
 =cut
 
@@ -315,6 +315,7 @@ sub get_groove {
         my @keys = keys %$set;
         $groove_number = $keys[ int rand @keys ];
     }
+    carp "Groove: $groove_number\n" if $self->verbose;
     return $set->{$groove_number};
 }
 
@@ -348,6 +349,7 @@ sub search {
     }
     my $found = {};
     if ($args->{cat}) {
+        carp "Search category: $args->{cat}\n" if $self->verbose;
         my $string = lc $args->{cat};
         for my $k (keys %$set) {
             if (lc($set->{$k}{cat}) =~ /$string/) {
@@ -356,6 +358,7 @@ sub search {
         }
     }
     if ($args->{name}) {
+        carp "Search name: $args->{name}\n" if $self->verbose;
         my $string = lc $args->{name};
         for my $k (keys %$set) {
             if (lc($set->{$k}{name}) =~ /$string/) {
@@ -377,6 +380,7 @@ on, the patterns are just returned.
 
 sub groove {
     my ($self, $patterns) = @_;
+    carp "Groove patterns: $patterns\n" if $self->verbose;
     if ($self->return_patterns) {
         return map { $_ => [ split '', $patterns->{$_}{pat}[0] ] } keys %$patterns;
     }
@@ -397,6 +401,7 @@ sub groove {
 sub swap_pat {
     my ($self, $pat, $source, $dest) = @_;
     if (!exists $pat->{$dest} && exists $pat->{$source}) {
+        carp "Swap patterns: $source for $dest\n" if $self->verbose;
         my $x = delete $pat->{$source};
         $pat->{$dest} = { num => $self->$dest, pat => $x->{pat} };
     }
@@ -420,6 +425,7 @@ sub density {
         my $ones =()= $pat->{groove}{$instrument}{pat} =~ /1/g;
         $density += $ones;
     }
+    carp "Pattern density: $density\n" if $self->verbose;
     return $density;
 }
 
