@@ -44,7 +44,7 @@ extends 'MIDI::Drummer::Tiny';
   # searching
   $set = $grooves->search({ cat => 'house' });
   $set = $grooves->search({ name => 'deep' }, $set); # refine search
-  $set = $grooves->search({ cat => 'house', name => 'deep' }); # same
+  $set = $grooves->search({ cat => 'house', name => 'deep' }, $set); # same
 
   # funk and soul patterns have WAY too much crashing imho:
   $set = $grooves->search({ cat => 'funk' });
