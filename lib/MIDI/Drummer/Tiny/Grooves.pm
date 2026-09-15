@@ -39,7 +39,7 @@ extends 'MIDI::Drummer::Tiny';
 
   my $density = $grooves->density($groove);
 
-  print "42. Density: $density, $groove->{cat}\n$groove->{name}";
+  print "42. $groove->{cat}\n$groove->{name}, Density: $density";
 
   # searching
   $set = $grooves->search({ cat => 'house' });
