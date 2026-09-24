@@ -13,6 +13,22 @@ use namespace::clean;
 
 extends 'MIDI::Drummer::Tiny';
 
+use constant INSTRUMENTS => (
+    BD => 'kick',
+    SN => 'snare',
+    RS => 'rimshot',
+    CH => 'closed',
+    OH => 'open',
+    CY => 'crash',
+    CB => 'cowbell',
+    CL => 'clap',
+    SH => 'shaker',
+    HT => 'hi_tom',
+    MT => 'mid_tom',
+    LT => 'low_tom',
+    HC => 'conga',
+);
+
 =head1 SYNOPSIS
 
   use MIDI::Drummer::Tiny ();
@@ -203,21 +219,7 @@ has _grooves => (
 );
 sub _build__grooves {
     my ($self) = @_;
-    my %mapping = (
-        BD => 'kick',
-        SN => 'snare',
-        RS => 'rimshot',
-        CH => 'closed',
-        OH => 'open',
-        CY => 'crash',
-        CB => 'cowbell',
-        CL => 'clap',
-        SH => 'shaker',
-        HT => 'hi_tom',
-        MT => 'mid_tom',
-        LT => 'low_tom',
-        HC => 'conga',
-    );
+    my %mapping = INSTRUMENTS;
     my $path = $self->share_file;
     my @contents = path($path)->lines;
     my (%grooves, $cat, $name, %patterns);
@@ -253,21 +255,7 @@ sub _build__grooves {
     return \%grooves;
 }
 
-for my $patch (qw(
-    kick
-    rimshot
-    snare
-    clap
-    conga
-    cowbell
-    shaker
-    closed
-    open
-    crash
-    hi_tom
-    mid_tom
-    low_tom
-)) {
+for my $patch (values INSTRUMENTS) {
     has $patch => (
         is      => 'lazy',
         builder => '_build_' . $patch,

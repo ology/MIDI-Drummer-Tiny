@@ -1,6 +1,8 @@
 Revision history for MIDI-Drummer-Tiny
 
 {{$NEXT}}
+    - Only specify the instrument names **once** in the Grooves module.
+    - Fix the #!shbang line in a few example programs.
 
 0.7101 2026-09-11 11:07:30
     - Argh syntax!
